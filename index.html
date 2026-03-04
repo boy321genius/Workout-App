@@ -1133,16 +1133,88 @@
       display: block;
     }
   </style>
+  <!-- Supabase JS client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
+
+  <!-- ===== Login Screen (shown when not authenticated) ===== -->
+  <div id="loginScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0a1326;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  ">
+    <div style="width: 100%; max-width: 380px;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <div style="font-size: 48px; margin-bottom: 12px;">💪</div>
+        <h1 style="font-size: 22px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">Workout Tracker</h1>
+        <p style="font-size: 13px; color: #64748b;">Sign in to access your data on any device</p>
+      </div>
+
+      <!-- Email input + send magic link -->
+      <div id="loginForm">
+        <div style="margin-bottom: 12px;">
+          <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Email address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="you@example.com"
+            style="
+              width: 100%; background: rgba(255,255,255,0.05);
+              border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+              padding: 12px 14px; color: #e2e8f0; font-size: 14px; font-family: inherit;
+              box-sizing: border-box;
+            "
+            onkeydown="if(event.key==='Enter')sendMagicLink()"
+          />
+        </div>
+        <button onclick="sendMagicLink()" style="
+          width: 100%; background: #4f8ef7; border: none; border-radius: 10px;
+          color: #fff; font-size: 14px; font-weight: 700; padding: 13px;
+          cursor: pointer; font-family: inherit;
+        ">Send Magic Link</button>
+        <p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 12px; line-height: 1.5;">
+          We'll email you a one-click sign-in link.<br>No password needed.
+        </p>
+      </div>
+
+      <!-- Confirmation message after link is sent -->
+      <div id="loginSent" style="display:none; text-align:center;">
+        <div style="font-size: 36px; margin-bottom: 12px;">📬</div>
+        <p style="font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">Check your inbox</p>
+        <p style="font-size: 12px; color: #64748b; line-height: 1.5;">
+          A sign-in link has been sent.<br>Click it to open the app — you won't need a password.
+        </p>
+        <button onclick="document.getElementById('loginSent').style.display='none'; document.getElementById('loginForm').style.display='block';"
+          style="margin-top: 20px; background: none; border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 8px; color: #94a3b8; font-size: 12px; padding: 8px 16px; cursor: pointer; font-family: inherit;">
+          ← Use a different email
+        </button>
+      </div>
+
+      <div id="loginError" style="display:none; margin-top:12px; padding:10px 14px;
+        background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+        border-radius: 8px; font-size: 12px; color: #f87171; text-align: center;">
+      </div>
+    </div>
+  </div>
   <!-- ===== App Header (always visible at the top) ===== -->
-  <header class="app-header">
+  <header class="app-header" style="position:relative;">
     <h1 class="app-title">Workout Tracker Pro</h1>
-    <!-- This subtitle text is updated in JS depending on state (e.g. template selected) -->
     <p class="app-subtitle" id="headerSubtitle">
       Select a template to get started
     </p>
+    <button onclick="signOut()" id="signOutBtn" title="Sign out" style="
+      display: none; position: absolute; top: 12px; right: 16px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; color: #94a3b8; font-size: 11px; padding: 5px 10px;
+      cursor: pointer; font-family: inherit;
+    ">Sign out</button>
   </header>
 
   <!-- ===== Main Content Wrapper ===== -->
@@ -3575,7 +3647,14 @@ function populateExerciseDropdown(exerciseSelect, rowMeta, EXERCISE_LIBRARY) {
 }
 
 
-// ==================== STATE MANAGEMENT ====================
+// ==================== SUPABASE + STATE MANAGEMENT ====================
+
+const SUPABASE_URL  = 'https://mnxkkquhievfjwnxhgco.supabase.co';
+const SUPABASE_KEY  = 'sb_publishable_J2qaxHATLzjntbg194oOdQ__ccGRsMW';
+const sb            = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let saveTimeout = null;
 
 // Tracks which top-level view is currently shown (templates, workout, etc.)
 let currentView = 'templates';
@@ -3592,50 +3671,18 @@ let currentDayIndex = 0;
 // Array of completed weeks or logged workouts for the History tab
 let workoutHistory = [];
 
-// In‑memory exercise list; starts as a copy of EXERCISE_LIBRARY
-// but can be modified (add/remove/update exercises) without touching the original constant.
+// In-memory exercise list; starts as a copy of EXERCISE_LIBRARY
 let exerciseLibrary = [...EXERCISE_LIBRARY];
 
-// Stores per‑day/per‑slot selections, e.g. which exercise you picked for each slot.
-// Shape is up to you, typically something like { "<dayNum>-<slotName>": exerciseId }.
+// Stores per-day/per-slot selections
 let activeSelections = {};
 
 // Per-day performance logs accumulated during the active week.
-// Each entry: { dayIndex, dayName, date, slots: [{exId, name, primary, sets, reps, load, completed}] }
 let currentWeekLogs = [];
 
-// Load state from LocalStorage so data persists across page reloads.
-function loadState() {
-  const saved = localStorage.getItem('workoutTrackerState');
-  if (saved) {
-    const state = JSON.parse(saved);
-
-    // Rehydrate the main pieces of state if they exist in storage
-    activeTemplate    = state.activeTemplate;
-    activeWeekStart   = state.activeWeekStart;
-    currentDayIndex   = state.currentDayIndex || 0;
-    workoutHistory    = state.workoutHistory || [];
-    exerciseLibrary   = state.exerciseLibrary || [...EXERCISE_LIBRARY];
-    activeSelections  = state.activeSelections || {};
-    currentWeekLogs   = state.currentWeekLogs  || [];
-
-    // Restore custom templates (merge with built-ins)
-    if (state.customTemplates && state.customTemplates.length > 0) {
-      // Remove any old custom templates then re-add saved ones
-      TEMPLATES = TEMPLATES.filter(t => !t._custom);
-      TEMPLATES = TEMPLATES.concat(state.customTemplates);
-    }
-
-    // Restore slot rules overrides
-    if (state.slotRules) {
-      SLOT_RULES = state.slotRules;
-    }
-  }
-}
-
-// Save current state to LocalStorage so it can be restored later.
-function saveState() {
-  const state = {
+// Builds the full state object to persist
+function buildStateObject() {
+  return {
     activeTemplate,
     activeWeekStart,
     currentDayIndex,
@@ -3646,8 +3693,123 @@ function saveState() {
     customTemplates: TEMPLATES.filter(t => t._custom),
     slotRules: SLOT_RULES
   };
-  localStorage.setItem('workoutTrackerState', JSON.stringify(state));
-};
+}
+
+// Rehydrates in-memory state from a plain object
+function applyStateObject(state) {
+  if (!state) return;
+  activeTemplate    = state.activeTemplate   || null;
+  activeWeekStart   = state.activeWeekStart  || null;
+  currentDayIndex   = state.currentDayIndex  || 0;
+  workoutHistory    = state.workoutHistory   || [];
+  exerciseLibrary   = state.exerciseLibrary  || [...EXERCISE_LIBRARY];
+  activeSelections  = state.activeSelections || {};
+  currentWeekLogs   = state.currentWeekLogs  || [];
+  if (state.customTemplates && state.customTemplates.length > 0) {
+    TEMPLATES = TEMPLATES.filter(t => !t._custom);
+    TEMPLATES = TEMPLATES.concat(state.customTemplates);
+  }
+  if (state.slotRules) {
+    SLOT_RULES = state.slotRules;
+  }
+}
+
+// Loads state from Supabase for the current user
+async function loadState() {
+  if (!currentUser) return;
+  const { data, error } = await sb
+    .from('user_state')
+    .select('data')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error) { console.error('loadState error:', error); return; }
+  if (data) applyStateObject(data.data);
+}
+
+// Saves state to Supabase (debounced 800ms to avoid hammering on rapid changes)
+function saveState() {
+  if (!currentUser) return;
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(async () => {
+    const state = buildStateObject();
+    const { error } = await sb
+      .from('user_state')
+      .upsert({ user_id: currentUser.id, data: state }, { onConflict: 'user_id' });
+    if (error) console.error('saveState error:', error);
+  }, 800);
+}
+
+// ==================== AUTH ====================
+
+async function sendMagicLink() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const errEl = document.getElementById('loginError');
+  errEl.style.display = 'none';
+
+  if (!email) {
+    errEl.textContent = 'Please enter your email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.href }
+  });
+
+  if (error) {
+    errEl.textContent = error.message;
+    errEl.style.display = 'block';
+  } else {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('loginSent').style.display = 'block';
+  }
+}
+
+async function signOut() {
+  await sb.auth.signOut();
+  currentUser = null;
+  // Reset in-memory state
+  activeTemplate = null; activeWeekStart = null; currentDayIndex = 0;
+  workoutHistory = []; exerciseLibrary = [...EXERCISE_LIBRARY];
+  activeSelections = {}; currentWeekLogs = [];
+  TEMPLATES = TEMPLATES.filter(t => !t._custom);
+  // Show login screen
+  document.getElementById('signOutBtn').style.display = 'none';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('loginSent').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+// ==================== BOOTSTRAP ====================
+
+async function initApp(user) {
+  currentUser = user;
+  await loadState();
+
+  // Hide login, show app
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('signOutBtn').style.display = 'block';
+
+  renderTemplates();
+  if (activeTemplate) {
+    document.getElementById('headerSubtitle').textContent =
+      `${activeTemplate.focus} • ${activeTemplate.name}`;
+  }
+}
+
+// Listen for auth state changes (handles magic link redirect automatically)
+sb.auth.onAuthStateChange(async (event, session) => {
+  if (session && session.user) {
+    await initApp(session.user);
+  } else {
+    // Not logged in — show login screen
+    document.getElementById('loginScreen').style.display = 'flex';
+  }
+});
+
 
 // ==================== NAVIGATION ====================
 
@@ -5249,18 +5411,6 @@ document
         ?.textContent || 'All';
     renderExerciseList(activeType);
   });
-
-// Bootstraps the app when the page loads:
-// 1) Restore previous state from LocalStorage (if any)
-// 2) Render the Templates view by default
-// 3) If a template was already active, update the header subtitle to show it
-loadState();
-renderTemplates();
-
-if (activeTemplate) {
-  document.getElementById('headerSubtitle').textContent =
-    `${activeTemplate.focus} • ${activeTemplate.name}`;
-}
 </script>
 </body>
 </html>
