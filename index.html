@@ -1149,57 +1149,68 @@
     justify-content: center;
     padding: 32px;
   ">
-    <div style="width: 100%; max-width: 380px;">
-      <div style="text-align: center; margin-bottom: 32px;">
+    <div style="width: 100%; max-width: 360px;">
+      <div style="text-align: center; margin-bottom: 28px;">
         <div style="font-size: 48px; margin-bottom: 12px;">💪</div>
         <h1 style="font-size: 22px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">Workout Tracker</h1>
-        <p style="font-size: 13px; color: #64748b;">Sign in to access your data on any device</p>
+        <p style="font-size: 13px; color: #64748b;" id="loginSubtitle">Sign in to your account</p>
       </div>
 
-      <!-- Email input + send magic link -->
-      <div id="loginForm">
-        <div style="margin-bottom: 12px;">
-          <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Email address</label>
-          <input
-            type="email"
-            id="loginEmail"
-            placeholder="you@example.com"
-            style="
-              width: 100%; background: rgba(255,255,255,0.05);
-              border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
-              padding: 12px 14px; color: #e2e8f0; font-size: 14px; font-family: inherit;
-              box-sizing: border-box;
-            "
-            onkeydown="if(event.key==='Enter')sendMagicLink()"
-          />
-        </div>
-        <button onclick="sendMagicLink()" style="
-          width: 100%; background: #4f8ef7; border: none; border-radius: 10px;
-          color: #fff; font-size: 14px; font-weight: 700; padding: 13px;
-          cursor: pointer; font-family: inherit;
-        ">Send Magic Link</button>
-        <p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 12px; line-height: 1.5;">
-          We'll email you a one-click sign-in link.<br>No password needed.
-        </p>
+      <!-- Tab toggle: Sign In / Sign Up -->
+      <div style="display:flex; background:rgba(255,255,255,0.05); border-radius:10px; padding:3px; margin-bottom:20px;">
+        <button id="tabSignIn" onclick="switchAuthTab('signin')" style="
+          flex:1; padding:8px; border:none; border-radius:8px; font-size:13px;
+          font-weight:600; cursor:pointer; font-family:inherit;
+          background:#4f8ef7; color:#fff; transition:all 0.15s;
+        ">Sign In</button>
+        <button id="tabSignUp" onclick="switchAuthTab('signup')" style="
+          flex:1; padding:8px; border:none; border-radius:8px; font-size:13px;
+          font-weight:600; cursor:pointer; font-family:inherit;
+          background:transparent; color:#64748b; transition:all 0.15s;
+        ">Sign Up</button>
       </div>
 
-      <!-- Confirmation message after link is sent -->
-      <div id="loginSent" style="display:none; text-align:center;">
-        <div style="font-size: 36px; margin-bottom: 12px;">📬</div>
-        <p style="font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">Check your inbox</p>
-        <p style="font-size: 12px; color: #64748b; line-height: 1.5;">
-          A sign-in link has been sent.<br>Click it to open the app — you won't need a password.
-        </p>
-        <button onclick="document.getElementById('loginSent').style.display='none'; document.getElementById('loginForm').style.display='block';"
-          style="margin-top: 20px; background: none; border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 8px; color: #94a3b8; font-size: 12px; padding: 8px 16px; cursor: pointer; font-family: inherit;">
-          ← Use a different email
-        </button>
+      <!-- Username field -->
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Username</label>
+        <input type="text" id="loginUsername" placeholder="Choose a username"
+          autocomplete="username" autocapitalize="none" spellcheck="false"
+          style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+          border-radius:10px; padding:12px 14px; color:#e2e8f0; font-size:14px;
+          font-family:inherit; box-sizing:border-box;"
+          onkeydown="if(event.key==='Enter')document.getElementById('loginPassword').focus()"
+        />
       </div>
 
+      <!-- Password field -->
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password"
+          autocomplete="current-password"
+          style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+          border-radius:10px; padding:12px 14px; color:#e2e8f0; font-size:14px;
+          font-family:inherit; box-sizing:border-box;"
+          onkeydown="if(event.key==='Enter')handleAuth()"
+        />
+      </div>
+
+      <!-- Submit button -->
+      <button id="loginSubmitBtn" onclick="handleAuth()" style="
+        width:100%; background:#4f8ef7; border:none; border-radius:10px;
+        color:#fff; font-size:14px; font-weight:700; padding:13px;
+        cursor:pointer; font-family:inherit; transition:opacity 0.15s;
+      ">Sign In</button>
+
+      <!-- Error message -->
       <div id="loginError" style="display:none; margin-top:12px; padding:10px 14px;
-        background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
-        border-radius: 8px; font-size: 12px; color: #f87171; text-align: center;">
+        background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);
+        border-radius:8px; font-size:12px; color:#f87171; text-align:center;">
+      </div>
+
+      <!-- Loading indicator -->
+      <div id="loginLoading" style="display:none; margin-top:12px; text-align:center;
+        font-size:12px; color:#64748b;">
+        Please wait…
       </div>
     </div>
   </div>
@@ -3742,44 +3753,121 @@ function saveState() {
 
 // ==================== AUTH ====================
 
-async function sendMagicLink() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const errEl = document.getElementById('loginError');
+// ==================== AUTH ====================
+
+let authMode = 'signin'; // 'signin' | 'signup'
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  const isSignUp = mode === 'signup';
+  document.getElementById('loginSubtitle').textContent =
+    isSignUp ? 'Create your account' : 'Sign in to your account';
+  document.getElementById('loginSubmitBtn').textContent =
+    isSignUp ? 'Create Account' : 'Sign In';
+  document.getElementById('loginUsername').placeholder =
+    isSignUp ? 'Choose a username' : 'Your username';
+  document.getElementById('loginPassword').placeholder =
+    isSignUp ? 'Choose a password (min 6 chars)' : 'Your password';
+  document.getElementById('loginError').style.display = 'none';
+
+  // Style the active tab
+  const activeStyle  = 'background:#4f8ef7;color:#fff;';
+  const inactiveStyle = 'background:transparent;color:#64748b;';
+  document.getElementById('tabSignIn').style.cssText += isSignUp ? inactiveStyle : activeStyle;
+  document.getElementById('tabSignUp').style.cssText += isSignUp ? activeStyle   : inactiveStyle;
+}
+
+function setLoginLoading(on) {
+  document.getElementById('loginSubmitBtn').disabled = on;
+  document.getElementById('loginSubmitBtn').style.opacity = on ? '0.6' : '1';
+  document.getElementById('loginLoading').style.display  = on ? 'block' : 'none';
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function handleAuth() {
+  const username = document.getElementById('loginUsername').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  const errEl    = document.getElementById('loginError');
   errEl.style.display = 'none';
 
-  if (!email) {
-    errEl.textContent = 'Please enter your email address.';
-    errEl.style.display = 'block';
-    return;
-  }
+  if (!username) return showLoginError('Please enter a username.');
+  if (!password) return showLoginError('Please enter a password.');
+  if (authMode === 'signup' && password.length < 6)
+    return showLoginError('Password must be at least 6 characters.');
 
-  const { error } = await sb.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.href }
-  });
+  // Validate username: letters, numbers, underscores only
+  if (!/^[a-z0-9_]+$/.test(username))
+    return showLoginError('Username can only contain letters, numbers, and underscores.');
 
-  if (error) {
-    errEl.textContent = error.message;
-    errEl.style.display = 'block';
+  setLoginLoading(true);
+
+  // We use a fake email constructed from the username — never shown to the user
+  const fakeEmail = `${username}@workoutapp.local`;
+
+  if (authMode === 'signup') {
+    // Check if username is already taken
+    const { data: existing } = await sb
+      .from('user_state')
+      .select('username')
+      .eq('username', username)
+      .maybeSingle();
+
+    if (existing) {
+      setLoginLoading(false);
+      return showLoginError('That username is already taken. Try another.');
+    }
+
+    const { data, error } = await sb.auth.signUp({ email: fakeEmail, password });
+    if (error) {
+      setLoginLoading(false);
+      // "User already registered" means they should sign in instead
+      if (error.message.includes('already registered')) {
+        return showLoginError('Username already exists. Switch to Sign In.');
+      }
+      return showLoginError(error.message);
+    }
+
+    // Save username alongside user_id immediately on signup
+    if (data.user) {
+      await sb.from('user_state').upsert(
+        { user_id: data.user.id, username, data: {} },
+        { onConflict: 'user_id' }
+      );
+    }
+
   } else {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('loginSent').style.display = 'block';
+    // Sign in
+    const { error } = await sb.auth.signInWithPassword({ email: fakeEmail, password });
+    if (error) {
+      setLoginLoading(false);
+      if (error.message.includes('Invalid login credentials')) {
+        return showLoginError('Incorrect username or password.');
+      }
+      return showLoginError(error.message);
+    }
   }
+
+  setLoginLoading(false);
+  // onAuthStateChange will fire and call initApp automatically
 }
 
 async function signOut() {
   await sb.auth.signOut();
   currentUser = null;
-  // Reset in-memory state
   activeTemplate = null; activeWeekStart = null; currentDayIndex = 0;
   workoutHistory = []; exerciseLibrary = [...EXERCISE_LIBRARY];
   activeSelections = {}; currentWeekLogs = [];
   TEMPLATES = TEMPLATES.filter(t => !t._custom);
-  // Show login screen
   document.getElementById('signOutBtn').style.display = 'none';
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginForm').style.display = 'block';
-  document.getElementById('loginSent').style.display = 'none';
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginError').style.display = 'none';
+  switchAuthTab('signin');
   document.getElementById('loginScreen').style.display = 'flex';
 }
 
@@ -3789,9 +3877,18 @@ async function initApp(user) {
   currentUser = user;
   await loadState();
 
-  // Hide login, show app
+  // Show username in sign-out button
+  const { data: profile } = await sb
+    .from('user_state')
+    .select('username')
+    .eq('user_id', user.id)
+    .maybeSingle();
+  const uname = profile?.username || '';
+  const btn = document.getElementById('signOutBtn');
+  btn.textContent = uname ? `${uname} · Sign out` : 'Sign out';
+  btn.style.display = 'block';
+
   document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('signOutBtn').style.display = 'block';
 
   renderTemplates();
   if (activeTemplate) {
