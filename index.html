@@ -4222,8 +4222,9 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
     const img = panel.querySelector('img');
     const btn = document.getElementById(`gif-btn-${exIndex}`);
     if (img && selectEl.value) {
+      panel.style.display = 'none';
+      if (btn) { btn.style.display = 'none'; btn.textContent = '▼ Show Demo'; }
       img.src = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectEl.value}.gif`;
-      if (btn) btn.style.display = 'none'; // hide until onload confirms file exists
     }
   }
 }
@@ -4417,16 +4418,16 @@ const dropdownHtml =
           </div>
         </div>
 
-        <!-- GIF demo toggle — button hidden until file confirmed to exist via onload -->
+        <!-- GIF demo toggle — button and panel hidden until file confirmed to exist via onload -->
         ${(() => {
           const gifUrl = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectedExercise.id}.gif`;
           return `
             <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})" style="display:none;">
               ▼ Show Demo
             </button>
-            <div class="exercise-gif-panel" id="gif-panel-${index}">
+            <div class="exercise-gif-panel" id="gif-panel-${index}" style="display:none; max-height:none;">
               <img src="${gifUrl}" alt="${selectedExercise.name} demo"
-                   onload="document.getElementById('gif-btn-${index}').style.display='block';"
+                   onload="document.getElementById('gif-btn-${index}').style.display='flex';"
                    onerror="this.closest('.exercise-gif-panel').style.display='none';" />
             </div>
           `;
@@ -5215,9 +5216,10 @@ function closeGifLightbox() {
 // Toggles the GIF demo panel inside a workout exercise card.
 function toggleExerciseGif(index) {
   const panel = document.getElementById(`gif-panel-${index}`);
-  const btn = document.getElementById(`gif-btn-${index}`);
-  const isOpen = panel.classList.toggle('open');
-  btn.textContent = isOpen ? '▲ Hide Demo' : '▼ Show Demo';
+  const btn   = document.getElementById(`gif-btn-${index}`);
+  const isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? '▼ Show Demo' : '▲ Hide Demo';
 }
 
 // Renders the compact exercise list inside Admin panel
