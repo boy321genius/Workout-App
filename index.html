@@ -3962,10 +3962,13 @@ async function initApp(user) {
 
   document.getElementById('loginScreen').style.display = 'none';
 
-  renderTemplates();
   if (activeTemplate) {
+    // Resume the active workout exactly where the user left off
     document.getElementById('headerSubtitle').textContent =
       `${activeTemplate.focus} • ${activeTemplate.name}`;
+    showView('workout');
+  } else {
+    renderTemplates();
   }
 }
 
