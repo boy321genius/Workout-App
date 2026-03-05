@@ -1818,24 +1818,6 @@
           <input type="text" class="form-input" id="exerciseSlots" placeholder="Main Lift, Secondary Lift" />
         </div>
 
-        <!-- GIF URL -->
-        <div class="form-group">
-          <label class="form-label">Demo GIF URL (Optional)</label>
-          <input
-            type="url"
-            class="form-input"
-            id="exerciseGif"
-            placeholder="https://example.com/exercise.gif"
-            oninput="previewExerciseGif(this.value)"
-          />
-          <div class="gif-preview-wrap" id="gifPreviewWrap" style="margin-top:10px;">
-            <div class="gif-placeholder" id="gifPreviewPlaceholder">🎬 Enter a GIF URL to preview</div>
-            <img id="gifPreviewImg" src="" alt="Exercise demo" style="display:none;"
-                 onerror="this.style.display='none';document.getElementById('gifPreviewPlaceholder').style.display='block';"
-                 onload="this.style.display='block';document.getElementById('gifPreviewPlaceholder').style.display='none';" />
-          </div>
-        </div>
-
         <button type="submit" class="btn btn-block">Save Exercise</button>
       </form>
     </div>
@@ -1976,75 +1958,75 @@
 //               (e.g. "Main Lift", "Secondary Lift", "Accessories", "Core / Trunk / Carries")
 
 const EXERCISE_LIBRARY = [
-  {id: "EX001", name: "Dumbbell Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/Dumbbell_Bench_Press0.gif"},
-{id: "EX002", name: "Dumbbell Incline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Incline_Bench_Press/Dumbbell_Incline_Bench_Press0.gif"},
-{id: "EX003", name: "Overhead Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Standing_Overhead_Press/Barbell_Standing_Overhead_Press0.gif"},
-{id: "EX004", name: "Dumbbell Shoulder Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/Dumbbell_Shoulder_Press0.gif"},
-{id: "EX005", name: "Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-up/Push-up0.gif"},
-{id: "EX007", name: "Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest-Supported_Dumbbell_Row/Chest-Supported_Dumbbell_Row0.gif"},
-{id: "EX008", name: "Bent-Over Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Row/Bent_Over_Dumbbell_Row0.gif"},
+  {id: "EX001", name: "Dumbbell Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX002", name: "Dumbbell Incline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX003", name: "Overhead Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX004", name: "Dumbbell Shoulder Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX005", name: "Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX007", name: "Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX008", name: "Bent-Over Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX009", name: "Seated Banded Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX010", name: "Seated Bent-Over Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Row/Bent_Over_Dumbbell_Row0.gif"},
+{id: "EX010", name: "Seated Bent-Over Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX011", name: "Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX013", name: "Banded Good Morning", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX014", name: "Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip,LowBack", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX015", name: "Banded Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX018", name: "Banded Lateral Step-Out Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX019", name: "Banded Leg Press", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX020", name: "Goblet Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Goblet_Squat/Dumbbell_Goblet_Squat0.gif"},
-{id: "EX021", name: "Dumbbell Sumo / Plié Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sumo_Squat/Sumo_Squat0.gif"},
-{id: "EX022", name: "Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bulgarian_Split_Squat/Bulgarian_Split_Squat0.gif"},
-{id: "EX023", name: "Cossack Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cossack_Squat/Cossack_Squat0.gif"},
+{id: "EX020", name: "Goblet Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX021", name: "Dumbbell Sumo / Plié Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX022", name: "Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX023", name: "Cossack Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX024", name: "Lateral Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX025", name: "Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunge/Dumbbell_Lunge0.gif"},
-{id: "EX026", name: "Dumbbell Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step-up/Dumbbell_Step-up0.gif"},
-{id: "EX027", name: "Reverse Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Reverse_Lunge/Dumbbell_Reverse_Lunge0.gif"},
-{id: "EX028", name: "Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat/Split_Squat0.gif"},
-{id: "EX029", name: "Lateral Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lunge/Side_Lunge0.gif"},
+{id: "EX025", name: "Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX026", name: "Dumbbell Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX027", name: "Reverse Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX028", name: "Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX029", name: "Lateral Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX030", name: "Spanish Squat (Band-Assisted)", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX031", name: "Glute Bridge", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/Glute_Bridge0.gif"},
-{id: "EX034", name: "Stiff-Leg Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Leg_Deadlift/Stiff-Leg_Deadlift0.gif"},
-{id: "EX035", name: "Banded Hip Thrust", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Thrust/Hip_Thrust0.gif"},
-{id: "EX036", name: "Suitcase Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,LowBack", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/Romanian_Deadlift0.gif"},
+{id: "EX031", name: "Glute Bridge", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX034", name: "Stiff-Leg Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX035", name: "Banded Hip Thrust", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX036", name: "Suitcase Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,LowBack", slots: ["Secondary Lift"]},
 {id: "EX037", name: "Banded Frog Pump", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX038", name: "Dead Bug", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/Dead_Bug0.gif"},
-{id: "EX039", name: "Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pallof_Press/Pallof_Press0.gif"},
-{id: "EX040", name: "Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/Plank0.gif"},
-{id: "EX041", name: "Side Plank", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Plank/Side_Plank0.gif"},
-{id: "EX042", name: "V-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/V-Up/V-Up0.gif"},
+{id: "EX038", name: "Dead Bug", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX039", name: "Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX040", name: "Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX041", name: "Side Plank", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX042", name: "V-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX043", name: "Weighted Side Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX044", name: "High To Low Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX045", name: "Low To High Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX046", name: "Hollow Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hollow_Hold/Hollow_Hold0.gif"},
-{id: "EX047", name: "Hollow Rock", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hollow_Rock/Hollow_Rock0.gif"},
+{id: "EX046", name: "Hollow Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX047", name: "Hollow Rock", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX048", name: "Bear Plank Hold", type: "Resistance", primary: "Core", secondary: "Core: AntiExt,Core: AntiRot", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX049", name: "Superman Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/Superman0.gif"},
-{id: "EX050", name: "Bird Dog Hold", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bird_Dog/Bird_Dog0.gif"},
+{id: "EX049", name: "Superman Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX050", name: "Bird Dog Hold", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX051", name: "Copenhagen Side Plank Hold", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Groin", slots: ["Core / Trunk / Carries"]},
-{id: "EX052", name: "Kneeling Ab Wheel", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/Ab_Roller0.gif"},
+{id: "EX052", name: "Kneeling Ab Wheel", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX053", name: "Extended Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX054", name: "Dumbbell Overhead Carry", type: "Resistance", primary: "Carry", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX055", name: "Farmer’s Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Farmers_Carry/Farmers_Carry0.gif"},
+{id: "EX055", name: "Farmer’s Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX056", name: "Mixed Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX057", name: "Suitcase Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX058", name: "Waiter Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX059", name: "Turkish Get-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core,Hip", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Turkish_Get-up/Turkish_Get-up0.gif"},
-{id: "EX060", name: "Speed Squat", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Squat/Squat0.gif"},
-{id: "EX061", name: "Dumbbell Hang Clean", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Power_Clean/Dumbbell_Power_Clean0.gif"},
+{id: "EX059", name: "Turkish Get-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core,Hip", slots: ["Core / Trunk / Carries"]},
+{id: "EX060", name: "Speed Squat", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"]},
+{id: "EX061", name: "Dumbbell Hang Clean", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX062", name: "Dumbbell Hang Clean and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX063", name: "Dumbbell Hang Clean,Squat,and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX064", name: "Dumbbell Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Snatch/Dumbbell_Snatch0.gif"},
-{id: "EX065", name: "Dumbbell Thruster", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Thruster/Dumbbell_Thruster0.gif"},
+{id: "EX064", name: "Dumbbell Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
+{id: "EX065", name: "Dumbbell Thruster", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX066", name: "Pogo Jump Series", type: "Power", primary: "Power: Jump", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
-{id: "EX067", name: "Tuck Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tuck_Jump/Tuck_Jump0.gif"},
-{id: "EX068", name: "Broad Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Hip,Ankle/Achilles", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Broad_Jump/Broad_Jump0.gif"},
+{id: "EX067", name: "Tuck Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
+{id: "EX068", name: "Broad Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Hip,Ankle/Achilles", slots: ["Power"]},
 {id: "EX069", name: "Skater Bound (Lateral Jump)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
-{id: "EX070", name: "Split Jump (Jumping Lunge)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Jump_Lunge/Jump_Lunge0.gif"},
+{id: "EX070", name: "Split Jump (Jumping Lunge)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
 {id: "EX071", name: "Agility Ladder Acceleration Start", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
 {id: "EX072", name: "Agility Ladder Single-Leg Quick Steps", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
 {id: "EX073", name: "Banded Straight Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Elbow", slots: ["Power"]},
 {id: "EX074", name: "Banded Rotational Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Core", slots: ["Power"]},
-{id: "EX075", name: "Plyometric Push-Up", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Wrist", slots: ["Power"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plyometric_Push-up/Plyometric_Push-up0.gif"},
+{id: "EX075", name: "Plyometric Push-Up", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Wrist", slots: ["Power"]},
 {id: "EX076", name: "Single-Arm Alternating Dumbbell Swing", type: "Power", primary: "Power: Throw", secondary: "", bias: "Hip,LowBack", slots: ["Power"]},
 {id: "EX077", name: "Dumbbell Hang Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX078", name: "Walking Pad Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"]},
@@ -2059,16 +2041,16 @@ const EXERCISE_LIBRARY = [
 {id: "EX087", name: "Shadowboxing Hard Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
 {id: "EX088", name: "Ruck Fast Walk Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
 {id: "EX089", name: "Banded Bicep Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX090", name: "Concentration Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curl/Concentration_Curl0.gif"},
-{id: "EX091", name: "Cross-Body Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cross_Body_Hammer_Curl/Cross_Body_Hammer_Curl0.gif"},
-{id: "EX092", name: "Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bicep_Curl/Dumbbell_Bicep_Curl0.gif"},
-{id: "EX093", name: "Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Hammer_Curl/Dumbbell_Hammer_Curl0.gif"},
-{id: "EX094", name: "Incline Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Biceps_Curl/Incline_Dumbbell_Biceps_Curl0.gif"},
-{id: "EX095", name: "Incline Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Hammer_Curl/Incline_Dumbbell_Hammer_Curl0.gif"},
-{id: "EX096", name: "Preacher Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/Preacher_Curl0.gif"},
+{id: "EX090", name: "Concentration Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX091", name: "Cross-Body Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX092", name: "Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX093", name: "Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX094", name: "Incline Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX095", name: "Incline Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX096", name: "Preacher Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX097", name: "Reverse-Grip Biceps Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
 {id: "EX098", name: "Spider Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX099", name: "Zottman Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/Zottman_Curl0.gif"},
+{id: "EX099", name: "Zottman Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
 {id: "EX100", name: "Dumbbell Forearm Pronation", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
 {id: "EX101", name: "Dumbbell Forearm Supination", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
 {id: "EX102", name: "Neutral-Grip Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
@@ -2079,13 +2061,13 @@ const EXERCISE_LIBRARY = [
 {id: "EX107", name: "Banded Behind-the-Neck Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX108", name: "Banded Pull-Apart", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX109", name: "Banded Face Pull", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX110", name: "Rear Delt Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lateral_Raise/Dumbbell_Rear_Lateral_Raise0.gif"},
-{id: "EX111", name: "Single-Arm Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Arm_Dumbbell_Row/Single-Arm_Dumbbell_Row0.gif"},
+{id: "EX110", name: "Rear Delt Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX111", name: "Single-Arm Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder", slots: ["Secondary Lift"]},
 {id: "EX112", name: "Straight-Arm Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
 {id: "EX113", name: "Banded Chest Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX114", name: "Decline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/Decline_Dumbbell_Bench_Press0.gif"},
-{id: "EX115", name: "Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Fly/Dumbbell_Fly0.gif"},
-{id: "EX116", name: "Incline Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Fly/Incline_Dumbbell_Fly0.gif"},
+{id: "EX114", name: "Decline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX115", name: "Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX116", name: "Incline Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX117", name: "Reverse-Grip Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX118", name: "Banded Shoulder Adduction", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX119", name: "Banded Shoulder Dislocate", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Cooldown"]},
@@ -2093,43 +2075,43 @@ const EXERCISE_LIBRARY = [
 {id: "EX121", name: "Banded Shoulder Internal Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX122", name: "Diagonal Delt Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX123", name: "Dumbbell Cuban Press", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX124", name: "Front Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Front_Raise/Dumbbell_Front_Raise0.gif"},
+{id: "EX124", name: "Front Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX125", name: "Half-Kneeling Dumbbell Halo", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX126", name: "Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lateral_Raise/Dumbbell_Lateral_Raise0.gif"},
+{id: "EX126", name: "Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX127", name: "Prone Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX128", name: "Prone Incline Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX129", name: "Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lateral_Raise/Dumbbell_Rear_Lateral_Raise0.gif"},
-{id: "EX130", name: "Seated Bent-Over Dumbbell Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lateral_Raise/Dumbbell_Rear_Lateral_Raise0.gif"},
-{id: "EX131", name: "Seated Bent-Over Dumbbell Reverse Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Rear_Lateral_Raise/Dumbbell_Rear_Lateral_Raise0.gif"},
-{id: "EX132", name: "Shoulder Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/Dumbbell_Shrug0.gif"},
-{id: "EX133", name: "Dumbbell Upright Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Upright_Row/Dumbbell_Upright_Row0.gif"},
+{id: "EX129", name: "Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX130", name: "Seated Bent-Over Dumbbell Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX131", name: "Seated Bent-Over Dumbbell Reverse Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX132", name: "Shoulder Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
+{id: "EX133", name: "Dumbbell Upright Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX134", name: "Banded Triceps Pushdown", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX135", name: "Ankle-Banded Monster Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"]},
 {id: "EX136", name: "Banded Hip Adduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX137", name: "Banded Knee Drive", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"]},
 {id: "EX138", name: "Banded Lateral Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX139", name: "Banded Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side-Lying_Hip_Abduction/Side-Lying_Hip_Abduction0.gif"},
-{id: "EX140", name: "Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raise/Standing_Calf_Raise0.gif"},
+{id: "EX139", name: "Banded Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
+{id: "EX140", name: "Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
 {id: "EX141", name: "Lateral Goblet Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"]},
 {id: "EX142", name: "Lying Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hamstring,Knee", slots: ["Activation", "Accessories"]},
 {id: "EX143", name: "Seated Banded Hip Abduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX144", name: "Seated Calf Press", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/Seated_Calf_Raise0.gif"},
-{id: "EX145", name: "Seated Dumbbell Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/Seated_Calf_Raise0.gif"},
+{id: "EX144", name: "Seated Calf Press", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
+{id: "EX145", name: "Seated Dumbbell Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
 {id: "EX146", name: "Seated Ankle Pull", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX147", name: "Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side-Lying_Hip_Abduction/Side-Lying_Hip_Abduction0.gif"},
+{id: "EX147", name: "Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX148", name: "Standing Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "Hinge", bias: "Knee,Hamstring", slots: ["Activation", "Accessories"]},
 {id: "EX149", name: "Straight-Leg Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX150", name: "Bent-Knee Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX151", name: "Banded Diagonal Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX152", name: "Plank Pass-Through", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX153", name: "Plank Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/Plank0.gif"},
+{id: "EX153", name: "Plank Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
 {id: "EX154", name: "Supine Psoas March", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX155", name: "Bird Dog", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bird_Dog/Bird_Dog0.gif"},
+{id: "EX155", name: "Bird Dog", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX156", name: "Bird Dog With Band T-Resistance", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX157", name: "Dumbbell Overhead Squat", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX158", name: "Sit-to-Press", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX159", name: "Close-Grip Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Elbow", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Push-up/Close-Grip_Push-up0.gif"},
-{id: "EX160", name: "Decline Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Push-up/Decline_Push-up0.gif"},
+{id: "EX159", name: "Close-Grip Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Elbow", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX160", name: "Decline Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX161", name: "Banded Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX162", name: "Single-Arm Dumbbell Floor Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
 {id: "EX163", name: "Dumbbell Squeeze Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
@@ -2161,7 +2143,7 @@ const EXERCISE_LIBRARY = [
 {id: "EX189", name: "Heel Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX190", name: "Alternating Superman", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX191", name: "Dumbbell Circular Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX192", name: "Banded Glute Bridge With Alternating Leg Raise", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/Glute_Bridge0.gif"},
+{id: "EX192", name: "Banded Glute Bridge With Alternating Leg Raise", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"]},
 {id: "EX193", name: "Banded Y-Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX194", name: "Behind-the-Back Banded Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX195", name: "Behind-the-Back Banded Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
@@ -2171,30 +2153,30 @@ const EXERCISE_LIBRARY = [
 {id: "EX199", name: "Dumbbell Decline Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX200", name: "Dumbbell Drag Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX201", name: "Dumbbell Halo to Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX202", name: "Dumbbell Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunge/Dumbbell_Lunge0.gif"},
+{id: "EX202", name: "Dumbbell Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
 {id: "EX203", name: "Dumbbell Overhead Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX204", name: "Dumbbell Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Pullover/Dumbbell_Pullover0.gif"},
+{id: "EX204", name: "Dumbbell Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
 {id: "EX205", name: "Dumbbell (Standing) Side Bend", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX206", name: "Dumbbell Toe Walk", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles,Core", slots: ["Accessories"]},
-{id: "EX207", name: "Gorilla Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Row/Bent_Over_Dumbbell_Row0.gif"},
-{id: "EX208", name: "Inchworm", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/Inchworm0.gif"},
+{id: "EX207", name: "Gorilla Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX208", name: "Inchworm", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
 {id: "EX209", name: "Dumbbell Iron Cross Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Knee", slots: ["Secondary Lift"]},
 {id: "EX210", name: "Kneeling Hip Roll", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
 {id: "EX211", name: "Stationary Lower Body Crawl (Knee-to-Elbow)", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX212", name: "Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Oblique_Crunch/Oblique_Crunch0.gif"},
+{id: "EX212", name: "Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX213", name: "Cross-Body Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX214", name: "Pallof Press and Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX215", name: "Plank Hip Dip", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Dips/Hip_Dips0.gif"},
+{id: "EX215", name: "Plank Hip Dip", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX216", name: "Plank Surrender", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX217", name: "Reverse Elbow Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX218", name: "Russian Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Russian_Twist/Russian_Twist0.gif"},
+{id: "EX218", name: "Russian Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX219", name: "Side Plank Clam Lift", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX220", name: "Standing Elbow-to-Knee Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX221", name: "Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Toe_Touch/Toe_Touch0.gif"},
-{id: "EX222", name: "Floor Tuck Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Crunch/Crunch0.gif"},
+{id: "EX221", name: "Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX222", name: "Floor Tuck Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX223", name: "Waiter Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow,Shoulder", slots: ["Accessories"]},
-{id: "EX224", name: "Walkout", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/Inchworm0.gif"},
-{id: "EX225", name: "Walkout to Push-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/Inchworm0.gif"},
+{id: "EX224", name: "Walkout", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
+{id: "EX225", name: "Walkout to Push-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
 {id: "EX226", name: "Spider-Man Plank Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX227", name: "Seated Toe Taps", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX228", name: "Ankle-Weight March (Continuous)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
@@ -2206,7 +2188,7 @@ const EXERCISE_LIBRARY = [
 {id: "EX234", name: "Agility Ladder COD Intervals (Lateral Patterns)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"]},
 {id: "EX235", name: "Agility Ladder COD Intervals (Icky / In-In-Out-Out)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"]},
 {id: "EX236", name: "Dumbbell Circuit (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX237", name: "Mountain Climbers (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/Mountain_Climbers0.gif"},
+{id: "EX237", name: "Mountain Climbers (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
 {id: "EX238", name: "Jump Rope + Shadowboxing Alternating Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
 {id: "EX239", name: "Banded Leg Extensions", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Secondary Lift", "Accessories"]}
 ];
@@ -4232,10 +4214,8 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
     const img = panel.querySelector('img');
     const btn = document.getElementById(`gif-btn-${exIndex}`);
     if (img && selectEl.value) {
-      const ex = exerciseLibrary.find(e => e.id === selectEl.value);
-      const newSrc = (ex && ex.gif) ? ex.gif : `./gifs/${selectEl.value}.gif`;
-      img.src = newSrc;
-      if (btn) btn.style.display = '';
+      img.src = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectEl.value}.gif`;
+      if (btn) btn.style.display = 'none'; // hide until onload confirms file exists
     }
   }
 }
@@ -4429,17 +4409,17 @@ const dropdownHtml =
           </div>
         </div>
 
-        <!-- GIF demo toggle (only shown if the selected exercise has a gif) -->
+        <!-- GIF demo toggle — button hidden until file confirmed to exist via onload -->
         ${(() => {
-          const gifUrl = selectedExercise.gif || `./gifs/${selectedExercise.id}.gif`;
-          // Always attempt to show the gif panel — onerror hides it if file doesn't exist
+          const gifUrl = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectedExercise.id}.gif`;
           return `
-            <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})">
+            <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})" style="display:none;">
               ▼ Show Demo
             </button>
             <div class="exercise-gif-panel" id="gif-panel-${index}">
               <img src="${gifUrl}" alt="${selectedExercise.name} demo"
-                   onerror="this.closest('.exercise-gif-panel').previousElementSibling.style.display='none';this.closest('.exercise-gif-panel').style.display='none';" />
+                   onload="document.getElementById('gif-btn-${index}').style.display='block';"
+                   onerror="this.closest('.exercise-gif-panel').style.display='none';" />
             </div>
           `;
         })()}
@@ -4927,7 +4907,7 @@ function renderExerciseList(type) {
 
   // Render each matching exercise as a row card with optional GIF thumbnail
   list.innerHTML = filtered.map(ex => {
-    const gifSrc = ex.gif || `./gifs/${ex.id}.gif`;
+    const gifSrc = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${ex.id}.gif`;
     const thumb = `<img class="ex-gif-thumb" src="${gifSrc}" alt="${ex.name}" loading="lazy"
            onclick="openGifLightbox('${gifSrc}','${ex.name.replace(/'/g,"\\'")}')"
            onerror="this.outerHTML='<div class=\\'ex-gif-no-thumb\\' onclick=\\'editExercise(\\'${ex.id}\\')\\'></div>'" />`;
@@ -5142,8 +5122,6 @@ function showExerciseModal() {
   document.getElementById('exercisePrimary').value = '';
   document.getElementById('exerciseBias').value = '';
   document.getElementById('exerciseSlots').value = '';
-  document.getElementById('exerciseGif').value = '';
-  previewExerciseGif('');
   document.getElementById('exerciseModal').classList.add('active');
 }
 
@@ -5160,8 +5138,6 @@ function editExercise(id) {
   document.getElementById('exerciseBias').value = Array.isArray(ex.bias) ? ex.bias.join(', ') : (ex.bias || '');
   const slots = Array.isArray(ex.slots) ? ex.slots.join(', ') : (ex.slots || '');
   document.getElementById('exerciseSlots').value = slots;
-  document.getElementById('exerciseGif').value = ex.gif || '';
-  previewExerciseGif(ex.gif || '');
   document.getElementById('exerciseModal').classList.add('active');
 }
 
@@ -5193,8 +5169,7 @@ function saveExercise(event) {
     primary:   document.getElementById('exercisePrimary').value,
     bias:      document.getElementById('exerciseBias').value.trim(),
     slots:     document.getElementById('exerciseSlots').value
-                 .split(',').map(s => s.trim()).filter(Boolean),
-    gif:       document.getElementById('exerciseGif').value.trim()
+                 .split(',').map(s => s.trim()).filter(Boolean)
   };
 
   if (editId) {
@@ -5217,20 +5192,6 @@ function saveExercise(event) {
 }
 
 // Updates the live GIF preview inside the exercise modal.
-function previewExerciseGif(url) {
-  const img = document.getElementById('gifPreviewImg');
-  const placeholder = document.getElementById('gifPreviewPlaceholder');
-  if (url && url.trim()) {
-    img.src = url.trim();
-    // onload/onerror handlers on the img element manage visibility
-  } else {
-    img.style.display = 'none';
-    img.src = '';
-    placeholder.style.display = 'block';
-    placeholder.textContent = '🎬 Enter a GIF URL to preview';
-  }
-}
-
 // Opens the GIF lightbox overlay with a given URL and exercise name.
 function openGifLightbox(url, name) {
   document.getElementById('gifLightboxImg').src = url;
