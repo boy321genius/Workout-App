@@ -1254,6 +1254,65 @@
       </div>
     </div>
   </div>
+  <!-- ===== Sync Overlay (shown while restoring saved session data) ===== -->
+  <div id="syncOverlay" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9998;
+    background: rgba(7, 12, 22, 0.97);
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px; text-align: center;
+  ">
+    <!-- Pulsing icon -->
+    <div style="font-size: 52px; margin-bottom: 24px; animation: pulse 1.8s ease-in-out infinite;">💪</div>
+
+    <!-- Spinner -->
+    <div style="
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 3px solid rgba(79,142,247,0.2);
+      border-top-color: #4f8ef7;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 28px;
+    "></div>
+
+    <!-- Main message -->
+    <p style="
+      font-size: 17px; font-weight: 700;
+      color: #e2e8f0; margin-bottom: 10px;
+    ">Restoring your session…</p>
+
+    <!-- Sub message -->
+    <p style="
+      font-size: 13px; color: #64748b;
+      line-height: 1.6; max-width: 280px; margin-bottom: 28px;
+    ">Your saved workout data is loading. Please wait before starting a new session to avoid losing your progress.</p>
+
+    <!-- Warning box -->
+    <div style="
+      background: rgba(251,191,36,0.08);
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 12px; padding: 14px 18px;
+      max-width: 300px;
+    ">
+      <p style="font-size: 12px; color: #fbbf24; line-height: 1.6; margin: 0;">
+        ⚠️ Do not navigate the app until this screen disappears — your previous session data will load automatically.
+      </p>
+    </div>
+
+    <!-- Elapsed time hint (updates every second) -->
+    <p id="syncElapsed" style="
+      font-size: 11px; color: #334155;
+      margin-top: 24px;
+    ">Connecting to database…</p>
+  </div>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.12); opacity: 0.75; }
+    }
+  </style>
+
   <!-- ===== App Header (always visible at the top) ===== -->
   <header class="app-header">
     <div class="header-text">
@@ -3964,17 +4023,28 @@ async function signOut() {
 async function initApp(user) {
   currentUser = user;
 
-  // Render the UI immediately — don't block on Supabase
+  // Render UI immediately with defaults
   document.getElementById('loginScreen').style.display = 'none';
   renderTemplates();
 
-  // Load state from Supabase with a timeout so a slow/sleeping DB never freezes the app
-  try {
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Supabase timeout')), 8000)
-    );
-    const loadPromise = loadState();
-    const username = await Promise.race([loadPromise, timeoutPromise]);
+  // Show sync overlay to block interaction while data loads
+  const overlay = document.getElementById('syncOverlay');
+  const elapsed = document.getElementById('syncElapsed');
+  overlay.style.display = 'flex';
+
+  // Tick elapsed time so user knows it's working
+  let seconds = 0;
+  const timer = setInterval(() => {
+    seconds++;
+    elapsed.textContent = seconds < 10
+      ? `Connecting to database… (${seconds}s)`
+      : `Still loading — database may be waking from sleep… (${seconds}s)`;
+  }, 1000);
+
+  // Load state in background — no timeout, apply whenever Supabase responds
+  loadState().then(username => {
+    clearInterval(timer);
+    overlay.style.display = 'none';
 
     console.log('[INIT] After loadState:', {
       activeTemplate: activeTemplate?.name || null,
@@ -3986,7 +4056,6 @@ async function initApp(user) {
     const btn = document.getElementById('signOutBtn');
     btn.textContent = username ? `${username} · Sign out` : 'Sign out';
 
-    // Now re-render with restored state
     if (activeTemplate) {
       console.log('[INIT] Active template found — navigating to workout view');
       document.getElementById('headerSubtitle').textContent =
@@ -3996,11 +4065,11 @@ async function initApp(user) {
       console.log('[INIT] No active template — refreshing templates view');
       renderTemplates();
     }
-
-  } catch (err) {
-    console.warn('[INIT] loadState failed or timed out:', err.message);
-    // App is already rendered with default state — user can still use it
-  }
+  }).catch(err => {
+    clearInterval(timer);
+    overlay.style.display = 'none';
+    console.warn('[INIT] loadState error:', err.message);
+  });
 }
 
 // Listen for auth state changes
