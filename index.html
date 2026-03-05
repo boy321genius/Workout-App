@@ -3,7 +3,7 @@
 <head>
   <!-- Basic page metadata: character encoding + mobile-friendly scaling -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Workout Tracker</title>
 
   <!-- PWA: theme and app appearance -->
@@ -375,7 +375,7 @@
       border-radius: 8px;
       padding: 10px;
       color: var(--color-text-primary);
-      font-size: 16px; /* Must be 16px+ to prevent iOS auto-zoom on focus */
+      font-size: 14px;
       width: 100%;
     }
 
@@ -476,7 +476,7 @@
       border-radius: 10px;
       padding: 12px;
       color: var(--color-text-primary);
-      font-size: 16px; /* 16px+ prevents iOS auto-zoom */
+      font-size: 14px;
       font-family: inherit;
     }
 
@@ -505,7 +505,7 @@
       border-radius: 12px;
       padding: 12px 16px 12px 44px; /* Left padding for icon space */
       color: var(--color-text-primary);
-      font-size: 16px; /* 16px+ prevents iOS auto-zoom */
+      font-size: 14px;
     }
 
     .search-icon {
@@ -1183,104 +1183,75 @@
   <div id="loginScreen" style="
     display: none;
     position: fixed; inset: 0; z-index: 9999;
-    background: linear-gradient(160deg, #060d1a 0%, #0b1525 50%, #0a1220 100%);
+    background: #0a1326;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 32px;
   ">
-    <div style="width: 100%; max-width: 340px;">
-
-      <!-- Logo + title -->
-      <div style="text-align: center; margin-bottom: 32px;">
-        <div style="
-          display: inline-flex; align-items: center; justify-content: center;
-          width: 72px; height: 72px; border-radius: 20px;
-          background: linear-gradient(135deg, #2563eb, #4f8ef7);
-          font-size: 36px; margin-bottom: 16px;
-          box-shadow: 0 8px 24px rgba(79,142,247,0.35);
-        ">💪</div>
-        <h1 style="font-size: 24px; font-weight: 800; color: #e2e8f0; margin: 0 0 6px;">Workout Tracker</h1>
-        <p style="font-size: 13px; color: #475569; margin: 0;" id="loginSubtitle">Sign in to your account</p>
+    <div style="width: 100%; max-width: 360px;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div style="font-size: 48px; margin-bottom: 12px;">💪</div>
+        <h1 style="font-size: 22px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">Workout Tracker</h1>
+        <p style="font-size: 13px; color: #64748b;" id="loginSubtitle">Sign in to your account</p>
       </div>
 
-      <!-- Tab toggle -->
-      <div style="display:flex; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:4px; margin-bottom:24px; gap:4px;">
+      <!-- Tab toggle: Sign In / Sign Up -->
+      <div style="display:flex; background:rgba(255,255,255,0.05); border-radius:10px; padding:3px; margin-bottom:20px;">
         <button id="tabSignIn" onclick="switchAuthTab('signin')" style="
-          flex:1; padding:9px; border:none; border-radius:9px;
-          font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;
-          background:#4f8ef7; color:#fff;
-          box-shadow: 0 2px 8px rgba(79,142,247,0.3);
-          transition:all 0.15s;
+          flex:1; padding:8px; border:none; border-radius:8px; font-size:13px;
+          font-weight:600; cursor:pointer; font-family:inherit;
+          background:#4f8ef7; color:#fff; transition:all 0.15s;
         ">Sign In</button>
         <button id="tabSignUp" onclick="switchAuthTab('signup')" style="
-          flex:1; padding:9px; border:none; border-radius:9px;
-          font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;
-          background:transparent; color:#475569;
-          transition:all 0.15s;
+          flex:1; padding:8px; border:none; border-radius:8px; font-size:13px;
+          font-weight:600; cursor:pointer; font-family:inherit;
+          background:transparent; color:#64748b; transition:all 0.15s;
         ">Sign Up</button>
       </div>
 
       <!-- Username field -->
-      <div style="margin-bottom:14px;">
-        <label style="display:block; font-size:11px; font-weight:700; color:#64748b; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Username</label>
-        <div style="position:relative;">
-          <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; pointer-events:none;">👤</span>
-          <input type="text" id="loginUsername" placeholder="your_username"
-            autocomplete="username" autocapitalize="none" spellcheck="false"
-            onkeydown="if(event.key==='Enter')document.getElementById('loginPassword').focus()"
-            style="
-              width:100%; box-sizing:border-box;
-              background:rgba(255,255,255,0.05);
-              border:1px solid rgba(255,255,255,0.08);
-              border-radius:12px; padding:13px 14px 13px 44px;
-              color:#e2e8f0; font-size:16px; font-family:inherit;
-            "
-          />
-        </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Username</label>
+        <input type="text" id="loginUsername" placeholder="Choose a username"
+          autocomplete="username" autocapitalize="none" spellcheck="false"
+          style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+          border-radius:10px; padding:12px 14px; color:#e2e8f0; font-size:14px;
+          font-family:inherit; box-sizing:border-box;"
+          onkeydown="if(event.key==='Enter')document.getElementById('loginPassword').focus()"
+        />
       </div>
 
       <!-- Password field -->
-      <div style="margin-bottom:22px;">
-        <label style="display:block; font-size:11px; font-weight:700; color:#64748b; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Password</label>
-        <div style="position:relative;">
-          <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; pointer-events:none;">🔒</span>
-          <input type="password" id="loginPassword" placeholder="••••••••"
-            autocomplete="current-password"
-            onkeydown="if(event.key==='Enter')handleAuth()"
-            style="
-              width:100%; box-sizing:border-box;
-              background:rgba(255,255,255,0.05);
-              border:1px solid rgba(255,255,255,0.08);
-              border-radius:12px; padding:13px 14px 13px 44px;
-              color:#e2e8f0; font-size:16px; font-family:inherit;
-            "
-          />
-        </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:12px; font-weight:600; color:#94a3b8; margin-bottom:6px;">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password"
+          autocomplete="current-password"
+          style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+          border-radius:10px; padding:12px 14px; color:#e2e8f0; font-size:14px;
+          font-family:inherit; box-sizing:border-box;"
+          onkeydown="if(event.key==='Enter')handleAuth()"
+        />
       </div>
 
       <!-- Submit button -->
       <button id="loginSubmitBtn" onclick="handleAuth()" style="
-        width:100%; background:linear-gradient(135deg, #2563eb, #4f8ef7);
-        border:none; border-radius:12px; color:#fff;
-        font-size:16px; font-weight:700; padding:14px;
-        cursor:pointer; font-family:inherit;
-        box-shadow: 0 4px 16px rgba(79,142,247,0.4);
-        transition:opacity 0.15s;
+        width:100%; background:#4f8ef7; border:none; border-radius:10px;
+        color:#fff; font-size:14px; font-weight:700; padding:13px;
+        cursor:pointer; font-family:inherit; transition:opacity 0.15s;
       ">Sign In</button>
 
       <!-- Error message -->
-      <div id="loginError" style="display:none; margin-top:14px; padding:11px 14px;
-        background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25);
-        border-radius:10px; font-size:13px; color:#f87171; text-align:center;">
+      <div id="loginError" style="display:none; margin-top:12px; padding:10px 14px;
+        background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);
+        border-radius:8px; font-size:12px; color:#f87171; text-align:center;">
       </div>
 
       <!-- Loading indicator -->
-      <div id="loginLoading" style="display:none; margin-top:14px; text-align:center;
-        font-size:13px; color:#475569;">
+      <div id="loginLoading" style="display:none; margin-top:12px; text-align:center;
+        font-size:12px; color:#64748b;">
         Please wait…
       </div>
-
     </div>
   </div>
   <!-- ===== Sync Overlay (shown while restoring saved session data) ===== -->
@@ -1346,7 +1317,9 @@
   <header class="app-header">
     <div class="header-text">
       <h1 class="app-title">Workout Tracker Pro</h1>
-      <p class="app-subtitle" id="headerSubtitle"></p>
+      <p class="app-subtitle" id="headerSubtitle">
+        Select a template to get started
+      </p>
     </div>
     <button onclick="signOut()" id="signOutBtn" title="Sign out" style="
       display: none; flex-shrink: 0;
@@ -3795,7 +3768,6 @@ const SUPABASE_KEY  = 'sb_publishable_J2qaxHATLzjntbg194oOdQ__ccGRsMW';
 const sb            = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentUser = null;
-let currentUsername = '';
 let saveTimeout = null;
 
 // Tracks which top-level view is currently shown (templates, workout, etc.)
@@ -4034,13 +4006,11 @@ async function handleAuth() {
 async function signOut() {
   await sb.auth.signOut();
   currentUser = null;
-  currentUsername = '';
   activeTemplate = null; activeWeekStart = null; currentDayIndex = 0;
   workoutHistory = []; exerciseLibrary = [...EXERCISE_LIBRARY];
   activeSelections = {}; currentWeekLogs = [];
   TEMPLATES = TEMPLATES.filter(t => !t._custom);
   document.getElementById('signOutBtn').style.display = 'none';
-  document.getElementById('headerSubtitle').textContent = '';
   document.getElementById('loginUsername').value = '';
   document.getElementById('loginPassword').value = '';
   document.getElementById('loginError').style.display = 'none';
@@ -4084,12 +4054,12 @@ async function initApp(user) {
     });
 
     const btn = document.getElementById('signOutBtn');
-    currentUsername = username || '';
-    btn.textContent = currentUsername ? `${currentUsername} · Sign out` : 'Sign out';
-    document.getElementById('headerSubtitle').textContent = currentUsername ? `Hi, ${currentUsername} 👋` : '';
+    btn.textContent = username ? `${username} · Sign out` : 'Sign out';
 
     if (activeTemplate) {
       console.log('[INIT] Active template found — navigating to workout view');
+      document.getElementById('headerSubtitle').textContent =
+        `${activeTemplate.focus} • ${activeTemplate.name}`;
       showView('workout');
     } else {
       console.log('[INIT] No active template — refreshing templates view');
@@ -4324,17 +4294,20 @@ function confirmTemplateSelection() {
   const template = TEMPLATES.find(t => t.id === selectedTemplateId);
   if (!template) return;
 
-  // Set the active template and reset all week state cleanly
-  activeTemplate     = template;
-  activeWeekStart    = new Date();
-  currentDayIndex    = 0;
+  // Set the active template and week metadata
+  activeTemplate   = template;
+  activeWeekStart  = new Date(); // current date as week start
+  currentDayIndex  = 0;
   selectedTemplateId = null;
-  currentWeekLogs    = [];   // clear any logs from previous template
-  activeSelections   = {};   // clear exercise selections from previous template
 
-  // Persist immediately
+  // Persist this state immediately — can't risk losing template selection
   saveStateNow();
 
+  // Update header subtitle to show current program
+  document.getElementById('headerSubtitle').textContent =
+    `${template.focus} • ${template.name}`;
+
+  // Jump to the Workout view and render today's session
   showView('workout');
 }
 
@@ -4470,7 +4443,7 @@ function renderActiveWorkout() {
       <div class="empty-state">
         <div class="empty-icon">💪</div>
         <div class="empty-text">No active workout</div>
-        <div class="empty-subtext">Welcome back</div>
+        <div class="empty-subtext">Select a template to get started</div>
       </div>
     `;
     return;
@@ -4772,7 +4745,7 @@ function completeWeek() {
   alert('Week completed! Great work! 💪');
 
   // Reset the header subtitle back to default
-  // headerSubtitle retains username
+  document.getElementById('headerSubtitle').textContent = 'Select a template to get started';
 
   // Return user to the Templates view to pick the next week.
   showView('templates');
@@ -5325,7 +5298,7 @@ async function confirmResetAccount() {
   closeResetModal();
   showView('templates');
   renderTemplates();
-  // headerSubtitle retains username
+  document.getElementById('headerSubtitle').textContent = 'Select a template to get started';
   alert('Your account has been reset.');
 }
 
