@@ -104,8 +104,8 @@
       border-top: 1px solid var(--color-border);
       display: flex;
       justify-content: space-around;
-      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+      padding: 6px 0 max(10px, env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.5);
       z-index: 100;
     }
 
@@ -113,27 +113,50 @@
       flex: 1;
       background: none;
       border: none;
-      border-top: 3px solid transparent;
-      color: var(--color-text-secondary);
-      padding: 10px 12px 12px;
+      border-top: none;
+      color: #475569;
+      padding: 6px 4px 2px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      font-size: 11px;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-btn .nav-icon {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-btn svg {
+      width: 20px; height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
     }
 
     .nav-btn.active {
-      color: var(--color-primary);
-      border-top-color: var(--color-primary);
-      background: rgba(79, 142, 247, 0.08);
+      color: #4f8ef7;
     }
 
-    .nav-icon {
-      font-size: 22px;
-      line-height: 1;
+    .nav-btn.active .nav-icon {
+      background: rgba(79, 142, 247, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active svg {
+      stroke: #4f8ef7;
+      stroke-width: 2.25;
     }
 
     /* ===== Main content container & view switching ===== */
@@ -587,17 +610,17 @@
     }
 
     .btn-icon {
-      background: rgba(106, 166, 255, 0.12);
-      border: 1px solid var(--color-border);
+      background: rgba(106, 166, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 8px;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: var(--color-text-secondary);
-      font-size: 16px;
+      color: #64748b;
+      transition: background 0.15s, color 0.15s;
     }
 
     .btn-icon:active {
@@ -650,15 +673,17 @@
     .modal-close {
       background: none;
       border: none;
-      color: var(--color-text-secondary);
-      font-size: 24px;
+      color: #475569;
       cursor: pointer;
       width: 32px;
       height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
     }
+    .modal-close:hover { background: rgba(255,255,255,0.06); color: #e2e8f0; }
 
     /* ===== Stats cards / metrics grid ===== */
     .stats-grid {
@@ -1698,7 +1723,9 @@
     -->
     <div id="libraryView" class="view">
       <div class="search-box">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#64748b;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
         <input
           type="text"
           class="search-input"
@@ -1725,10 +1752,10 @@
       <div class="admin-section">
         <h2 class="admin-title">Data Management</h2>
         <button class="btn btn-block" onclick="downloadMyData()">
-          💾 Download My Data
+          Download My Data
         </button>
         <button class="btn btn-secondary btn-block" onclick="showResetModal()" style="margin-top:8px;">
-          🗑️ Reset My Account
+          Reset My Account
         </button>
       </div>
 
@@ -1759,16 +1786,16 @@
       <div class="admin-section">
         <h2 class="admin-title">Quick Actions</h2>
         <button class="btn btn-secondary btn-block" onclick="showExerciseModal()">
-          ➕ Add Exercise
+          <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Exercise
         </button>
         <button class="btn btn-secondary btn-block" onclick="showTemplateModal()">
-          ➕ Add Template
+          Add Template
         </button>
         <button class="btn btn-secondary btn-block" onclick="showSlotRulesModal()">
-          ⚙️ Manage Slot Rules
+          Manage Slot Rules
         </button>
         <button class="btn btn-secondary btn-block" onclick="showDetailedLogModal()">
-          📋 View Detailed Workout Log
+          View Detailed Workout Log
         </button>
       </div>
     </div>
@@ -1782,37 +1809,38 @@
        - Update which nav button has the .active class
   -->
   <nav class="bottom-nav">
-    <!-- Templates tab (default active on load) -->
-    <button
-      class="nav-btn active"
-      onclick="showView('templates')"
-      id="navTemplates"
-    >
-      <span class="nav-icon">📋</span>
+    <button class="nav-btn active" onclick="showView('templates')" id="navTemplates">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </span>
       <span>Templates</span>
     </button>
 
-    <!-- Current workout tab -->
     <button class="nav-btn" onclick="showView('workout')" id="navWorkout">
-      <span class="nav-icon">💪</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.5 6.5h11M6.5 12h11M6.5 17.5h11"/><circle cx="3" cy="6.5" r="1"/><circle cx="3" cy="12" r="1"/><circle cx="3" cy="17.5" r="1"/></svg>
+      </span>
       <span>Workout</span>
     </button>
 
-    <!-- History tab -->
     <button class="nav-btn" onclick="showView('history')" id="navHistory">
-      <span class="nav-icon">📊</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+      </span>
       <span>History</span>
     </button>
 
-    <!-- Exercise library tab -->
     <button class="nav-btn" onclick="showView('library')" id="navLibrary">
-      <span class="nav-icon">📚</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h13"/><path d="M4 19a2 2 0 0 0 2 2h13V8H6a2 2 0 0 0-2 2"/><path d="M9 12h6M9 16h4"/></svg>
+      </span>
       <span>Library</span>
     </button>
 
-    <!-- Admin / settings tab -->
     <button class="nav-btn" onclick="showView('admin')" id="navAdmin">
-      <span class="nav-icon">⚙️</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><path d="M18 14l1.5 1.5L22 13"/></svg>
+      </span>
       <span>Admin</span>
     </button>
   </nav>
@@ -1923,7 +1951,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">Reset My Account</h3>
-        <button class="modal-close" onclick="closeResetModal()">✕</button>
+        <button class="modal-close" onclick="closeResetModal()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;line-height:1.6;">
         This will permanently delete all your workout history, logs, and settings from the server.
@@ -1952,7 +1980,7 @@
     <div class="modal-content" style="max-height:85vh;display:flex;flex-direction:column;">
       <div class="modal-header">
         <h3 class="modal-title">Detailed Workout Log</h3>
-        <button class="modal-close" onclick="closeDetailedLogModal()">✕</button>
+        <button class="modal-close" onclick="closeDetailedLogModal()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div id="detailedLogBody" style="overflow-y:auto;flex:1;padding:4px 16px 8px 0;"></div>
     </div>
@@ -2065,11 +2093,12 @@ const EXERCISE_LIBRARY = [
 {id: "EX013", name: "Banded Good Morning", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX014", name: "Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip,LowBack", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX015", name: "Banded Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
+{id: "EX016", name: "Glute-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
+{id: "EX017", name: "Quad-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX018", name: "Banded Lateral Step-Out Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX019", name: "Banded Leg Press", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX020", name: "Goblet Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX021", name: "Dumbbell Sumo / Plié Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX022", name: "Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX023", name: "Cossack Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX024", name: "Lateral Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
 {id: "EX025", name: "Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
@@ -2081,14 +2110,14 @@ const EXERCISE_LIBRARY = [
 {id: "EX031", name: "Glute Bridge", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX034", name: "Stiff-Leg Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX035", name: "Banded Hip Thrust", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX036", name: "Suitcase Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,LowBack", slots: ["Secondary Lift"]},
+{id: "EX036", name: "Seated Side to Side Leg Raise", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX037", name: "Banded Frog Pump", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX038", name: "Dead Bug", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX039", name: "Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX040", name: "Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX041", name: "Side Plank", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX042", name: "V-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX043", name: "Weighted Side Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
+{id: "EX043", name: "Side Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX044", name: "High To Low Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX045", name: "Low To High Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX046", name: "Hollow Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
@@ -2098,17 +2127,14 @@ const EXERCISE_LIBRARY = [
 {id: "EX050", name: "Bird Dog Hold", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX051", name: "Copenhagen Side Plank Hold", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Groin", slots: ["Core / Trunk / Carries"]},
 {id: "EX052", name: "Kneeling Ab Wheel", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX053", name: "Extended Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX054", name: "Dumbbell Overhead Carry", type: "Resistance", primary: "Carry", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX055", name: "Farmer’s Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX056", name: "Mixed Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX057", name: "Suitcase Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX058", name: "Waiter Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
 {id: "EX059", name: "Turkish Get-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core,Hip", slots: ["Core / Trunk / Carries"]},
 {id: "EX060", name: "Speed Squat", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"]},
 {id: "EX061", name: "Dumbbell Hang Clean", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX062", name: "Dumbbell Hang Clean and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX063", name: "Dumbbell Hang Clean,Squat,and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX064", name: "Dumbbell Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX065", name: "Dumbbell Thruster", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX066", name: "Pogo Jump Series", type: "Power", primary: "Power: Jump", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
@@ -4275,8 +4301,8 @@ function renderTemplateList(focus) {
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:6px;" onclick="event.stopPropagation()">
-            <button class="btn-icon" onclick="editTemplate('${template.id}')" title="Edit template">✏️</button>
-            <button class="btn-icon danger" onclick="deleteTemplate('${template.id}')" title="Delete template">🗑️</button>
+            <button class="btn-icon" onclick="editTemplate('${template.id}')" title="Edit template"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button class="btn-icon danger" onclick="deleteTemplate('${template.id}')" title="Delete template"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
             ${isSelected ? '<span style="color: var(--color-primary); font-size: 24px; margin-left:4px;">✓</span>' : ''}
           </div>
         </div>
@@ -4738,6 +4764,7 @@ function nextDay() {
   currentDayIndex++;
   saveStateNow();
   renderActiveWorkout();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Go to the previous day in the active template.
@@ -4745,6 +4772,7 @@ function previousDay() {
   currentDayIndex--;
   saveStateNow();
   renderActiveWorkout();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Called when the user clicks "Complete Week".
@@ -4788,7 +4816,17 @@ function saveCurrentDayData() {
 
   const slots = day.exercises.map((ex, index) => {
     const key        = getExerciseKey(activeTemplate.id, currentDayIndex, index);
-    const selectedId = activeSelections[key] || '';
+
+    // Use same fallback as render — if user never changed the dropdown,
+    // the displayed exercise is still matchingExercises[0], so use that
+    const matchingExercises = getMatchingExercisesForSlot({
+      type:    ex.type,
+      primary: ex.primary,
+      slot:    ex.slot,
+      templateFocus: activeTemplate.focus,
+      dayType: day.dayType
+    });
+    const selectedId = activeSelections[key] || (matchingExercises[0]?.id || '');
     const libEx      = exerciseLibrary.find(e => e.id === selectedId);
 
     const setsEl  = document.getElementById(`sets-${index}`);
@@ -5138,8 +5176,8 @@ function renderExerciseList(type) {
           </div>
         </div>
         <div class="item-actions">
-          <button class="btn-icon" onclick="editExercise('${ex.id}')" title="Edit">✏️</button>
-          <button class="btn-icon danger" onclick="deleteExercise('${ex.id}')" title="Delete">🗑️</button>
+          <button class="btn-icon" onclick="editExercise('${ex.id}')" title="Edit"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+          <button class="btn-icon danger" onclick="deleteExercise('${ex.id}')" title="Delete"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
         </div>
       </div>
     `;
@@ -5445,8 +5483,8 @@ function renderAdminExerciseList() {
         <div class="exercise-list-meta">${ex.id} • ${ex.type} • ${ex.primary}</div>
       </div>
       <div class="item-actions">
-        <button class="btn-icon" onclick="editExercise('${ex.id}')" title="Edit">✏️</button>
-        <button class="btn-icon danger" onclick="deleteExercise('${ex.id}')" title="Delete">🗑️</button>
+        <button class="btn-icon" onclick="editExercise('${ex.id}')" title="Edit"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="btn-icon danger" onclick="deleteExercise('${ex.id}')" title="Delete"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
       </div>
     </div>
   `).join('');
@@ -5465,8 +5503,8 @@ function renderAdminTemplateList() {
         <div class="exercise-list-meta">${t.focus} • ${t.daysPerWeek}d/wk • ${t.description || ''}</div>
       </div>
       <div class="item-actions">
-        <button class="btn-icon" onclick="editTemplate('${t.id}')" title="Edit">✏️</button>
-        <button class="btn-icon danger" onclick="deleteTemplate('${t.id}')" title="Delete">🗑️</button>
+        <button class="btn-icon" onclick="editTemplate('${t.id}')" title="Edit"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="btn-icon danger" onclick="deleteTemplate('${t.id}')" title="Delete"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
       </div>
     </div>
   `).join('');
@@ -5532,7 +5570,7 @@ function renderTemplateDayBlock(day, idx) {
   div.innerHTML = `
     <div class="day-editor-header">
       <strong style="font-size:13px;">Day ${idx + 1}</strong>
-      <button type="button" class="btn-icon danger" onclick="this.closest('.day-editor-item').remove()">🗑️</button>
+      <button type="button" class="btn-icon danger" onclick="this.closest('.day-editor-item').remove()"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
     </div>
     <div class="form-row" style="margin-bottom:8px;">
       <div class="form-group" style="margin-bottom:0;">
@@ -5690,7 +5728,7 @@ function renderSlotRulesContent() {
       <div class="slot-rules-daytype">
         <div class="slot-rules-daytype-header">
           <span class="slot-rules-daytype-name">${dayType}</span>
-          <button class="btn-icon danger" onclick="deleteSlotRulesDayType('${focus}','${dayType}')">🗑️ Remove</button>
+          <button class="btn-icon danger" onclick="deleteSlotRulesDayType('${focus}','${dayType}')"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> Remove</button>
         </div>
         ${slotRows}
       </div>
