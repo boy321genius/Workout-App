@@ -3795,6 +3795,40 @@ function saveState() {
   }, 800);
 }
 
+// Saves immediately with no debounce — used for critical actions like
+// template selection and day navigation where we can't risk losing the change
+async function saveStateNow() {
+  if (!currentUser) return;
+  clearTimeout(saveTimeout);
+  const state = buildStateObject();
+  const { error } = await sb
+    .from('user_state')
+    .upsert({ user_id: currentUser.id, data: state }, { onConflict: 'user_id' });
+  if (error) console.error('saveStateNow error:', error);
+}
+
+// Flush any pending debounced save when app goes to background or closes
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && currentUser) {
+    clearTimeout(saveTimeout);
+    const state = buildStateObject();
+    // Use sendBeacon so the save survives the page closing
+    const payload = JSON.stringify({
+      user_id: currentUser.id,
+      data: state
+    });
+    navigator.sendBeacon && navigator.sendBeacon(
+      `${SUPABASE_URL}/rest/v1/user_state?on_conflict=user_id`,
+      new Blob([payload], { type: 'application/json' })
+    );
+    // Also attempt normal save as fallback
+    sb.from('user_state').upsert(
+      { user_id: currentUser.id, data: state },
+      { onConflict: 'user_id' }
+    ).then(({ error }) => { if (error) console.error('visibility save error:', error); });
+  }
+});
+
 // ==================== AUTH ====================
 
 // ==================== AUTH ====================
@@ -3941,12 +3975,20 @@ async function initApp(user) {
   }
 }
 
-// Listen for auth state changes (handles magic link redirect automatically)
+// Listen for auth state changes
+// Only init the app on INITIAL_SESSION or SIGNED_IN — not on every token refresh
+let appInitialised = false;
 sb.auth.onAuthStateChange(async (event, session) => {
   document.getElementById('appLoadingScreen').style.display = 'none';
+
   if (session && session.user) {
-    await initApp(session.user);
+    if (!appInitialised) {
+      appInitialised = true;
+      await initApp(session.user);
+    }
   } else {
+    // Signed out — reset flag so next login works
+    appInitialised = false;
     document.getElementById('loginScreen').style.display = 'flex';
   }
 });
@@ -3960,7 +4002,7 @@ function showView(viewName) {
   // If navigating away from the workout view while a workout is active, auto-save.
   if (currentView === 'workout' && viewName !== 'workout' && activeTemplate) {
     saveCurrentDayData();
-    saveState();
+    saveStateNow();
   }
 
   // Remember which view is active
@@ -4156,8 +4198,8 @@ function confirmTemplateSelection() {
   currentDayIndex  = 0;
   selectedTemplateId = null;
 
-  // Persist this state so it survives refresh
-  saveState();
+  // Persist this state immediately — can't risk losing template selection
+  saveStateNow();
 
   // Update header subtitle to show current program
   document.getElementById('headerSubtitle').textContent =
@@ -4213,7 +4255,7 @@ function getMatchingExercisesForSlot({ type, primary, secondary, slot, templateF
 function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
   const key = getExerciseKey(templateId, dayIndex, exIndex);
   activeSelections[key] = selectEl.value;
-  saveState();
+  saveStateNow();
   refreshLastLog(exIndex, selectEl.value);
 
   // Update the GIF panel src for the new exercise
@@ -4525,17 +4567,16 @@ function toggleExerciseComplete(index) {
 // Go to the next day in the active template.
 // Optionally saves current day data first.
 function nextDay() {
-  // Save current day’s data before moving (placeholder for later analytics).
   saveCurrentDayData();
   currentDayIndex++;
-  saveState();
+  saveStateNow();
   renderActiveWorkout();
 }
 
 // Go to the previous day in the active template.
 function previousDay() {
   currentDayIndex--;
-  saveState();
+  saveStateNow();
   renderActiveWorkout();
 }
 
@@ -4560,7 +4601,7 @@ function completeWeek() {
   currentDayIndex  = 0;
   currentWeekLogs  = [];
 
-  saveState();
+  saveStateNow();
   alert('Week completed! Great work! 💪');
 
   // Reset the header subtitle back to default
