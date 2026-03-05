@@ -1981,12 +1981,11 @@ const EXERCISE_LIBRARY = [
 {id: "EX003", name: "Overhead Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Standing_Overhead_Press/Barbell_Standing_Overhead_Press0.gif"},
 {id: "EX004", name: "Dumbbell Shoulder Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/Dumbbell_Shoulder_Press0.gif"},
 {id: "EX005", name: "Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-up/Push-up0.gif"},
-{id: "EX007", name: "Incline Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest-Supported_Dumbbell_Row/Chest-Supported_Dumbbell_Row0.gif"},
+{id: "EX007", name: "Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest-Supported_Dumbbell_Row/Chest-Supported_Dumbbell_Row0.gif"},
 {id: "EX008", name: "Bent-Over Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Row/Bent_Over_Dumbbell_Row0.gif"},
 {id: "EX009", name: "Seated Banded Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX010", name: "Seated Bent-Over Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Dumbbell_Row/Bent_Over_Dumbbell_Row0.gif"},
 {id: "EX011", name: "Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX012", name: "Chest-Supported Single-Arm DB Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder", slots: ["Secondary Lift"], gif: "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Arm_Dumbbell_Row/Single-Arm_Dumbbell_Row0.gif"},
 {id: "EX013", name: "Banded Good Morning", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX014", name: "Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip,LowBack", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX015", name: "Banded Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
@@ -4226,6 +4225,19 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
   activeSelections[key] = selectEl.value;
   saveState();
   refreshLastLog(exIndex, selectEl.value);
+
+  // Update the GIF panel src for the new exercise
+  const panel = document.getElementById(`gif-panel-${exIndex}`);
+  if (panel) {
+    const img = panel.querySelector('img');
+    const btn = document.getElementById(`gif-btn-${exIndex}`);
+    if (img && selectEl.value) {
+      const ex = exerciseLibrary.find(e => e.id === selectEl.value);
+      const newSrc = (ex && ex.gif) ? ex.gif : `./gifs/${selectEl.value}.gif`;
+      img.src = newSrc;
+      if (btn) btn.style.display = '';
+    }
+  }
 }
 
 // Searches workoutHistory newest-first for the most recent logged slot
@@ -4419,15 +4431,15 @@ const dropdownHtml =
 
         <!-- GIF demo toggle (only shown if the selected exercise has a gif) -->
         ${(() => {
-          const gifUrl = selectedExercise.gif;
-          if (!gifUrl) return '';
+          const gifUrl = selectedExercise.gif || `./gifs/${selectedExercise.id}.gif`;
+          // Always attempt to show the gif panel — onerror hides it if file doesn't exist
           return `
             <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})">
               ▼ Show Demo
             </button>
             <div class="exercise-gif-panel" id="gif-panel-${index}">
               <img src="${gifUrl}" alt="${selectedExercise.name} demo"
-                   onerror="this.parentElement.style.display='none'" />
+                   onerror="this.closest('.exercise-gif-panel').previousElementSibling.style.display='none';this.closest('.exercise-gif-panel').style.display='none';" />
             </div>
           `;
         })()}
@@ -4915,11 +4927,10 @@ function renderExerciseList(type) {
 
   // Render each matching exercise as a row card with optional GIF thumbnail
   list.innerHTML = filtered.map(ex => {
-    const thumb = ex.gif
-      ? `<img class="ex-gif-thumb" src="${ex.gif}" alt="${ex.name}" loading="lazy"
-             onclick="openGifLightbox('${ex.gif}','${ex.name.replace(/'/g,"\\'")}')"`
-        + ` onerror="this.outerHTML='<div class=\\'ex-gif-no-thumb\\' onclick=\\'editExercise(\\'${ex.id}\\')\\'}>🎬</div>'" />`
-      : `<div class="ex-gif-no-thumb" onclick="editExercise('${ex.id}')" title="Add GIF">🎬</div>`;
+    const gifSrc = ex.gif || `./gifs/${ex.id}.gif`;
+    const thumb = `<img class="ex-gif-thumb" src="${gifSrc}" alt="${ex.name}" loading="lazy"
+           onclick="openGifLightbox('${gifSrc}','${ex.name.replace(/'/g,"\\'")}')"
+           onerror="this.outerHTML='<div class=\\'ex-gif-no-thumb\\' onclick=\\'editExercise(\\'${ex.id}\\')\\'></div>'" />`;
     return `
       <div class="exercise-list-item">
         ${thumb}
