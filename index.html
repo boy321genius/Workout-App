@@ -1255,7 +1255,7 @@
       Select a template to get started
     </p>
     <button onclick="signOut()" id="signOutBtn" title="Sign out" style="
-      display: none; position: absolute; top: max(12px,env(safe-area-inset-top)); right: 16px;
+      display: none; position: absolute; top: 12px; right: 16px;
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px; color: #94a3b8; font-size: 11px; padding: 5px 10px;
       cursor: pointer; font-family: inherit;
@@ -1627,17 +1627,14 @@
          - Quick actions like adding exercises
     -->
     <div id="adminView" class="view">
-      <!-- Data management buttons (likely tied to storage / Google Sheets) -->
+      <!-- Data management -->
       <div class="admin-section">
         <h2 class="admin-title">Data Management</h2>
-        <button class="btn btn-block" onclick="exportData()">
-          📥 Export All Data
+        <button class="btn btn-block" onclick="downloadMyData()">
+          💾 Download My Data
         </button>
-        <button class="btn btn-secondary btn-block" onclick="importData()">
-          📤 Import Data
-        </button>
-        <button class="btn btn-secondary btn-block" onclick="clearAllData()">
-          🗑️ Clear All Data
+        <button class="btn btn-secondary btn-block" onclick="showResetModal()" style="margin-top:8px;">
+          🗑️ Reset My Account
         </button>
       </div>
 
@@ -1845,6 +1842,35 @@
   </div>
 
   <!-- ===== GIF Lightbox ===== -->
+  <!-- ===== Reset Account Modal ===== -->
+  <div id="resetModal" class="modal" onclick="if(event.target===this)closeResetModal()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Reset My Account</h3>
+        <button class="modal-close" onclick="closeResetModal()">✕</button>
+      </div>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;line-height:1.6;">
+        This will permanently delete all your workout history, logs, and settings from the server.
+        This cannot be undone.
+      </p>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;">
+        Type <strong style="color:var(--color-error);">RESET</strong> to confirm:
+      </p>
+      <input type="text" id="resetConfirmInput"
+        placeholder="Type RESET here"
+        style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--color-border);
+        border-radius:10px;padding:12px 14px;color:var(--color-text-primary);
+        font-size:14px;font-family:inherit;box-sizing:border-box;margin-bottom:16px;"
+      />
+      <button onclick="confirmResetAccount()" style="
+        width:100%;background:var(--color-error);border:none;border-radius:10px;
+        color:#fff;font-size:14px;font-weight:700;padding:13px;
+        cursor:pointer;font-family:inherit;">
+        Permanently Delete My Data
+      </button>
+    </div>
+  </div>
+
   <!-- ===== Detailed Log Modal ===== -->
   <div id="detailedLogModal" class="modal" onclick="if(event.target===this)closeDetailedLogModal()">
     <div class="modal-content" style="max-height:85vh;display:flex;flex-direction:column;">
@@ -5025,84 +5051,79 @@ function calculateStreak() {
 }
 
 // Exports all key app data as a JSON file the user can download.
-function exportData() {
-  const data = {
-    activeTemplate,
-    activeWeekStart,
-    currentDayIndex,
-    workoutHistory,
-    exerciseLibrary,
-    exportedAt: new Date()
+// Downloads the current user's data directly from Supabase as a JSON file.
+async function downloadMyData() {
+  if (!currentUser) return;
+
+  const { data, error } = await sb
+    .from('user_state')
+    .select('data, username')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+
+  if (error || !data) {
+    alert('Could not fetch your data from the server. Please try again.');
+    return;
+  }
+
+  const exportObj = {
+    username:   data.username,
+    exportedAt: new Date().toISOString(),
+    data:       data.data
   };
 
   const blob = new Blob(
-    [JSON.stringify(data, null, 2)],
+    [JSON.stringify(exportObj, null, 2)],
     { type: 'application/json' }
   );
   const url = URL.createObjectURL(blob);
-
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `workout-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
+  const a   = document.createElement('a');
+  a.href     = url;
+  a.download = `workout-backup-${data.username}-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
-
   URL.revokeObjectURL(url);
 }
 
-// Lets user pick a backup .json file and imports it into app state.
-function importData() {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.json';
-
-  input.onchange = e => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = event => {
-      try {
-        const data = JSON.parse(event.target.result);
-
-        if (confirm('This will replace all current data. Continue?')) {
-          // Replace current state with imported data, with sensible fallbacks
-          activeTemplate   = data.activeTemplate;
-          activeWeekStart  = data.activeWeekStart;
-          currentDayIndex  = data.currentDayIndex || 0;
-          workoutHistory   = data.workoutHistory || [];
-          exerciseLibrary  = data.exerciseLibrary || [...EXERCISE_LIBRARY];
-
-          saveState();
-          renderAdminStats();
-          alert('Data imported successfully!');
-        }
-      } catch (err) {
-        alert('Error importing data: ' + err.message);
-      }
-    };
-
-    reader.readAsText(file);
-  };
-
-  input.click();
+function showResetModal() {
+  document.getElementById('resetConfirmInput').value = '';
+  document.getElementById('resetModal').classList.add('active');
 }
 
-// Clears all stored data (LocalStorage, in-memory state) after double confirmation.
-function clearAllData() {
-  if (confirm('This will delete ALL data including workout history. This cannot be undone. Continue?')) {
-    if (confirm('Are you absolutely sure? This is your last chance to back out.')) {
-      // Clear browser storage and reset state variables
-      localStorage.clear();
-      activeTemplate   = null;
-      activeWeekStart  = null;
-      currentDayIndex  = 0;
-      workoutHistory   = [];
-      exerciseLibrary  = [...EXERCISE_LIBRARY];
+function closeResetModal() {
+  document.getElementById('resetModal').classList.remove('active');
+}
 
-      saveState();
-      alert('All data cleared.');
-      location.reload(); // reload to reflect a clean state
-    }
+async function confirmResetAccount() {
+  const val = document.getElementById('resetConfirmInput').value.trim();
+  if (val !== 'RESET') {
+    alert('Please type RESET exactly to confirm.');
+    return;
   }
+
+  if (!currentUser) return;
+
+  // Wipe the user's data row in Supabase (keeps the row but clears all data)
+  const { error } = await sb
+    .from('user_state')
+    .update({ data: {} })
+    .eq('user_id', currentUser.id);
+
+  if (error) {
+    alert('Something went wrong. Please try again.');
+    return;
+  }
+
+  // Reset in-memory state
+  activeTemplate  = null; activeWeekStart = null; currentDayIndex = 0;
+  workoutHistory  = []; activeSelections = {}; currentWeekLogs = [];
+  exerciseLibrary = [...EXERCISE_LIBRARY];
+  TEMPLATES       = TEMPLATES.filter(t => !t._custom);
+
+  closeResetModal();
+  showView('templates');
+  renderTemplates();
+  document.getElementById('headerSubtitle').textContent = 'Select a template to get started';
+  alert('Your account has been reset.');
 }
 
 // Opens the "Add Exercise" modal.
