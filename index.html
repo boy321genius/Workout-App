@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3772,15 +3773,13 @@ function applyStateObject(state) {
 // Loads state from Supabase for the current user
 async function loadState() {
   if (!currentUser) return null;
-  console.log('[LOAD] Fetching from Supabase...');
   const { data, error } = await sb
     .from('user_state')
     .select('data, username')
     .eq('user_id', currentUser.id)
     .maybeSingle();
 
-  if (error) { console.error('[LOAD] Error:', error); return null; }
-  console.log('[LOAD] Raw data from Supabase:', data);
+  if (error) { console.error('loadState error:', error); return null; }
   if (data) applyStateObject(data.data);
   return data?.username || '';
 }
@@ -3801,20 +3800,13 @@ function saveState() {
 // Saves immediately with no debounce — used for critical actions like
 // template selection and day navigation where we can't risk losing the change
 async function saveStateNow() {
-  if (!currentUser) { console.log('[SAVE] Skipped — no currentUser'); return; }
+  if (!currentUser) return;
   clearTimeout(saveTimeout);
   const state = buildStateObject();
-  console.log('[SAVE] Saving to Supabase:', {
-    activeTemplate: state.activeTemplate?.name || null,
-    currentDayIndex: state.currentDayIndex,
-    currentWeekLogs: state.currentWeekLogs,
-    activeSelections: state.activeSelections
-  });
   const { error } = await sb
     .from('user_state')
     .upsert({ user_id: currentUser.id, data: state }, { onConflict: 'user_id' });
-  if (error) console.error('[SAVE] Error:', error);
-  else console.log('[SAVE] ✅ Success');
+  if (error) console.error('saveStateNow error:', error);
 }
 
 // Flush any pending debounced save when app goes to background or closes
@@ -3965,25 +3957,18 @@ async function initApp(user) {
   currentUser = user;
   const username = await loadState();
 
-  console.log('[INIT] After loadState:', {
-    activeTemplate: activeTemplate?.name || null,
-    currentDayIndex,
-    currentWeekLogs,
-    activeSelections
-  });
-
+  // Update sign-out button text with username
   const btn = document.getElementById('signOutBtn');
   btn.textContent = username ? `${username} · Sign out` : 'Sign out';
 
   document.getElementById('loginScreen').style.display = 'none';
 
   if (activeTemplate) {
-    console.log('[INIT] Active template found — navigating to workout view');
+    // Resume the active workout exactly where the user left off
     document.getElementById('headerSubtitle').textContent =
       `${activeTemplate.focus} • ${activeTemplate.name}`;
     showView('workout');
   } else {
-    console.log('[INIT] No active template — showing templates view');
     renderTemplates();
   }
 }
@@ -4559,8 +4544,6 @@ const dropdownHtml =
 
   // Restore any previously entered values for this day from currentWeekLogs
   const savedDay = currentWeekLogs.find(l => l.dayIndex === currentDayIndex);
-  console.log('[RENDER] currentWeekLogs:', currentWeekLogs);
-  console.log('[RENDER] savedDay for index', currentDayIndex, ':', savedDay);
   if (savedDay) {
     savedDay.slots.forEach((slot, index) => {
       const setsEl  = document.getElementById(`sets-${index}`);
@@ -4581,9 +4564,6 @@ const dropdownHtml =
         if (item) item.classList.add('completed');
       }
     });
-    console.log('[RENDER] ✅ Fields restored from savedDay');
-  } else {
-    console.log('[RENDER] ⚠️ No savedDay found — fields left blank');
   }
 }
 
