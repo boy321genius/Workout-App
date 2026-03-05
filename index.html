@@ -3771,15 +3771,16 @@ function applyStateObject(state) {
 
 // Loads state from Supabase for the current user
 async function loadState() {
-  if (!currentUser) return;
+  if (!currentUser) return null;
   const { data, error } = await sb
     .from('user_state')
-    .select('data')
+    .select('data, username')
     .eq('user_id', currentUser.id)
     .maybeSingle();
 
-  if (error) { console.error('loadState error:', error); return; }
+  if (error) { console.error('loadState error:', error); return null; }
   if (data) applyStateObject(data.data);
+  return data?.username || '';
 }
 
 // Saves state to Supabase (debounced 800ms to avoid hammering on rapid changes)
@@ -3953,18 +3954,11 @@ async function signOut() {
 
 async function initApp(user) {
   currentUser = user;
-  await loadState();
+  const username = await loadState();
 
-  // Show username in sign-out button
-  const { data: profile } = await sb
-    .from('user_state')
-    .select('username')
-    .eq('user_id', user.id)
-    .maybeSingle();
-  const uname = profile?.username || '';
+  // Update sign-out button text with username
   const btn = document.getElementById('signOutBtn');
-  btn.textContent = uname ? `${uname} · Sign out` : 'Sign out';
-  btn.style.display = 'block';
+  btn.textContent = username ? `${username} · Sign out` : 'Sign out';
 
   document.getElementById('loginScreen').style.display = 'none';
 
@@ -3976,12 +3970,16 @@ async function initApp(user) {
 }
 
 // Listen for auth state changes
-// Only init the app on INITIAL_SESSION or SIGNED_IN — not on every token refresh
+// Only init the app on first session detection — not on every token refresh
 let appInitialised = false;
 sb.auth.onAuthStateChange(async (event, session) => {
   document.getElementById('appLoadingScreen').style.display = 'none';
 
   if (session && session.user) {
+    // Show sign-out button immediately — don't wait for async initApp
+    document.getElementById('signOutBtn').style.display = 'block';
+    document.getElementById('loginScreen').style.display = 'none';
+
     if (!appInitialised) {
       appInitialised = true;
       await initApp(session.user);
@@ -3989,6 +3987,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
   } else {
     // Signed out — reset flag so next login works
     appInitialised = false;
+    document.getElementById('signOutBtn').style.display = 'none';
     document.getElementById('loginScreen').style.display = 'flex';
   }
 });
@@ -4485,19 +4484,19 @@ const dropdownHtml =
         <div class="exercise-inputs">
           <div class="input-group">
             <label class="input-label">Sets / Rounds</label>
-            <input type="number" class="input-field" placeholder="0" id="sets-${index}">
+            <input type="number" class="input-field" placeholder="0" id="sets-${index}" oninput="onWorkoutInput()">
           </div>
           <div class="input-group">
             <label class="input-label">Reps / Duration</label>
-            <input type="number" class="input-field" placeholder="0" id="reps-${index}">
+            <input type="number" class="input-field" placeholder="0" id="reps-${index}" oninput="onWorkoutInput()">
           </div>
           <div class="input-group">
             <label class="input-label">Distance (mi)</label>
-            <input type="number" class="input-field" placeholder="—" step="0.01" id="dist-${index}">
+            <input type="number" class="input-field" placeholder="—" step="0.01" id="dist-${index}" oninput="onWorkoutInput()">
           </div>
           <div class="input-group">
             <label class="input-label">Load / Speed</label>
-            <input type="text" class="input-field" placeholder="—" id="load-${index}">
+            <input type="text" class="input-field" placeholder="—" id="load-${index}" oninput="onWorkoutInput()">
           </div>
         </div>
 
@@ -4505,7 +4504,7 @@ const dropdownHtml =
         <div class="notes-input-row">
           <div class="input-group">
             <label class="input-label">Modified / Notes</label>
-            <input type="text" class="input-field" placeholder="e.g. tempo, pause, single-leg…" id="notes-${index}">
+            <input type="text" class="input-field" placeholder="e.g. tempo, pause, single-leg…" id="notes-${index}" oninput="onWorkoutInput()">
           </div>
         </div>
 
@@ -4538,6 +4537,30 @@ const dropdownHtml =
       }
     </div>
   `;
+
+  // Restore any previously entered values for this day from currentWeekLogs
+  const savedDay = currentWeekLogs.find(l => l.dayIndex === currentDayIndex);
+  if (savedDay) {
+    savedDay.slots.forEach((slot, index) => {
+      const setsEl  = document.getElementById(`sets-${index}`);
+      const repsEl  = document.getElementById(`reps-${index}`);
+      const distEl  = document.getElementById(`dist-${index}`);
+      const loadEl  = document.getElementById(`load-${index}`);
+      const notesEl = document.getElementById(`notes-${index}`);
+      const doneEl  = document.getElementById(`done-${index}`);
+      const item    = document.getElementById(`exercise-${index}`);
+
+      if (setsEl  && slot.sets)  setsEl.value  = slot.sets;
+      if (repsEl  && slot.reps)  repsEl.value  = slot.reps;
+      if (distEl  && slot.dist)  distEl.value  = slot.dist;
+      if (loadEl  && slot.load)  loadEl.value  = slot.load;
+      if (notesEl && slot.notes) notesEl.value = slot.notes;
+      if (doneEl  && slot.completed) {
+        doneEl.checked = true;
+        if (item) item.classList.add('completed');
+      }
+    });
+  }
 }
 
 // (Legacy helper) Filters exercises based on type/primary/slot.
@@ -4554,6 +4577,13 @@ function getMatchingExercises(type, primary, slot) {
 
 // Adds/removes the 'completed' CSS class when a slot checkbox is toggled.
 // This visually dims completed exercises.
+// Called on every keystroke in workout input fields.
+// Captures current values into currentWeekLogs and queues a Supabase save.
+function onWorkoutInput() {
+  saveCurrentDayData();
+  saveState(); // debounced 800ms — batches rapid typing into one write
+}
+
 function toggleExerciseComplete(index) {
   const item = document.getElementById(`exercise-${index}`);
   const checkbox = document.getElementById(`done-${index}`);
@@ -4562,6 +4592,9 @@ function toggleExerciseComplete(index) {
   } else {
     item.classList.remove('completed');
   }
+  // Save immediately — checkbox state is a critical data point
+  saveCurrentDayData();
+  saveState();
 }
 
 // Go to the next day in the active template.
