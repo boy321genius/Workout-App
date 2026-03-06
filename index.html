@@ -7886,22 +7886,43 @@ function saveFreeWorkout() {
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   const title   = `Custom Workout — ${dateStr}`;
 
+  // Convert freeSlots into the same logs shape the chart functions expect.
+  // Each slot becomes a log entry with type, primary, volume (sets×reps), dist.
+  const logSlots = freeWorkoutSlots.map(slot => {
+    const ex     = exerciseLibrary.find(e => e.id === slot.exId) || {};
+    const sets   = parseFloat(slot.sets)  || 0;
+    const reps   = parseFloat(slot.reps)  || 0;
+    const load   = parseFloat(slot.load)  || 0;
+    const volume = sets * reps;
+    return {
+      exId:      slot.exId,
+      name:      slot.name,
+      type:      ex.type    || 'Resistance',
+      primary:   ex.primary || slot.muscleGroup,
+      sets,
+      reps,
+      load,
+      volume,
+      dist:      0,
+      completed: volume > 0
+    };
+  });
+
   workoutHistory.push({
     isCustom:    true,
     title:       title,
     completedAt: new Date(),
     freeSlots:   freeWorkoutSlots.slice(),
-    // stub template fields so renderHistory doesn't break
+    // logs shape matches what computeVolumeByType / computeTotalMiles expect
     template:    { name: title, focus: 'Custom' },
     days:        1,
-    logs:        []
+    logs:        [{ dayIndex: 0, slots: logSlots }]
   });
 
   freeWorkoutActive = false;
   freeWorkoutSlots  = [];
   saveStateNow();
   showView('workout');
-  // Brief confirmation
   setTimeout(() => alert('Workout saved! 💪'), 100);
 }
 
@@ -7927,9 +7948,17 @@ function renderHistory() {
 
     // Custom (free) workout entry
     if (entry.isCustom) {
-      const exCount = (entry.freeSlots || []).length;
-      const exNames = (entry.freeSlots || []).slice(0, 3).map(s => s.name).join(', ');
-      const more    = exCount > 3 ? ` +${exCount - 3} more` : '';
+      const exCount  = (entry.freeSlots || []).length;
+      const exNames  = (entry.freeSlots || []).slice(0, 3).map(s => s.name).join(', ');
+      const more     = exCount > 3 ? ` +${exCount - 3} more` : '';
+      // Pull volume from logs if available (new saves) — fall back to slot count only
+      let volSummary = '';
+      if (entry.logs && entry.logs.length > 0) {
+        const totalVol = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.volume || 0), 0), 0);
+        if (totalVol > 0) {
+          volSummary = `<div class="card-meta" style="margin-top:4px;">&#x1F522; ${totalVol.toLocaleString()} total reps</div>`;
+        }
+      }
       return `
         <div class="history-item">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
@@ -7939,6 +7968,7 @@ function renderHistory() {
           <div class="history-title">${entry.title || 'Custom Workout'}</div>
           <div class="card-meta">${exCount} exercise${exCount !== 1 ? 's' : ''}</div>
           ${exCount > 0 ? `<div class="card-meta" style="margin-top:3px;font-style:italic;">${exNames}${more}</div>` : ''}
+          ${volSummary}
         </div>`;
     }
 
@@ -7951,7 +7981,7 @@ function renderHistory() {
       const totalMi    = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.dist || 0), 0), 0);
       const milesStr   = totalMi > 0 ? ` &nbsp;&bull;&nbsp; &#x1F6B6; ${totalMi.toFixed(1)} mi` : '';
       logSummary = `<div class="card-meta" style="margin-top:4px;">
-        &#x2705; ${completed}/${totalSlots} sets completed &nbsp;&bull;&nbsp; &#x1F522; ${totalVol.toLocaleString()} total${milesStr}
+        &#x2705; ${completed}/${totalSlots} exercises completed &nbsp;&bull;&nbsp; &#x1F522; ${totalVol.toLocaleString()} total reps${milesStr}
       </div>`;
     }
     return `
