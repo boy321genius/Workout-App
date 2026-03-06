@@ -569,7 +569,357 @@
       max-height: 0;                       /* Hide content when collapsed */
     }
 
-    /* ===== Admin panel styles (exercise library management) ===== */
+    /* ===== Templates / Programs mode toggle ===== */
+    .mode-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 4px;
+      margin-bottom: 20px;
+      gap: 4px;
+    }
+
+    .mode-toggle-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border: none;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      background: transparent;
+      color: #475569;
+      transition: all 0.2s;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .mode-toggle-btn.active {
+      background: linear-gradient(135deg, #2563eb, #4f8ef7);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(79,142,247,0.35);
+    }
+
+    .mode-toggle-btn small {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    .mode-toggle-btn.active small {
+      opacity: 0.85;
+    }
+
+    /* ===== Program cards ===== */
+    .program-card {
+      background: linear-gradient(180deg, rgba(15,26,46,0.95), rgba(11,18,32,0.95));
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .program-card:active {
+      transform: scale(0.99);
+    }
+
+    .program-card.selected {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(106,166,255,0.3);
+    }
+
+    .program-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    .program-card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .program-card-meta {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .program-card-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .program-card-who {
+      font-size: 12px;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border-left: 2px solid rgba(79,142,247,0.4);
+    }
+
+    /* Block timeline strip */
+    .program-blocks-timeline {
+      display: flex;
+      gap: 4px;
+      align-items: stretch;
+      margin-bottom: 8px;
+    }
+
+    .program-block-chip {
+      flex: 1;
+      padding: 6px 4px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .program-block-chip.hypertrophy {
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.3);
+      color: #c084fc;
+    }
+
+    .program-block-chip.strength {
+      background: rgba(79,142,247,0.15);
+      border: 1px solid rgba(79,142,247,0.3);
+      color: #7eb3ff;
+    }
+
+    .program-block-chip.deload {
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.2);
+      color: #6ee7b7;
+    }
+
+    .program-block-chip.peak {
+      background: rgba(251,191,36,0.12);
+      border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24;
+    }
+
+    .program-duration-label {
+      font-size: 11px;
+      color: #475569;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* Start program button */
+    .program-start-bar {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .program-start-bar.visible {
+      display: block;
+    }
+
+    /* ===== Program progress bar (Workout tab) ===== */
+    .program-progress-bar {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .program-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .program-progress-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #7eb3ff;
+      letter-spacing: 0.03em;
+    }
+
+    .program-progress-fraction {
+      font-size: 11px;
+      color: #334155;
+    }
+
+    /* Block dots row */
+    .program-block-dots {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .block-dot-group {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .block-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .block-dot.completed {
+      border-color: transparent;
+    }
+
+    .block-dot.current {
+      width: 10px;
+      height: 10px;
+      border-color: transparent;
+      box-shadow: 0 0 6px rgba(79,142,247,0.6);
+    }
+
+    .block-dot-separator {
+      width: 6px;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .program-progress-label {
+      font-size: 11px;
+      color: #475569;
+      margin-top: 6px;
+    }
+
+    /* ===== Deload banner ===== */
+    .deload-banner {
+      background: rgba(74,222,128,0.07);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .deload-banner-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .deload-banner-text {
+      flex: 1;
+    }
+
+    .deload-banner-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6ee7b7;
+      margin-bottom: 3px;
+    }
+
+    .deload-banner-body {
+      font-size: 12px;
+      color: #4ade80;
+      line-height: 1.55;
+      opacity: 0.8;
+    }
+    .confirm-block-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .confirm-block-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .confirm-block-card.hypertrophy::before { background: #a855f7; }
+    .confirm-block-card.strength::before    { background: #4f8ef7; }
+    .confirm-block-card.deload::before      { background: #4ade80; }
+    .confirm-block-card.peak::before        { background: #fbbf24; }
+
+    .confirm-block-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .confirm-block-label.hypertrophy { color: #c084fc; }
+    .confirm-block-label.strength    { color: #7eb3ff; }
+    .confirm-block-label.deload      { color: #6ee7b7; }
+    .confirm-block-label.peak        { color: #fbbf24; }
+
+    .confirm-block-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    .confirm-block-meta {
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 12px;
+    }
+
+    .confirm-block-goal {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .confirm-block-why {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .confirm-block-training {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.55;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .confirm-block-training strong {
+      color: #64748b;
+    }
     .admin-section {
       margin-bottom: 24px;
     }
@@ -1308,6 +1658,259 @@
 
     </div>
   </div>
+  <!-- ===== Program Confirmation Screen ===== -->
+  <div id="programConfirmScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9500;
+    background: #070c16;
+    flex-direction: column;
+    overflow-y: auto;
+  ">
+    <!-- Header -->
+    <div style="
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(7,12,22,0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 16px 20px 14px;
+      display: flex; align-items: center; gap: 14px;
+    ">
+      <button onclick="closeProgramConfirmScreen()" style="
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px; width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; flex-shrink: 0;
+      ">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#94a3b8;fill:none;stroke-width:2.5;stroke-linecap:round;">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div>
+        <div style="font-size:12px;color:#475569;margin-bottom:2px;">Program Preview</div>
+        <div id="confirmScreenTitle" style="font-size:17px;font-weight:700;color:#e2e8f0;"></div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div style="padding: 24px 20px 40px; max-width: 600px; margin: 0 auto; width: 100%;">
+
+      <!-- Program summary -->
+      <div id="confirmScreenSummary"></div>
+
+      <!-- Block breakdown heading -->
+      <h3 style="font-size:14px;font-weight:700;color:#94a3b8;letter-spacing:0.06em;text-transform:uppercase;margin:28px 0 14px;">
+        What You'll Be Doing
+      </h3>
+
+      <!-- Block cards rendered by JS -->
+      <div id="confirmScreenBlocks"></div>
+
+      <!-- Bottom CTA -->
+      <div style="margin-top:32px;">
+        <button id="confirmScreenStartBtn" onclick="startProgram()" style="
+          width: 100%;
+          background: linear-gradient(135deg, #2563eb, #4f8ef7);
+          border: none; border-radius: 14px;
+          color: #fff; font-size: 17px; font-weight: 700;
+          padding: 16px; cursor: pointer; font-family: inherit;
+          box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+          margin-bottom: 12px;
+        ">Start Program</button>
+        <button onclick="closeProgramConfirmScreen()" style="
+          width: 100%;
+          background: transparent; border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 14px; color: #475569;
+          font-size: 15px; font-weight: 600;
+          padding: 14px; cursor: pointer; font-family: inherit;
+        ">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Block Transition Screen ===== -->
+  <div id="blockTransitionScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9600;
+    background: #070c16;
+    flex-direction: column;
+    overflow-y: auto;
+  ">
+    <div style="padding: 48px 24px 60px; max-width: 560px; margin: 0 auto; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+
+      <!-- Completed block celebration -->
+      <div id="btCompletedSection" style="margin-bottom: 32px;">
+        <div style="font-size: 52px; text-align: center; margin-bottom: 16px;">🏁</div>
+        <div id="btCompletedLabel" style="
+          font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; text-align: center;
+          margin-bottom: 8px;
+        "></div>
+        <h1 id="btCompletedTitle" style="
+          font-size: 26px; font-weight: 800; color: #e2e8f0;
+          text-align: center; line-height: 1.2; margin-bottom: 12px;
+        "></h1>
+        <p id="btCompletedGoal" style="
+          font-size: 14px; color: #64748b; text-align: center;
+          line-height: 1.6; font-style: italic;
+        "></p>
+      </div>
+
+      <!-- Divider with arrow -->
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.07);"></div>
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#334155;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.07);"></div>
+      </div>
+
+      <!-- Next block preview -->
+      <div id="btNextSection">
+        <div id="btNextLabel" style="
+          font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; text-align: center; margin-bottom: 8px;
+        "></div>
+        <h2 id="btNextTitle" style="
+          font-size: 22px; font-weight: 800; color: #e2e8f0;
+          text-align: center; line-height: 1.25; margin-bottom: 20px;
+        "></h2>
+
+        <!-- Why card -->
+        <div style="
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 14px; padding: 18px; margin-bottom: 12px;
+        ">
+          <div style="font-size:11px;font-weight:700;color:#475569;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Why This Block</div>
+          <p id="btNextWhy" style="font-size:14px;color:#94a3b8;line-height:1.65;margin:0;"></p>
+        </div>
+
+        <!-- In practice card -->
+        <div style="
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.05);
+          border-radius: 14px; padding: 16px; margin-bottom: 28px;
+        ">
+          <div style="font-size:11px;font-weight:700;color:#475569;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">In Practice</div>
+          <p id="btNextTraining" style="font-size:13px;color:#64748b;line-height:1.6;margin:0;"></p>
+          <div id="btNextMeta" style="margin-top:10px;font-size:12px;color:#334155;"></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button id="btStartBtn" onclick="dismissBlockTransition()" style="
+        width: 100%;
+        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        border: none; border-radius: 14px;
+        color: #fff; font-size: 17px; font-weight: 700;
+        padding: 16px; cursor: pointer; font-family: inherit;
+        box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+      "></button>
+
+    </div>
+  </div>
+
+  <!-- ===== Program Complete Screen ===== -->
+  <div id="programCompleteScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9600;
+    background: #070c16;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  ">
+    <div style="max-width: 400px; width: 100%;">
+      <div style="font-size: 64px; margin-bottom: 20px;">🏆</div>
+      <h1 style="font-size: 28px; font-weight: 800; color: #e2e8f0; margin-bottom: 8px; line-height: 1.2;">
+        Program Complete
+      </h1>
+      <div id="pcProgramName" style="font-size:14px;color:#4f8ef7;margin-bottom:24px;font-weight:600;"></div>
+
+      <p id="pcMessage" style="font-size:15px;color:#64748b;line-height:1.7;margin-bottom:32px;"></p>
+
+      <!-- Stats row -->
+      <div id="pcStats" style="
+        display: flex; gap: 12px; margin-bottom: 32px;
+      "></div>
+
+      <div style="
+        background: rgba(79,142,247,0.08);
+        border: 1px solid rgba(79,142,247,0.2);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 28px;
+      ">
+        <p style="font-size:13px;color:#7eb3ff;line-height:1.6;margin:0;">
+          💡 Your full workout history has been saved. Consider running the program again with heavier loads, or try a new program to continue progressing.
+        </p>
+      </div>
+
+      <button onclick="dismissProgramComplete()" style="
+        width: 100%;
+        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        border: none; border-radius: 14px;
+        color: #fff; font-size: 17px; font-weight: 700;
+        padding: 16px; cursor: pointer; font-family: inherit;
+        box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+      ">Choose What's Next →</button>
+    </div>
+  </div>
+
+  <!-- ===== Abandon Program Confirmation Screen ===== -->
+  <div id="abandonProgramScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9700;
+    background: rgba(7,12,22,0.97);
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  ">
+    <div style="max-width: 400px; width: 100%;">
+      <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+      <h2 style="font-size: 22px; font-weight: 800; color: #e2e8f0; margin-bottom: 12px; line-height: 1.3;">
+        Abandon Program?
+      </h2>
+      <div id="abandonProgramName" style="font-size:13px;color:#4f8ef7;margin-bottom:20px;font-weight:600;"></div>
+
+      <div style="
+        background: rgba(239,68,68,0.08);
+        border: 1px solid rgba(239,68,68,0.2);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: left;
+      ">
+        <p style="font-size:13px;color:#fca5a5;line-height:1.6;margin:0;">
+          <strong>You will lose your program progress.</strong> Your completed weeks remain in your workout history, but the program block sequence and week counter will be reset.
+        </p>
+      </div>
+
+      <div style="
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; text-align: left;
+      ">
+        <p id="abandonProgressSummary" style="font-size:13px;color:#64748b;line-height:1.6;margin:0;"></p>
+      </div>
+
+      <button onclick="confirmAbandonProgram()" style="
+        width: 100%;
+        background: rgba(239,68,68,0.15);
+        border: 1px solid rgba(239,68,68,0.3);
+        border-radius: 14px; color: #f87171;
+        font-size: 16px; font-weight: 700;
+        padding: 14px; cursor: pointer; font-family: inherit;
+        margin-bottom: 10px;
+      ">Yes, Abandon Program</button>
+
+      <button onclick="closeAbandonProgramScreen()" style="
+        width: 100%;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px; color: #475569;
+        font-size: 15px; font-weight: 600;
+        padding: 14px; cursor: pointer; font-family: inherit;
+      ">Keep Going</button>
+    </div>
+  </div>
+
   <!-- ===== Sync Overlay (shown while restoring saved session data) ===== -->
   <div id="syncOverlay" style="
     display: none;
@@ -1388,9 +1991,23 @@
          It is hidden/shown by toggling the .active class on .view elements.
     -->
     <div id="workoutView" class="view">
+      <!-- Program progress bar — shown only when in a program -->
+      <div id="programProgressBar" style="display:none;"></div>
+
+      <!-- Deload banner — shown only during deload weeks -->
+      <div id="deloadBanner" style="display:none;"></div>
+
       <!-- Top area showing current day, workout name, and template code -->
       <div class="workout-header">
-        <div class="workout-day" id="currentDay"></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="workout-day" id="currentDay"></div>
+          <button id="abandonProgramBtn" onclick="showAbandonProgramScreen()"
+            style="display:none; background:transparent; border:none; cursor:pointer;
+            font-size:11px; color:#334155; font-family:inherit; padding:0;
+            text-decoration:underline; text-underline-offset:2px;">
+            Abandon program
+          </button>
+        </div>
         <h2 class="workout-title" id="currentWorkout"></h2>
         <div class="card-meta" id="currentTemplate">
           Strength • STR5DULS
@@ -1409,299 +2026,145 @@
          It starts as the active view.
     -->
     <div id="templatesView" class="view active">
-      <!-- Collapsible section header for training focus descriptions -->
+
+      <!-- Collapsible Training Focus Overview — always visible regardless of mode -->
       <div class="collapsible-header" onclick="toggleTrainingFocus()">
-        <h2 class="admin-title" style="margin-bottom: 0;">
-          Training Focus Overview
-        </h2>
+        <h2 class="admin-title" style="margin-bottom: 0;">Training Focus Overview</h2>
         <span class="collapsible-icon" id="trainingFocusIcon">▼</span>
       </div>
 
-      <!-- Collapsible content: explanation cards for each training focus -->
-      <div
-        class="collapsible-content"
-        id="trainingFocusContent"
-        style="margin-bottom: 20px;"
-      >
+      <div class="collapsible-content" id="trainingFocusContent" style="margin-bottom: 20px;">
         <!-- Strength card -->
         <div class="card" style="margin-bottom: 16px;">
-          <h3
-            style="
-              font-size: 16px;
-              font-weight: 700;
-              margin-bottom: 8px;
-              color: var(--color-primary);
-            "
-          >
-            Strength
-          </h3>
-          <p
-            style="
-              font-size: 13px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 12px;
-            "
-          >
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Strength</h3>
+          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 12px;">
             Focuses on Motor Unit Recruitment - teaching your body to produce
             as much force as possible with the muscles you already have, not
             necessarily about making them bigger.
           </p>
-          <p
-            style="
-              font-size: 13px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 8px;
-            "
-          >
+          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 8px;">
             Progressive overload is very important for strength training - you
             have to give your body a slightly bigger challenge over time (this
             is progressive overload).
           </p>
-          <ul
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              85–95% of your 1-Rep Max (1RM) for 3-5 sets — 1-5 reps — 3–5
-              minute rest
-            </li>
-            <li>
-              Great modifiers for lack of equipment include: Unilateral
-              (single-limb) variations — creating deeper/fuller/longer range of
-              motion (ROM), like deficit variations
-            </li>
+          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
+            <li>85–95% of your 1-Rep Max (1RM) for 3-5 sets — 1-5 reps — 3–5 minute rest</li>
+            <li>Great modifiers for lack of equipment include: Unilateral (single-limb) variations — creating deeper/fuller/longer range of motion (ROM), like deficit variations</li>
           </ul>
         </div>
 
         <!-- Hypertrophy card -->
         <div class="card" style="margin-bottom: 16px;">
-          <h3
-            style="
-              font-size: 16px;
-              font-weight: 700;
-              margin-bottom: 8px;
-              color: var(--color-primary);
-            "
-          >
-            Hypertrophy (Muscle Size)
-          </h3>
-          <p
-            style="
-              font-size: 13px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 8px;
-            "
-          >
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Hypertrophy (Muscle Size)</h3>
+          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 8px;">
             Focuses on building muscle size and "armor" so you look more
             muscular and have more tissue protecting and supporting your joints.
           </p>
-          <ul
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-              margin-bottom: 8px;
-            "
-          >
-            <li>
-              65–80% of your 1-Rep Max (1RM) for 3–5 sets — 6–15 reps — 60–90
-              second rest (a bit of burn and pump is the goal here)
-            </li>
+          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px; margin-bottom: 8px;">
+            <li>65–80% of your 1-Rep Max (1RM) for 3–5 sets — 6–15 reps — 60–90 second rest (a bit of burn and pump is the goal here)</li>
           </ul>
-          <p
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
-            Primary levers for this goal (especially with limited equipment) are
-            tempo and position modifiers in the hardest, most stretched part of
-            the rep:
+          <p style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 6px; font-weight: 600;">
+            Primary levers for this goal (especially with limited equipment) are tempo and position modifiers in the hardest, most stretched part of the rep:
           </p>
-          <ul
-            style="
-              font-size: 11px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              Iso-holds (Yielding Isometrics) – hold still and squeeze in that
-              "bottom" or mid-range position for 10–30 seconds per set
-            </li>
-            <li>
-              Pauses – briefly stop (1–3 seconds) at the bottom or midpoint of
-              each rep to kill momentum
-            </li>
-            <li>
-              Pulses – short mini-reps in a small range around the bottom
-              position (no full lockout) to keep constant tension
-            </li>
-            <li>
-              1.5 reps – do a full rep, come halfway back, then drop into the
-              bottom again and stand all the way up
-            </li>
+          <ul style="font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
+            <li>Iso-holds (Yielding Isometrics) – hold still and squeeze in that "bottom" or mid-range position for 10–30 seconds per set</li>
+            <li>Pauses – briefly stop (1–3 seconds) at the bottom or midpoint of each rep to kill momentum</li>
+            <li>Pulses – short mini-reps in a small range around the bottom position (no full lockout) to keep constant tension</li>
+            <li>1.5 reps – do a full rep, come halfway back, then drop into the bottom again and stand all the way up</li>
           </ul>
         </div>
 
-        <!-- Power & Velocity card -->
+        <!-- Power card -->
         <div class="card" style="margin-bottom: 16px;">
-          <h3
-            style="
-              font-size: 16px;
-              font-weight: 700;
-              margin-bottom: 8px;
-              color: var(--color-primary);
-            "
-          >
-            Power & Velocity (The "Pop")
-          </h3>
-          <p
-            style="
-              font-size: 13px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 12px;
-            "
-          >
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Power & Velocity (The "Pop")</h3>
+          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 12px;">
             Focuses on teaching your body to use the strength you already have
-            quickly—how fast you can turn force on, not how much weight you can
-            grind.
+            quickly—how fast you can turn force on, not how much weight you can grind.
           </p>
-          <ul
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-              margin-bottom: 8px;
-            "
-          >
-            <li>
-              Roughly 30–60% of your 1-Rep Max (1RM) for 3–6 sets — 1–5
-              explosive reps — 2–3 minute rest (every rep should be fast; stop
-              the set if speed drops)
-            </li>
+          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px; margin-bottom: 8px;">
+            <li>Roughly 30–60% of your 1-Rep Max (1RM) for 3–6 sets — 1–5 explosive reps — 2–3 minute rest (every rep should be fast; stop the set if speed drops)</li>
           </ul>
-          <p
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.5;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
-            Modifiers include:
-          </p>
-          <ul
-            style="
-              font-size: 11px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              Concentric-only emphasis – control the lower phase of the rep
-              (eccentric), but make the "up" phase (concentric) as fast as
-              possible
-            </li>
-            <li>
-              Speed-isos (Overcoming/Pushing Isometrics) – 1–4 second pushing
-              against an immoveable object / can be paired with fast reps after
-              the push
-            </li>
+          <p style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 6px; font-weight: 600;">Modifiers include:</p>
+          <ul style="font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
+            <li>Concentric-only emphasis – control the lower phase of the rep (eccentric), but make the "up" phase (concentric) as fast as possible</li>
+            <li>Speed-isos (Overcoming/Pushing Isometrics) – 1–4 second pushing against an immoveable object / can be paired with fast reps after the push</li>
           </ul>
         </div>
 
         <!-- Conditioning card -->
         <div class="card" style="margin-bottom: 24px;">
-          <h3
-            style="
-              font-size: 16px;
-              font-weight: 700;
-              margin-bottom: 8px;
-              color: var(--color-primary);
-            "
-          >
-            Conditioning (Work Capacity & Engine Management)
-          </h3>
-          <ul
-            style="
-              font-size: 12px;
-              color: var(--color-text-secondary);
-              line-height: 1.6;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              <strong>Aerobic Base (Zone 2):</strong> easy, steady cardio that
-              builds your "all-day engine" and recovery. 60–75% HRmax or a pace
-              where you can talk in full sentences — 20–60 minutes steady
-            </li>
-            <li>
-              <strong>Tempo / Threshold:</strong> comfortably hard cardio that
-              raises your sustained pace before you start gassing. Roughly
-              80–90% HRmax (talking becomes difficult) — Continuous 10–30
-              minutes, or intervals like 3–10 min work / 1–2 min easy
-            </li>
-            <li>
-              <strong>VO₂ Max:</strong> hard intervals that expand your top-end
-              cardio ceiling. 2–5 minutes hard / 2–5 minutes easy, repeated —
-              Total hard time 12–25 minutes
-            </li>
-            <li>
-              <strong>Anaerobic / Sprint:</strong> short, very hard bursts that
-              train explosive repeat effort and "redline tolerance." 10–60
-              seconds very hard, with rest 2–5× work duration
-            </li>
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Conditioning (Work Capacity & Engine Management)</h3>
+          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
+            <li><strong>Aerobic Base (Zone 2):</strong> easy, steady cardio that builds your "all-day engine" and recovery. 60–75% HRmax or a pace where you can talk in full sentences — 20–60 minutes steady</li>
+            <li><strong>Tempo / Threshold:</strong> comfortably hard cardio that raises your sustained pace before you start gassing. Roughly 80–90% HRmax (talking becomes difficult) — Continuous 10–30 minutes, or intervals like 3–10 min work / 1–2 min easy</li>
+            <li><strong>VO₂ Max:</strong> hard intervals that expand your top-end cardio ceiling. 2–5 minutes hard / 2–5 minutes easy, repeated — Total hard time 12–25 minutes</li>
+            <li><strong>Anaerobic / Sprint:</strong> short, very hard bursts that train explosive repeat effort and "redline tolerance." 10–60 seconds very hard, with rest 2–5× work duration</li>
           </ul>
         </div>
       </div>
 
-      <!-- Header row for template selection + Start button -->
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 16px;
-          gap: 16px;
-        "
-      >
-        <h2 class="admin-title" style="margin-bottom: 0;">
-          Select Your Template
-        </h2>
-
-        <!-- This button is hidden until a template is selected (JS shows it) -->
-        <button
-          class="btn"
-          id="confirmTemplateBtn"
-          onclick="confirmTemplateSelection()"
-          style="display: none; white-space: nowrap;"
-        >
-          Start Program →
+      <!-- ===== Mode Toggle: Templates vs Programs ===== -->
+      <div class="mode-toggle">
+        <button class="mode-toggle-btn active" id="modeTabTemplates" onclick="switchTemplatesMode('templates')">
+          Standalone Template
+          <small>Pick and run a single training week</small>
+        </button>
+        <button class="mode-toggle-btn" id="modeTabPrograms" onclick="switchTemplatesMode('programs')">
+          Follow a Program
+          <small>Guided multi-week periodized plan</small>
         </button>
       </div>
 
-      <!-- Horizontal filter chips for training focus (Strength, Hypertrophy, etc.) -->
-      <div class="template-filters" id="focusFilters"></div>
+      <!-- ===== Templates Mode ===== -->
+      <div id="templatesModeView">
+        <!-- Context blurb -->
+        <div style="
+          font-size: 13px; color: #64748b; line-height: 1.55;
+          margin-bottom: 16px; padding: 12px 14px;
+          background: rgba(255,255,255,0.03);
+          border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);
+        ">
+          Choose a template that matches your current training focus. You run the same template each week, adding load or reps over time. Best for beginners or anyone who wants full flexibility week to week.
+        </div>
 
-      <!-- List where JS will render individual template cards -->
-      <div id="templateList"></div>
+        <!-- Header row: title + confirm button -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px;">
+          <h2 class="admin-title" style="margin-bottom:0;">Select Your Template</h2>
+          <button class="btn" id="confirmTemplateBtn" onclick="confirmTemplateSelection()" style="display:none; white-space:nowrap;">
+            Start →
+          </button>
+        </div>
+
+        <!-- Focus filter chips -->
+        <div class="template-filters" id="focusFilters"></div>
+
+        <!-- Template cards rendered by JS -->
+        <div id="templateList"></div>
+      </div>
+
+      <!-- ===== Programs Mode (hidden by default) ===== -->
+      <div id="programsModeView" style="display:none;">
+        <!-- Context blurb -->
+        <div style="
+          font-size: 13px; color: #64748b; line-height: 1.55;
+          margin-bottom: 16px; padding: 12px 14px;
+          background: rgba(255,255,255,0.03);
+          border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);
+        ">
+          Programs are multi-week, periodized plans that automatically rotate your training focus, include deload weeks, and guide you through each phase with clear explanations. Best for intermediate lifters with a clear long-term goal.
+        </div>
+
+        <!-- Program cards rendered by JS -->
+        <div id="programList"></div>
+
+        <!-- Confirm button — shown when a program is selected -->
+        <div class="program-start-bar" id="programStartBar">
+          <button class="btn" style="width:100%;" onclick="showProgramConfirmScreen(selectedProgramId)">
+            Start Program →
+          </button>
+        </div>
+      </div>
+
     </div>
 
     <!-- ================= History View =================
@@ -1789,7 +2252,7 @@
           <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Exercise
         </button>
         <button class="btn btn-secondary btn-block" onclick="showTemplateModal()">
-          <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Template
+         <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Template
         </button>
         <button class="btn btn-secondary btn-block" onclick="showSlotRulesModal()">
           Manage Slot Rules
@@ -3813,6 +4276,227 @@ const sb            = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const GIF_BASE = 'https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs';
 const GIF_V    = Date.now();
 
+// ===== PROGRAMS =====
+// Each program is a sequence of blocks. Each block references a templateId,
+// has a fixed week count, a training goal, and a plain-language explanation
+// of why it follows the previous block. Deload blocks use templateId: null
+// and are handled specially in the Complete Week flow.
+
+const PROGRAMS = [
+  {
+    id: 'PROG_STR_FOUNDATION',
+    name: 'Strength Foundation',
+    focus: 'Strength',
+    durationWeeks: 12,
+    description: 'A classic periodized strength program. You\'ll first build muscle mass to raise your strength ceiling, then shift to heavy lifting to express that new tissue as maximum force.',
+    whoIsThisFor: 'Anyone looking to systematically build strength over 12 weeks with a proven block structure.',
+    blocks: [
+      {
+        blockNum: 1,
+        label: 'Hypertrophy Phase',
+        templateId: 'HYP_4D_UL',
+        weeks: 4,
+        isDeload: false,
+        goal: 'Build muscle mass to raise your strength ceiling',
+        why: 'Strength is expressed through muscle tissue. More muscle means a higher ceiling for the force you can produce. This block lays the foundation everything else is built on.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work, not just moving the weight.',
+        repRange: '8-12',
+        rirTarget: '2-3'
+      },
+      {
+        blockNum: 2,
+        label: 'Deload',
+        templateId: 'HYP_4D_UL',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Recover and absorb adaptation from Block 1',
+        why: 'Fatigue accumulates invisibly. A deload lets your nervous system consolidate the gains from the hypertrophy block before you push into heavier strength work. Skipping this is the most common reason people plateau.',
+        trainingFocus: 'Same exercises, same structure — but aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 3,
+        label: 'Strength Phase',
+        templateId: 'STR_4D_UL',
+        weeks: 4,
+        isDeload: false,
+        goal: 'Convert your new muscle into maximum strength',
+        why: 'Now that you\'ve built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. Lower reps, heavier weight, longer rest — this is where strength is built.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6',
+        rirTarget: '1-2'
+      },
+      {
+        blockNum: 4,
+        label: 'Deload',
+        templateId: 'STR_4D_UL',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Recover before your peak strength block',
+        why: 'Four weeks of heavy lifting accumulates significant neural fatigue. This deload ensures you enter the peak block fresh and ready to hit new personal records.',
+        trainingFocus: 'Same structure, 50% volume. Keep the loads relatively heavy but stop well short of failure.',
+        repRange: '3-6',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 5,
+        label: 'Peak Strength Phase',
+        templateId: 'STR_4D_UL',
+        weeks: 2,
+        isDeload: false,
+        goal: 'Express your maximum strength — hit new personal records',
+        why: 'The final two weeks are about peaking. Your body has built the muscle, learned to recruit it, and is now fresh from a deload. This is when you find out what you\'re capable of.',
+        trainingFocus: 'Very heavy loads, very low reps (1-4), maximum rest between sets. Leave nothing in the tank on your top sets.',
+        repRange: '1-4',
+        rirTarget: '0-1'
+      }
+    ]
+  },
+
+  {
+    id: 'PROG_HYP_BUILDER',
+    name: 'Hypertrophy Builder',
+    focus: 'Hypertrophy',
+    durationWeeks: 11,
+    description: 'A muscle-building focused program that uses an initial strength primer to prepare your nervous system before diving into sustained hypertrophy work.',
+    whoIsThisFor: 'Anyone whose primary goal is building muscle size with a scientific, periodized approach.',
+    blocks: [
+      {
+        blockNum: 1,
+        label: 'Neural Primer Phase',
+        templateId: 'STR_4D_UL',
+        weeks: 3,
+        isDeload: false,
+        goal: 'Prime your nervous system for maximum muscle recruitment',
+        why: 'Starting with a brief strength block activates high-threshold motor units — the muscle fibres with the greatest growth potential. When you shift to hypertrophy work, you\'ll be able to recruit more muscle fibre per set, making every rep more productive.',
+        trainingFocus: 'Heavier loads, lower reps (4-6) to wake up your nervous system. Focus on technique and bar speed.',
+        repRange: '4-6',
+        rirTarget: '2-3'
+      },
+      {
+        blockNum: 2,
+        label: 'Deload',
+        templateId: 'STR_4D_UL',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Recover before your primary hypertrophy block',
+        why: 'Entering the hypertrophy block fresh means every session can be performed at the quality needed to drive maximum growth. Accumulated fatigue blunts the stimulus — the deload removes it.',
+        trainingFocus: 'Same structure, 50% volume. Keep the movements crisp.',
+        repRange: '4-6',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 3,
+        label: 'Hypertrophy Phase',
+        templateId: 'HYP_4D_UL',
+        weeks: 4,
+        isDeload: false,
+        goal: 'Drive maximum muscle growth across all major muscle groups',
+        why: 'This is the primary block. Your nervous system is primed and you\'re fully recovered. The combination creates the ideal environment for hypertrophy — high volume, controlled fatigue, and consistent progressive overload.',
+        trainingFocus: 'Moderate loads (8-12 reps), high volume, 60-90s rest. Feel each muscle working through full range of motion.',
+        repRange: '8-12',
+        rirTarget: '2-3'
+      },
+      {
+        blockNum: 4,
+        label: 'Deload',
+        templateId: 'HYP_4D_UL',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Let the hypertrophy adaptations consolidate',
+        why: 'Muscle growth doesn\'t happen during training — it happens during recovery. This deload gives your body uninterrupted time to complete the adaptations triggered by the last 4 weeks.',
+        trainingFocus: 'Same structure, 50% volume. This is where the gains are actually made.',
+        repRange: '8-12',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 5,
+        label: 'Hypertrophy Intensification',
+        templateId: 'HYP_4D_UL',
+        weeks: 2,
+        isDeload: false,
+        goal: 'Push past plateaus with intensified volume',
+        why: 'The final two weeks use the same template but with increased intensity. Your body has adapted to the baseline stimulus — raising the demand now forces a final wave of adaptation before the program ends.',
+        trainingFocus: 'Push closer to failure (1 RIR). Add a set where possible. Focus on progressive overload from your Block 3 numbers.',
+        repRange: '8-12',
+        rirTarget: '1'
+      }
+    ]
+  },
+
+  {
+    id: 'PROG_STR_COND',
+    name: 'Strength + Conditioning',
+    focus: 'Strength',
+    durationWeeks: 12,
+    description: 'Builds strength and cardiovascular fitness simultaneously. Ideal if you want to be both strong and conditioned without sacrificing either quality.',
+    whoIsThisFor: 'Anyone who wants to build meaningful strength while maintaining or improving aerobic capacity.',
+    blocks: [
+      {
+        blockNum: 1,
+        label: 'Hypertrophy + Aerobic Base',
+        templateId: 'HYP_4D_UL_AERO',
+        weeks: 4,
+        isDeload: false,
+        goal: 'Build muscle and establish your aerobic base simultaneously',
+        why: 'Aerobic fitness supports strength training by improving recovery between sets and between sessions. Building both qualities together now means the strength block that follows will be performed on a much more robust physiological foundation.',
+        trainingFocus: 'Moderate loads (8-12 reps) for lifting. Zone 2 aerobic work at conversational pace. Don\'t let either quality suffer.',
+        repRange: '8-12',
+        rirTarget: '2-3'
+      },
+      {
+        blockNum: 2,
+        label: 'Deload',
+        templateId: 'HYP_4D_UL_AERO',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Recover from combined strength and conditioning demands',
+        why: 'Training two physical qualities simultaneously creates more total fatigue than training one. The deload is especially important here — your body needs time to absorb adaptations in both the muscular and cardiovascular systems.',
+        trainingFocus: '50% volume across both lifting and conditioning. Easy aerobic work only — no intensity.',
+        repRange: '8-12',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 3,
+        label: 'Strength + Conditioning Phase',
+        templateId: 'STR_4D_UL_AERO',
+        weeks: 4,
+        isDeload: false,
+        goal: 'Build maximum strength on top of your aerobic foundation',
+        why: 'With your aerobic base established, your body can now handle heavier strength work with better recovery. The conditioning component shifts to support the strength goal rather than compete with it.',
+        trainingFocus: 'Heavy loads (3-6 reps) for lifting. Maintain aerobic work but keep it at low intensity to avoid competing with strength recovery.',
+        repRange: '3-6',
+        rirTarget: '1-2'
+      },
+      {
+        blockNum: 4,
+        label: 'Deload',
+        templateId: 'STR_4D_UL_AERO',
+        weeks: 1,
+        isDeload: true,
+        goal: 'Recover before your strength peak',
+        why: 'Heavy compound lifting combined with conditioning creates significant systemic fatigue. This deload ensures you arrive at the final block capable of expressing your true strength.',
+        trainingFocus: '50% lifting volume. Light aerobic work only — a 20-minute easy walk or bike ride is perfect.',
+        repRange: '3-6',
+        rirTarget: '4-5'
+      },
+      {
+        blockNum: 5,
+        label: 'Peak Strength + Conditioning',
+        templateId: 'STR_4D_UL_AERO',
+        weeks: 2,
+        isDeload: false,
+        goal: 'Peak your strength while maintaining conditioning',
+        why: 'The final block combines your highest strength expression with maintained aerobic fitness. You\'ve built both qualities over 10 weeks — now you get to see what that combination looks like at its best.',
+        trainingFocus: 'Maximum strength loads (1-4 reps). Aerobic work maintained but kept easy to preserve recovery for lifting.',
+        repRange: '1-4',
+        rirTarget: '0-1'
+      }
+    ]
+  }
+];
+
 let currentUser = null;
 let currentUsername = '';
 let saveTimeout = null;
@@ -3841,6 +4525,19 @@ let activeSelections = {};
 // Per-day performance logs accumulated during the active week.
 let currentWeekLogs = [];
 
+// ===== Program State =====
+// The active program object (from PROGRAMS), or null if user is in standalone mode
+let activeProgram = null;
+
+// Index of the current block within activeProgram.blocks (0-based)
+let activeProgramBlockIndex = 0;
+
+// Which week the user is on within the current block (1-based, e.g. week 1 of 4)
+let activeProgramWeekIndex = 1;
+
+// Total weeks completed across all blocks in the current program run
+let activeProgramWeeksCompleted = 0;
+
 // Builds the full state object to persist
 function buildStateObject() {
   return {
@@ -3852,7 +4549,12 @@ function buildStateObject() {
     activeSelections,
     currentWeekLogs,
     customTemplates: TEMPLATES.filter(t => t._custom),
-    slotRules: SLOT_RULES
+    slotRules: SLOT_RULES,
+    // Program state
+    activeProgramId:              activeProgram ? activeProgram.id : null,
+    activeProgramBlockIndex,
+    activeProgramWeekIndex,
+    activeProgramWeeksCompleted
   };
 }
 
@@ -3873,6 +4575,15 @@ function applyStateObject(state) {
   if (state.slotRules) {
     SLOT_RULES = state.slotRules;
   }
+  // Restore program state — look up program object by saved ID
+  if (state.activeProgramId) {
+    activeProgram = PROGRAMS.find(p => p.id === state.activeProgramId) || null;
+  } else {
+    activeProgram = null;
+  }
+  activeProgramBlockIndex     = state.activeProgramBlockIndex     || 0;
+  activeProgramWeekIndex      = state.activeProgramWeekIndex      || 1;
+  activeProgramWeeksCompleted = state.activeProgramWeeksCompleted || 0;
 }
 
 // Loads state from Supabase for the current user
@@ -4052,11 +4763,16 @@ async function handleAuth() {
 
 async function signOut() {
   await sb.auth.signOut();
-  currentUser = null;
+  currentUser     = null;
   currentUsername = '';
-  activeTemplate = null; activeWeekStart = null; currentDayIndex = 0;
-  workoutHistory = []; exerciseLibrary = [...EXERCISE_LIBRARY];
+  activeTemplate  = null; activeWeekStart = null; currentDayIndex = 0;
+  workoutHistory  = []; exerciseLibrary = [...EXERCISE_LIBRARY];
   activeSelections = {}; currentWeekLogs = [];
+  // Clear program state
+  activeProgram               = null;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
   TEMPLATES = TEMPLATES.filter(t => !t._custom);
   document.getElementById('signOutBtn').style.display = 'none';
   document.getElementById('headerSubtitle').textContent = '';
@@ -4110,6 +4826,23 @@ async function initApp(user) {
     if (activeTemplate) {
       console.log('[INIT] Active template found — navigating to workout view');
       showView('workout');
+    } else if (activeProgram) {
+      // Program is active but template wasn't restored — look it up from block
+      const block    = activeProgram.blocks[activeProgramBlockIndex];
+      const template = TEMPLATES.find(t => t.id === block.templateId);
+      if (template) {
+        activeTemplate  = template;
+        activeWeekStart = activeWeekStart || new Date();
+        console.log('[INIT] Program active, template restored from block —', template.name);
+        showView('workout');
+      } else {
+        console.warn('[INIT] Program active but template not found:', block.templateId, '— resetting program');
+        activeProgram               = null;
+        activeProgramBlockIndex     = 0;
+        activeProgramWeekIndex      = 1;
+        activeProgramWeeksCompleted = 0;
+        renderTemplates();
+      }
     } else {
       console.log('[INIT] No active template — refreshing templates view');
       renderTemplates();
@@ -4231,13 +4964,235 @@ function renderTemplates() {
   renderTemplateList('All');
 }
 
-// Expands/collapses the big "Training Focus Overview" section at the top
+// Tracks which program is selected in the programs browser (not yet started)
+let selectedProgramId = null;
+
+// Switches the Templates tab between "templates" and "programs" modes
+function switchTemplatesMode(mode) {
+  const templatesView = document.getElementById('templatesModeView');
+  const programsView  = document.getElementById('programsModeView');
+  const tabTemplates  = document.getElementById('modeTabTemplates');
+  const tabPrograms   = document.getElementById('modeTabPrograms');
+
+  if (mode === 'templates') {
+    templatesView.style.display = 'block';
+    programsView.style.display  = 'none';
+    tabTemplates.classList.add('active');
+    tabPrograms.classList.remove('active');
+  } else {
+    templatesView.style.display = 'none';
+    programsView.style.display  = 'block';
+    tabTemplates.classList.remove('active');
+    tabPrograms.classList.add('active');
+    renderPrograms();
+  }
+}
+
+// Returns the CSS class for a block chip based on its label/type
+function getBlockChipClass(block) {
+  if (block.isDeload) return 'deload';
+  const label = block.label.toLowerCase();
+  if (label.includes('peak')) return 'peak';
+  if (label.includes('hypertrophy')) return 'hypertrophy';
+  return 'strength';
+}
+
+// Renders the program cards into #programList
+function renderPrograms() {
+  const list = document.getElementById('programList');
+
+  list.innerHTML = PROGRAMS.map(program => {
+    const isSelected = selectedProgramId === program.id;
+
+    // Build block timeline chips
+    const timeline = program.blocks.map(block => {
+      const chipClass = getBlockChipClass(block);
+      const label = block.isDeload ? 'Deload' : block.label.replace(' Phase', '').replace(' Strength', '').replace(' Hypertrophy', 'Hyp').replace(' Conditioning', 'Cond');
+      const weeks = `${block.weeks}w`;
+      return `<div class="program-block-chip ${chipClass}" style="flex:${block.weeks};">
+        <div>${label}</div>
+        <div style="font-size:9px;opacity:0.7;margin-top:2px;">${weeks}</div>
+      </div>`;
+    }).join('');
+
+    return `
+      <div class="program-card ${isSelected ? 'selected' : ''}" onclick="selectProgram('${program.id}')">
+        <div class="program-card-header">
+          <div style="flex:1;">
+            <div class="program-card-title">${program.name}</div>
+            <div class="program-card-meta">${program.focus} · ${program.durationWeeks} weeks · 4 days/week</div>
+          </div>
+          ${isSelected ? '<span style="color:var(--color-primary);font-size:22px;flex-shrink:0;">✓</span>' : ''}
+        </div>
+
+        <p class="program-card-desc">${program.description}</p>
+
+        <div class="program-card-who">👤 ${program.whoIsThisFor}</div>
+
+        <!-- Block timeline -->
+        <div class="program-blocks-timeline">${timeline}</div>
+        <div class="program-duration-label">${program.durationWeeks}-week program · ${program.blocks.length} blocks including deload weeks</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Handles selecting a program card
+function selectProgram(programId) {
+  if (selectedProgramId === programId) {
+    selectedProgramId = null;
+  } else {
+    selectedProgramId = programId;
+  }
+
+  const bar = document.getElementById('programStartBar');
+  if (selectedProgramId) {
+    const p = PROGRAMS.find(p => p.id === selectedProgramId);
+    bar.querySelector('button').textContent = `Start ${p.name} →`;
+    bar.classList.add('visible');
+  } else {
+    bar.classList.remove('visible');
+  }
+
+  renderPrograms();
+}
+
+// Opens the full-screen program confirmation screen
+function showProgramConfirmScreen(programId) {
+  const program = PROGRAMS.find(p => p.id === programId);
+  if (!program) return;
+
+  // Set title
+  document.getElementById('confirmScreenTitle').textContent = program.name;
+
+  // Build summary banner
+  document.getElementById('confirmScreenSummary').innerHTML = `
+    <div style="
+      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(79,142,247,0.08));
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 14px; padding: 18px; margin-bottom: 8px;
+    ">
+      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:6px;">${program.name}</div>
+      <div style="font-size:13px;color:#7eb3ff;margin-bottom:14px;">${program.focus} · ${program.durationWeeks} weeks · 4 days/week</div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:14px;">${program.description}</p>
+      <div style="
+        font-size:13px;color:#64748b;font-style:italic;
+        padding:10px 12px;background:rgba(255,255,255,0.03);
+        border-radius:8px;border-left:2px solid rgba(79,142,247,0.4);
+      ">👤 ${program.whoIsThisFor}</div>
+    </div>
+
+    <div style="
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
+    ">
+      <p style="font-size:12px;color:#fbbf24;line-height:1.6;margin:0;">
+        ⚠️ Starting this program will replace any active standalone template.
+        Your workout history is preserved.
+      </p>
+    </div>
+  `;
+
+  // Build block cards
+  document.getElementById('confirmScreenBlocks').innerHTML = program.blocks.map((block, i) => {
+    const chipClass = block.isDeload ? 'deload'
+      : block.label.toLowerCase().includes('peak') ? 'peak'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'hypertrophy'
+      : 'strength';
+
+    const typeLabel = block.isDeload ? 'Deload Week'
+      : block.label.toLowerCase().includes('peak') ? 'Peak Phase'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'Hypertrophy'
+      : 'Strength';
+
+    return `
+      <div class="confirm-block-card ${chipClass}">
+        <div class="confirm-block-label ${chipClass}">Block ${block.blockNum} · ${block.weeks} week${block.weeks > 1 ? 's' : ''} · ${typeLabel}</div>
+        <div class="confirm-block-title">${block.label}</div>
+        <div class="confirm-block-meta">
+          ${block.repRange ? `${block.repRange} reps · ` : ''}${block.rirTarget ? `RIR ${block.rirTarget}` : ''}
+          · Template: ${block.templateId}
+        </div>
+        <div class="confirm-block-goal">"${block.goal}"</div>
+        <div class="confirm-block-why">
+          <strong style="font-size:11px;color:#475569;display:block;margin-bottom:4px;">WHY THIS BLOCK</strong>
+          ${block.why}
+        </div>
+        <div class="confirm-block-training">
+          <strong>In practice:</strong> ${block.trainingFocus}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Show the screen
+  const screen = document.getElementById('programConfirmScreen');
+  screen.style.display = 'flex';
+  screen.scrollTop = 0;
+}
+
+// Closes the confirmation screen and returns to program browser
+function closeProgramConfirmScreen() {
+  document.getElementById('programConfirmScreen').style.display = 'none';
+}
+
+// Called when user taps "Start Program" on the confirmation screen
+function startProgram() {
+  if (!selectedProgramId) return;
+
+  const program = PROGRAMS.find(p => p.id === selectedProgramId);
+  if (!program) return;
+
+  // Warn if a standalone template is mid-week
+  if (activeTemplate && !activeProgram) {
+    const ok = confirm(
+      `You have an active standalone template (${activeTemplate.name}).\n\n` +
+      `Starting this program will replace it. Your workout history is preserved.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+  }
+
+  // Set program state
+  activeProgram               = program;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+
+  // Load the first block's template
+  const firstBlock = program.blocks[0];
+  const template   = TEMPLATES.find(t => t.id === firstBlock.templateId);
+
+  if (!template) {
+    alert('Template not found: ' + firstBlock.templateId);
+    return;
+  }
+
+  // Reset week state cleanly
+  activeTemplate     = template;
+  activeWeekStart    = new Date();
+  currentDayIndex    = 0;
+  currentWeekLogs    = [];
+  activeSelections   = {};
+  selectedProgramId  = null;
+
+  // Close confirmation screen
+  closeProgramConfirmScreen();
+
+  // Save and navigate to workout
+  saveStateNow();
+  document.getElementById('headerSubtitle').textContent =
+    currentUsername ? `Hi, ${currentUsername} 👋` : '';
+  showView('workout');
+}
+
+// Expands/collapses the Training Focus Overview section
 function toggleTrainingFocus() {
   const content = document.getElementById('trainingFocusContent');
   const icon = document.getElementById('trainingFocusIcon');
-
   content.classList.toggle('collapsed');
-  icon.classList.toggle('collapsed'); // rotates the arrow via CSS
+  icon.classList.toggle('collapsed');
 }
 
 // When a focus chip is clicked, update the active chip and re-render the list
@@ -4337,25 +5292,87 @@ function selectTemplateForReview(templateId) {
 }
 
 // Called when the user clicks "Start Program →"
+// ===== ABANDON PROGRAM =====
+
+function showAbandonProgramScreen() {
+  if (!activeProgram) return;
+
+  document.getElementById('abandonProgramName').textContent = activeProgram.name;
+
+  const block          = activeProgram.blocks[activeProgramBlockIndex];
+  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
+  const completedWeeks = activeProgramWeeksCompleted;
+  const weeksLeft      = totalWeeks - completedWeeks;
+
+  document.getElementById('abandonProgressSummary').innerHTML =
+    `You are currently on <strong style="color:#94a3b8;">${block.label}</strong> ` +
+    `(Block ${block.blockNum} of ${activeProgram.blocks.length}, ` +
+    `Week ${activeProgramWeekIndex} of ${block.weeks}). ` +
+    `<br><br>` +
+    `${completedWeeks} week${completedWeeks !== 1 ? 's' : ''} completed · ` +
+    `${weeksLeft} week${weeksLeft !== 1 ? 's' : ''} remaining.`;
+
+  document.getElementById('abandonProgramScreen').style.display = 'flex';
+}
+
+function closeAbandonProgramScreen() {
+  document.getElementById('abandonProgramScreen').style.display = 'none';
+}
+
+function confirmAbandonProgram() {
+  // Clear program state — history already contains completed weeks
+  activeProgram               = null;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+  activeTemplate              = null;
+  activeWeekStart             = null;
+  currentDayIndex             = 0;
+  currentWeekLogs             = [];
+  activeSelections            = {};
+
+  saveStateNow();
+  closeAbandonProgramScreen();
+  showView('templates');
+}
+
+// ===== SWITCHING MODES (standalone ↔ program) =====
+
+// Guards confirmTemplateSelection — warns if a program is currently active
 function confirmTemplateSelection() {
   if (!selectedTemplateId) return;
+
+  if (activeProgram) {
+    const block = activeProgram.blocks[activeProgramBlockIndex];
+    const ok = confirm(
+      `You are currently in "${activeProgram.name}" (${block.label}, Week ${activeProgramWeekIndex} of ${block.weeks}).\n\n` +
+      `Starting a standalone template will abandon this program and your progress will be lost.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+
+    // Abandon program silently
+    activeProgram               = null;
+    activeProgramBlockIndex     = 0;
+    activeProgramWeekIndex      = 1;
+    activeProgramWeeksCompleted = 0;
+  }
 
   const template = TEMPLATES.find(t => t.id === selectedTemplateId);
   if (!template) return;
 
-  // Set the active template and reset all week state cleanly
   activeTemplate     = template;
   activeWeekStart    = new Date();
   currentDayIndex    = 0;
   selectedTemplateId = null;
-  currentWeekLogs    = [];   // clear any logs from previous template
-  activeSelections   = {};   // clear exercise selections from previous template
+  currentWeekLogs    = [];
+  activeSelections   = {};
 
-  // Persist immediately
   saveStateNow();
-
   showView('workout');
 }
+
+
 
 // Builds a unique key for a given template-day-exercise combination.
 // This is used to store the user's chosen exercise in activeSelections.
@@ -4483,12 +5500,115 @@ function refreshLastLog(index, exId) {
 }
 
 // Builds the "Active Workout" view for the current day of the active template.
+// Renders the program progress bar at the top of the Workout tab.
+// Shows a dot for each week of each block, colour-coded, with current week pulsing.
+function renderProgramProgress() {
+  const el = document.getElementById('programProgressBar');
+  if (!activeProgram) { el.style.display = 'none'; return; }
+
+  const block   = activeProgram.blocks[activeProgramBlockIndex];
+  const colours = { hypertrophy: '#a855f7', strength: '#4f8ef7', deload: '#4ade80', peak: '#fbbf24' };
+
+  function blockColour(b) {
+    if (b.isDeload) return colours.deload;
+    const l = b.label.toLowerCase();
+    if (l.includes('peak'))         return colours.peak;
+    if (l.includes('hypertrophy'))  return colours.hypertrophy;
+    return colours.strength;
+  }
+
+  // Count total weeks and completed weeks for the fraction
+  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
+  const completedWeeks = activeProgramWeeksCompleted;
+
+  // Build dot groups — one group per block, dots inside = weeks in that block
+  let weekCursor = 0; // tracks global week index across all blocks
+  const dotGroups = activeProgram.blocks.map((b, bi) => {
+    const colour = blockColour(b);
+    const dots = Array.from({ length: b.weeks }, (_, wi) => {
+      const globalWeek = weekCursor + wi;
+      const isCurrent  = bi === activeProgramBlockIndex && (wi + 1) === activeProgramWeekIndex;
+      const isDone     = globalWeek < completedWeeks;
+
+      let dotStyle = `background:${colour};opacity:${isDone ? '1' : '0.2'};border-color:transparent;`;
+      if (isCurrent) dotStyle = `background:${colour};opacity:1;border-color:transparent;box-shadow:0 0 7px ${colour}99;width:10px;height:10px;`;
+
+      return `<div class="block-dot${isCurrent ? ' current' : isDone ? ' completed' : ''}" style="${dotStyle}"></div>`;
+    }).join('');
+
+    weekCursor += b.weeks;
+    return `<div class="block-dot-group">${dots}</div>`;
+  });
+
+  // Interleave separators between groups
+  const timeline = dotGroups.join('<div class="block-dot-separator"></div>');
+
+  // Current block label
+  const blockColourHex = blockColour(block);
+  const blockTypeLabel = block.isDeload ? 'Deload'
+    : block.label.toLowerCase().includes('peak') ? 'Peak'
+    : block.label.toLowerCase().includes('hypertrophy') ? 'Hypertrophy'
+    : 'Strength';
+
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="program-progress-bar">
+      <div class="program-progress-header">
+        <div class="program-progress-name">
+          <span style="color:${blockColourHex};margin-right:4px;">●</span>
+          ${activeProgram.name}
+        </div>
+        <div class="program-progress-fraction">${completedWeeks} / ${totalWeeks} weeks</div>
+      </div>
+      <div class="program-block-dots">${timeline}</div>
+      <div class="program-progress-label">
+        Block ${block.blockNum} of ${activeProgram.blocks.length}
+        · <span style="color:${blockColourHex};">${blockTypeLabel}</span>
+        · Week ${activeProgramWeekIndex} of ${block.weeks}
+        · ${block.label}
+      </div>
+    </div>
+  `;
+
+  // Show abandon button when mid-program
+  const abandonBtn = document.getElementById('abandonProgramBtn');
+  if (abandonBtn) abandonBtn.style.display = activeProgram ? 'block' : 'none';
+}
+
+// Renders a deload banner if the current program block is a deload week.
+function renderDeloadBanner() {
+  const el = document.getElementById('deloadBanner');
+  if (!activeProgram) { el.style.display = 'none'; return; }
+
+  const block = activeProgram.blocks[activeProgramBlockIndex];
+  if (!block.isDeload) { el.style.display = 'none'; return; }
+
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="deload-banner">
+      <div class="deload-banner-icon">🌿</div>
+      <div class="deload-banner-text">
+        <div class="deload-banner-title">Deload Week — Recovery is the work</div>
+        <div class="deload-banner-body">
+          Aim for <strong>50% of your normal volume</strong> — half the sets, same exercises, same structure.
+          Keep loads relatively similar but stop well short of failure.
+          This is where your body consolidates the gains from the previous block.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderActiveWorkout() {
   // If no template is active yet, show an empty state message.
   if (!activeTemplate) {
     document.getElementById('currentDay').textContent = '';
     document.getElementById('currentWorkout').textContent = '';
     document.getElementById('currentTemplate').textContent = '';
+    document.getElementById('programProgressBar').style.display = 'none';
+    document.getElementById('deloadBanner').style.display = 'none';
+    const ab = document.getElementById('abandonProgramBtn');
+    if (ab) ab.style.display = 'none';
     document.getElementById('exerciseList').innerHTML = `
       <div class="empty-state">
         <div class="empty-icon">💪</div>
@@ -4498,6 +5618,10 @@ function renderActiveWorkout() {
     `;
     return;
   }
+
+  // Render program progress bar and deload banner if in a program
+  renderProgramProgress();
+  renderDeloadBanner();
 
   const day = activeTemplate.days[currentDayIndex];
 
@@ -4773,33 +5897,174 @@ function previousDay() {
 }
 
 // Called when the user clicks "Complete Week".
-// Archives the current week into workoutHistory and resets the active template.
+// Standalone mode: archives and resets. Program mode: advances blocks.
 function completeWeek() {
-  // Save current day’s data before archiving.
   saveCurrentDayData();
 
-  // Push a new history entry summarizing this completed week.
+  // Archive this week into history
   workoutHistory.push({
-    template:    activeTemplate,
-    weekStart:   activeWeekStart,
-    completedAt: new Date(),
-    days:        activeTemplate.days.length,
-    logs:        currentWeekLogs.slice()   // snapshot of per-day performance
+    template:          activeTemplate,
+    weekStart:         activeWeekStart,
+    completedAt:       new Date(),
+    days:              activeTemplate.days.length,
+    logs:              currentWeekLogs.slice(),
+    programId:         activeProgram ? activeProgram.id : null,
+    programBlockIndex: activeProgram ? activeProgramBlockIndex : null
   });
 
-  // Reset active week state.
-  activeTemplate   = null;
-  activeWeekStart  = null;
-  currentDayIndex  = 0;
-  currentWeekLogs  = [];
+  // ── STANDALONE MODE ──────────────────────────────────────────────
+  if (!activeProgram) {
+    activeTemplate  = null;
+    activeWeekStart = null;
+    currentDayIndex = 0;
+    currentWeekLogs = [];
+    saveStateNow();
+    alert('Week completed! Great work! 💪');
+    showView('templates');
+    return;
+  }
+
+  // ── PROGRAM MODE ─────────────────────────────────────────────────
+  const currentBlock = activeProgram.blocks[activeProgramBlockIndex];
+  activeProgramWeeksCompleted++;
+
+  // Another week remaining in this block?
+  if (activeProgramWeekIndex < currentBlock.weeks) {
+    activeProgramWeekIndex++;
+    activeWeekStart  = new Date();
+    currentDayIndex  = 0;
+    currentWeekLogs  = [];
+    activeSelections = {};
+    saveStateNow();
+    alert('Week ' + (activeProgramWeekIndex - 1) + ' of ' + currentBlock.weeks + ' complete! Keep going 💪\n\nBlock: ' + currentBlock.label);
+    showView('workout');
+    return;
+  }
+
+  // Block complete — next block?
+  const nextBlockIndex = activeProgramBlockIndex + 1;
+  if (nextBlockIndex < activeProgram.blocks.length) {
+    activeProgramBlockIndex = nextBlockIndex;
+    activeProgramWeekIndex  = 1;
+
+    const nextBlock    = activeProgram.blocks[nextBlockIndex];
+    const nextTemplate = TEMPLATES.find(t => t.id === nextBlock.templateId);
+
+    if (!nextTemplate) {
+      alert('Error: template not found: ' + nextBlock.templateId);
+      return;
+    }
+
+    activeTemplate   = nextTemplate;
+    activeWeekStart  = new Date();
+    currentDayIndex  = 0;
+    currentWeekLogs  = [];
+    activeSelections = {};
+
+    saveStateNow();
+    showBlockTransitionScreen(currentBlock, nextBlock);
+    return;
+  }
+
+  // ── PROGRAM COMPLETE ─────────────────────────────────────────────
+  const completedProgramName  = activeProgram.name;
+  activeProgram               = null;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+  activeTemplate              = null;
+  activeWeekStart             = null;
+  currentDayIndex             = 0;
+  currentWeekLogs             = [];
 
   saveStateNow();
-  alert('Week completed! Great work! 💪');
+  showProgramCompleteScreen(completedProgramName);
+}
 
-  // Reset the header subtitle back to default
-  // headerSubtitle retains username
+// Temporary stub — replaced by full screen in Stage 5
+function showBlockTransitionScreen(completedBlock, nextBlock) {
+  const screen = document.getElementById('blockTransitionScreen');
 
-  // Return user to the Templates view to pick the next week.
+  // Determine colour class for completed block
+  const completedClass = completedBlock.isDeload ? 'deload'
+    : completedBlock.label.toLowerCase().includes('peak') ? 'peak'
+    : completedBlock.label.toLowerCase().includes('hypertrophy') ? 'hypertrophy'
+    : 'strength';
+
+  const completedColours = {
+    hypertrophy: '#c084fc', strength: '#7eb3ff', deload: '#6ee7b7', peak: '#fbbf24'
+  };
+
+  // Completed section
+  document.getElementById('btCompletedLabel').textContent = 'Block ' + completedBlock.blockNum + ' Complete';
+  document.getElementById('btCompletedLabel').style.color = completedColours[completedClass] || '#7eb3ff';
+  document.getElementById('btCompletedTitle').textContent = completedBlock.label;
+  document.getElementById('btCompletedGoal').textContent  = completedBlock.goal;
+
+  // Next block
+  const nextClass = nextBlock.isDeload ? 'deload'
+    : nextBlock.label.toLowerCase().includes('peak') ? 'peak'
+    : nextBlock.label.toLowerCase().includes('hypertrophy') ? 'hypertrophy'
+    : 'strength';
+
+  const nextColours = { hypertrophy: '#c084fc', strength: '#7eb3ff', deload: '#6ee7b7', peak: '#fbbf24' };
+
+  const nextLabelEl = document.getElementById('btNextLabel');
+  nextLabelEl.textContent  = nextBlock.isDeload ? 'Up Next: Deload Week' : 'Up Next: Block ' + nextBlock.blockNum;
+  nextLabelEl.style.color  = nextColours[nextClass] || '#7eb3ff';
+
+  document.getElementById('btNextTitle').textContent    = nextBlock.label;
+  document.getElementById('btNextWhy').textContent      = nextBlock.why;
+  document.getElementById('btNextTraining').textContent = nextBlock.trainingFocus;
+
+  // Meta row
+  const meta = [];
+  if (nextBlock.repRange)  meta.push(nextBlock.repRange + ' reps');
+  if (nextBlock.rirTarget) meta.push('RIR ' + nextBlock.rirTarget);
+  meta.push(nextBlock.weeks + ' week' + (nextBlock.weeks > 1 ? 's' : ''));
+  document.getElementById('btNextMeta').textContent = meta.join(' · ');
+
+  // CTA button text
+  const btn = document.getElementById('btStartBtn');
+  btn.textContent = nextBlock.isDeload
+    ? 'Begin Deload Week →'
+    : 'Begin ' + nextBlock.label + ' →';
+
+  // Show
+  screen.style.display = 'flex';
+  screen.scrollTop = 0;
+}
+
+function dismissBlockTransition() {
+  document.getElementById('blockTransitionScreen').style.display = 'none';
+  showView('workout');
+}
+
+// Shown when the entire program is finished
+function showProgramCompleteScreen(programName) {
+  document.getElementById('pcProgramName').textContent = programName;
+  document.getElementById('pcMessage').textContent =
+    'You have completed all ' + (activeProgramWeeksCompleted || '') + ' weeks of ' + programName + '. ' +
+    'Every block — the muscle building, the strength work, the deload recovery — has been executed. ' +
+    'That is a meaningful achievement.';
+
+  // Stats
+  const weeksCompleted = workoutHistory.filter(h => h.programId).length;
+  document.getElementById('pcStats').innerHTML = [
+    { label: 'Weeks', value: weeksCompleted },
+    { label: 'Program', value: programName.split(' ').slice(0, 2).join(' ') },
+  ].map(s => `
+    <div style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 8px;text-align:center;">
+      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:4px;">${s.value}</div>
+      <div style="font-size:11px;color:#475569;">${s.label}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('programCompleteScreen').style.display = 'flex';
+}
+
+function dismissProgramComplete() {
+  document.getElementById('programCompleteScreen').style.display = 'none';
   showView('templates');
 }
 
