@@ -569,6 +569,239 @@
       max-height: 0;                       /* Hide content when collapsed */
     }
 
+    /* ===== Training Concepts Curriculum ===== */
+
+    /* Outer accordion wrapper */
+    .concept-accordion {
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, rgba(15,26,46,0.92), rgba(11,18,32,0.92));
+      overflow: hidden;
+    }
+
+    /* Clickable header row */
+    .concept-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 16px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Emoji icon badge */
+    .concept-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+
+    /* Title + subtitle stack */
+    .concept-title-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+    .concept-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin: 0 0 2px;
+      line-height: 1.3;
+    }
+    .concept-subtitle {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      line-height: 1.3;
+    }
+
+    /* Right side: difficulty badge + chevron */
+    .concept-header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .concept-level {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .concept-level.foundational {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+    }
+    .concept-level.intermediate {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+    }
+    .concept-level.advanced {
+      background: rgba(248, 113, 113, 0.12);
+      color: #f87171;
+    }
+
+    .concept-chevron {
+      color: var(--color-text-muted);
+      font-size: 12px;
+      transition: transform 0.25s ease;
+    }
+    .concept-accordion.open .concept-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Expandable body */
+    .concept-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .concept-accordion.open .concept-body {
+      display: block;
+    }
+
+    /* Section dividers within a body */
+    .concept-section {
+      margin-top: 14px;
+    }
+    .concept-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    /* Body text */
+    .concept-body p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0 0 10px;
+    }
+    .concept-body p:last-child { margin-bottom: 0; }
+
+    .concept-body ul {
+      font-size: 12.5px;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      margin: 0 0 10px 18px;
+      padding: 0;
+    }
+    .concept-body ul li { margin-bottom: 4px; }
+
+    /* Stat pills row (e.g. sets / reps / rest) */
+    .concept-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .concept-stat {
+      background: rgba(106, 166, 255, 0.08);
+      border: 1px solid rgba(106, 166, 255, 0.18);
+      border-radius: 8px;
+      padding: 6px 10px;
+      text-align: center;
+      min-width: 60px;
+    }
+    .concept-stat-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: block;
+    }
+    .concept-stat-label {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* "In the app" callout */
+    .concept-callout {
+      margin-top: 14px;
+      padding: 11px 13px;
+      background: rgba(124, 240, 198, 0.06);
+      border: 1px solid rgba(124, 240, 198, 0.15);
+      border-radius: 10px;
+    }
+    .concept-callout-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #7cf0c6;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .concept-callout p {
+      font-size: 12px;
+      color: #9fb0d0;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Modifier tag pills */
+    .concept-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    .concept-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--color-text-secondary);
+    }
+
+    /* Pattern grid (movement patterns) */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .concept-grid-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 10px 11px;
+    }
+    .concept-grid-item-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 3px;
+    }
+    .concept-grid-item-desc {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+    }
+
+    /* Intro blurb above accordion list */
+    .concepts-intro {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
     /* ===== Templates / Programs mode toggle ===== */
     .mode-toggle {
       display: flex;
@@ -2529,90 +2762,15 @@
     -->
     <div id="templatesView" class="view active">
 
-      <!-- Collapsible Training Focus Overview — always visible regardless of mode -->
-      <div class="collapsible-header" onclick="toggleTrainingFocus()">
-        <h2 class="admin-title" style="margin-bottom: 0;">Training Focus Overview</h2>
-        <span class="collapsible-icon" id="trainingFocusIcon">▼</span>
-      </div>
 
-      <div class="collapsible-content" id="trainingFocusContent" style="margin-bottom: 20px;">
-        <!-- Strength card -->
-        <div class="card" style="margin-bottom: 16px;">
-          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Strength</h3>
-          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 12px;">
-            Focuses on Motor Unit Recruitment - teaching your body to produce
-            as much force as possible with the muscles you already have, not
-            necessarily about making them bigger.
-          </p>
-          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 8px;">
-            Progressive overload is very important for strength training - you
-            have to give your body a slightly bigger challenge over time (this
-            is progressive overload).
-          </p>
-          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
-            <li>85–95% of your 1-Rep Max (1RM) for 3-5 sets — 1-5 reps — 3–5 minute rest</li>
-            <li>Great modifiers for lack of equipment include: Unilateral (single-limb) variations — creating deeper/fuller/longer range of motion (ROM), like deficit variations</li>
-          </ul>
-        </div>
-
-        <!-- Hypertrophy card -->
-        <div class="card" style="margin-bottom: 16px;">
-          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Hypertrophy (Muscle Size)</h3>
-          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 8px;">
-            Focuses on building muscle size and "armor" so you look more
-            muscular and have more tissue protecting and supporting your joints.
-          </p>
-          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px; margin-bottom: 8px;">
-            <li>65–80% of your 1-Rep Max (1RM) for 3–5 sets — 6–15 reps — 60–90 second rest (a bit of burn and pump is the goal here)</li>
-          </ul>
-          <p style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 6px; font-weight: 600;">
-            Primary levers for this goal (especially with limited equipment) are tempo and position modifiers in the hardest, most stretched part of the rep:
-          </p>
-          <ul style="font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
-            <li>Iso-holds (Yielding Isometrics) – hold still and squeeze in that "bottom" or mid-range position for 10–30 seconds per set</li>
-            <li>Pauses – briefly stop (1–3 seconds) at the bottom or midpoint of each rep to kill momentum</li>
-            <li>Pulses – short mini-reps in a small range around the bottom position (no full lockout) to keep constant tension</li>
-            <li>1.5 reps – do a full rep, come halfway back, then drop into the bottom again and stand all the way up</li>
-          </ul>
-        </div>
-
-        <!-- Power card -->
-        <div class="card" style="margin-bottom: 16px;">
-          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Power & Velocity (The "Pop")</h3>
-          <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 12px;">
-            Focuses on teaching your body to use the strength you already have
-            quickly—how fast you can turn force on, not how much weight you can grind.
-          </p>
-          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px; margin-bottom: 8px;">
-            <li>Roughly 30–60% of your 1-Rep Max (1RM) for 3–6 sets — 1–5 explosive reps — 2–3 minute rest (every rep should be fast; stop the set if speed drops)</li>
-          </ul>
-          <p style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 6px; font-weight: 600;">Modifiers include:</p>
-          <ul style="font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
-            <li>Concentric-only emphasis – control the lower phase of the rep (eccentric), but make the "up" phase (concentric) as fast as possible</li>
-            <li>Speed-isos (Overcoming/Pushing Isometrics) – 1–4 second pushing against an immoveable object / can be paired with fast reps after the push</li>
-          </ul>
-        </div>
-
-        <!-- Conditioning card -->
-        <div class="card" style="margin-bottom: 24px;">
-          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--color-primary);">Conditioning (Work Capacity & Engine Management)</h3>
-          <ul style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-left: 20px;">
-            <li><strong>Aerobic Base (Zone 2):</strong> easy, steady cardio that builds your "all-day engine" and recovery. 60–75% HRmax or a pace where you can talk in full sentences — 20–60 minutes steady</li>
-            <li><strong>Tempo / Threshold:</strong> comfortably hard cardio that raises your sustained pace before you start gassing. Roughly 80–90% HRmax (talking becomes difficult) — Continuous 10–30 minutes, or intervals like 3–10 min work / 1–2 min easy</li>
-            <li><strong>VO₂ Max:</strong> hard intervals that expand your top-end cardio ceiling. 2–5 minutes hard / 2–5 minutes easy, repeated — Total hard time 12–25 minutes</li>
-            <li><strong>Anaerobic / Sprint:</strong> short, very hard bursts that train explosive repeat effort and "redline tolerance." 10–60 seconds very hard, with rest 2–5× work duration</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- ===== Mode Toggle: Templates vs Programs ===== -->
+      <!-- ===== Mode Toggle: Weekly Template vs Full Program ===== -->
       <div class="mode-toggle">
         <button class="mode-toggle-btn active" id="modeTabTemplates" onclick="switchTemplatesMode('templates')">
-          Standalone Template
+          Weekly Template
           <small>Pick and run a single training week</small>
         </button>
         <button class="mode-toggle-btn" id="modeTabPrograms" onclick="switchTemplatesMode('programs')">
-          Follow a Program
+          Full Program
           <small>Guided multi-week periodized plan</small>
         </button>
       </div>
@@ -2687,23 +2845,559 @@
          - Full exercise list
     -->
     <div id="libraryView" class="view">
-      <div class="search-box">
-        <span class="search-icon">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#64748b;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
-        </span>
-        <input
-          type="text"
-          class="search-input"
-          id="exerciseSearch"
-          placeholder="Search exercises..."
-        />
+
+      <!-- ===== Mode Toggle: Training Concepts vs Exercise Library ===== -->
+      <div class="mode-toggle">
+        <button class="mode-toggle-btn active" id="libTabConcepts" onclick="switchLibraryMode('concepts')">
+          Training Concepts
+          <small>Learn how to train smarter</small>
+        </button>
+        <button class="mode-toggle-btn" id="libTabExercises" onclick="switchLibraryMode('exercises')">
+          Exercise Library
+          <small>Browse all movements</small>
+        </button>
       </div>
 
-      <!-- Filter chips for exercise categories (e.g. type, body part, etc.) -->
-      <div class="template-filters" id="exerciseFilters"></div>
+      <!-- ===== Training Concepts Panel ===== -->
+      <div id="libraryConceptsView">
 
-      <!-- JS renders exercise cards/items here -->
-      <div id="exerciseLibraryList"></div>
+        <div class="concepts-intro">
+          Everything in this app — every slot, every focus, every program phase — is built on a small set of principles. Read through these and you'll understand not just how to use the app, but how to design your own training from scratch.
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             1. HOW TRAINING ACTUALLY WORKS
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-1">
+          <div class="concept-header" onclick="toggleConcept('concept-1')">
+            <div class="concept-icon">⚡</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">How Training Actually Works</div>
+              <div class="concept-subtitle">The foundational loop behind all progress</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level foundational">Foundational</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <div class="concept-section">
+              <div class="concept-section-title">The Adaptation Loop</div>
+              <p>Training works through a three-step loop: <strong style="color:var(--color-text-primary)">Stimulus → Recovery → Adaptation</strong>. You apply a stress your body isn't used to (the stimulus), you rest so your body can repair (recovery), and your body rebuilds slightly stronger to handle that stress next time (adaptation).</p>
+              <p>Skip any step and the loop breaks. Train without enough stress and nothing changes. Train without enough recovery and you break down faster than you build up. Understanding this loop is the most important thing in fitness.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Progressive Overload</div>
+              <p>Your body adapts to whatever it's consistently exposed to — and once adapted, that same stimulus no longer produces a response. This is why you have to progressively increase the challenge over time. This is called <strong style="color:var(--color-text-primary)">progressive overload</strong>, and it's the single most important variable in any training program.</p>
+              <p>Progressive overload doesn't just mean adding weight. You can also progress by:</p>
+              <ul>
+                <li>Adding reps at the same weight</li>
+                <li>Adding sets</li>
+                <li>Reducing rest time</li>
+                <li>Improving technique (getting more from the same movement)</li>
+                <li>Using harder variations or modifiers (pauses, tempo, range of motion)</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Why You Can't Always Go Hard</div>
+              <p>Fatigue is cumulative. Every hard session creates fatigue that sits on top of your fitness. In the short term, fatigue masks your true fitness level — you feel weaker than you are. Over a multi-week program, you accumulate fatigue intentionally, then taper off so your fitness is revealed through your peak performance.</p>
+              <p>This is why deload weeks, easy sessions, and sleep all matter. They're not skipping — they're part of the loop.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>The Weekly Template lets you repeat the same structure each week and manually add load or reps over time. Full Programs automate the overload logic — they rotate your training focus, build volume across weeks, and include a deload so your body can peak. Both approaches apply this loop; they just give you different amounts of control.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             2. THE FOUR TRAINING FOCUSES
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-2">
+          <div class="concept-header" onclick="toggleConcept('concept-2')">
+            <div class="concept-icon">🎯</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">The Four Training Focuses</div>
+              <div class="concept-subtitle">Strength, Hypertrophy, Power, Conditioning</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level foundational">Foundational</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>Every training session has a primary stimulus it's trying to create. Different stimuli produce different adaptations. Understanding what each focus actually does — and what it feels like — lets you pick the right tool for your goal.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">💪 Strength</div>
+              <p><em style="color:var(--color-text-primary)">Goal: Produce more force with the muscles you have.</em> Strength is about your nervous system learning to recruit more motor units at once. It's not primarily about making muscles bigger — it's about making them fire harder. A powerlifter can be the same size as a bodybuilder and be twice as strong.</p>
+              <div class="concept-stats">
+                <div class="concept-stat"><span class="concept-stat-value">85–95%</span><span class="concept-stat-label">of 1RM</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">1–5</span><span class="concept-stat-label">reps</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">3–5</span><span class="concept-stat-label">sets</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">3–5 min</span><span class="concept-stat-label">rest</span></div>
+              </div>
+              <p><strong style="color:var(--color-text-primary)">What it feels like:</strong> Heavy, slow, deliberate. Every rep is close to your limit. You need long rest because your nervous system is what's recovering, not just your muscles. Soreness is minimal compared to hypertrophy work — the stress is neurological.</p>
+              <p><strong style="color:var(--color-text-primary)">Best modifiers when load is limited:</strong> Unilateral (single-limb) variations, deficit variations that extend range of motion, paused reps at the bottom position.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">🏗️ Hypertrophy (Muscle Size)</div>
+              <p><em style="color:var(--color-text-primary)">Goal: Grow the actual muscle tissue.</em> Hypertrophy is driven by mechanical tension (how hard the muscle is being stretched and contracted under load), metabolic stress (the burn and pump), and muscle damage. You want the muscle under load, especially in the lengthened (stretched) position, for enough time to trigger growth signaling.</p>
+              <div class="concept-stats">
+                <div class="concept-stat"><span class="concept-stat-value">65–80%</span><span class="concept-stat-label">of 1RM</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">6–15</span><span class="concept-stat-label">reps</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">3–5</span><span class="concept-stat-label">sets</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">60–90s</span><span class="concept-stat-label">rest</span></div>
+              </div>
+              <p><strong style="color:var(--color-text-primary)">What it feels like:</strong> Moderate weight, moderate reps, noticeable pump and burn. The shorter rest keeps metabolic stress high. You should feel the target muscle working throughout — if you don't feel it, the technique or load needs adjustment.</p>
+              <p><strong style="color:var(--color-text-primary)">Best modifiers:</strong> Tempo (slow the lowering phase), pauses at the bottom, pulses in the stretched position, iso-holds, 1.5 reps. These all increase time under tension without needing more weight.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">💥 Power & Velocity</div>
+              <p><em style="color:var(--color-text-primary)">Goal: Apply force quickly.</em> Power = force × velocity. You can be strong but slow, or fast but weak — power training closes that gap. It teaches your body to turn force on explosively. This is what separates an athlete who "pops" from one who just grinds.</p>
+              <div class="concept-stats">
+                <div class="concept-stat"><span class="concept-stat-value">30–60%</span><span class="concept-stat-label">of 1RM</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">1–5</span><span class="concept-stat-label">reps</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">3–6</span><span class="concept-stat-label">sets</span></div>
+                <div class="concept-stat"><span class="concept-stat-value">2–3 min</span><span class="concept-stat-label">rest</span></div>
+              </div>
+              <p><strong style="color:var(--color-text-primary)">What it feels like:</strong> Light to moderate weight, maximum intent on every rep. The weight should move fast — if it slows down, the set is done. Long rest is needed because you're training your nervous system's rate coding, not metabolic fatigue.</p>
+              <p><strong style="color:var(--color-text-primary)">Best modifiers:</strong> Concentric-only emphasis (control the eccentric, explode the concentric), speed-isos (brief maximal push against an immovable surface before the rep), contrast training (heavy set immediately followed by explosive variation).</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">🫁 Conditioning</div>
+              <p><em style="color:var(--color-text-primary)">Goal: Build and manage your engine.</em> Conditioning isn't just "cardio." It's about developing your aerobic and anaerobic energy systems, improving recovery between hard efforts, and expanding how long you can sustain high-intensity work.</p>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Zone 2 (Aerobic Base):</strong> Easy, conversational pace. Builds mitochondria, fat oxidation, and long-term recovery capacity. 20–60 min steady. If you can't hold a conversation, you're going too hard.</li>
+                <li><strong style="color:var(--color-text-primary)">Threshold:</strong> Comfortably hard. Speaking is difficult but possible. Raises the pace you can sustain before tipping into oxygen debt. 10–30 min continuous or 3–10 min intervals.</li>
+                <li><strong style="color:var(--color-text-primary)">VO₂ Max:</strong> Hard intervals that expand your aerobic ceiling. 2–5 min on / 2–5 min easy. Should feel very hard by the end of each interval.</li>
+                <li><strong style="color:var(--color-text-primary)">Anaerobic / Sprint:</strong> Maximum effort, very short bursts. 10–60 seconds all-out with 2–5× work duration rest. Trains explosive repeat capacity and lactate tolerance.</li>
+              </ul>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>Each template and program phase is tagged with one of these four focuses. When you pick a template or start a program, you're choosing which adaptation to prioritize. Most programs cycle through all four over weeks or months — that's periodization (covered in section 6).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             3. THE LANGUAGE OF A SET
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-3">
+          <div class="concept-header" onclick="toggleConcept('concept-3')">
+            <div class="concept-icon">📖</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">The Language of a Set</div>
+              <div class="concept-subtitle">Reps, sets, rest, tempo, RPE, RIR — decoded</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level foundational">Foundational</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>Workout programs throw a lot of notation at you. Here's what it all means and why it matters.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Sets & Reps</div>
+              <p>A <strong style="color:var(--color-text-primary)">rep</strong> (repetition) is one complete movement — down and up, push and return. A <strong style="color:var(--color-text-primary)">set</strong> is a group of consecutive reps. "3×8" means 3 sets of 8 reps. Between each set, you rest.</p>
+              <p>More sets = more total volume = more stimulus. But there's a ceiling — beyond roughly 5–6 hard sets per muscle group per session, more stops producing more and just increases fatigue.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Rest Periods — Why They're Not Optional</div>
+              <p>Rest isn't passive. It's when your energy systems replenish so you can apply the intended stimulus on the next set. The right rest period depends on what you're training:</p>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Strength & Power:</strong> 3–5 minutes. You're taxing your nervous system and phosphocreatine stores — both take 2–4 minutes to fully restore.</li>
+                <li><strong style="color:var(--color-text-primary)">Hypertrophy:</strong> 60–90 seconds. Shorter rest maintains metabolic stress (the pump) which contributes to growth signaling.</li>
+                <li><strong style="color:var(--color-text-primary)">Conditioning:</strong> Varies by zone. Short for aerobic work; long (2–5× work duration) for sprint/anaerobic intervals.</li>
+              </ul>
+              <p>Rushing rest because you feel fine is one of the most common training mistakes. Your nervous system needs time even when your breathing has returned to normal.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Tempo</div>
+              <p>Tempo describes the speed of each phase of a rep, written as a 4-digit code: <strong style="color:var(--color-text-primary)">Eccentric – Pause – Concentric – Pause</strong>. Example: 3-1-1-0 means 3 seconds lowering, 1 second pause at the bottom, 1 second pressing up, no pause at the top.</p>
+              <p>Slowing the eccentric (lowering) phase dramatically increases time under tension and muscle damage — both drivers of hypertrophy — without needing more weight. It's one of the most powerful tools for training with limited equipment.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">RPE — Rate of Perceived Exertion</div>
+              <p>RPE is a 1–10 scale of how hard a set felt. RPE 10 = absolute maximum effort, couldn't do another rep. RPE 7 = could do 3 more reps. RPE 6 = could do 4 more.</p>
+              <p>Most working sets should land at RPE 7–9. Below 7 and you're probably not creating enough stimulus. RPE 10 every set leads to burnout and poor recovery.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">RIR — Reps in Reserve</div>
+              <p>RIR is the inverse of RPE — it counts how many more reps you could have done before failure. RIR 2 means you stopped with 2 reps "left in the tank." Most training should be done at 1–3 RIR: close to failure but not grinding to failure on every set.</p>
+              <p>Training to true failure (RIR 0) occasionally is fine, but doing it on every set generates excessive fatigue relative to the extra stimulus gained. It's a diminishing returns tool, not a daily requirement.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">1RM — One Rep Max</div>
+              <p>Your 1RM is the maximum weight you can lift for exactly one rep with good form. It's used as a reference point to set training loads as a percentage. You don't need to test your 1RM directly — you can estimate it: if you can do 8 reps at a given weight with 2 RIR, that weight is roughly 75% of your 1RM.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>When you log a set, you're recording weight and reps. Over time, this gives you a personal performance baseline. You can use your logged weights to estimate % of 1RM, track progressive overload, and calibrate how hard you should be working each session.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             4. MOVEMENT PATTERNS
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-4">
+          <div class="concept-header" onclick="toggleConcept('concept-4')">
+            <div class="concept-icon">🧩</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">Movement Patterns</div>
+              <div class="concept-subtitle">The building blocks every exercise is made from</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level foundational">Foundational</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>Every exercise in existence is an expression of one of a handful of fundamental movement patterns. Once you learn to see exercises this way, you can swap, substitute, and build programs from first principles — you stop needing someone to tell you what to do.</p>
+
+            <div class="concept-grid">
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">🏋️ Hinge</div>
+                <div class="concept-grid-item-desc">Hip-dominant. Load the hamstrings and glutes by pushing your hips back. Deadlifts, Romanian deadlifts, kettlebell swings, good mornings.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">🦵 Squat</div>
+                <div class="concept-grid-item-desc">Knee-dominant. Sit into a deep knee bend while keeping an upright torso. Goblet squats, front squats, lunges, split squats.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">➡️ Horizontal Push</div>
+                <div class="concept-grid-item-desc">Press away from your body parallel to the floor. Bench press, push-ups, dumbbell press. Chest, front delts, triceps.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">⬆️ Vertical Push</div>
+                <div class="concept-grid-item-desc">Press overhead. Shoulder press, pike push-ups, Arnold press. Delts and upper traps lead.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">↩️ Horizontal Pull</div>
+                <div class="concept-grid-item-desc">Row toward your body parallel to the floor. Bent-over rows, seated rows, face pulls. Rear delts, rhomboids, mid-traps.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">⬇️ Vertical Pull</div>
+                <div class="concept-grid-item-desc">Pull downward from overhead. Pull-ups, lat pulldowns, chin-ups. Lats and biceps lead.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">🧱 Carry</div>
+                <div class="concept-grid-item-desc">Walk while resisting load. Farmer carries, suitcase carries, overhead carries. Full-body stabilization and grip.</div>
+              </div>
+              <div class="concept-grid-item">
+                <div class="concept-grid-item-title">🌀 Core / Anti-Rotation</div>
+                <div class="concept-grid-item-desc">Resist unwanted spinal movement. Planks, dead bugs, Pallof press, bird dogs. Stability over crunch-style movement.</div>
+              </div>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Why This Framework Matters</div>
+              <p>A balanced program hits each pattern roughly equally across the week. Most people have too much push and not enough pull — which is why shoulder and neck problems are so common. If you're building your own template, count your push and pull slots and make sure they match.</p>
+              <p>This framework also tells you how to substitute exercises. If you can't do a pull-up, any vertical pull variation works in that slot. If you don't have a barbell, a dumbbell hinge still hits the pattern. The pattern is what matters — the specific exercise is just the implementation.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Unilateral vs. Bilateral</div>
+              <p><strong style="color:var(--color-text-primary)">Bilateral</strong> means both limbs working together (e.g., a barbell squat). <strong style="color:var(--color-text-primary)">Unilateral</strong> means one limb at a time (e.g., a single-leg squat, split squat, single-arm row). Unilateral work fixes imbalances between sides, requires more stabilization (making it harder at the same load), and is one of the best tools for training hard with limited equipment.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>The workout slots in each template are organized by movement pattern. When you select an exercise for a slot, the library filters to exercises that match that pattern — so you're always training the intended movement, not just clicking random exercises. Understanding patterns is what lets you build your own templates intelligently.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             5. HOW TO BUILD A WEEKLY TEMPLATE
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-5">
+          <div class="concept-header" onclick="toggleConcept('concept-5')">
+            <div class="concept-icon">🗓️</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">Building a Weekly Template</div>
+              <div class="concept-subtitle">Days, splits, volume, and sequencing</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level intermediate">Intermediate</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>A weekly template is a repeating structure — the same sessions in the same order each week, with load or reps increasing over time. Here's how to design one that actually works.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">How Many Days?</div>
+              <p>More days isn't always better — it depends on your recovery capacity and schedule consistency.</p>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">2–3 days/week:</strong> Full body each session. Hit every pattern every session. Best for beginners and anyone with limited time. High frequency per muscle group compensates for low total sessions.</li>
+                <li><strong style="color:var(--color-text-primary)">4 days/week:</strong> Upper/lower split. Train upper body twice and lower body twice. Good balance of frequency and volume. A very reliable structure for most people.</li>
+                <li><strong style="color:var(--color-text-primary)">5–6 days/week:</strong> Push/pull/legs or body-part splits. Higher total volume per week, but each muscle group trained less frequently. Works well for experienced lifters who need more volume to keep progressing.</li>
+              </ul>
+              <p>For most people, 3–4 days hits the sweet spot. Beyond 4 days, recovery becomes the limiting factor — and if your recovery isn't dialed in (sleep, nutrition, stress), adding sessions can reduce results.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Balancing Volume Across the Week</div>
+              <p>A muscle group needs roughly <strong style="color:var(--color-text-primary)">10–20 hard sets per week</strong> to grow (varies by individual and training age). Spread those sets across at least 2 sessions per week for better recovery and more frequent stimulus.</p>
+              <p>For a balanced template, make sure across your weekly sessions you have:</p>
+              <ul>
+                <li>Equal push and pull volume (most common mistake is too much push)</li>
+                <li>Both hinge and squat patterns covered</li>
+                <li>At least one direct core/carry slot</li>
+                <li>Conditioning work (can be separate days or tagged onto the end of sessions)</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Session Sequencing</div>
+              <p>Within a session, order matters for quality of effort. General rules:</p>
+              <ul>
+                <li>Put your highest-priority or most technically demanding movements first (when you're freshest)</li>
+                <li>Compound multi-joint movements before isolation work</li>
+                <li>Power/speed work before strength work before hypertrophy work (if mixing focuses)</li>
+                <li>Core and conditioning at the end so fatigue doesn't compromise heavier lifts</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">How to Progress Week to Week</div>
+              <p>The simplest progression scheme: if you hit the top of your rep range on all sets with 2+ RIR, add a small amount of load next week and reset to the bottom of your rep range. Repeat. This is called a <strong style="color:var(--color-text-primary)">double progression</strong> and it's the most reliable tool for consistent progress as a beginner or intermediate.</p>
+              <p>Example: Working set is 3×6–10. You hit 3×10 with 2 RIR. Next week: add 5 lbs, drop back to 3×6. Work back up to 10. Repeat.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>The Weekly Template mode lets you pick a pre-built template (organized by training focus) or build your own using the slot system. Each slot maps to a movement pattern — you choose which exercise fills it each session. Run the same template for 4–8 weeks while adding load or reps, then reassess or switch focuses.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             6. PROGRAMS & PERIODIZATION
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-6">
+          <div class="concept-header" onclick="toggleConcept('concept-6')">
+            <div class="concept-icon">📈</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">Programs & Periodization</div>
+              <div class="concept-subtitle">Multi-week structure, phases, deloads, and peaks</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level intermediate">Intermediate</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>A weekly template repeated indefinitely works well for a while — but eventually progress stalls. Periodization is the practice of intentionally varying training over weeks and months to keep driving adaptation and prevent plateaus.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">What is a Training Phase?</div>
+              <p>A phase is a block of weeks focused on a specific adaptation. Common phases in order:</p>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Hypertrophy phase (4–6 weeks):</strong> Build muscle size and work capacity. Higher reps, more sets, shorter rest. You're laying the foundation.</li>
+                <li><strong style="color:var(--color-text-primary)">Strength phase (3–5 weeks):</strong> Convert the muscle you built into strength. Lower reps, higher load, longer rest. Intensity increases, volume decreases.</li>
+                <li><strong style="color:var(--color-text-primary)">Power/Peaking phase (2–4 weeks):</strong> Translate strength into explosive output. Very low reps, very high intent, load varies.</li>
+                <li><strong style="color:var(--color-text-primary)">Deload (1 week):</strong> Intentional reduction in training stress to let accumulated fatigue dissipate. Your fitness doesn't drop — fatigue does, which reveals the fitness underneath.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">What is a Deload?</div>
+              <p>A deload is not a rest week and it's not skipping. It's a planned reduction in training volume and/or intensity (typically 40–60% of normal) that lets systemic fatigue clear while keeping the movement patterns fresh. After a deload, you should feel noticeably stronger and more explosive than you did in the final week before it — that's the fatigue being removed revealing the fitness that was always there.</p>
+              <p>Most programs include a deload every 4–6 weeks. Skipping them feels productive in the moment and costs you in the long run.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Linear vs. Undulating Periodization</div>
+              <p><strong style="color:var(--color-text-primary)">Linear:</strong> Volume and intensity follow a predictable path — start with high volume/low intensity, progress to low volume/high intensity. Simple and effective. Best for beginners and intermediates.</p>
+              <p><strong style="color:var(--color-text-primary)">Undulating:</strong> Volume and intensity vary session to session or week to week. You might train hypertrophy Monday, strength Wednesday, and power Friday. Allows simultaneous development of multiple qualities. Better for advanced lifters who can't make linear progress anymore.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">When Do You Need a Program vs. a Template?</div>
+              <p>A weekly template is right for you if: you're a beginner, you want full flexibility to choose exercises each week, or you're maintaining rather than specifically trying to peak. A program is right for you if: you have a specific goal and timeline, you're past the beginner stage, or you want the progression logic handled for you so you can just execute.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>Full Programs handle all of this automatically. Each week the program prescribes which focus to train, and over multiple weeks it builds your volume, then reduces it, then deloads. You just follow it. The program screen shows you which phase you're in and what's coming — so you always understand the why behind the day's training.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             7. MODIFIERS — YOUR TOOLKIT
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-7">
+          <div class="concept-header" onclick="toggleConcept('concept-7')">
+            <div class="concept-icon">🔧</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">Modifiers — Your Toolkit</div>
+              <div class="concept-subtitle">Make any exercise harder without more weight</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level intermediate">Intermediate</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>Modifiers are techniques that change the stimulus of an exercise without changing the movement pattern. They're the answer to "I don't have more weight but I need to keep progressing." Mastering these is what separates good home gym training from frustrated beginners.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Tempo Modifiers</div>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Slow Eccentric (3–5 sec lowering):</strong> Dramatically increases time under tension and muscle damage. One of the most potent hypertrophy tools. A bodyweight split squat with a 4-second lower is harder than a fast rep with 20 lbs extra.</li>
+                <li><strong style="color:var(--color-text-primary)">Paused Reps:</strong> Stop for 1–3 seconds at the bottom or most stretched position. Kills momentum and forces the muscle to restart from a dead stop. Great for both strength and hypertrophy.</li>
+                <li><strong style="color:var(--color-text-primary)">1.5 Reps:</strong> Do a full rep, come halfway back, then drop back to the bottom, then come all the way up. You spend twice as much time in the hardest range. Brutal for quads and glutes.</li>
+                <li><strong style="color:var(--color-text-primary)">Pulses:</strong> Short partial reps in a small range around the bottom position. No full lockout — constant tension on the muscle. Works best for hypertrophy and metabolic stress.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Isometric Modifiers</div>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Iso-Holds / Yielding Isometrics:</strong> Hold still in the hardest position — the bottom of a squat, the stretched position of a curl — for 10–30 seconds. The muscle is contracting maximally just to hold position. Extremely effective for hypertrophy with no equipment.</li>
+                <li><strong style="color:var(--color-text-primary)">Speed-Isos / Overcoming Isometrics:</strong> Push maximally against an immovable surface for 1–4 seconds. No movement, but maximum neurological recruitment. Great warm-up for power work — follow immediately with explosive reps for contrast.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Range of Motion Modifiers</div>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Deficit Variations:</strong> Stand on a small elevation (a step, a plate) to increase range of motion at the bottom. Deficit split squats, deficit push-ups. More range = more stretch = more stimulus.</li>
+                <li><strong style="color:var(--color-text-primary)">Unilateral / Single-Limb:</strong> One leg or one arm at a time. Immediately doubles the load each limb handles relative to bilateral work. Also requires significant stability and balance — a secondary stimulus. Single-leg deadlifts, split squats, single-arm rows.</li>
+                <li><strong style="color:var(--color-text-primary)">Elevated / Incline Variations:</strong> Changing the angle changes which part of the muscle is emphasized. Incline push-ups hit upper chest, decline hits lower. Bulgarian split squat heel elevation shifts load more to the quad.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">How to Stack Modifiers</div>
+              <p>Modifiers can be combined for compounding difficulty. A single-leg Romanian deadlift with a 3-second lowering and a 1-second pause at the bottom is an entirely different beast from a standard bilateral RDL. Use this strategically — don't add every modifier at once, or you'll go from "making it harder" to "making it impossible to recover from."</p>
+              <p>A useful rule: add one modifier at a time, spend 2–3 weeks with it, then assess whether you need more challenge.</p>
+            </div>
+
+            <div class="concept-tags">
+              <span class="concept-tag">Slow Eccentric</span>
+              <span class="concept-tag">Paused Reps</span>
+              <span class="concept-tag">1.5 Reps</span>
+              <span class="concept-tag">Pulses</span>
+              <span class="concept-tag">Iso-Holds</span>
+              <span class="concept-tag">Speed-Isos</span>
+              <span class="concept-tag">Deficit</span>
+              <span class="concept-tag">Unilateral</span>
+              <span class="concept-tag">Elevated Heel</span>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>When you log an exercise during a workout, you can add modifier notes to your sets. Over time, your history will show you not just what weight you lifted but how you lifted it — giving you a much richer progression story than weight alone.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             8. READING YOUR BODY — AUTOREGULATION
+        ═══════════════════════════════════════════════ -->
+        <div class="concept-accordion" id="concept-8">
+          <div class="concept-header" onclick="toggleConcept('concept-8')">
+            <div class="concept-icon">🧠</div>
+            <div class="concept-title-wrap">
+              <div class="concept-title">Reading Your Body</div>
+              <div class="concept-subtitle">Autoregulation, fatigue, soreness, and smart decisions</div>
+            </div>
+            <div class="concept-header-right">
+              <span class="concept-level advanced">Advanced</span>
+              <span class="concept-chevron">▼</span>
+            </div>
+          </div>
+          <div class="concept-body">
+            <p>The best training programs are guidelines, not scripts. The most important skill in advanced training is learning to listen to your body and adjust in real time — not overriding it, and not being controlled by it.</p>
+
+            <div class="concept-section">
+              <div class="concept-section-title">What Soreness Actually Means</div>
+              <p>Delayed onset muscle soreness (DOMS) is caused by micro-tears in muscle fiber, mostly from eccentric (lowering) work. It peaks 24–48 hours after training. Soreness is a sign of novelty — new movements, new ranges, new intensities. It is <em>not</em> a reliable indicator of how effective a workout was.</p>
+              <p>Experienced lifters often feel very little soreness despite training hard — their tissue has adapted to handle the eccentric stress. If you're sore, it tells you that something was new. If you're not sore, it doesn't mean you didn't work hard enough.</p>
+              <p>Training through mild soreness is fine and often beneficial (blood flow helps recovery). Training through sharp, joint-level, or localized pain is not — that's a signal to stop, not push through.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Fatigue vs. Weakness</div>
+              <p>Accumulated fatigue and actual weakness feel similar but are very different. If you feel inexplicably weaker or flat over 1–2 weeks of consistent training, it's almost certainly fatigue accumulation — your fitness is there but masked. The fix is a deload or a lighter week, not more training.</p>
+              <p>True strength loss (not fatigue) takes weeks of complete detraining to occur. If you've been training consistently and feel weak, add recovery — don't add volume.</p>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Autoregulation in Practice</div>
+              <p>Autoregulation means adjusting your training load based on how you feel that day, using RPE/RIR as your guide rather than a fixed weight prescription. Two ways to use it:</p>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Daily Adjustment:</strong> If your warm-up sets feel harder than usual, reduce your working weight by 5–10%. If they feel unusually easy, push a little harder. Don't chase numbers on bad days — you'll compromise technique and accumulate extra fatigue without extra stimulus.</li>
+                <li><strong style="color:var(--color-text-primary)">Set-by-Set Adjustment:</strong> Stop a set when your RPE hits 9, regardless of whether you've hit your target rep count. If set 1 of 3 took you to an 9, the remaining sets should be slightly reduced so you maintain quality.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">Recovery Signals — What to Watch</div>
+              <ul>
+                <li><strong style="color:var(--color-text-primary)">Sleep quality:</strong> The single biggest recovery variable. Poor sleep consistently → expect weaker sessions and slower progress. Nothing replaces it.</li>
+                <li><strong style="color:var(--color-text-primary)">Resting heart rate:</strong> A reliably elevated resting HR (5–10 bpm above normal) is one of the best objective markers of accumulated fatigue or under-recovery.</li>
+                <li><strong style="color:var(--color-text-primary)">Motivation and mood:</strong> Persistent low motivation to train (not just a lazy day) is often a sign of accumulated systemic fatigue. Your CNS is trying to protect you.</li>
+                <li><strong style="color:var(--color-text-primary)">Grip strength:</strong> A surprisingly reliable proxy for systemic readiness. Noticeably weak grip on your first working set is often a sign to take it easier that day.</li>
+              </ul>
+            </div>
+
+            <div class="concept-section">
+              <div class="concept-section-title">The Long Game</div>
+              <p>The most important variable in fitness is consistency over time — not intensity of any individual session. A training career is measured in years. Someone who trains at 80% of their max effort three days a week for five years will vastly outperform someone who trains at 100% intensity, gets injured, takes time off, and repeats the cycle.</p>
+              <p>The goal of every session is to get the training stimulus and leave feeling like you could do it again tomorrow. Not destroyed — stimulated. That mindset compounds over time into extraordinary results.</p>
+            </div>
+
+            <div class="concept-callout">
+              <div class="concept-callout-label">In the app</div>
+              <p>Your workout history is your best tool for autoregulation. If last Tuesday's squat session felt like an 8 RPE at 135 lbs, and today that same weight feels like a 9, that data tells you something. Log consistently and your history becomes a map of your own recovery patterns — more useful over time than any generic program prescription.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== Exercise Library Panel (hidden by default) ===== -->
+      <div id="libraryExercisesView" style="display:none;">
+        <div class="search-box">
+          <span class="search-icon">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#64748b;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+          </span>
+          <input
+            type="text"
+            class="search-input"
+            id="exerciseSearch"
+            placeholder="Search exercises..."
+          />
+        </div>
+
+        <!-- Filter chips for exercise categories -->
+        <div class="template-filters" id="exerciseFilters"></div>
+
+        <!-- JS renders exercise cards/items here -->
+        <div id="exerciseLibraryList"></div>
+      </div>
+
     </div>
 
     <!-- ================= Admin View =================
@@ -2738,7 +3432,7 @@
           </div>
           <div class="stat-card">
             <div class="stat-value" id="statTemplates">0</div>
-            <div class="stat-label">Templates</div>
+            <div class="stat-label">Plans</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="statStreak">0</div>
@@ -2778,7 +3472,7 @@
       <span class="nav-icon">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       </span>
-      <span>Templates</span>
+      <span>Plan</span>
     </button>
 
     <button class="nav-btn" onclick="showView('workout')" id="navWorkout">
@@ -5698,8 +6392,8 @@ function showView(viewName) {
     // Populate the history list from workoutHistory
     renderHistory();
   } else if (viewName === 'library') {
-    // Render exercise library list + filters
-    renderExerciseLibrary();
+    // Library tab opens on Training Concepts by default; no auto-render needed
+    // Exercise library renders on demand when user switches to that panel
   } else if (viewName === 'admin') {
     // Update stats (workouts count, streak, etc.)
     renderAdminStats();
@@ -6352,12 +7046,32 @@ function startProgram() {
 }
 
 
-// Expands/collapses the Training Focus Overview section
-function toggleTrainingFocus() {
-  const content = document.getElementById('trainingFocusContent');
-  const icon = document.getElementById('trainingFocusIcon');
-  content.classList.toggle('collapsed');
-  icon.classList.toggle('collapsed');
+// Switches the Library tab between "concepts" and "exercises" modes
+function switchLibraryMode(mode) {
+  const tabConcepts  = document.getElementById('libTabConcepts');
+  const tabExercises = document.getElementById('libTabExercises');
+  const panelConcepts  = document.getElementById('libraryConceptsView');
+  const panelExercises = document.getElementById('libraryExercisesView');
+
+  if (mode === 'concepts') {
+    tabConcepts.classList.add('active');
+    tabExercises.classList.remove('active');
+    panelConcepts.style.display  = 'block';
+    panelExercises.style.display = 'none';
+  } else {
+    tabExercises.classList.add('active');
+    tabConcepts.classList.remove('active');
+    panelExercises.style.display = 'block';
+    panelConcepts.style.display  = 'none';
+    renderExerciseLibrary();
+  }
+}
+
+// Expands/collapses a Training Concepts accordion card
+function toggleConcept(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open');
 }
 
 // When a focus chip is clicked, update the active chip and re-render the list
