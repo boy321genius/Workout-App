@@ -2147,7 +2147,7 @@ const EXERCISE_LIBRARY = [
 {id: "EX073", name: "Banded Straight Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Elbow", slots: ["Power"]},
 {id: "EX074", name: "Banded Rotational Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Core", slots: ["Power"]},
 {id: "EX075", name: "Plyometric Push-Up", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Wrist", slots: ["Power"]},
-{id: "EX076", name: "Single-Arm Alternating Dumbbell Swing", type: "Power", primary: "Power: Throw", secondary: "", bias: "Hip,LowBack", slots: ["Power"]},
+{id: "EX076", name: "Alternating Dumbbell Swing", type: "Power", primary: "Power: Throw", secondary: "", bias: "Hip,LowBack", slots: ["Power"]},
 {id: "EX077", name: "Dumbbell Hang Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
 {id: "EX078", name: "Walking Pad Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"]},
 {id: "EX079", name: "Ruck Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
@@ -2160,30 +2160,21 @@ const EXERCISE_LIBRARY = [
 {id: "EX086", name: "Jump Rope Sprint Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"]},
 {id: "EX087", name: "Shadowboxing Hard Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
 {id: "EX088", name: "Ruck Fast Walk Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX089", name: "Banded Bicep Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX089", name: "Bicep Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX090", name: "Concentration Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX091", name: "Cross-Body Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX092", name: "Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX093", name: "Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX094", name: "Incline Dumbbell Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX095", name: "Incline Dumbbell Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX096", name: "Preacher Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX091", name: "Cross-Body Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX093", name: "Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX094", name: "Incline Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
+{id: "EX095", name: "Incline Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX097", name: "Reverse-Grip Biceps Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
-{id: "EX098", name: "Spider Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
 {id: "EX099", name: "Zottman Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
-{id: "EX100", name: "Dumbbell Forearm Pronation", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX101", name: "Dumbbell Forearm Supination", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
+{id: "EX100", name: "Forearm Pronation & Supination", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
+{id: "EX101", name: "Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
 {id: "EX102", name: "Neutral-Grip Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
 {id: "EX103", name: "Reverse Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX104", name: "Seated Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX105", name: "Weighted Wrist Extension", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX106", name: "Weighted Wrist Flexion", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX107", name: "Banded Behind-the-Neck Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX108", name: "Banded Pull-Apart", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX109", name: "Banded Face Pull", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX110", name: "Rear Delt Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX111", name: "Single-Arm Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder", slots: ["Secondary Lift"]},
-{id: "EX112", name: "Straight-Arm Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
 {id: "EX113", name: "Banded Chest Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX114", name: "Decline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
 {id: "EX115", name: "Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
@@ -2193,7 +2184,6 @@ const EXERCISE_LIBRARY = [
 {id: "EX119", name: "Banded Shoulder Dislocate", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Cooldown"]},
 {id: "EX120", name: "Banded Shoulder External Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX121", name: "Banded Shoulder Internal Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX122", name: "Diagonal Delt Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX123", name: "Dumbbell Cuban Press", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
 {id: "EX124", name: "Front Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX125", name: "Half-Kneeling Dumbbell Halo", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
@@ -2202,7 +2192,6 @@ const EXERCISE_LIBRARY = [
 {id: "EX128", name: "Prone Incline Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX129", name: "Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX130", name: "Seated Bent-Over Dumbbell Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX131", name: "Seated Bent-Over Dumbbell Reverse Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX132", name: "Shoulder Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX133", name: "Dumbbell Upright Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
 {id: "EX134", name: "Banded Triceps Pushdown", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
@@ -3820,6 +3809,10 @@ const SUPABASE_URL  = 'https://mnxkkquhievfjwnxhgco.supabase.co';
 const SUPABASE_KEY  = 'sb_publishable_J2qaxHATLzjntbg194oOdQ__ccGRsMW';
 const sb            = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Changes every app open — forces browser to re-fetch GIFs every session
+const GIF_BASE = 'https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs';
+const GIF_V    = Date.now();
+
 let currentUser = null;
 let currentUsername = '';
 let saveTimeout = null;
@@ -4421,7 +4414,7 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
     if (img && selectEl.value) {
       panel.style.display = 'none';
       if (btn) { btn.style.display = 'none'; btn.textContent = '▼ Show Demo'; }
-      img.src = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectEl.value}.gif`;
+      img.src = `${GIF_BASE}/${selectEl.value}.gif?v=${GIF_V}`;
     }
   }
 }
@@ -4430,40 +4423,44 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
 // matching the given exercise ID. Returns a display string or null.
 function getLastLog(exId) {
   if (!exId) return null;
+
+  function slotToResult(slot) {
+    const parts = [];
+    if (slot.sets)  parts.push(`${slot.sets}`);
+    if (slot.reps)  parts.push(`× ${slot.reps}`);
+    if (slot.dist)  parts.push(`${slot.dist} mi`);
+    if (slot.load)  parts.push(`@ ${slot.load}`);
+    const main = parts.join(' ');
+    return main ? { main, modifier: slot.notes || '' } : null;
+  }
+
+  function hasData(slot) {
+    return slot.exId === exId &&
+      (slot.sets > 0 || slot.reps > 0 || !!slot.load);
+  }
+
+  // Check current week first (most recent), newest day first
+  for (let d = currentWeekLogs.length - 1; d >= 0; d--) {
+    for (const slot of currentWeekLogs[d].slots) {
+      if (!hasData(slot)) continue;
+      const r = slotToResult(slot);
+      if (r) return r;
+    }
+  }
+
+  // Then check completed weeks, most recent week first, newest day first
   for (let i = workoutHistory.length - 1; i >= 0; i--) {
     const entry = workoutHistory[i];
     if (!entry.logs) continue;
     for (let d = entry.logs.length - 1; d >= 0; d--) {
-      const day = entry.logs[d];
-      for (const slot of day.slots) {
-        if (slot.exId !== exId) continue;
-        if (slot.sets === 0 && slot.reps === 0 && !slot.load) continue;
-
-        const parts = [];
-        if (slot.sets)  parts.push(`${slot.sets}`);
-        if (slot.reps)  parts.push(`× ${slot.reps}`);
-        if (slot.dist)  parts.push(`${slot.dist} mi`);
-        if (slot.load)  parts.push(`@ ${slot.load}`);
-        const main = parts.join(' ');
-        return { main, modifier: slot.notes || '' };
+      for (const slot of entry.logs[d].slots) {
+        if (!hasData(slot)) continue;
+        const r = slotToResult(slot);
+        if (r) return r;
       }
     }
   }
-  // Also check currentWeekLogs for same-week previous days
-  for (let d = currentWeekLogs.length - 1; d >= 0; d--) {
-    const day = currentWeekLogs[d];
-    for (const slot of day.slots) {
-      if (slot.exId !== exId) continue;
-      if (slot.sets === 0 && slot.reps === 0 && !slot.load) continue;
-      const parts = [];
-      if (slot.sets)  parts.push(`${slot.sets}`);
-      if (slot.reps)  parts.push(`× ${slot.reps}`);
-      if (slot.dist)  parts.push(`${slot.dist} mi`);
-      if (slot.load)  parts.push(`@ ${slot.load}`);
-      const main = parts.join(' ');
-      return { main, modifier: slot.notes || '' };
-    }
-  }
+
   return null;
 }
 
@@ -4617,7 +4614,7 @@ const dropdownHtml =
 
         <!-- GIF demo toggle — button and panel hidden until file confirmed to exist via onload -->
         ${(() => {
-          const gifUrl = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${selectedExercise.id}.gif`;
+          const gifUrl = `${GIF_BASE}/${selectedExercise.id}.gif?v=${GIF_V}`;
           return `
             <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})" style="display:none;">
               ▼ Show Demo
@@ -5162,7 +5159,7 @@ function renderExerciseList(type) {
 
   // Render each matching exercise as a row card with optional GIF thumbnail
   list.innerHTML = filtered.map(ex => {
-    const gifSrc = `https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs/${ex.id}.gif`;
+    const gifSrc = `${GIF_BASE}/${ex.id}.gif?v=${GIF_V}`;
     const thumb = `<img class="ex-gif-thumb" src="${gifSrc}" alt="${ex.name}" loading="lazy"
            onclick="openGifLightbox('${gifSrc}','${ex.name.replace(/'/g,"\\'")}')"
            onerror="this.outerHTML='<div class=\\'ex-gif-no-thumb\\' onclick=\\'editExercise(\\'${ex.id}\\')\\'></div>'" />`;
