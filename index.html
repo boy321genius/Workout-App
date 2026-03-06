@@ -1528,6 +1528,248 @@
       background: rgba(10,19,38,0.6);
       display: block;
     }
+
+    /* ===== Workout tab empty state — mode picker ===== */
+    .workout-mode-picker {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .workout-mode-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.15s;
+    }
+
+    .workout-mode-card:active {
+      border-color: var(--color-primary);
+    }
+
+    .workout-mode-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .workout-mode-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 2px;
+    }
+
+    .workout-mode-sub {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ===== Free workout logger ===== */
+    .free-workout-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .free-workout-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-text);
+    }
+
+    .free-workout-date {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    .mg-filter-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+
+    .mg-filter-row::-webkit-scrollbar { display: none; }
+
+    .mg-chip {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .mg-chip.active {
+      background: rgba(79,142,247,0.15);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .exercise-search-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-search-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--color-text);
+      font-family: inherit;
+    }
+
+    .exercise-search-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .exercise-search-results {
+      background: #0d1829;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      margin-bottom: 14px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--color-text);
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:active { background: rgba(79,142,247,0.1); }
+
+    .search-result-mg {
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .free-exercise-slot {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    .free-slot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .free-slot-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    .free-slot-mg {
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    .free-slot-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .slot-arrow-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      padding: 3px 7px;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    .slot-remove-btn {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 6px;
+      color: #f87171;
+      font-size: 12px;
+      padding: 3px 7px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .free-slot-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* ===== Load past workout sheet ===== */
+    .past-workouts-sheet {
+      background: #0d1829;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .past-workout-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .past-workout-item:last-child { border-bottom: none; }
+
+    .past-workout-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .past-workout-meta {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
   </style>
   <!-- Supabase JS client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1911,6 +2153,260 @@
     </div>
   </div>
 
+  <!-- ===== Program Confirmation Screen ===== -->
+  <div id="programConfirmScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9500;
+    background: #070c16;
+    flex-direction: column;
+    overflow-y: auto;
+  ">
+    <!-- Header -->
+    <div style="
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(7,12,22,0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 16px 20px 14px;
+      display: flex; align-items: center; gap: 14px;
+    ">
+      <button onclick="closeProgramConfirmScreen()" style="
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px; width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; flex-shrink: 0;
+      ">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#94a3b8;fill:none;stroke-width:2.5;stroke-linecap:round;">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div>
+        <div style="font-size:12px;color:#475569;margin-bottom:2px;">Program Preview</div>
+        <div id="confirmScreenTitle" style="font-size:17px;font-weight:700;color:#e2e8f0;"></div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div style="padding: 24px 20px 40px; max-width: 600px; margin: 0 auto; width: 100%;">
+
+      <!-- Program summary -->
+      <div id="confirmScreenSummary"></div>
+
+      <!-- Block breakdown heading -->
+      <h3 style="font-size:14px;font-weight:700;color:#94a3b8;letter-spacing:0.06em;text-transform:uppercase;margin:28px 0 14px;">
+        What You'll Be Doing
+      </h3>
+
+      <!-- Block cards rendered by JS -->
+      <div id="confirmScreenBlocks"></div>
+
+      <!-- Bottom CTA -->
+      <div style="margin-top:32px;">
+        <button id="confirmScreenStartBtn" onclick="startProgram()" style="
+          width: 100%;
+          background: linear-gradient(135deg, #2563eb, #4f8ef7);
+          border: none; border-radius: 14px;
+          color: #fff; font-size: 17px; font-weight: 700;
+          padding: 16px; cursor: pointer; font-family: inherit;
+          box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+          margin-bottom: 12px;
+        ">Start Program</button>
+        <button onclick="closeProgramConfirmScreen()" style="
+          width: 100%;
+          background: transparent; border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 14px; color: #475569;
+          font-size: 15px; font-weight: 600;
+          padding: 14px; cursor: pointer; font-family: inherit;
+        ">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Block Transition Screen ===== -->
+  <div id="blockTransitionScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9600;
+    background: #070c16;
+    flex-direction: column;
+    overflow-y: auto;
+  ">
+    <div style="padding: 48px 24px 60px; max-width: 560px; margin: 0 auto; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+
+      <!-- Completed block celebration -->
+      <div id="btCompletedSection" style="margin-bottom: 32px;">
+        <div style="font-size: 52px; text-align: center; margin-bottom: 16px;">🏁</div>
+        <div id="btCompletedLabel" style="
+          font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; text-align: center;
+          margin-bottom: 8px;
+        "></div>
+        <h1 id="btCompletedTitle" style="
+          font-size: 26px; font-weight: 800; color: #e2e8f0;
+          text-align: center; line-height: 1.2; margin-bottom: 12px;
+        "></h1>
+        <p id="btCompletedGoal" style="
+          font-size: 14px; color: #64748b; text-align: center;
+          line-height: 1.6; font-style: italic;
+        "></p>
+      </div>
+
+      <!-- Divider with arrow -->
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.07);"></div>
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#334155;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.07);"></div>
+      </div>
+
+      <!-- Next block preview -->
+      <div id="btNextSection">
+        <div id="btNextLabel" style="
+          font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; text-align: center; margin-bottom: 8px;
+        "></div>
+        <h2 id="btNextTitle" style="
+          font-size: 22px; font-weight: 800; color: #e2e8f0;
+          text-align: center; line-height: 1.25; margin-bottom: 20px;
+        "></h2>
+
+        <!-- Why card -->
+        <div style="
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 14px; padding: 18px; margin-bottom: 12px;
+        ">
+          <div style="font-size:11px;font-weight:700;color:#475569;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Why This Block</div>
+          <p id="btNextWhy" style="font-size:14px;color:#94a3b8;line-height:1.65;margin:0;"></p>
+        </div>
+
+        <!-- In practice card -->
+        <div style="
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.05);
+          border-radius: 14px; padding: 16px; margin-bottom: 28px;
+        ">
+          <div style="font-size:11px;font-weight:700;color:#475569;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">In Practice</div>
+          <p id="btNextTraining" style="font-size:13px;color:#64748b;line-height:1.6;margin:0;"></p>
+          <div id="btNextMeta" style="margin-top:10px;font-size:12px;color:#334155;"></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button id="btStartBtn" onclick="dismissBlockTransition()" style="
+        width: 100%;
+        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        border: none; border-radius: 14px;
+        color: #fff; font-size: 17px; font-weight: 700;
+        padding: 16px; cursor: pointer; font-family: inherit;
+        box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+      "></button>
+
+    </div>
+  </div>
+
+  <!-- ===== Program Complete Screen ===== -->
+  <div id="programCompleteScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9600;
+    background: #070c16;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  ">
+    <div style="max-width: 400px; width: 100%;">
+      <div style="font-size: 64px; margin-bottom: 20px;">🏆</div>
+      <h1 style="font-size: 28px; font-weight: 800; color: #e2e8f0; margin-bottom: 8px; line-height: 1.2;">
+        Program Complete
+      </h1>
+      <div id="pcProgramName" style="font-size:14px;color:#4f8ef7;margin-bottom:24px;font-weight:600;"></div>
+
+      <p id="pcMessage" style="font-size:15px;color:#64748b;line-height:1.7;margin-bottom:32px;"></p>
+
+      <!-- Stats row -->
+      <div id="pcStats" style="
+        display: flex; gap: 12px; margin-bottom: 32px;
+      "></div>
+
+      <div style="
+        background: rgba(79,142,247,0.08);
+        border: 1px solid rgba(79,142,247,0.2);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 28px;
+      ">
+        <p style="font-size:13px;color:#7eb3ff;line-height:1.6;margin:0;">
+          💡 Your full workout history has been saved. Consider running the program again with heavier loads, or try a new program to continue progressing.
+        </p>
+      </div>
+
+      <button onclick="dismissProgramComplete()" style="
+        width: 100%;
+        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        border: none; border-radius: 14px;
+        color: #fff; font-size: 17px; font-weight: 700;
+        padding: 16px; cursor: pointer; font-family: inherit;
+        box-shadow: 0 4px 20px rgba(79,142,247,0.4);
+      ">Choose What's Next →</button>
+    </div>
+  </div>
+
+  <!-- ===== Abandon Program Confirmation Screen ===== -->
+  <div id="abandonProgramScreen" style="
+    display: none;
+    position: fixed; inset: 0; z-index: 9700;
+    background: rgba(7,12,22,0.97);
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  ">
+    <div style="max-width: 400px; width: 100%;">
+      <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+      <h2 style="font-size: 22px; font-weight: 800; color: #e2e8f0; margin-bottom: 12px; line-height: 1.3;">
+        Abandon Program?
+      </h2>
+      <div id="abandonProgramName" style="font-size:13px;color:#4f8ef7;margin-bottom:20px;font-weight:600;"></div>
+
+      <div style="
+        background: rgba(239,68,68,0.08);
+        border: 1px solid rgba(239,68,68,0.2);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: left;
+      ">
+        <p style="font-size:13px;color:#fca5a5;line-height:1.6;margin:0;">
+          <strong>You will lose your program progress.</strong> Your completed weeks remain in your workout history, but the program block sequence and week counter will be reset.
+        </p>
+      </div>
+
+      <div style="
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; text-align: left;
+      ">
+        <p id="abandonProgressSummary" style="font-size:13px;color:#64748b;line-height:1.6;margin:0;"></p>
+      </div>
+
+      <button onclick="confirmAbandonProgram()" style="
+        width: 100%;
+        background: rgba(239,68,68,0.15);
+        border: 1px solid rgba(239,68,68,0.3);
+        border-radius: 14px; color: #f87171;
+        font-size: 16px; font-weight: 700;
+        padding: 14px; cursor: pointer; font-family: inherit;
+        margin-bottom: 10px;
+      ">Yes, Abandon Program</button>
+
+      <button onclick="closeAbandonProgramScreen()" style="
+        width: 100%;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px; color: #475569;
+        font-size: 15px; font-weight: 600;
+        padding: 14px; cursor: pointer; font-family: inherit;
+      ">Keep Going</button>
+    </div>
+  </div>
+
+
   <!-- ===== Sync Overlay (shown while restoring saved session data) ===== -->
   <div id="syncOverlay" style="
     display: none;
@@ -2001,17 +2497,23 @@
       <div class="workout-header">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div class="workout-day" id="currentDay"></div>
-          <button id="abandonProgramBtn" onclick="showAbandonProgramScreen()"
-            style="display:none; background:transparent; border:none; cursor:pointer;
-            font-size:11px; color:#334155; font-family:inherit; padding:0;
-            text-decoration:underline; text-underline-offset:2px;">
-            Abandon program
-          </button>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <button id="switchToFreeBtn" onclick="promptSwitchToFree()"
+              style="display:none; background:transparent; border:none; cursor:pointer;
+              font-size:11px; color:#334155; font-family:inherit; padding:0;
+              text-decoration:underline; text-underline-offset:2px;">
+              Change workout
+            </button>
+            <button id="abandonProgramBtn" onclick="showAbandonProgramScreen()"
+              style="display:none; background:transparent; border:none; cursor:pointer;
+              font-size:11px; color:#334155; font-family:inherit; padding:0;
+              text-decoration:underline; text-underline-offset:2px;">
+              Abandon program
+            </button>
+          </div>
         </div>
         <h2 class="workout-title" id="currentWorkout"></h2>
-        <div class="card-meta" id="currentTemplate">
-          Strength • STR5DULS
-        </div>
+        <div class="card-meta" id="currentTemplate"></div>
       </div>
 
       <!-- Container where JS will inject individual exercise cards for the day -->
@@ -2543,226 +3045,445 @@
 //               (e.g. "Main Lift", "Secondary Lift", "Accessories", "Core / Trunk / Carries")
 
 const EXERCISE_LIBRARY = [
-  {id: "EX001", name: "Dumbbell Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX002", name: "Dumbbell Incline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX003", name: "Overhead Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX004", name: "Dumbbell Shoulder Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX005", name: "Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX007", name: "Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX008", name: "Bent-Over Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX009", name: "Seated Banded Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX010", name: "Seated Bent-Over Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX011", name: "Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX013", name: "Banded Good Morning", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX014", name: "Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip,LowBack", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX015", name: "Banded Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX016", name: "Glute-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX017", name: "Quad-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX018", name: "Banded Lateral Step-Out Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX019", name: "Banded Leg Press", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX020", name: "Goblet Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX021", name: "Dumbbell Sumo / Plié Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX023", name: "Cossack Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX024", name: "Lateral Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX025", name: "Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX026", name: "Dumbbell Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX027", name: "Reverse Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX028", name: "Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX029", name: "Lateral Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"]},
-{id: "EX030", name: "Spanish Squat (Band-Assisted)", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX031", name: "Glute Bridge", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX034", name: "Stiff-Leg Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX035", name: "Banded Hip Thrust", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX036", name: "Seated Side to Side Leg Raise", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX037", name: "Banded Frog Pump", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX038", name: "Dead Bug", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX039", name: "Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX040", name: "Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX041", name: "Side Plank", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX042", name: "V-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX043", name: "Side Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX044", name: "High To Low Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX045", name: "Low To High Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX046", name: "Hollow Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX047", name: "Hollow Rock", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX048", name: "Bear Plank Hold", type: "Resistance", primary: "Core", secondary: "Core: AntiExt,Core: AntiRot", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX049", name: "Superman Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX050", name: "Bird Dog Hold", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX051", name: "Copenhagen Side Plank Hold", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Groin", slots: ["Core / Trunk / Carries"]},
-{id: "EX052", name: "Kneeling Ab Wheel", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX054", name: "Dumbbell Overhead Carry", type: "Resistance", primary: "Carry", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX055", name: "Farmer’s Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX057", name: "Suitcase Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX058", name: "Waiter Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX059", name: "Turkish Get-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core,Hip", slots: ["Core / Trunk / Carries"]},
-{id: "EX060", name: "Speed Squat", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"]},
-{id: "EX061", name: "Dumbbell Hang Clean", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX062", name: "Dumbbell Hang Clean and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX064", name: "Dumbbell Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX065", name: "Dumbbell Thruster", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX066", name: "Pogo Jump Series", type: "Power", primary: "Power: Jump", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
-{id: "EX067", name: "Tuck Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
-{id: "EX068", name: "Broad Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Hip,Ankle/Achilles", slots: ["Power"]},
-{id: "EX069", name: "Skater Bound (Lateral Jump)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
-{id: "EX070", name: "Split Jump (Jumping Lunge)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"]},
-{id: "EX071", name: "Agility Ladder Acceleration Start", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
-{id: "EX072", name: "Agility Ladder Single-Leg Quick Steps", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"]},
-{id: "EX073", name: "Banded Straight Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Elbow", slots: ["Power"]},
-{id: "EX074", name: "Banded Rotational Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Core", slots: ["Power"]},
-{id: "EX075", name: "Plyometric Push-Up", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Wrist", slots: ["Power"]},
-{id: "EX076", name: "Alternating Dumbbell Swing", type: "Power", primary: "Power: Throw", secondary: "", bias: "Hip,LowBack", slots: ["Power"]},
-{id: "EX077", name: "Dumbbell Hang Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX078", name: "Walking Pad Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"]},
-{id: "EX079", name: "Ruck Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX080", name: "Shadowboxing Steady State (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"]},
-{id: "EX081", name: "Jump Rope Easy Pace (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "ImpactCyclical", slots: ["Warm-Up", "Conditioning"]},
-{id: "EX082", name: "Walking Pad Tempo Walk (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX083", name: "Ruck Walk Tempo (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX084", name: "Jump Rope Tempo Intervals (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"]},
-{id: "EX085", name: "Shadowboxing Tempo Rounds (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX086", name: "Jump Rope Sprint Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"]},
-{id: "EX087", name: "Shadowboxing Hard Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX088", name: "Ruck Fast Walk Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX089", name: "Bicep Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX090", name: "Concentration Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX091", name: "Cross-Body Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX093", name: "Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX094", name: "Incline Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX095", name: "Incline Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX097", name: "Reverse-Grip Biceps Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
-{id: "EX099", name: "Zottman Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"]},
-{id: "EX100", name: "Forearm Pronation & Supination", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX101", name: "Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX102", name: "Neutral-Grip Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX103", name: "Reverse Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"]},
-{id: "EX108", name: "Banded Pull-Apart", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX109", name: "Banded Face Pull", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX110", name: "Rear Delt Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX113", name: "Banded Chest Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX114", name: "Decline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX115", name: "Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX116", name: "Incline Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX117", name: "Reverse-Grip Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX118", name: "Banded Shoulder Adduction", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX119", name: "Banded Shoulder Dislocate", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Cooldown"]},
-{id: "EX120", name: "Banded Shoulder External Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX121", name: "Banded Shoulder Internal Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX123", name: "Dumbbell Cuban Press", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX124", name: "Front Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX125", name: "Half-Kneeling Dumbbell Halo", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX126", name: "Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX127", name: "Prone Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX128", name: "Prone Incline Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX129", name: "Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX130", name: "Seated Bent-Over Dumbbell Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX132", name: "Shoulder Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX133", name: "Dumbbell Upright Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX134", name: "Banded Triceps Pushdown", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX135", name: "Ankle-Banded Monster Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"]},
-{id: "EX136", name: "Banded Hip Adduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX137", name: "Banded Knee Drive", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"]},
-{id: "EX138", name: "Banded Lateral Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX139", name: "Banded Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX140", name: "Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX141", name: "Lateral Goblet Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"]},
-{id: "EX142", name: "Lying Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hamstring,Knee", slots: ["Activation", "Accessories"]},
-{id: "EX143", name: "Seated Banded Hip Abduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX144", name: "Seated Calf Press", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX145", name: "Seated Dumbbell Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX146", name: "Seated Ankle Pull", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX147", name: "Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX148", name: "Standing Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "Hinge", bias: "Knee,Hamstring", slots: ["Activation", "Accessories"]},
-{id: "EX149", name: "Straight-Leg Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX150", name: "Bent-Knee Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX151", name: "Banded Diagonal Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX152", name: "Plank Pass-Through", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX153", name: "Plank Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX154", name: "Supine Psoas March", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX155", name: "Bird Dog", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX156", name: "Bird Dog With Band T-Resistance", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX157", name: "Dumbbell Overhead Squat", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"]},
-{id: "EX158", name: "Sit-to-Press", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX159", name: "Close-Grip Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Elbow", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX160", name: "Decline Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX161", name: "Banded Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX162", name: "Single-Arm Dumbbell Floor Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX163", name: "Dumbbell Squeeze Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX164", name: "Arnold Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX165", name: "Half-Kneeling Single-Arm DB Press", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX166", name: "Banded Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
-{id: "EX167", name: "Banded High Row (Elbows Out)", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX168", name: "Banded Low Row (Elbows In)", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX169", name: "Banded Reverse Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX170", name: "B-stance Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,LowBack", slots: ["Secondary Lift"]},
-{id: "EX171", name: "Glute Bridge March", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"]},
-{id: "EX172", name: "Banded Terminal Knee Extension (TKE)", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Accessories"]},
-{id: "EX173", name: "Dead Bug w/ Band Pulldown", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core,Shoulder", slots: ["Core / Trunk / Carries"]},
-{id: "EX174", name: "Kneeling Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX175", name: "Pallof Press Walkout", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX176", name: "Side Plank Reach-Through (Controlled)", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX177", name: "Close-Grip Dumbbell Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX178", name: "Banded Cross-Body Triceps Extension", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX179", name: "Overhead Banded Triceps Extension", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Shoulder,Elbow", slots: ["Accessories"]},
-{id: "EX180", name: "Prone Y-Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX181", name: "Prone Trap Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX182", name: "Banded Straight-Arm Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
-{id: "EX183", name: "Banded Scap Pull-Up (Scapular Depression)", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
-{id: "EX184", name: "Push-Up Plus", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX185", name: "Banded Serratus Punch", type: "Resistance", primary: "HorPress", secondary: "ShoulderStability", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX186", name: "Banded Tib Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"]},
-{id: "EX187", name: "Somersault Squats", type: "Power", primary: "Power: Jump", secondary: "", bias: "Core,Knee,LowBack", slots: ["Warm-Up", "Activation"]},
-{id: "EX188", name: "Half-Kneeling Single-Arm Shotgun Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX189", name: "Heel Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX190", name: "Alternating Superman", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX191", name: "Dumbbell Circular Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX192", name: "Banded Glute Bridge With Alternating Leg Raise", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"]},
-{id: "EX193", name: "Banded Y-Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"]},
-{id: "EX194", name: "Behind-the-Back Banded Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX195", name: "Behind-the-Back Banded Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX196", name: "Bird Dog Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX197", name: "Banded Clamshell", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX198", name: "Overhead Weighted Sit-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core,Shoulder", slots: ["Core / Trunk / Carries"]},
-{id: "EX199", name: "Dumbbell Decline Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"]},
-{id: "EX200", name: "Dumbbell Drag Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"]},
-{id: "EX201", name: "Dumbbell Halo to Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX202", name: "Dumbbell Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX203", name: "Dumbbell Overhead Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"]},
-{id: "EX204", name: "Dumbbell Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"]},
-{id: "EX205", name: "Dumbbell (Standing) Side Bend", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX206", name: "Dumbbell Toe Walk", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles,Core", slots: ["Accessories"]},
-{id: "EX207", name: "Gorilla Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"]},
-{id: "EX208", name: "Inchworm", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
-{id: "EX209", name: "Dumbbell Iron Cross Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Knee", slots: ["Secondary Lift"]},
-{id: "EX210", name: "Kneeling Hip Roll", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"]},
-{id: "EX211", name: "Stationary Lower Body Crawl (Knee-to-Elbow)", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX212", name: "Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX213", name: "Cross-Body Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX214", name: "Pallof Press and Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX215", name: "Plank Hip Dip", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX216", name: "Plank Surrender", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX217", name: "Reverse Elbow Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX218", name: "Russian Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX219", name: "Side Plank Clam Lift", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX220", name: "Standing Elbow-to-Knee Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX221", name: "Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX222", name: "Floor Tuck Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX223", name: "Waiter Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow,Shoulder", slots: ["Accessories"]},
-{id: "EX224", name: "Walkout", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
-{id: "EX225", name: "Walkout to Push-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"]},
-{id: "EX226", name: "Spider-Man Plank Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX227", name: "Seated Toe Taps", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"]},
-{id: "EX228", name: "Ankle-Weight March (Continuous)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX229", name: "Low-Impact Step Touch (Continuous)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"]},
-{id: "EX230", name: "Dumbbell Circuit (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX231", name: "Wall Knee Drives (Tempo)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"]},
-{id: "EX232", name: "Wall Knee Drives (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"]},
-{id: "EX233", name: "Agility Ladder COD Intervals (Forward Patterns)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"]},
-{id: "EX234", name: "Agility Ladder COD Intervals (Lateral Patterns)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"]},
-{id: "EX235", name: "Agility Ladder COD Intervals (Icky / In-In-Out-Out)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"]},
-{id: "EX236", name: "Dumbbell Circuit (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX237", name: "Mountain Climbers (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX238", name: "Jump Rope + Shadowboxing Alternating Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"]},
-{id: "EX239", name: "Banded Leg Extensions", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Secondary Lift", "Accessories"]}
+  {id: "EX001", name: "Dumbbell Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX002", name: "Dumbbell Incline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX003", name: "Overhead Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX004", name: "Dumbbell Shoulder Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX005", name: "Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX007", name: "Chest-Supported Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX008", name: "Bent-Over Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX009", name: "Seated Banded Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX010", name: "Seated Bent-Over Dumbbell Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX011", name: "Banded Lat Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX013", name: "Banded Good Morning", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX014", name: "Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip,LowBack", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX015", name: "Banded Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX016", name: "Glute-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX017", name: "Quad-Focused Bulgarian Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX018", name: "Banded Lateral Step-Out Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX019", name: "Banded Leg Press", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX020", name: "Goblet Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX021", name: "Dumbbell Sumo / Plié Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX023", name: "Cossack Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX024", name: "Lateral Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX025", name: "Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX026", name: "Dumbbell Step-Up", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX027", name: "Reverse Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX028", name: "Split Squat", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX029", name: "Lateral Lunge", type: "Resistance", primary: "Knee", secondary: "Unilateral", bias: "Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX030", name: "Spanish Squat (Band-Assisted)", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX031", name: "Glute Bridge", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX034", name: "Stiff-Leg Deadlift", type: "Resistance", primary: "Hinge", secondary: "", bias: "LowBack,Hip", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX035", name: "Banded Hip Thrust", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX036", name: "Seated Side to Side Leg Raise", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX037", name: "Banded Frog Pump", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX038", name: "Dead Bug", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX039", name: "Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX040", name: "Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX041", name: "Side Plank", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX042", name: "V-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX043", name: "Side Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX044", name: "High To Low Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX045", name: "Low To High Wood Chop", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX046", name: "Hollow Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX047", name: "Hollow Rock", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX048", name: "Bear Plank Hold", type: "Resistance", primary: "Core", secondary: "Core: AntiExt,Core: AntiRot", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX049", name: "Superman Hold", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX050", name: "Bird Dog Hold", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX051", name: "Copenhagen Side Plank Hold", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Groin", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX052", name: "Kneeling Ab Wheel", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX054", name: "Dumbbell Overhead Carry", type: "Resistance", primary: "Carry", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX055", name: "Farmer’s Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX057", name: "Suitcase Carry", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Grip,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX058", name: "Waiter Carry", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX059", name: "Turkish Get-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core,Hip", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX060", name: "Speed Squat", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX061", name: "Dumbbell Hang Clean", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX062", name: "Dumbbell Hang Clean and Press", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX064", name: "Dumbbell Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX065", name: "Dumbbell Thruster", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX066", name: "Pogo Jump Series", type: "Power", primary: "Power: Jump", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX067", name: "Tuck Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX068", name: "Broad Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Hip,Ankle/Achilles", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX069", name: "Skater Bound (Lateral Jump)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX070", name: "Split Jump (Jumping Lunge)", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee,Ankle/Achilles", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX071", name: "Agility Ladder Acceleration Start", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX072", name: "Agility Ladder Single-Leg Quick Steps", type: "Power", primary: "Power: Sprint", secondary: "", bias: "Ankle/Achilles,Knee", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX073", name: "Banded Straight Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX074", name: "Banded Rotational Punch (Explosive)", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Core", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX075", name: "Plyometric Push-Up", type: "Power", primary: "Power: Throw", secondary: "", bias: "Shoulder,Wrist", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX076", name: "Alternating Dumbbell Swing", type: "Power", primary: "Power: Throw", secondary: "", bias: "Hip,LowBack", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX077", name: "Dumbbell Hang Snatch", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX078", name: "Walking Pad Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"], muscleGroup: "Conditioning"},
+
+{id: "EX079", name: "Ruck Walk (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX080", name: "Shadowboxing Steady State (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Warm-Up", "Conditioning", "Cooldown"], muscleGroup: "Conditioning"},
+
+{id: "EX081", name: "Jump Rope Easy Pace (Zone 2)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "ImpactCyclical", slots: ["Warm-Up", "Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX082", name: "Walking Pad Tempo Walk (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX083", name: "Ruck Walk Tempo (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX084", name: "Jump Rope Tempo Intervals (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX085", name: "Shadowboxing Tempo Rounds (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX086", name: "Jump Rope Sprint Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX087", name: "Shadowboxing Hard Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX088", name: "Ruck Fast Walk Intervals (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX089", name: "Bicep Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX090", name: "Concentration Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX091", name: "Cross-Body Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX093", name: "Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX094", name: "Incline Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX095", name: "Incline Hammer Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX097", name: "Reverse-Grip Biceps Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX099", name: "Zottman Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist,Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX100", name: "Forearm Pronation & Supination", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX101", name: "Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX102", name: "Neutral-Grip Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX103", name: "Reverse Wrist Curl", type: "Resistance", primary: "Forearms", secondary: "", bias: "Wrist", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX108", name: "Banded Pull-Apart", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX109", name: "Banded Face Pull", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX110", name: "Rear Delt Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX113", name: "Banded Chest Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX114", name: "Decline Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX115", name: "Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX116", name: "Incline Dumbbell Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX117", name: "Reverse-Grip Bench Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX118", name: "Banded Shoulder Adduction", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Shoulders"},
+
+{id: "EX119", name: "Banded Shoulder Dislocate", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Cooldown"], muscleGroup: "Shoulders"},
+
+{id: "EX120", name: "Banded Shoulder External Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Shoulders"},
+
+{id: "EX121", name: "Banded Shoulder Internal Rotation", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Shoulders"},
+
+{id: "EX123", name: "Dumbbell Cuban Press", type: "Resistance", primary: "ShoulderStability", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Shoulders"},
+
+{id: "EX124", name: "Front Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX125", name: "Half-Kneeling Dumbbell Halo", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX126", name: "Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX127", name: "Prone Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX128", name: "Prone Incline Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX129", name: "Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX130", name: "Seated Bent-Over Dumbbell Rear Delt Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX132", name: "Shoulder Shrug", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX133", name: "Dumbbell Upright Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX134", name: "Banded Triceps Pushdown", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX135", name: "Ankle-Banded Monster Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX136", name: "Banded Hip Adduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX137", name: "Banded Knee Drive", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Knee,Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX138", name: "Banded Lateral Walk", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX139", name: "Banded Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX140", name: "Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX141", name: "Lateral Goblet Jump", type: "Power", primary: "Power: Jump", secondary: "", bias: "Knee", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX142", name: "Lying Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hamstring,Knee", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX143", name: "Seated Banded Hip Abduction", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX144", name: "Seated Calf Press", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX145", name: "Seated Dumbbell Calf Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX146", name: "Seated Ankle Pull", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX147", name: "Side-Lying Leg Raise", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX148", name: "Standing Banded Hamstring Curl", type: "Resistance", primary: "HipAccessory", secondary: "Hinge", bias: "Knee,Hamstring", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX149", name: "Straight-Leg Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX150", name: "Bent-Knee Banded Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX151", name: "Banded Diagonal Glute Kickback", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX152", name: "Plank Pass-Through", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX153", name: "Plank Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX154", name: "Supine Psoas March", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX155", name: "Bird Dog", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "LowBack,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX156", name: "Bird Dog With Band T-Resistance", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX157", name: "Dumbbell Overhead Squat", type: "Power", primary: "Power: OlyVariant", secondary: "", bias: "Knee,Elbow", slots: ["Power"], muscleGroup: "Power"},
+
+{id: "EX158", name: "Sit-to-Press", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX159", name: "Close-Grip Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Elbow", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX160", name: "Decline Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX161", name: "Banded Push-Up", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX162", name: "Single-Arm Dumbbell Floor Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX163", name: "Dumbbell Squeeze Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX164", name: "Arnold Press", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX165", name: "Half-Kneeling Single-Arm DB Press", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX166", name: "Banded Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX167", name: "Banded High Row (Elbows Out)", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX168", name: "Banded Low Row (Elbows In)", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX169", name: "Banded Reverse Fly", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Pull"},
+
+{id: "EX170", name: "B-stance Romanian Deadlift", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,LowBack", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX171", name: "Glute Bridge March", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX172", name: "Banded Terminal Knee Extension (TKE)", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX173", name: "Dead Bug w/ Band Pulldown", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core,Shoulder", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX174", name: "Kneeling Pallof Press", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX175", name: "Pallof Press Walkout", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX176", name: "Side Plank Reach-Through (Controlled)", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX177", name: "Close-Grip Dumbbell Press", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder,Elbow", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Push"},
+
+{id: "EX178", name: "Banded Cross-Body Triceps Extension", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX179", name: "Overhead Banded Triceps Extension", type: "Resistance", primary: "ElbowFlexExt: Triceps", secondary: "", bias: "Shoulder,Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX180", name: "Prone Y-Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX181", name: "Prone Trap Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX182", name: "Banded Straight-Arm Pulldown", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX183", name: "Banded Scap Pull-Up (Scapular Depression)", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX184", name: "Push-Up Plus", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Push"},
+
+{id: "EX185", name: "Banded Serratus Punch", type: "Resistance", primary: "HorPress", secondary: "ShoulderStability", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Push"},
+
+{id: "EX186", name: "Banded Tib Raise", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX187", name: "Somersault Squats", type: "Power", primary: "Power: Jump", secondary: "", bias: "Core,Knee,LowBack", slots: ["Warm-Up", "Activation"], muscleGroup: "Power"},
+
+{id: "EX188", name: "Half-Kneeling Single-Arm Shotgun Row", type: "Resistance", primary: "HorPull", secondary: "Unilateral", bias: "Shoulder,Core", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Pull"},
+
+{id: "EX189", name: "Heel Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX190", name: "Alternating Superman", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX191", name: "Dumbbell Circular Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX192", name: "Banded Glute Bridge With Alternating Leg Raise", type: "Resistance", primary: "Hinge", secondary: "Unilateral", bias: "Hip,Core", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX193", name: "Banded Y-Raise", type: "Resistance", primary: "HorPull", secondary: "", bias: "Shoulder", slots: ["Activation", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX194", name: "Behind-the-Back Banded Biceps Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX195", name: "Behind-the-Back Banded Lateral Raise", type: "Resistance", primary: "VertPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX196", name: "Bird Dog Row", type: "Resistance", primary: "Core: AntiRot", secondary: "", bias: "Core,Shoulder", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX197", name: "Banded Clamshell", type: "Resistance", primary: "HipAccessory", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX198", name: "Overhead Weighted Sit-Up", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core,Shoulder", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX199", name: "Dumbbell Decline Chest Fly", type: "Resistance", primary: "HorPress", secondary: "", bias: "Shoulder", slots: ["Accessories"], muscleGroup: "Push"},
+
+{id: "EX200", name: "Dumbbell Drag Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX201", name: "Dumbbell Halo to Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX202", name: "Dumbbell Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Legs"},
+
+{id: "EX203", name: "Dumbbell Overhead Kneel-to-Stand", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Core,Knee", slots: ["Secondary Lift", "Core / Trunk / Carries"], muscleGroup: "Legs"},
+
+{id: "EX204", name: "Dumbbell Lat Pullover", type: "Resistance", primary: "VertPull", secondary: "", bias: "Shoulder", slots: ["Secondary Lift", "Accessories"], muscleGroup: "Pull"},
+
+{id: "EX205", name: "Dumbbell (Standing) Side Bend", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX206", name: "Dumbbell Toe Walk", type: "Resistance", primary: "Calves", secondary: "", bias: "Ankle/Achilles,Core", slots: ["Accessories"], muscleGroup: "Legs"},
+
+{id: "EX207", name: "Gorilla Row", type: "Resistance", primary: "HorPull", secondary: "", bias: "LowBack,Shoulder", slots: ["Main Lift", "Secondary Lift"], muscleGroup: "Pull"},
+
+{id: "EX208", name: "Inchworm", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], muscleGroup: "Core"},
+
+{id: "EX209", name: "Dumbbell Iron Cross Squat", type: "Resistance", primary: "Knee", secondary: "", bias: "Shoulder,Knee", slots: ["Secondary Lift"], muscleGroup: "Legs"},
+
+{id: "EX210", name: "Kneeling Hip Roll", type: "Resistance", primary: "Hinge", secondary: "", bias: "Hip", slots: ["Activation", "Accessories"], muscleGroup: "Legs"},
+
+{id: "EX211", name: "Stationary Lower Body Crawl (Knee-to-Elbow)", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX212", name: "Oblique Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX213", name: "Cross-Body Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX214", name: "Pallof Press and Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX215", name: "Plank Hip Dip", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX216", name: "Plank Surrender", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX217", name: "Reverse Elbow Plank", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX218", name: "Russian Twist", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX219", name: "Side Plank Clam Lift", type: "Resistance", primary: "Core: AntiLatFlex", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX220", name: "Standing Elbow-to-Knee Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX221", name: "Toe Touch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX222", name: "Floor Tuck Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX223", name: "Waiter Curl", type: "Resistance", primary: "ElbowFlexExt: Biceps", secondary: "", bias: "Elbow,Shoulder", slots: ["Accessories"], muscleGroup: "Arms"},
+
+{id: "EX224", name: "Walkout", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], muscleGroup: "Core"},
+
+{id: "EX225", name: "Walkout to Push-Up", type: "Resistance", primary: "Core: AntiExt", secondary: "", bias: "Shoulder,Core", slots: ["Warm-Up", "Activation"], muscleGroup: "Core"},
+
+{id: "EX226", name: "Spider-Man Plank Crunch", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip,Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX227", name: "Seated Toe Taps", type: "Resistance", primary: "Core: TrunkFlexRot", secondary: "", bias: "Hip/Core", slots: ["Core / Trunk / Carries"], muscleGroup: "Core"},
+
+{id: "EX228", name: "Ankle-Weight March (Continuous)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX229", name: "Low-Impact Step Touch (Continuous)", type: "Conditioning", primary: "Conditioning: Aerobic", secondary: "", bias: "LowImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX230", name: "Dumbbell Circuit (Threshold)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX231", name: "Wall Knee Drives (Tempo)", type: "Conditioning", primary: "Conditioning: Threshold", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX232", name: "Wall Knee Drives (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ImpactCyclical", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX233", name: "Agility Ladder COD Intervals (Forward Patterns)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX234", name: "Agility Ladder COD Intervals (Lateral Patterns)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX235", name: "Agility Ladder COD Intervals (Icky / In-In-Out-Out)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "ChangeOfDirection", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX236", name: "Dumbbell Circuit (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX237", name: "Mountain Climbers (Intervals)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX238", name: "Jump Rope + Shadowboxing Alternating Rounds (VO2)", type: "Conditioning", primary: "Conditioning: VO2", secondary: "", bias: "MixedModalMuscular", slots: ["Conditioning"], muscleGroup: "Conditioning"},
+
+{id: "EX239", name: "Banded Leg Extensions", type: "Resistance", primary: "Knee", secondary: "", bias: "Knee", slots: ["Secondary Lift", "Accessories"], muscleGroup: "Legs"}
 ];
 
 // TEMPLATES defines complete training programs.
@@ -4276,6 +4997,8 @@ const sb            = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const GIF_BASE = 'https://raw.githubusercontent.com/boy321genius/Workout-App/main/gifs';
 const GIF_V    = Date.now();
 
+// Changes every app open — forces browser to re-fetch GIFs every session
+
 // ===== PROGRAMS =====
 // Each program is a sequence of blocks. Each block references a templateId,
 // has a fixed week count, a training goal, and a plain-language explanation
@@ -4497,6 +5220,12 @@ const PROGRAMS = [
   }
 ];
 
+// ===== PROGRAMS =====
+// Each program is a sequence of blocks. Each block references a templateId,
+// has a fixed week count, a training goal, and a plain-language explanation
+// of why it follows the previous block. Deload blocks use templateId: null
+// and are handled specially in the Complete Week flow.
+
 let currentUser = null;
 let currentUsername = '';
 let saveTimeout = null;
@@ -4525,6 +5254,15 @@ let activeSelections = {};
 // Per-day performance logs accumulated during the active week.
 let currentWeekLogs = [];
 
+// ===== Free Workout State =====
+// Array of {exId, name, muscleGroup, sets, reps, load} for the current custom session
+let freeWorkoutSlots = [];
+// Whether the free logger is currently open
+let freeWorkoutActive = false;
+// Currently active muscle group filter in the logger
+let freeWorkoutMgFilter = 'All';
+// Whether the exercise search results panel is visible
+let freeWorkoutSearchOpen = false;
 // ===== Program State =====
 // The active program object (from PROGRAMS), or null if user is in standalone mode
 let activeProgram = null;
@@ -4537,6 +5275,15 @@ let activeProgramWeekIndex = 1;
 
 // Total weeks completed across all blocks in the current program run
 let activeProgramWeeksCompleted = 0;
+
+// ===== Program State =====
+// The active program object (from PROGRAMS), or null if user is in standalone mode
+
+// Index of the current block within activeProgram.blocks (0-based)
+
+// Which week the user is on within the current block (1-based, e.g. week 1 of 4)
+
+// Total weeks completed across all blocks in the current program run
 
 // Builds the full state object to persist
 function buildStateObject() {
@@ -4565,7 +5312,12 @@ function applyStateObject(state) {
   activeWeekStart   = state.activeWeekStart  || null;
   currentDayIndex   = state.currentDayIndex  || 0;
   workoutHistory    = state.workoutHistory   || [];
-  exerciseLibrary   = state.exerciseLibrary  || [...EXERCISE_LIBRARY];
+  // Always start from the hardcoded library so new exercises are never lost.
+  // Only re-add custom exercises the user created on top of it.
+  const savedCustomExercises = (state.exerciseLibrary || []).filter(
+    e => !EXERCISE_LIBRARY.find(h => h.id === e.id)
+  );
+  exerciseLibrary = [...EXERCISE_LIBRARY, ...savedCustomExercises];
   activeSelections  = state.activeSelections || {};
   currentWeekLogs   = state.currentWeekLogs  || [];
   if (state.customTemplates && state.customTemplates.length > 0) {
@@ -4610,7 +5362,7 @@ function saveState() {
     const state = buildStateObject();
     const { error } = await sb
       .from('user_state')
-      .upsert({ user_id: currentUser.id, data: state }, { onConflict: 'user_id' });
+      .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
     if (error) console.error('saveState error:', error);
   }, 800);
 }
@@ -4629,7 +5381,7 @@ async function saveStateNow() {
   });
   const { error } = await sb
     .from('user_state')
-    .upsert({ user_id: currentUser.id, data: state }, { onConflict: 'user_id' });
+    .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
   if (error) console.error('[SAVE] Error:', error);
   else console.log('[SAVE] ✅ Success');
 }
@@ -4640,7 +5392,7 @@ document.addEventListener('visibilitychange', () => {
     clearTimeout(saveTimeout);
     saveCurrentDayData(); // capture any unsaved input field values first
     const state = buildStateObject();
-    const payload = JSON.stringify([{ user_id: currentUser.id, data: state }]);
+    const payload = JSON.stringify([{ user_id: currentUser.id, data: state, username: currentUsername }]);
     // keepalive: true guarantees the request completes even if the tab closes
     fetch(`${SUPABASE_URL}/rest/v1/user_state?on_conflict=user_id`, {
       method: 'POST',
@@ -4715,30 +5467,35 @@ async function handleAuth() {
   const fakeEmail = `${username}@workoutapp.local`;
 
   if (authMode === 'signup') {
-    // Check if username is already taken
+    // Check if username is already taken by an *active* auth user.
+    // If the row exists but has no matching auth user (deleted account),
+    // it's an orphan — we'll clean it up after signup succeeds.
     const { data: existing } = await sb
       .from('user_state')
-      .select('username')
+      .select('username, user_id')
       .eq('username', username)
       .maybeSingle();
 
     if (existing) {
-      setLoginLoading(false);
-      return showLoginError('That username is already taken. Try another.');
+      // Verify the auth user still exists by attempting signup —
+      // if Supabase says "already registered" the auth user is alive → truly taken.
+      // We can't query auth.users directly from the client, so we proceed and
+      // let the signup attempt tell us.
     }
 
     const { data, error } = await sb.auth.signUp({ email: fakeEmail, password });
     if (error) {
       setLoginLoading(false);
-      // "User already registered" means they should sign in instead
       if (error.message.includes('already registered')) {
         return showLoginError('Username already exists. Switch to Sign In.');
       }
       return showLoginError(error.message);
     }
 
-    // Save username alongside user_id immediately on signup
+    // Save username alongside user_id immediately on signup.
+    // First delete any orphaned row with this username (from a previously deleted auth user).
     if (data.user) {
+      await sb.from('user_state').delete().eq('username', username).neq('user_id', data.user.id);
       await sb.from('user_state').upsert(
         { user_id: data.user.id, username, data: {} },
         { onConflict: 'user_id' }
@@ -4757,6 +5514,9 @@ async function handleAuth() {
     }
   }
 
+  // Set username immediately from the login field
+  currentUsername = username;
+
   setLoginLoading(false);
   // onAuthStateChange will fire and call initApp automatically
 }
@@ -4773,6 +5533,9 @@ async function signOut() {
   activeProgramBlockIndex     = 0;
   activeProgramWeekIndex      = 1;
   activeProgramWeeksCompleted = 0;
+  // Clear free workout state
+  freeWorkoutActive = false;
+  freeWorkoutSlots  = [];
   TEMPLATES = TEMPLATES.filter(t => !t._custom);
   document.getElementById('signOutBtn').style.display = 'none';
   document.getElementById('headerSubtitle').textContent = '';
@@ -4819,7 +5582,7 @@ async function initApp(user) {
     });
 
     const btn = document.getElementById('signOutBtn');
-    currentUsername = username || '';
+    currentUsername = username || currentUsername; // prefer DB value, fall back to login input
     btn.textContent = currentUsername ? `${currentUsername} · Sign out` : 'Sign out';
     document.getElementById('headerSubtitle').textContent = currentUsername ? `Hi, ${currentUsername} 👋` : '';
 
@@ -4920,6 +5683,9 @@ function showView(viewName) {
   const navId =
     'nav' + viewName.charAt(0).toUpperCase() + viewName.slice(1);
   document.getElementById(navId).classList.add('active');
+
+  // Scroll to top on every view change
+  window.scrollTo(0, 0);
 
   // 4) Render content specific to this view
   if (viewName === 'workout') {
@@ -5187,6 +5953,405 @@ function startProgram() {
   showView('workout');
 }
 
+// Tracks which program is selected in the programs browser (not yet started)
+
+// Switches the Templates tab between "templates" and "programs" modes
+function switchTemplatesMode(mode) {
+  const templatesView = document.getElementById('templatesModeView');
+  const programsView  = document.getElementById('programsModeView');
+  const tabTemplates  = document.getElementById('modeTabTemplates');
+  const tabPrograms   = document.getElementById('modeTabPrograms');
+
+  if (mode === 'templates') {
+    templatesView.style.display = 'block';
+    programsView.style.display  = 'none';
+    tabTemplates.classList.add('active');
+    tabPrograms.classList.remove('active');
+  } else {
+    templatesView.style.display = 'none';
+    programsView.style.display  = 'block';
+    tabTemplates.classList.remove('active');
+    tabPrograms.classList.add('active');
+    renderPrograms();
+  }
+}
+
+// Returns the CSS class for a block chip based on its label/type
+function getBlockChipClass(block) {
+  if (block.isDeload) return 'deload';
+  const label = block.label.toLowerCase();
+  if (label.includes('peak')) return 'peak';
+  if (label.includes('hypertrophy')) return 'hypertrophy';
+  return 'strength';
+}
+
+// Renders the program cards into #programList
+function renderPrograms() {
+  const list = document.getElementById('programList');
+
+  list.innerHTML = PROGRAMS.map(program => {
+    const isSelected = selectedProgramId === program.id;
+
+    // Build block timeline chips
+    const timeline = program.blocks.map(block => {
+      const chipClass = getBlockChipClass(block);
+      const label = block.isDeload ? 'Deload' : block.label.replace(' Phase', '').replace(' Strength', '').replace(' Hypertrophy', 'Hyp').replace(' Conditioning', 'Cond');
+      const weeks = `${block.weeks}w`;
+      return `<div class="program-block-chip ${chipClass}" style="flex:${block.weeks};">
+        <div>${label}</div>
+        <div style="font-size:9px;opacity:0.7;margin-top:2px;">${weeks}</div>
+      </div>`;
+    }).join('');
+
+    return `
+      <div class="program-card ${isSelected ? 'selected' : ''}" onclick="selectProgram('${program.id}')">
+        <div class="program-card-header">
+          <div style="flex:1;">
+            <div class="program-card-title">${program.name}</div>
+            <div class="program-card-meta">${program.focus} · ${program.durationWeeks} weeks · 4 days/week</div>
+          </div>
+          ${isSelected ? '<span style="color:var(--color-primary);font-size:22px;flex-shrink:0;">✓</span>' : ''}
+        </div>
+
+        <p class="program-card-desc">${program.description}</p>
+
+        <div class="program-card-who">👤 ${program.whoIsThisFor}</div>
+
+        <!-- Block timeline -->
+        <div class="program-blocks-timeline">${timeline}</div>
+        <div class="program-duration-label">${program.durationWeeks}-week program · ${program.blocks.length} blocks including deload weeks</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Handles selecting a program card
+function selectProgram(programId) {
+  if (selectedProgramId === programId) {
+    selectedProgramId = null;
+  } else {
+    selectedProgramId = programId;
+  }
+
+  const bar = document.getElementById('programStartBar');
+  if (selectedProgramId) {
+    const p = PROGRAMS.find(p => p.id === selectedProgramId);
+    bar.querySelector('button').textContent = `Start ${p.name} →`;
+    bar.classList.add('visible');
+  } else {
+    bar.classList.remove('visible');
+  }
+
+  renderPrograms();
+}
+
+// Opens the full-screen program confirmation screen
+function showProgramConfirmScreen(programId) {
+  const program = PROGRAMS.find(p => p.id === programId);
+  if (!program) return;
+
+  // Set title
+  document.getElementById('confirmScreenTitle').textContent = program.name;
+
+  // Build summary banner
+  document.getElementById('confirmScreenSummary').innerHTML = `
+    <div style="
+      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(79,142,247,0.08));
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 14px; padding: 18px; margin-bottom: 8px;
+    ">
+      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:6px;">${program.name}</div>
+      <div style="font-size:13px;color:#7eb3ff;margin-bottom:14px;">${program.focus} · ${program.durationWeeks} weeks · 4 days/week</div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:14px;">${program.description}</p>
+      <div style="
+        font-size:13px;color:#64748b;font-style:italic;
+        padding:10px 12px;background:rgba(255,255,255,0.03);
+        border-radius:8px;border-left:2px solid rgba(79,142,247,0.4);
+      ">👤 ${program.whoIsThisFor}</div>
+    </div>
+
+    <div style="
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
+    ">
+      <p style="font-size:12px;color:#fbbf24;line-height:1.6;margin:0;">
+        ⚠️ Starting this program will replace any active standalone template.
+        Your workout history is preserved.
+      </p>
+    </div>
+  `;
+
+  // Build block cards
+  document.getElementById('confirmScreenBlocks').innerHTML = program.blocks.map((block, i) => {
+    const chipClass = block.isDeload ? 'deload'
+      : block.label.toLowerCase().includes('peak') ? 'peak'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'hypertrophy'
+      : 'strength';
+
+    const typeLabel = block.isDeload ? 'Deload Week'
+      : block.label.toLowerCase().includes('peak') ? 'Peak Phase'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'Hypertrophy'
+      : 'Strength';
+
+    return `
+      <div class="confirm-block-card ${chipClass}">
+        <div class="confirm-block-label ${chipClass}">Block ${block.blockNum} · ${block.weeks} week${block.weeks > 1 ? 's' : ''} · ${typeLabel}</div>
+        <div class="confirm-block-title">${block.label}</div>
+        <div class="confirm-block-meta">
+          ${block.repRange ? `${block.repRange} reps · ` : ''}${block.rirTarget ? `RIR ${block.rirTarget}` : ''}
+          · Template: ${block.templateId}
+        </div>
+        <div class="confirm-block-goal">"${block.goal}"</div>
+        <div class="confirm-block-why">
+          <strong style="font-size:11px;color:#475569;display:block;margin-bottom:4px;">WHY THIS BLOCK</strong>
+          ${block.why}
+        </div>
+        <div class="confirm-block-training">
+          <strong>In practice:</strong> ${block.trainingFocus}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Show the screen
+  const screen = document.getElementById('programConfirmScreen');
+  screen.style.display = 'flex';
+  screen.scrollTop = 0;
+}
+
+// Closes the confirmation screen and returns to program browser
+function closeProgramConfirmScreen() {
+  document.getElementById('programConfirmScreen').style.display = 'none';
+}
+
+// Called when user taps "Start Program" on the confirmation screen
+function startProgram() {
+  if (!selectedProgramId) return;
+
+  const program = PROGRAMS.find(p => p.id === selectedProgramId);
+  if (!program) return;
+
+  // Warn if a standalone template is mid-week
+  if (activeTemplate && !activeProgram) {
+    const ok = confirm(
+      `You have an active standalone template (${activeTemplate.name}).\n\n` +
+      `Starting this program will replace it. Your workout history is preserved.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+  }
+
+  // Set program state
+  activeProgram               = program;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+
+  // Load the first block's template
+  const firstBlock = program.blocks[0];
+  const template   = TEMPLATES.find(t => t.id === firstBlock.templateId);
+
+  if (!template) {
+    alert('Template not found: ' + firstBlock.templateId);
+    return;
+  }
+
+  // Reset week state cleanly
+  activeTemplate     = template;
+  activeWeekStart    = new Date();
+  currentDayIndex    = 0;
+  currentWeekLogs    = [];
+  activeSelections   = {};
+  selectedProgramId  = null;
+
+  // Close confirmation screen
+  closeProgramConfirmScreen();
+
+  // Save and navigate to workout
+  saveStateNow();
+  document.getElementById('headerSubtitle').textContent =
+    currentUsername ? `Hi, ${currentUsername} 👋` : '';
+  showView('workout');
+}
+
+
+// ===== ABANDON PROGRAM =====
+
+function showAbandonProgramScreen() {
+  if (!activeProgram) return;
+
+  document.getElementById('abandonProgramName').textContent = activeProgram.name;
+
+  const block          = activeProgram.blocks[activeProgramBlockIndex];
+  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
+  const completedWeeks = activeProgramWeeksCompleted;
+  const weeksLeft      = totalWeeks - completedWeeks;
+
+  document.getElementById('abandonProgressSummary').innerHTML =
+    `You are currently on <strong style="color:#94a3b8;">${block.label}</strong> ` +
+    `(Block ${block.blockNum} of ${activeProgram.blocks.length}, ` +
+    `Week ${activeProgramWeekIndex} of ${block.weeks}). ` +
+    `<br><br>` +
+    `${completedWeeks} week${completedWeeks !== 1 ? 's' : ''} completed · ` +
+    `${weeksLeft} week${weeksLeft !== 1 ? 's' : ''} remaining.`;
+
+  document.getElementById('abandonProgramScreen').style.display = 'flex';
+}
+
+function closeAbandonProgramScreen() {
+  document.getElementById('abandonProgramScreen').style.display = 'none';
+}
+
+function confirmAbandonProgram() {
+  // Clear program state — history already contains completed weeks
+  activeProgram               = null;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+  activeTemplate              = null;
+  activeWeekStart             = null;
+  currentDayIndex             = 0;
+  currentWeekLogs             = [];
+  activeSelections            = {};
+
+  saveStateNow();
+  closeAbandonProgramScreen();
+  showView('templates');
+}
+
+
+// Opens the full-screen program confirmation screen
+function showProgramConfirmScreen(programId) {
+  const program = PROGRAMS.find(p => p.id === programId);
+  if (!program) return;
+
+  // Set title
+  document.getElementById('confirmScreenTitle').textContent = program.name;
+
+  // Build summary banner
+  document.getElementById('confirmScreenSummary').innerHTML = `
+    <div style="
+      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(79,142,247,0.08));
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 14px; padding: 18px; margin-bottom: 8px;
+    ">
+      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:6px;">${program.name}</div>
+      <div style="font-size:13px;color:#7eb3ff;margin-bottom:14px;">${program.focus} · ${program.durationWeeks} weeks · 4 days/week</div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:14px;">${program.description}</p>
+      <div style="
+        font-size:13px;color:#64748b;font-style:italic;
+        padding:10px 12px;background:rgba(255,255,255,0.03);
+        border-radius:8px;border-left:2px solid rgba(79,142,247,0.4);
+      ">👤 ${program.whoIsThisFor}</div>
+    </div>
+
+    <div style="
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
+    ">
+      <p style="font-size:12px;color:#fbbf24;line-height:1.6;margin:0;">
+        ⚠️ Starting this program will replace any active standalone template.
+        Your workout history is preserved.
+      </p>
+    </div>
+  `;
+
+  // Build block cards
+  document.getElementById('confirmScreenBlocks').innerHTML = program.blocks.map((block, i) => {
+    const chipClass = block.isDeload ? 'deload'
+      : block.label.toLowerCase().includes('peak') ? 'peak'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'hypertrophy'
+      : 'strength';
+
+    const typeLabel = block.isDeload ? 'Deload Week'
+      : block.label.toLowerCase().includes('peak') ? 'Peak Phase'
+      : block.label.toLowerCase().includes('hypertrophy') ? 'Hypertrophy'
+      : 'Strength';
+
+    return `
+      <div class="confirm-block-card ${chipClass}">
+        <div class="confirm-block-label ${chipClass}">Block ${block.blockNum} · ${block.weeks} week${block.weeks > 1 ? 's' : ''} · ${typeLabel}</div>
+        <div class="confirm-block-title">${block.label}</div>
+        <div class="confirm-block-meta">
+          ${block.repRange ? `${block.repRange} reps · ` : ''}${block.rirTarget ? `RIR ${block.rirTarget}` : ''}
+          · Template: ${block.templateId}
+        </div>
+        <div class="confirm-block-goal">"${block.goal}"</div>
+        <div class="confirm-block-why">
+          <strong style="font-size:11px;color:#475569;display:block;margin-bottom:4px;">WHY THIS BLOCK</strong>
+          ${block.why}
+        </div>
+        <div class="confirm-block-training">
+          <strong>In practice:</strong> ${block.trainingFocus}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Show the screen
+  const screen = document.getElementById('programConfirmScreen');
+  screen.style.display = 'flex';
+  screen.scrollTop = 0;
+}
+
+// Closes the confirmation screen and returns to program browser
+function closeProgramConfirmScreen() {
+  document.getElementById('programConfirmScreen').style.display = 'none';
+}
+
+// Called when user taps "Start Program" on the confirmation screen
+function startProgram() {
+  if (!selectedProgramId) return;
+
+  const program = PROGRAMS.find(p => p.id === selectedProgramId);
+  if (!program) return;
+
+  // Warn if a standalone template is mid-week
+  if (activeTemplate && !activeProgram) {
+    const ok = confirm(
+      `You have an active standalone template (${activeTemplate.name}).\n\n` +
+      `Starting this program will replace it. Your workout history is preserved.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+  }
+
+  // Set program state
+  activeProgram               = program;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+
+  // Load the first block's template
+  const firstBlock = program.blocks[0];
+  const template   = TEMPLATES.find(t => t.id === firstBlock.templateId);
+
+  if (!template) {
+    alert('Template not found: ' + firstBlock.templateId);
+    return;
+  }
+
+  // Reset week state cleanly
+  activeTemplate     = template;
+  activeWeekStart    = new Date();
+  currentDayIndex    = 0;
+  currentWeekLogs    = [];
+  activeSelections   = {};
+  selectedProgramId  = null;
+
+  // Close confirmation screen
+  closeProgramConfirmScreen();
+
+  // Save and navigate to workout
+  saveStateNow();
+  document.getElementById('headerSubtitle').textContent =
+    currentUsername ? `Hi, ${currentUsername} 👋` : '';
+  showView('workout');
+}
+
+
 // Expands/collapses the Training Focus Overview section
 function toggleTrainingFocus() {
   const content = document.getElementById('trainingFocusContent');
@@ -5338,6 +6503,8 @@ function confirmAbandonProgram() {
 
 // ===== SWITCHING MODES (standalone ↔ program) =====
 
+// ===== SWITCHING MODES (standalone ↔ program) =====
+
 // Guards confirmTemplateSelection — warns if a program is currently active
 function confirmTemplateSelection() {
   if (!selectedTemplateId) return;
@@ -5371,6 +6538,8 @@ function confirmTemplateSelection() {
   saveStateNow();
   showView('workout');
 }
+
+
 
 
 
@@ -5599,6 +6768,105 @@ function renderDeloadBanner() {
   `;
 }
 
+// Renders the program progress bar at the top of the Workout tab.
+// Shows a dot for each week of each block, colour-coded, with current week pulsing.
+function renderProgramProgress() {
+  const el = document.getElementById('programProgressBar');
+  if (!activeProgram) { el.style.display = 'none'; return; }
+
+  const block   = activeProgram.blocks[activeProgramBlockIndex];
+  const colours = { hypertrophy: '#a855f7', strength: '#4f8ef7', deload: '#4ade80', peak: '#fbbf24' };
+
+  function blockColour(b) {
+    if (b.isDeload) return colours.deload;
+    const l = b.label.toLowerCase();
+    if (l.includes('peak'))         return colours.peak;
+    if (l.includes('hypertrophy'))  return colours.hypertrophy;
+    return colours.strength;
+  }
+
+  // Count total weeks and completed weeks for the fraction
+  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
+  const completedWeeks = activeProgramWeeksCompleted;
+
+  // Build dot groups — one group per block, dots inside = weeks in that block
+  let weekCursor = 0; // tracks global week index across all blocks
+  const dotGroups = activeProgram.blocks.map((b, bi) => {
+    const colour = blockColour(b);
+    const dots = Array.from({ length: b.weeks }, (_, wi) => {
+      const globalWeek = weekCursor + wi;
+      const isCurrent  = bi === activeProgramBlockIndex && (wi + 1) === activeProgramWeekIndex;
+      const isDone     = globalWeek < completedWeeks;
+
+      let dotStyle = `background:${colour};opacity:${isDone ? '1' : '0.2'};border-color:transparent;`;
+      if (isCurrent) dotStyle = `background:${colour};opacity:1;border-color:transparent;box-shadow:0 0 7px ${colour}99;width:10px;height:10px;`;
+
+      return `<div class="block-dot${isCurrent ? ' current' : isDone ? ' completed' : ''}" style="${dotStyle}"></div>`;
+    }).join('');
+
+    weekCursor += b.weeks;
+    return `<div class="block-dot-group">${dots}</div>`;
+  });
+
+  // Interleave separators between groups
+  const timeline = dotGroups.join('<div class="block-dot-separator"></div>');
+
+  // Current block label
+  const blockColourHex = blockColour(block);
+  const blockTypeLabel = block.isDeload ? 'Deload'
+    : block.label.toLowerCase().includes('peak') ? 'Peak'
+    : block.label.toLowerCase().includes('hypertrophy') ? 'Hypertrophy'
+    : 'Strength';
+
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="program-progress-bar">
+      <div class="program-progress-header">
+        <div class="program-progress-name">
+          <span style="color:${blockColourHex};margin-right:4px;">●</span>
+          ${activeProgram.name}
+        </div>
+        <div class="program-progress-fraction">${completedWeeks} / ${totalWeeks} weeks</div>
+      </div>
+      <div class="program-block-dots">${timeline}</div>
+      <div class="program-progress-label">
+        Block ${block.blockNum} of ${activeProgram.blocks.length}
+        · <span style="color:${blockColourHex};">${blockTypeLabel}</span>
+        · Week ${activeProgramWeekIndex} of ${block.weeks}
+        · ${block.label}
+      </div>
+    </div>
+  `;
+
+  // Show abandon button when mid-program
+  const abandonBtn = document.getElementById('abandonProgramBtn');
+  if (abandonBtn) abandonBtn.style.display = activeProgram ? 'block' : 'none';
+}
+
+// Renders a deload banner if the current program block is a deload week.
+function renderDeloadBanner() {
+  const el = document.getElementById('deloadBanner');
+  if (!activeProgram) { el.style.display = 'none'; return; }
+
+  const block = activeProgram.blocks[activeProgramBlockIndex];
+  if (!block.isDeload) { el.style.display = 'none'; return; }
+
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="deload-banner">
+      <div class="deload-banner-icon">🌿</div>
+      <div class="deload-banner-text">
+        <div class="deload-banner-title">Deload Week — Recovery is the work</div>
+        <div class="deload-banner-body">
+          Aim for <strong>50% of your normal volume</strong> — half the sets, same exercises, same structure.
+          Keep loads relatively similar but stop well short of failure.
+          This is where your body consolidates the gains from the previous block.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderActiveWorkout() {
   // If no template is active yet, show an empty state message.
   if (!activeTemplate) {
@@ -5609,11 +6877,40 @@ function renderActiveWorkout() {
     document.getElementById('deloadBanner').style.display = 'none';
     const ab = document.getElementById('abandonProgramBtn');
     if (ab) ab.style.display = 'none';
+    const sf = document.getElementById('switchToFreeBtn');
+    if (sf) sf.style.display = 'none';
+
+    if (freeWorkoutActive) {
+      renderFreeWorkout();
+      return;
+    }
+
+    document.getElementById('currentDay').textContent = '';
+    document.getElementById('currentWorkout').textContent = '';
+    document.getElementById('currentTemplate').textContent = '';
     document.getElementById('exerciseList').innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">💪</div>
-        <div class="empty-text">No active workout</div>
-        <div class="empty-subtext">Welcome back</div>
+      <div class="workout-mode-picker">
+        <div class="workout-mode-card" onclick="showView('templates')">
+          <div class="workout-mode-icon">📋</div>
+          <div>
+            <div class="workout-mode-label">Pick a Template</div>
+            <div class="workout-mode-sub">Structured week with guided exercise selection</div>
+          </div>
+        </div>
+        <div class="workout-mode-card" onclick="showView('templates'); switchTemplatesMode('programs')">
+          <div class="workout-mode-icon">📈</div>
+          <div>
+            <div class="workout-mode-label">Follow a Program</div>
+            <div class="workout-mode-sub">Multi-week periodized training block</div>
+          </div>
+        </div>
+        <div class="workout-mode-card" onclick="startFreeWorkout()">
+          <div class="workout-mode-icon">✏️</div>
+          <div>
+            <div class="workout-mode-label">Create Your Own Workout</div>
+            <div class="workout-mode-sub">Build a custom session from the exercise library</div>
+          </div>
+        </div>
       </div>
     `;
     return;
@@ -5622,6 +6919,10 @@ function renderActiveWorkout() {
   // Render program progress bar and deload banner if in a program
   renderProgramProgress();
   renderDeloadBanner();
+
+  // Always show the "Change workout" reset link when a template is active
+  const sf = document.getElementById('switchToFreeBtn');
+  if (sf) sf.style.display = 'block';
 
   const day = activeTemplate.days[currentDayIndex];
 
@@ -6315,6 +7616,295 @@ function setChartFilter(weeks) {
 }
 
 // Builds the History view: dashboard at top, week cards below.
+// ==================== FREE WORKOUT LOGGER ====================
+
+function startFreeWorkout() {
+  freeWorkoutSlots  = [];
+  freeWorkoutActive = true;
+  freeWorkoutMgFilter = 'All';
+  freeWorkoutSearchOpen = false;
+  showView('workout');
+}
+
+function exitFreeWorkout() {
+  freeWorkoutActive = false;
+  freeWorkoutSlots  = [];
+  showView('workout');
+}
+
+// Called from the "Change workout" link in the workout header.
+// Warns if mid-template or mid-program, then resets to the default workout mode picker.
+function promptSwitchToFree() {
+  if (activeProgram) {
+    const block = activeProgram.blocks[activeProgramBlockIndex];
+    const ok = confirm(
+      `You are currently in "${activeProgram.name}" (${block.label}, Week ${activeProgramWeekIndex} of ${block.weeks}).\n\n` +
+      `Resetting will abandon this program. Your completed weeks are preserved in history.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+    activeProgram               = null;
+    activeProgramBlockIndex     = 0;
+    activeProgramWeekIndex      = 1;
+    activeProgramWeeksCompleted = 0;
+  } else if (activeTemplate) {
+    const ok = confirm(
+      `You have an active template (${activeTemplate.name}).\n\n` +
+      `Resetting will discard this week. Your history is preserved.\n\n` +
+      `Continue?`
+    );
+    if (!ok) return;
+  }
+  activeTemplate   = null;
+  activeWeekStart  = null;
+  currentDayIndex  = 0;
+  currentWeekLogs  = [];
+  activeSelections = {};
+  freeWorkoutActive = false;
+  freeWorkoutSlots  = [];
+  saveStateNow();
+  showView('workout');
+}
+
+function renderFreeWorkout() {
+  const day = document.getElementById('currentDay');
+  const title = document.getElementById('currentWorkout');
+  const meta  = document.getElementById('currentTemplate');
+  if (day)   day.textContent   = 'Custom Session';
+  if (title) title.textContent = 'Create Your Own Workout';
+  if (meta)  meta.textContent  = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  const muscleGroups = ['All', 'Push', 'Pull', 'Legs', 'Core', 'Arms', 'Shoulders', 'Conditioning', 'Power'];
+
+  // Past custom workouts for "Load Past Workout"
+  const pastCustom = workoutHistory.filter(e => e.isCustom).slice().reverse().slice(0, 10);
+  const pastSheet = pastCustom.length > 0 ? `
+    <div class="past-workouts-sheet" id="pastWorkoutsSheet" style="display:none;">
+      <div style="font-size:12px;font-weight:700;color:#475569;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Past Workouts</div>
+      ${pastCustom.map((e, i) => {
+        const dateStr = new Date(e.completedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const exCount = (e.freeSlots || []).length;
+        return `<div class="past-workout-item" onclick="loadPastWorkout(${workoutHistory.indexOf(e)})">
+          <div>
+            <div class="past-workout-title">${e.title || 'Custom Workout'}</div>
+            <div class="past-workout-meta">${dateStr} · ${exCount} exercise${exCount !== 1 ? 's' : ''}</div>
+          </div>
+          <div style="font-size:18px;color:#334155;">›</div>
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
+  // Slot list
+  const slotsHtml = freeWorkoutSlots.length === 0
+    ? `<div style="text-align:center;padding:24px 0;color:#334155;font-size:13px;">No exercises added yet.<br>Search above to get started.</div>`
+    : freeWorkoutSlots.map((slot, i) => {
+        const gifSrc   = `${GIF_BASE}/${slot.exId}.gif?v=${GIF_V}`;
+        const safeName = slot.name.replace(/'/g, "\\'");
+        const thumb    = `<img class="ex-gif-thumb" src="${gifSrc}" alt="${slot.name}" loading="lazy"
+          onclick="openGifLightbox('${gifSrc}','${safeName}')"
+          onerror="this.style.display='none'" style="flex-shrink:0;margin-right:10px;">`;
+        return `
+      <div class="free-exercise-slot" id="free-slot-${i}">
+        <div class="free-slot-header">
+          <div style="display:flex;align-items:flex-start;flex:1;min-width:0;">
+            ${thumb}
+            <div style="flex:1;min-width:0;">
+              <div class="free-slot-name">${slot.name}</div>
+              <div class="free-slot-mg">${slot.muscleGroup}</div>
+            </div>
+          </div>
+          <div class="free-slot-controls">
+            ${i > 0 ? `<button class="slot-arrow-btn" onclick="moveFreeSlot(${i},-1)">↑</button>` : ''}
+            ${i < freeWorkoutSlots.length - 1 ? `<button class="slot-arrow-btn" onclick="moveFreeSlot(${i},1)">↓</button>` : ''}
+            <button class="slot-remove-btn" onclick="removeFreeSlot(${i})">✕</button>
+          </div>
+        </div>
+        <div class="free-slot-inputs">
+          <div>
+            <div style="font-size:10px;color:#475569;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">Sets</div>
+            <input type="number" min="1" inputmode="numeric"
+              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--color-border);border-radius:8px;padding:8px;font-size:14px;color:var(--color-text);font-family:inherit;"
+              value="${slot.sets || ''}" placeholder="—"
+              oninput="updateFreeSlot(${i},'sets',this.value)">
+          </div>
+          <div>
+            <div style="font-size:10px;color:#475569;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">Reps</div>
+            <input type="number" min="1" inputmode="numeric"
+              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--color-border);border-radius:8px;padding:8px;font-size:14px;color:var(--color-text);font-family:inherit;"
+              value="${slot.reps || ''}" placeholder="—"
+              oninput="updateFreeSlot(${i},'reps',this.value)">
+          </div>
+          <div>
+            <div style="font-size:10px;color:#475569;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">Load</div>
+            <input type="number" min="0" inputmode="decimal"
+              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--color-border);border-radius:8px;padding:8px;font-size:14px;color:var(--color-text);font-family:inherit;"
+              value="${slot.load || ''}" placeholder="—"
+              oninput="updateFreeSlot(${i},'load',this.value)">
+          </div>
+        </div>
+      </div>`;
+      }).join('');
+
+  document.getElementById('exerciseList').innerHTML = `
+    <div class="free-workout-header">
+      <div>
+        <div class="free-workout-title">Create Your Own Workout</div>
+        <div class="free-workout-date">${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</div>
+      </div>
+      ${pastCustom.length > 0 ? `<button onclick="togglePastWorkouts()" style="background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#64748b;font-size:12px;padding:6px 10px;cursor:pointer;font-family:inherit;">Load Past</button>` : ''}
+    </div>
+
+    ${pastSheet}
+
+    <!-- Muscle group filter -->
+    <div class="mg-filter-row">
+      ${muscleGroups.map(mg => `
+        <div class="mg-chip ${mg === freeWorkoutMgFilter ? 'active' : ''}" onclick="setFreeWorkoutMgFilter('${mg}')">${mg}</div>
+      `).join('')}
+    </div>
+
+    <!-- Search row -->
+    <div class="exercise-search-row">
+      <input class="exercise-search-input" id="freeExSearch" type="text"
+        placeholder="Search exercises…" autocomplete="off"
+        oninput="renderFreeSearchResults()"
+        onfocus="document.getElementById('freeSearchResults').style.display='block'">
+    </div>
+
+    <!-- Search results -->
+    <div class="exercise-search-results" id="freeSearchResults" style="display:none;"></div>
+
+    <!-- Added exercises -->
+    <div id="freeSlotList">${slotsHtml}</div>
+
+    <!-- Actions -->
+    <div style="display:flex;gap:10px;margin-top:20px;">
+      <button class="btn btn-secondary btn-block" onclick="exitFreeWorkout()">Discard</button>
+      <button class="btn btn-block" onclick="saveFreeWorkout()" ${freeWorkoutSlots.length === 0 ? 'disabled style="opacity:0.4;"' : ''}>
+        Save Workout ✓
+      </button>
+    </div>
+  `;
+
+  // Render search results if search box has content
+  renderFreeSearchResults();
+}
+
+function setFreeWorkoutMgFilter(mg) {
+  freeWorkoutMgFilter = mg;
+  renderFreeWorkout();
+  // Restore focus to search
+  const el = document.getElementById('freeExSearch');
+  if (el) el.focus();
+}
+
+function renderFreeSearchResults() {
+  const resultsEl = document.getElementById('freeSearchResults');
+  if (!resultsEl) return;
+
+  const query = (document.getElementById('freeExSearch')?.value || '').toLowerCase().trim();
+
+  let pool = exerciseLibrary;
+  if (freeWorkoutMgFilter !== 'All') {
+    pool = pool.filter(e => e.muscleGroup === freeWorkoutMgFilter);
+  }
+  if (query) {
+    pool = pool.filter(e => e.name.toLowerCase().includes(query));
+  }
+
+  // Exclude already-added exercises
+  const addedIds = new Set(freeWorkoutSlots.map(s => s.exId));
+  pool = pool.filter(e => !addedIds.has(e.id));
+
+  if (pool.length === 0) {
+    resultsEl.style.display = query || freeWorkoutMgFilter !== 'All' ? 'block' : 'none';
+    resultsEl.innerHTML = `<div class="search-result-item" style="color:#334155;">No exercises found</div>`;
+    return;
+  }
+
+  resultsEl.style.display = 'block';
+  resultsEl.innerHTML = pool.slice(0, 20).map(e => `
+    <div class="search-result-item" onclick="addFreeSlot('${e.id}')">
+      <span>${e.name}</span>
+      <span class="search-result-mg">${e.muscleGroup}</span>
+    </div>
+  `).join('');
+}
+
+function addFreeSlot(exId) {
+  const ex = exerciseLibrary.find(e => e.id === exId);
+  if (!ex) return;
+  freeWorkoutSlots.push({
+    exId: ex.id,
+    name: ex.name,
+    muscleGroup: ex.muscleGroup || '',
+    sets: '', reps: '', load: ''
+  });
+  renderFreeWorkout();
+}
+
+function removeFreeSlot(index) {
+  freeWorkoutSlots.splice(index, 1);
+  renderFreeWorkout();
+}
+
+function moveFreeSlot(index, dir) {
+  const target = index + dir;
+  if (target < 0 || target >= freeWorkoutSlots.length) return;
+  const tmp = freeWorkoutSlots[index];
+  freeWorkoutSlots[index] = freeWorkoutSlots[target];
+  freeWorkoutSlots[target] = tmp;
+  renderFreeWorkout();
+}
+
+function updateFreeSlot(index, field, value) {
+  if (freeWorkoutSlots[index]) {
+    freeWorkoutSlots[index][field] = value;
+  }
+}
+
+function togglePastWorkouts() {
+  const el = document.getElementById('pastWorkoutsSheet');
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function loadPastWorkout(historyIndex) {
+  const entry = workoutHistory[historyIndex];
+  if (!entry || !entry.freeSlots) return;
+  freeWorkoutSlots = entry.freeSlots.map(s => ({
+    exId: s.exId,
+    name: s.name,
+    muscleGroup: s.muscleGroup || '',
+    sets: '', reps: '', load: ''  // start fresh — just pre-populate exercises
+  }));
+  renderFreeWorkout();
+}
+
+function saveFreeWorkout() {
+  if (freeWorkoutSlots.length === 0) return;
+
+  const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  const title   = `Custom Workout — ${dateStr}`;
+
+  workoutHistory.push({
+    isCustom:    true,
+    title:       title,
+    completedAt: new Date(),
+    freeSlots:   freeWorkoutSlots.slice(),
+    // stub template fields so renderHistory doesn't break
+    template:    { name: title, focus: 'Custom' },
+    days:        1,
+    logs:        []
+  });
+
+  freeWorkoutActive = false;
+  freeWorkoutSlots  = [];
+  saveStateNow();
+  showView('workout');
+  // Brief confirmation
+  setTimeout(() => alert('Workout saved! 💪'), 100);
+}
+
 function renderHistory() {
   renderVolumeChart();
 
@@ -6334,6 +7924,25 @@ function renderHistory() {
     const dateStr = new Date(entry.completedAt).toLocaleDateString(
       'en-US', { month: 'short', day: 'numeric', year: 'numeric' }
     );
+
+    // Custom (free) workout entry
+    if (entry.isCustom) {
+      const exCount = (entry.freeSlots || []).length;
+      const exNames = (entry.freeSlots || []).slice(0, 3).map(s => s.name).join(', ');
+      const more    = exCount > 3 ? ` +${exCount - 3} more` : '';
+      return `
+        <div class="history-item">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <div class="history-date">${dateStr}</div>
+            <div style="font-size:11px;background:rgba(79,142,247,0.1);color:#7eb3ff;border-radius:6px;padding:2px 8px;">Custom</div>
+          </div>
+          <div class="history-title">${entry.title || 'Custom Workout'}</div>
+          <div class="card-meta">${exCount} exercise${exCount !== 1 ? 's' : ''}</div>
+          ${exCount > 0 ? `<div class="card-meta" style="margin-top:3px;font-style:italic;">${exNames}${more}</div>` : ''}
+        </div>`;
+    }
+
+    // Template/program workout entry
     let logSummary = '';
     if (entry.logs && entry.logs.length > 0) {
       const completed  = entry.logs.reduce((n, d) => n + d.slots.filter(s => s.completed).length, 0);
