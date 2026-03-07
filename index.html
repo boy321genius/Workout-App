@@ -3578,10 +3578,9 @@
           </div>
         </div>
 
-      </div>
-      </div>
+    </div>
 
-      <!-- ===== Exercise Library Panel (hidden by default) ===== -->
+<!-- ===== Exercise Library Panel (hidden by default) ===== -->
       <div id="libraryExercisesView" style="display:none;">
         <div class="search-box">
           <span class="search-icon">
@@ -3602,7 +3601,8 @@
         <div id="exerciseLibraryList"></div>
       </div>
 
-    </div>
+      </div>
+      </div>
 
     <!-- ================= Admin View =================
          Management and stats section:
@@ -12726,15 +12726,20 @@ function renderTemplates() {
 }
 
 function filterTemplatesByDays(days) {
-  _templateDaysFilter = days;
-  // Re-render days chips
+  // Normalize: keep 'All' as string, convert everything else to number
+  const parsed = days === 'All' ? 'All' : parseInt(days);
+  const newDays = templateDaysFilter === parsed && parsed !== 'All' ? 'All' : parsed;
+  templateDaysFilter = newDays;
+
   document.querySelectorAll('#daysFilter .days-chip').forEach(chip => {
-    const chipDays = chip.textContent === 'Any days' ? 'All' : parseInt(chip.textContent);
-    chip.classList.toggle('active', chipDays == days);
+    const chipDays = chip.textContent.includes('Any') ? 'All' : parseInt(chip.textContent);
+    chip.classList.toggle('active', chipDays === newDays); // now number === number ✓
   });
+
   const activeFocus = document.querySelector('#focusFilters .filter-chip.active')?.textContent || 'All';
   renderTemplateList(activeFocus);
 }
+
 
 // Tracks which program is selected in the programs browser (not yet started)
 let selectedProgramId = null;
@@ -13388,17 +13393,18 @@ function switchLibraryMode(mode) {
 }
 
 // When a focus chip is clicked, update the active chip and re-render the list
+
 function filterTemplates(focus) {
-  // Toggle 'active' class on the chips
-  document
-    .querySelectorAll('#focusFilters .filter-chip')
+  // If clicking the already-active chip, deselect it back to All
+  const currentActive = document.querySelector('#focusFilters .filter-chip.active')?.textContent || 'All';
+  const newFocus = (currentActive === focus && focus !== 'All') ? 'All' : focus;
+
+  document.querySelectorAll('#focusFilters .filter-chip')
     .forEach(chip => {
       chip.classList.remove('active');
-      if (chip.textContent === focus) chip.classList.add('active');
+      if (chip.textContent === newFocus) chip.classList.add('active');
     });
-
-  // Rebuild the list with this focus filter
-  renderTemplateList(focus);
+  renderTemplateList(newFocus);
 }
 
 // Returns the stimulus badge HTML for a day's stimulus value
