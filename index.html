@@ -12726,14 +12726,13 @@ function renderTemplates() {
 }
 
 function filterTemplatesByDays(days) {
-  // Normalize: keep 'All' as string, convert everything else to number
-  const parsed = days === 'All' ? 'All' : parseInt(days);
-  const newDays = templateDaysFilter === parsed && parsed !== 'All' ? 'All' : parsed;
-  templateDaysFilter = newDays;
+  // Click active chip → deselect back to All; click new chip → select
+  const newDays = (_templateDaysFilter === days && days !== 'All') ? 'All' : days;
+  _templateDaysFilter = newDays;
 
   document.querySelectorAll('#daysFilter .days-chip').forEach(chip => {
     const chipDays = chip.textContent.includes('Any') ? 'All' : parseInt(chip.textContent);
-    chip.classList.toggle('active', chipDays === newDays); // now number === number ✓
+    chip.classList.toggle('active', chipDays === newDays);
   });
 
   const activeFocus = document.querySelector('#focusFilters .filter-chip.active')?.textContent || 'All';
