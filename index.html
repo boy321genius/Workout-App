@@ -623,6 +623,7 @@
       margin-bottom: 16px;
       cursor: pointer;
       transition: all 0.2s;
+      overflow: hidden;
     }
 
     .program-card:active {
@@ -678,6 +679,8 @@
       gap: 4px;
       align-items: stretch;
       margin-bottom: 8px;
+      overflow: hidden;
+      border-radius: 6px;
     }
 
     .program-block-chip {
@@ -840,6 +843,186 @@
       color: #4ade80;
       line-height: 1.55;
       opacity: 0.8;
+    }
+
+    /* ===== Muscle Audit Panel ===== */
+    .muscle-audit-panel {
+      background: rgba(15,26,46,0.9);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .muscle-audit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .muscle-audit-header:active { opacity: 0.8; }
+    .muscle-audit-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .audit-alert-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #f59e0b;
+      display: inline-block;
+      animation: auditPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes auditPulse {
+      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    .muscle-audit-chevron {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      transition: transform 0.2s;
+    }
+    .muscle-audit-chevron.open { transform: rotate(180deg); }
+    .muscle-audit-body { padding: 0 14px 14px; }
+    .muscle-audit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .muscle-audit-cell {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 7px 8px;
+      border: 1px solid transparent;
+    }
+    .muscle-audit-cell.hit-none  { border-color: rgba(239,68,68,0.3);  background: rgba(239,68,68,0.05); }
+    .muscle-audit-cell.hit-low   { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05); }
+    .muscle-audit-cell.hit-good  { border-color: rgba(74,222,128,0.25); background: rgba(74,222,128,0.05); }
+    .muscle-audit-cell.hit-high  { border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.06); }
+    .audit-muscle-name {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+    .audit-set-count { font-size: 18px; font-weight: 700; line-height: 1; }
+    .audit-set-count.hit-none  { color: #ef4444; }
+    .audit-set-count.hit-low   { color: #f59e0b; }
+    .audit-set-count.hit-good  { color: #4ade80; }
+    .audit-set-count.hit-high  { color: #fbbf24; }
+    .audit-set-label { font-size: 9px; color: var(--color-text-muted); margin-top: 1px; }
+    .muscle-audit-alerts { display: flex; flex-direction: column; gap: 5px; }
+    .audit-alert {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      line-height: 1.4;
+    }
+    .audit-alert.warn {
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      color: #fbbf24;
+    }
+    .audit-alert.ok {
+      background: rgba(74,222,128,0.07);
+      border: 1px solid rgba(74,222,128,0.18);
+      color: #4ade80;
+    }
+    .audit-balance-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+    .audit-balance-bar {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+    .audit-balance-fill {
+      position: absolute;
+      top: 0; bottom: 0;
+      border-radius: 3px;
+    }
+
+    .audit-summary-line {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .audit-why-box {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .audit-why-box strong {
+      color: var(--color-text-secondary);
+    }
+    .audit-region {
+      margin-bottom: 10px;
+    }
+    .audit-region-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .audit-secondary-note {
+      font-size: 9px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+    .audit-legend {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .audit-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--color-text-muted);
+    }
+    .audit-legend-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .audit-balance-section {
+      margin-bottom: 12px;
+    }
+    .audit-balance-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 5px;
+    }
+    .audit-balance-side {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      min-width: 52px;
     }
     .confirm-block-card {
       background: rgba(255,255,255,0.03);
@@ -2369,7 +2552,59 @@
       margin-left: 6px;
       vertical-align: middle;
     }
-  </style>
+  
+    /* ===== Floating selection confirm bar ===== */
+    /* Appears above the bottom nav when a template or program is selected.
+       Slides up so the user never has to scroll back to the top to confirm. */
+    .selection-confirm-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: calc(70px + env(safe-area-inset-bottom));
+      z-index: 99; /* below overlays/modals but above content */
+      padding: 10px 16px;
+      background: linear-gradient(
+        to top,
+        rgba(7, 12, 22, 0.98) 0%,
+        rgba(7, 12, 22, 0.92) 100%
+      );
+      border-top: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(calc(100% + 2px));
+      transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1);
+      pointer-events: none;
+    }
+    .selection-confirm-bar.visible {
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .selection-confirm-label {
+      flex: 1;
+      min-width: 0;
+    }
+    .selection-confirm-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-text-muted);
+      margin-bottom: 2px;
+    }
+    .selection-confirm-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .selection-confirm-btn {
+      flex-shrink: 0;
+    }
+    </style>
   <!-- Supabase JS client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -3091,6 +3326,8 @@
 
       <!-- Deload banner — shown only during deload weeks -->
       <div id="deloadBanner" style="display:none;"></div>
+      <!-- Muscle Audit Panel — visible when a workout is active -->
+      <div id="muscleAuditPanel" style="display:none;"></div>
 
       <!-- Top area showing current day, workout name, and template code -->
       <div class="workout-header">
@@ -3183,15 +3420,22 @@
           Programs are multi-week, periodized plans that automatically rotate your training focus, include deload weeks, and guide you through each phase with clear explanations. Best for intermediate lifters with a clear long-term goal.
         </div>
 
-        <!-- Program cards rendered by JS -->
-        <div id="programList"></div>
-
-        <!-- Confirm button — shown when a program is selected -->
-        <div class="program-start-bar" id="programStartBar">
-          <button class="btn" style="width:100%;" onclick="showProgramConfirmScreen(selectedProgramId)">
+        <!-- Header row: title + confirm button (mirrors template panel) -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:16px;">
+          <h2 class="admin-title" style="margin-bottom:0;">Select a Program</h2>
+          <button class="btn" id="confirmProgramBtn" onclick="showProgramConfirmScreen(selectedProgramId)" style="display:none; white-space:nowrap;">
             Start Program →
           </button>
         </div>
+
+        <!-- Goal filter chips (mirrors template panel) -->
+        <div class="template-filters" id="programGoalFilters"></div>
+
+        <!-- Day-count filter -->
+        <div class="days-filter" id="programDayFilterRow"></div>
+
+        <!-- Program cards rendered by JS -->
+        <div id="programList"></div>
       </div>
 
     </div>
@@ -3231,7 +3475,7 @@
       <div id="libraryConceptsView">
 
         <div class="concepts-intro">
-          Everything in this app — every slot, every stimulus, every program phase — is built on a small set of principles. Read through these and you'll understand not just how to use the app, but how to design your own training from scratch.
+          Everything in this app — every slot, every stimulus, every program phase — is built on a small set of principles. Read through these and you will understand not just how to use the app, but how to design your own training from scratch.
         </div>
 
         <!-- 1. HOW TRAINING ACTUALLY WORKS -->
@@ -3286,7 +3530,7 @@
             <div class="concept-vocab-grid">
               <div class="concept-vocab-row">
                 <span class="concept-vocab-term">Goal</span>
-                <span class="concept-vocab-def"><strong style="color:#94a3b8">Template-level.</strong> The primary adaptation you're chasing across the week: Strength, Hypertrophy, Power, or Conditioning. A template has one goal. Every session in that template serves it.</span>
+                <span class="concept-vocab-def"><strong style="color:#94a3b8">Template-level.</strong> The primary adaptation you are chasing across the week: Strength, Hypertrophy, Power, or Conditioning. A template has one goal. Every session in that template serves it.</span>
               </div>
               <div class="concept-vocab-row">
                 <span class="concept-vocab-term">Stimulus</span>
@@ -3347,7 +3591,7 @@
               <div class="concept-vocab-grid">
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">AerobicBase</span>
-                  <span class="concept-vocab-def">Zone 2 — easy, conversational pace. Builds mitochondria and long-term recovery capacity. If you can't hold a conversation, you're going too hard. 20–60 min steady.</span>
+                  <span class="concept-vocab-def">Zone 2 — easy, conversational pace. Builds mitochondria and long-term recovery capacity. If you can not hold a conversation, you are going too hard. 20–60 min steady.</span>
                 </div>
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">Threshold</span>
@@ -3473,25 +3717,29 @@
                 </div>
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">Isolation</span>
-                  <span class="concept-vocab-def">Single-muscle accessory work. Filters by primaryMuscle (e.g. Biceps, Quads).</span>
+                  <span class="concept-vocab-def">Single-muscle accessory work. Filters by primaryMuscle (e.g. Biceps, Quads, Hamstrings, Chest).</span>
+                </div>
+                <div class="concept-vocab-row">
+                  <span class="concept-vocab-term">Activation</span>
+                  <span class="concept-vocab-def">Low-load primer movements performed before the main work. Filters to Activation exercises by target joint (Hip or Shoulder) — light enough to wake up the movement pattern without creating fatigue.</span>
                 </div>
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">Stability</span>
-                  <span class="concept-vocab-def">Core / anti-rotation / balance work. Filters to Stability-type exercises by subtype.</span>
+                  <span class="concept-vocab-def">Core / anti-extension / anti-rotation / anti-lateral-flexion work. Filters to Stability exercises by subtype.</span>
                 </div>
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">Power</span>
-                  <span class="concept-vocab-def">Explosive movement slot — filters to Power exercises by subtype (Ballistic, Olympic, etc.).</span>
+                  <span class="concept-vocab-def">Explosive movement slot — filters to Power exercises by subtype (Jump, Sprint, Olympic Variant, Rotational).</span>
                 </div>
                 <div class="concept-vocab-row">
                   <span class="concept-vocab-term">Conditioning</span>
-                  <span class="concept-vocab-def">Energy system work — filters to Conditioning exercises by subtype (Aerobic, Interval, etc.).</span>
+                  <span class="concept-vocab-def">Energy system work — filters to Conditioning exercises by subtype (Zone2, Threshold, VO2Max, Anaerobic).</span>
                 </div>
               </div>
             </div>
             <div class="concept-callout">
               <div class="concept-callout-label">In the app</div>
-              <p>When you select an exercise for a slot, the library is already filtered to exercises that match that slot type and movement pattern — you're always training the intended movement. A balanced template has equal push and pull Pattern slots across the week. Most people have too much push and not enough pull, which is why shoulder problems are so common.</p>
+              <p>When you select an exercise for a slot, the library is already filtered to exercises that match that slot type and movement pattern — you are always training the intended movement. A balanced template has equal push and pull Pattern slots across the week. Most people have too much push and not enough pull, which is why shoulder problems are so common.</p>
             </div>
           </div>
         </div>
@@ -3572,7 +3820,7 @@
             </div>
             <div class="concept-section">
               <div class="concept-section-title">Phase vs. Stimulus vs. Goal</div>
-              <p>A single program can mix Goals across phases — for example, the Strength + Conditioning program starts with a Strength accumulation block and finishes with a Conditioning realization block. The Phase describes where you are in the arc; the Goal describes what you're building; the Stimulus describes each day's specific demand.</p>
+              <p>A single program can mix Goals across phases — for example, the Strength + Conditioning program starts with a Strength accumulation block and finishes with a Conditioning realization block. The Phase describes where you are in the arc; the Goal describes what you are building; the Stimulus describes each day's specific demand.</p>
             </div>
             <div class="concept-callout">
               <div class="concept-callout-label">In the app</div>
@@ -3595,7 +3843,7 @@
             </div>
           </div>
           <div class="concept-body">
-            <p>Modifiers change the stimulus of an exercise without changing the movement pattern. They're the answer to "I don't have more weight but I need to keep progressing."</p>
+            <p>Modifiers change the stimulus of an exercise without changing the movement pattern. They're the answer to "I do not have more weight but I need to keep progressing."</p>
             <div class="concept-section">
               <div class="concept-section-title">Tempo Modifiers</div>
               <ul>
@@ -3656,7 +3904,7 @@
             </div>
             <div class="concept-section">
               <div class="concept-section-title">Autoregulation in Practice</div>
-              <p>Use RPE/RIR as your guide rather than a fixed weight prescription. If your warm-up sets feel harder than usual, reduce working weight by 5–10%. Stop a set when RPE hits 9 regardless of whether you've hit your target rep count. On bad days, chase the stimulus — not the number.</p>
+              <p>Use RPE/RIR as your guide rather than a fixed weight prescription. If your warm-up sets feel harder than usual, reduce working weight by 5–10%. Stop a set when RPE hits 9 regardless of whether you have hit your target rep count. On bad days, chase the stimulus — not the number.</p>
             </div>
             <div class="concept-callout">
               <div class="concept-callout-label">In the app</div>
@@ -3733,19 +3981,22 @@
               <div class="stat-label">EXERCISES</div>
             </div>
             <div class="stat-card">
-              <div class="stat-value" id="statTemplates">0</div>
-              <div class="stat-label">PLANS</div>
-              <div class="stat-subsection">
-                <div class="stat-sub-row">
-                  <span class="stat-sub-label">Templates</span>
-                  <span class="stat-sub-value" id="statTemplateCount">0</span>
-                </div>
-                <div class="stat-sub-row">
-                  <span class="stat-sub-label">Programs</span>
-                  <span class="stat-sub-value" id="statPrograms">0</span>
-                </div>
-              </div>
-            </div>
+  <div style="display:flex; gap:8px;">
+
+    <div style="flex:1; text-align:center;">
+      <div id="statTemplateCount" style="font-size:22px; font-weight:800; color:var(--color-primary); line-height:1; margin-bottom:6px;">0</div>
+      <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.5px;">TEMPLATES</div>
+    </div>
+
+    <div style="width:1px; background:rgba(255,255,255,0.07); flex-shrink:0;"></div>
+
+    <div style="flex:1; text-align:center;">
+      <div id="statPrograms" style="font-size:22px; font-weight:800; color:var(--color-primary); line-height:1; margin-bottom:6px;">0</div>
+      <div style="font-size:11px; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.5px;">PROGRAMS</div>
+    </div>
+
+  </div>
+</div>
           </div>
 
         </div>
@@ -3777,6 +4028,17 @@
        - Hide all other .view sections
        - Update which nav button has the .active class
   -->
+  <!-- Floating confirm bar — shown when a template or program is selected -->
+  <div class="selection-confirm-bar" id="selectionConfirmBar">
+    <div class="selection-confirm-label">
+      <div class="selection-confirm-eyebrow" id="selectionConfirmEyebrow">Selected</div>
+      <div class="selection-confirm-name" id="selectionConfirmName"></div>
+    </div>
+    <button class="btn selection-confirm-btn" id="selectionConfirmBtn" onclick="handleSelectionConfirm()">
+      Start →
+    </button>
+  </div>
+
   <nav class="bottom-nav">
     <button class="nav-btn active" onclick="showView('templates')" id="navTemplates">
       <span class="nav-icon">
@@ -3851,6 +4113,7 @@
             <option value="">Select...</option>
             <option value="Compound">Compound</option>
             <option value="Isolation">Isolation</option>
+            <option value="Activation">Activation</option>
             <option value="Stability">Stability</option>
             <option value="Power">Power</option>
             <option value="Conditioning">Conditioning</option>
@@ -4028,7 +4291,7 @@ function toggleConcept(id) {
 
 
 // ==================== SHARED EXERCISE FILTER STATE ====================
-const EX_TYPES    = ['Compound','Isolation','Stability','Power','Conditioning'];
+const EX_TYPES    = ['Compound','Isolation','Stability','Activation','Power','Conditioning'];
 const EX_PATTERNS = ['Squat','Hinge','HorizontalPush','VerticalPush','HorizontalPull','VerticalPull','Carry'];
 const EX_MUSCLES  = ['Quads','Glutes','Hamstrings','Core','Back','Shoulders','Chest','Biceps','Triceps','Calves','Forearms','LowerBack','Adductors'];
 
@@ -4711,6 +4974,161 @@ const EXERCISE_LIBRARY = [
   },
 
 // ╔══════════════════════════════════════════════════════════╗
+// ║  EXERCISE TYPE: ACTIVATION                               ║
+// ║  Low-load primer movements. Grouped by target joint.     ║
+// ╚══════════════════════════════════════════════════════════╝
+
+  // ── Joint: Hip ───────────────────────────────────────────
+
+  {
+    id: "AH001",
+    name: "Glute Bridge",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Hamstrings"],
+    loadTypes: ["Bodyweight", "Dumbbell", "Band"],
+    laterality: "Bilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "AH002",
+    name: "Clamshell",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: [],
+    loadTypes: ["Bodyweight", "Band"],
+    laterality: "Unilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "AH003",
+    name: "Monster Walk",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Adductors"],
+    loadTypes: ["Band"],
+    laterality: "Bilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "AH004",
+    name: "Fire Hydrant",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: [],
+    loadTypes: ["Bodyweight", "Band"],
+    laterality: "Unilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "AH005",
+    name: "Hip Circle",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["LowerBack"],
+    loadTypes: ["Bodyweight", "Band"],
+    laterality: "Bilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "AH006",
+    name: "Donkey Kick",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Hamstrings"],
+    loadTypes: ["Bodyweight", "Band", "Cable"],
+    laterality: "Unilateral",
+    jointBias: ["Hip"]
+  },
+
+  // ── Joint: Shoulder ──────────────────────────────────────
+
+  {
+    id: "AS001",
+    name: "Band Pull-Apart",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: ["Back"],
+    loadTypes: ["Band"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder"]
+  },
+  {
+    id: "AS002",
+    name: "Arm Circle",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: [],
+    loadTypes: ["Bodyweight"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder"]
+  },
+  {
+    id: "AS003",
+    name: "Wall Slide",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: ["Back"],
+    loadTypes: ["Bodyweight"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder"]
+  },
+  {
+    id: "AS004",
+    name: "Shoulder CARs",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: [],
+    loadTypes: ["Bodyweight"],
+    laterality: "Unilateral",
+    jointBias: ["Shoulder"]
+  },
+  {
+    id: "AS005",
+    name: "I-Y-T Raise",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: ["Back"],
+    loadTypes: ["Bodyweight", "Dumbbell", "Band"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder"]
+  },
+  {
+    id: "AS006",
+    name: "Internal / External Rotation",
+    movementPattern: null,
+    exerciseType: "Activation",
+    subtype: "Activation",
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: [],
+    loadTypes: ["Band", "Dumbbell", "Cable"],
+    laterality: "Unilateral",
+    jointBias: ["Shoulder"]
+  },
+
+// ╔══════════════════════════════════════════════════════════╗
 // ║  EXERCISE TYPE: POWER                                    ║
 // ║  Speed and explosiveness intent.                         ║
 // ║  Organized by power subtype.                             ║
@@ -4732,7 +5150,7 @@ const EXERCISE_LIBRARY = [
   },
   {
     id: "PJ002",
-    name: "Vertical Jump",
+    name: "Tuck Jump",
     movementPattern: null,
     exerciseType: "Power",
     subtype: "Jump",
@@ -12650,7 +13068,7 @@ function isExerciseAllowed(ex, slot) {
     case 'Cooldown':
       return false;
     case 'Activation':
-      return ex.exerciseType === 'Stability' &&
+      return ex.exerciseType === 'Activation' &&
              Array.isArray(ex.jointBias) && ex.jointBias.includes(slot.jointBias);
     case 'Pattern':
       return ex.exerciseType === 'Compound' &&
@@ -12730,6 +13148,7 @@ const PROGRAMS = [
     id: 'PROG_STR_FOUNDATION',
     name: 'Strength Foundation',
     goal: 'Strength',
+    daysPerWeek: 4,
     durationWeeks: 12,
     description: 'A classic periodized strength program. You\'ll first build muscle mass to raise your strength ceiling, then shift to heavy lifting to express that new tissue as maximum force.',
     whoIsThisFor: 'Anyone looking to systematically build strength over 12 weeks with a proven block structure.',
@@ -12806,6 +13225,7 @@ const PROGRAMS = [
     id: 'PROG_HYP_BUILDER',
     name: 'Hypertrophy Builder',
     goal: 'Hypertrophy',
+    daysPerWeek: 4,
     durationWeeks: 11,
     description: 'A muscle-building focused program that uses an initial strength primer to prepare your nervous system before diving into sustained hypertrophy work.',
     whoIsThisFor: 'Anyone whose primary goal is building muscle size with a scientific, periodized approach.',
@@ -12882,6 +13302,7 @@ const PROGRAMS = [
     id: 'PROG_STR_COND',
     name: 'Strength + Conditioning',
     goal: 'Strength',
+    daysPerWeek: 4,
     durationWeeks: 12,
     description: 'Builds strength and cardiovascular fitness simultaneously. Ideal if you want to be both strong and conditioned without sacrificing either quality.',
     whoIsThisFor: 'Anyone who wants to build meaningful strength while maintaining or improving aerobic capacity.',
@@ -12951,9 +13372,570 @@ const PROGRAMS = [
         repRange: '1-4',
         rirTarget: '0-1'
       }
+   ]
+},
+
+  // ─── 2-Day variants ────────────────────────────────────────────────────────
+  {
+    id: 'PROG_STR_FOUNDATION_2D',
+    name: 'Strength Foundation',
+    goal: 'Strength',
+    daysPerWeek: 2,
+    durationWeeks: 12,
+    description: 'The same proven hypertrophy-to-strength progression — built for two full-body sessions a week. Lower total volume than the 4-day version, but every session covers every pattern so nothing gets missed.',
+    whoIsThisFor: 'Anyone who can only commit to 2 days per week and still wants a structured, periodized plan with deloads and block progression.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',  templateId: 'HYP_2D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to raise your strength ceiling',
+        why: 'Strength is expressed through muscle tissue. More muscle means a higher ceiling for the force you can produce. This block lays the foundation everything else is built on.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work, not just moving the weight.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',             templateId: 'HYP_2D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from Block 1',
+        why: 'Fatigue accumulates invisibly. A deload lets your nervous system consolidate the gains from the hypertrophy block before you push into heavier strength work. Skipping this is the most common reason people plateau.',
+        trainingFocus: 'Same exercises, same structure — but aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',     templateId: 'STR_2D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum strength',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. Lower reps, heavier weight, longer rest — this is where strength is built.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',             templateId: 'STR_2D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover before your peak strength block',
+        why: 'Four weeks of heavy lifting accumulates significant neural fatigue. This deload ensures you enter the peak block fresh and ready to hit new personal records.',
+        trainingFocus: 'Same structure, 50% volume. Keep the loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength Phase',templateId: 'STR_2D_FULLBODY', weeks: 2, isDeload: false,
+        goal: 'Express your maximum strength — hit new personal records',
+        why: 'The final two weeks are about peaking. Your body has built the muscle, learned to recruit it, and is now fresh from a deload. This is when you find out what you are capable of.',
+        trainingFocus: 'Very heavy loads, very low reps (1-4), maximum rest between sets. Leave nothing in the tank on your top sets.',
+        repRange: '1-4', rirTarget: '0-1' }
     ]
-  }
+  },
+
+  {
+    id: 'PROG_HYP_BUILDER_2D',
+    name: 'Hypertrophy Builder',
+    goal: 'Hypertrophy',
+    daysPerWeek: 2,
+    durationWeeks: 11,
+    description: 'A muscle-building program scaled to two full-body sessions per week. The neural primer and hypertrophy block structure is identical — just at a frequency that works for busier schedules.',
+    whoIsThisFor: 'Anyone whose primary goal is building muscle but can only train twice a week. Expect solid progress — just at a slower rate than higher-frequency variants.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Neural Primer Phase',          templateId: 'STR_2D_FULLBODY', weeks: 3, isDeload: false,
+        goal: 'Prime your nervous system for maximum muscle recruitment',
+        why: 'Starting with a brief strength block activates high-threshold motor units — the muscle fibres with the greatest growth potential. When you shift to hypertrophy work, you will be able to recruit more muscle fibre per set, making every rep more productive.',
+        trainingFocus: 'Heavier loads, lower reps (4-6) to wake up your nervous system. Focus on technique and bar speed.',
+        repRange: '4-6', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'STR_2D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover before your primary hypertrophy block',
+        why: 'Entering the hypertrophy block fresh means every session can be performed at the quality needed to drive maximum growth. Accumulated fatigue blunts the stimulus — the deload removes it.',
+        trainingFocus: 'Same structure, 50% volume. Keep the movements crisp.',
+        repRange: '4-6', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Hypertrophy Phase',            templateId: 'HYP_2D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Drive maximum muscle growth across all major muscle groups',
+        why: 'This is the primary block. Your nervous system is primed and you are fully recovered. The combination creates the ideal environment for hypertrophy — high volume, controlled fatigue, and consistent progressive overload.',
+        trainingFocus: 'Moderate loads (8-12 reps), high volume, 2-3 min rest compounds / 60-90s isolations. Feel each muscle working through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'HYP_2D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Let the hypertrophy adaptations consolidate',
+        why: 'Muscle growth does not happen during training — it happens during recovery. This deload gives your body uninterrupted time to complete the adaptations triggered by the last 4 weeks.',
+        trainingFocus: 'Same structure, 50% volume. This is where the gains are actually made.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Hypertrophy Intensification',  templateId: 'HYP_2D_FULLBODY', weeks: 2, isDeload: false,
+        goal: 'Push past plateaus with intensified volume',
+        why: 'The final two weeks use the same template but with increased intensity. Your body has adapted to the baseline stimulus — raising the demand now forces a final wave of adaptation before the program ends.',
+        trainingFocus: 'Push closer to failure (1 RIR). Add a set where possible. Focus on progressive overload from your Block 3 numbers.',
+        repRange: '8-12', rirTarget: '1' }
+    ]
+  },
+
+  {
+    id: 'PROG_STR_COND_2D',
+    name: 'Strength + Conditioning',
+    goal: 'Strength',
+    daysPerWeek: 2,
+    durationWeeks: 12,
+    description: 'Strength and cardiovascular fitness in two sessions per week. Each session covers both lifting and conditioning work — efficient by design.',
+    whoIsThisFor: 'Anyone who wants structured periodization for both strength and aerobic fitness but has a genuinely limited schedule.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy + Aerobic Base',      templateId: 'HYP_2D_FULLBODY_AERO', weeks: 4, isDeload: false,
+        goal: 'Build muscle and establish your aerobic base simultaneously',
+        why: 'Aerobic fitness supports strength training by improving recovery between sets and between sessions. Building both qualities together now means the strength block that follows will be performed on a much more robust physiological foundation.',
+        trainingFocus: 'Moderate loads (8-12 reps) for lifting. Zone 2 aerobic work at conversational pace. Do not let either quality suffer.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                          templateId: 'HYP_2D_FULLBODY_AERO', weeks: 1, isDeload: true,
+        goal: 'Recover from combined strength and conditioning demands',
+        why: 'Training two physical qualities simultaneously creates more total fatigue than training one. The deload is especially important here — your body needs time to absorb adaptations in both the muscular and cardiovascular systems.',
+        trainingFocus: '50% volume across both lifting and conditioning. Easy aerobic work only — no intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength + Conditioning Phase',   templateId: 'STR_2D_FULLBODY_AERO', weeks: 4, isDeload: false,
+        goal: 'Build maximum strength on top of your aerobic foundation',
+        why: 'With your aerobic base established, your body can now handle heavier strength work with better recovery. The conditioning component shifts to support the strength goal rather than compete with it.',
+        trainingFocus: 'Heavy loads (3-6 reps) for lifting. Maintain aerobic work but keep it at low intensity to avoid competing with strength recovery.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                          templateId: 'STR_2D_FULLBODY_AERO', weeks: 1, isDeload: true,
+        goal: 'Recover before your strength peak',
+        why: 'Heavy compound lifting combined with conditioning creates significant systemic fatigue. This deload ensures you arrive at the final block capable of expressing your true strength.',
+        trainingFocus: '50% lifting volume. Light aerobic work only — a 20-minute easy walk or bike ride is perfect.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength + Conditioning',    templateId: 'STR_2D_FULLBODY_AERO', weeks: 2, isDeload: false,
+        goal: 'Peak your strength while maintaining conditioning',
+        why: 'The final block combines your highest strength expression with maintained aerobic fitness. You have built both qualities over 10 weeks — now you get to see what that combination looks like at its best.',
+        trainingFocus: 'Maximum strength loads (1-4 reps). Aerobic work maintained but kept easy to preserve recovery for lifting.',
+        repRange: '1-4', rirTarget: '0-1' }
+    ]
+  },
+
+  // ─── 3-Day variants ────────────────────────────────────────────────────────
+  {
+    id: 'PROG_STR_FOUNDATION_3D',
+    name: 'Strength Foundation',
+    goal: 'Strength',
+    daysPerWeek: 3,
+    durationWeeks: 12,
+    description: 'The classic hypertrophy-to-strength periodization in a 3-day full-body format. Three sessions per week hits every pattern with high frequency — often ideal for intermediate lifters who can not train four days but still want structured block progression.',
+    whoIsThisFor: 'Anyone with 3 days per week who wants a proper periodized program with deloads, block transitions, and a strength peak.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',  templateId: 'HYP_3D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to raise your strength ceiling',
+        why: 'Strength is expressed through muscle tissue. More muscle means a higher ceiling for the force you can produce. This block lays the foundation everything else is built on.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work, not just moving the weight.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',             templateId: 'HYP_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from Block 1',
+        why: 'Fatigue accumulates invisibly. A deload lets your nervous system consolidate the gains from the hypertrophy block before you push into heavier strength work. Skipping this is the most common reason people plateau.',
+        trainingFocus: 'Same exercises, same structure — but aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',     templateId: 'STR_3D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum strength',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. Lower reps, heavier weight, longer rest — this is where strength is built.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',             templateId: 'STR_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover before your peak strength block',
+        why: 'Four weeks of heavy lifting accumulates significant neural fatigue. This deload ensures you enter the peak block fresh and ready to hit new personal records.',
+        trainingFocus: 'Same structure, 50% volume. Keep the loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength Phase',templateId: 'STR_3D_FULLBODY', weeks: 2, isDeload: false,
+        goal: 'Express your maximum strength — hit new personal records',
+        why: 'The final two weeks are about peaking. Your body has built the muscle, learned to recruit it, and is now fresh from a deload. This is when you find out what you are capable of.',
+        trainingFocus: 'Very heavy loads, very low reps (1-4), maximum rest between sets. Leave nothing in the tank on your top sets.',
+        repRange: '1-4', rirTarget: '0-1' }
+    ]
+  },
+
+  {
+    id: 'PROG_HYP_BUILDER_3D',
+    name: 'Hypertrophy Builder',
+    goal: 'Hypertrophy',
+    daysPerWeek: 3,
+    durationWeeks: 11,
+    description: 'A muscle-building program structured around three full-body sessions per week. The neural primer still comes first — three days is enough frequency to make the strength-then-hypertrophy sequence work well.',
+    whoIsThisFor: 'Anyone training 3 days per week whose primary goal is building muscle with a scientific, periodized approach.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Neural Primer Phase',          templateId: 'STR_3D_FULLBODY', weeks: 3, isDeload: false,
+        goal: 'Prime your nervous system for maximum muscle recruitment',
+        why: 'Starting with a brief strength block activates high-threshold motor units — the muscle fibres with the greatest growth potential. When you shift to hypertrophy work, you will be able to recruit more muscle fibre per set, making every rep more productive.',
+        trainingFocus: 'Heavier loads, lower reps (4-6) to wake up your nervous system. Focus on technique and bar speed.',
+        repRange: '4-6', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'STR_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover before your primary hypertrophy block',
+        why: 'Entering the hypertrophy block fresh means every session can be performed at the quality needed to drive maximum growth. Accumulated fatigue blunts the stimulus — the deload removes it.',
+        trainingFocus: 'Same structure, 50% volume. Keep the movements crisp.',
+        repRange: '4-6', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Hypertrophy Phase',            templateId: 'HYP_3D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Drive maximum muscle growth across all major muscle groups',
+        why: 'This is the primary block. Your nervous system is primed and you are fully recovered. The combination creates the ideal environment for hypertrophy — high volume, controlled fatigue, and consistent progressive overload.',
+        trainingFocus: 'Moderate loads (8-12 reps), high volume, 2-3 min rest compounds / 60-90s isolations. Feel each muscle working through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'HYP_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Let the hypertrophy adaptations consolidate',
+        why: 'Muscle growth does not happen during training — it happens during recovery. This deload gives your body uninterrupted time to complete the adaptations triggered by the last 4 weeks.',
+        trainingFocus: 'Same structure, 50% volume. This is where the gains are actually made.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Hypertrophy Intensification',  templateId: 'HYP_3D_FULLBODY', weeks: 2, isDeload: false,
+        goal: 'Push past plateaus with intensified volume',
+        why: 'The final two weeks use the same template but with increased intensity. Your body has adapted to the baseline stimulus — raising the demand now forces a final wave of adaptation before the program ends.',
+        trainingFocus: 'Push closer to failure (1 RIR). Add a set where possible. Focus on progressive overload from your Block 3 numbers.',
+        repRange: '8-12', rirTarget: '1' }
+    ]
+  },
+
+  {
+    id: 'PROG_STR_COND_3D',
+    name: 'Strength + Conditioning',
+    goal: 'Strength',
+    daysPerWeek: 3,
+    durationWeeks: 12,
+    description: 'Three full-body sessions per week combining lifting and conditioning. The aerobic component sits alongside the strength work rather than competing with it — three days gives enough recovery between sessions for both qualities to develop.',
+    whoIsThisFor: 'Anyone training 3 days per week who wants meaningful strength and cardiovascular gains from a single program.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy + Aerobic Base',      templateId: 'HYP_3D_FULLBODY_AERO', weeks: 4, isDeload: false,
+        goal: 'Build muscle and establish your aerobic base simultaneously',
+        why: 'Aerobic fitness supports strength training by improving recovery between sets and between sessions. Building both qualities together now means the strength block that follows will be performed on a much more robust physiological foundation.',
+        trainingFocus: 'Moderate loads (8-12 reps) for lifting. Zone 2 aerobic work at conversational pace. Do not let either quality suffer.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                          templateId: 'HYP_3D_FULLBODY_AERO', weeks: 1, isDeload: true,
+        goal: 'Recover from combined strength and conditioning demands',
+        why: 'Training two physical qualities simultaneously creates more total fatigue than training one. The deload is especially important here — your body needs time to absorb adaptations in both the muscular and cardiovascular systems.',
+        trainingFocus: '50% volume across both lifting and conditioning. Easy aerobic work only — no intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength + Conditioning Phase',   templateId: 'STR_3D_FULLBODY_AERO', weeks: 4, isDeload: false,
+        goal: 'Build maximum strength on top of your aerobic foundation',
+        why: 'With your aerobic base established, your body can now handle heavier strength work with better recovery. The conditioning component shifts to support the strength goal rather than compete with it.',
+        trainingFocus: 'Heavy loads (3-6 reps) for lifting. Maintain aerobic work but keep it at low intensity to avoid competing with strength recovery.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                          templateId: 'STR_3D_FULLBODY_AERO', weeks: 1, isDeload: true,
+        goal: 'Recover before your strength peak',
+        why: 'Heavy compound lifting combined with conditioning creates significant systemic fatigue. This deload ensures you arrive at the final block capable of expressing your true strength.',
+        trainingFocus: '50% lifting volume. Light aerobic work only — a 20-minute easy walk or bike ride is perfect.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength + Conditioning',    templateId: 'STR_3D_FULLBODY_AERO', weeks: 2, isDeload: false,
+        goal: 'Peak your strength while maintaining conditioning',
+        why: 'The final block combines your highest strength expression with maintained aerobic fitness. You have built both qualities over 10 weeks — now you get to see what that combination looks like at its best.',
+        trainingFocus: 'Maximum strength loads (1-4 reps). Aerobic work maintained but kept easy to preserve recovery for lifting.',
+        repRange: '1-4', rirTarget: '0-1' }
+    ]
+  },
+
+  // ─── 5-Day variants ────────────────────────────────────────────────────────
+  {
+    id: 'PROG_STR_FOUNDATION_5D',
+    name: 'Strength Foundation',
+    goal: 'Strength',
+    daysPerWeek: 5,
+    durationWeeks: 12,
+    description: 'The hypertrophy-to-strength progression at maximum weekly volume. The hypertrophy block uses a PPL split for high per-muscle frequency; the strength block shifts to an upper/lower/strength structure optimised for heavy compound loading.',
+    whoIsThisFor: 'Experienced lifters who can train 5 days per week and want maximum volume through a full periodized cycle.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',  templateId: 'HYP_5D_PPLUL', weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to raise your strength ceiling',
+        why: 'Strength is expressed through muscle tissue. More muscle means a higher ceiling for the force you can produce. This block lays the foundation everything else is built on.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work, not just moving the weight.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',             templateId: 'HYP_5D_PPLUL', weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from Block 1',
+        why: 'Fatigue accumulates invisibly. A deload lets your nervous system consolidate the gains from the hypertrophy block before you push into heavier strength work. Skipping this is the most common reason people plateau.',
+        trainingFocus: 'Same exercises, same structure — but aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',     templateId: 'STR_5D_ULS', weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum strength',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. The program shifts from a PPL hypertrophy structure to an upper/lower/strength split — better suited to the compound-heavy work ahead.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',             templateId: 'STR_5D_ULS', weeks: 1, isDeload: true,
+        goal: 'Recover before your peak strength block',
+        why: 'Four weeks of heavy lifting accumulates significant neural fatigue. This deload ensures you enter the peak block fresh and ready to hit new personal records.',
+        trainingFocus: 'Same structure, 50% volume. Keep the loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength Phase',templateId: 'STR_5D_ULS', weeks: 2, isDeload: false,
+        goal: 'Express your maximum strength — hit new personal records',
+        why: 'The final two weeks are about peaking. Your body has built the muscle, learned to recruit it, and is now fresh from a deload. This is when you find out what you are capable of.',
+        trainingFocus: 'Very heavy loads, very low reps (1-4), maximum rest between sets. Leave nothing in the tank on your top sets.',
+        repRange: '1-4', rirTarget: '0-1' }
+    ]
+  },
+
+  {
+    id: 'PROG_HYP_BUILDER_5D',
+    name: 'Hypertrophy Builder',
+    goal: 'Hypertrophy',
+    daysPerWeek: 5,
+    durationWeeks: 11,
+    description: 'Maximum-volume muscle building. The neural primer uses a 5-day upper/lower/strength split; the main hypertrophy block uses a PPL structure to pile on per-muscle volume at high frequency.',
+    whoIsThisFor: 'Experienced lifters training 5 days per week whose primary goal is building as much muscle as possible in one structured cycle.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Neural Primer Phase',          templateId: 'STR_5D_ULS',    weeks: 3, isDeload: false,
+        goal: 'Prime your nervous system for maximum muscle recruitment',
+        why: 'Starting with a brief strength block activates high-threshold motor units — the muscle fibres with the greatest growth potential. When you shift to hypertrophy work, you will be able to recruit more muscle fibre per set, making every rep more productive.',
+        trainingFocus: 'Heavier loads, lower reps (4-6) to wake up your nervous system. Focus on technique and bar speed.',
+        repRange: '4-6', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'STR_5D_ULS',    weeks: 1, isDeload: true,
+        goal: 'Recover before your primary hypertrophy block',
+        why: 'Entering the hypertrophy block fresh means every session can be performed at the quality needed to drive maximum growth. Accumulated fatigue blunts the stimulus — the deload removes it.',
+        trainingFocus: 'Same structure, 50% volume. Keep the movements crisp.',
+        repRange: '4-6', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Hypertrophy Phase',            templateId: 'HYP_5D_PPLUL', weeks: 4, isDeload: false,
+        goal: 'Drive maximum muscle growth across all major muscle groups',
+        why: 'This is the primary block. Your nervous system is primed and you are fully recovered. The program shifts to a PPL split here — more total sets per muscle, more variation, and a structure optimised purely for growth.',
+        trainingFocus: 'Moderate loads (8-12 reps), high volume, 2-3 min rest compounds / 60-90s isolations. Feel each muscle working through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'HYP_5D_PPLUL', weeks: 1, isDeload: true,
+        goal: 'Let the hypertrophy adaptations consolidate',
+        why: 'Muscle growth does not happen during training — it happens during recovery. This deload gives your body uninterrupted time to complete the adaptations triggered by the last 4 weeks.',
+        trainingFocus: 'Same structure, 50% volume. This is where the gains are actually made.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Hypertrophy Intensification',  templateId: 'HYP_5D_PPLUL', weeks: 2, isDeload: false,
+        goal: 'Push past plateaus with intensified volume',
+        why: 'The final two weeks use the same template but with increased intensity. Your body has adapted to the baseline stimulus — raising the demand now forces a final wave of adaptation before the program ends.',
+        trainingFocus: 'Push closer to failure (1 RIR). Add a set where possible. Focus on progressive overload from your Block 3 numbers.',
+        repRange: '8-12', rirTarget: '1' }
+    ]
+  },
+
+  {
+    id: 'PROG_STR_COND_5D',
+    name: 'Strength + Conditioning',
+    goal: 'Strength',
+    daysPerWeek: 5,
+    durationWeeks: 12,
+    description: 'Five days per week of combined strength and conditioning. The hypertrophy block uses PPL with aerobic work; the strength block shifts to an upper/lower/strength structure while maintaining conditioning at low intensity to protect recovery.',
+    whoIsThisFor: 'Lifters training 5 days per week who want both maximum strength and a robust cardiovascular base from one 12-week cycle.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy + Aerobic Base',      templateId: 'HYP_5D_PPLUL_AERO', weeks: 4, isDeload: false,
+        goal: 'Build muscle and establish your aerobic base simultaneously',
+        why: 'Aerobic fitness supports strength training by improving recovery between sets and between sessions. Building both qualities together now means the strength block that follows will be performed on a much more robust physiological foundation.',
+        trainingFocus: 'Moderate loads (8-12 reps) for lifting. Zone 2 aerobic work at conversational pace. Do not let either quality suffer.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                          templateId: 'HYP_5D_PPLUL_AERO', weeks: 1, isDeload: true,
+        goal: 'Recover from combined strength and conditioning demands',
+        why: 'Training two physical qualities simultaneously creates more total fatigue than training one. The deload is especially important here — your body needs time to absorb adaptations in both the muscular and cardiovascular systems.',
+        trainingFocus: '50% volume across both lifting and conditioning. Easy aerobic work only — no intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength + Conditioning Phase',   templateId: 'STR_5D_ULS_AERO',   weeks: 4, isDeload: false,
+        goal: 'Build maximum strength on top of your aerobic foundation',
+        why: 'With your aerobic base established, your body can now handle heavier strength work with better recovery. The conditioning component shifts to support the strength goal rather than compete with it.',
+        trainingFocus: 'Heavy loads (3-6 reps) for lifting. Maintain aerobic work but keep it at low intensity to avoid competing with strength recovery.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                          templateId: 'STR_5D_ULS_AERO',   weeks: 1, isDeload: true,
+        goal: 'Recover before your strength peak',
+        why: 'Heavy compound lifting combined with conditioning creates significant systemic fatigue. This deload ensures you arrive at the final block capable of expressing your true strength.',
+        trainingFocus: '50% lifting volume. Light aerobic work only — a 20-minute easy walk or bike ride is perfect.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Peak Strength + Conditioning',    templateId: 'STR_5D_ULS_AERO',   weeks: 2, isDeload: false,
+        goal: 'Peak your strength while maintaining conditioning',
+        why: 'The final block combines your highest strength expression with maintained aerobic fitness. You have built both qualities over 10 weeks — now you get to see what that combination looks like at its best.',
+        trainingFocus: 'Maximum strength loads (1-4 reps). Aerobic work maintained but kept easy to preserve recovery for lifting.',
+        repRange: '1-4', rirTarget: '0-1' }
+    ]
+  },
+
+  // ─── Power Development ─────────────────────────────────────────────────────
+  {
+    id: 'PROG_PWR_3D',
+    name: 'Power Development',
+    goal: 'Power',
+    daysPerWeek: 3,
+    durationWeeks: 14,
+    description: 'A full periodized power program: build muscle first, convert it to strength, then express that strength as explosive speed. Three full-body sessions per week progressing through hypertrophy, strength, and power phases.',
+    whoIsThisFor: 'Athletes or intermediate lifters training 3 days per week who want to develop explosive power through a structured, science-based progression.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',       templateId: 'HYP_3D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to create the raw tissue that will eventually express power',
+        why: 'Power is force expressed at speed -- but you need force first, and force comes from muscle. This block builds the contractile tissue that the later strength and power blocks will train to fire explosively. Without this foundation, power training has nothing to work with.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                   templateId: 'HYP_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from the hypertrophy block',
+        why: 'Four weeks of high-volume work accumulates fatigue that masks your true fitness. This deload lets your body consolidate the muscle gains before shifting to heavier strength work.',
+        trainingFocus: 'Same exercises, same structure -- aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',           templateId: 'STR_3D_FULLBODY', weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum force production',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. You need high force production before you can train power -- you cannot express force quickly if you cannot produce it at all.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                   templateId: 'STR_3D_FULLBODY', weeks: 1, isDeload: true,
+        goal: 'Recover before the power expression block',
+        why: 'Heavy strength work creates significant neural fatigue. Entering the power block fresh is critical -- power training demands a maximally responsive nervous system. If you are fatigued, you cannot move fast, and slow reps defeat the purpose.',
+        trainingFocus: 'Same structure, 50% volume. Keep loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Power Expression Phase',   templateId: 'PWR_3D',          weeks: 4, isDeload: false,
+        goal: 'Express your strength as explosive speed and power',
+        why: 'This is the payoff. Your body has built the muscle (Block 1), learned to recruit it under heavy loads (Block 3), and is now fresh from a deload. The power block trains your nervous system to fire that muscle as fast as possible -- jumps, throws, sprints, and Olympic lift variations at maximum intent.',
+        trainingFocus: 'Explosive movements with full rest between sets. Every rep at maximum speed -- if you notice yourself slowing down, the set is over. Quality over quantity.',
+        repRange: '1-5', rirTarget: 'N/A -- stop at speed drop' }
+    ]
+  },
+
+  {
+    id: 'PROG_PWR_4D',
+    name: 'Power Development',
+    goal: 'Power',
+    daysPerWeek: 4,
+    durationWeeks: 14,
+    description: 'The full hypertrophy to strength to power progression in a 4-day upper/lower format. Higher weekly volume than the 3-day version with dedicated power quality days and support days.',
+    whoIsThisFor: 'Athletes or intermediate-to-advanced lifters training 4 days per week who want to develop explosive power with maximum training volume per phase.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',       templateId: 'HYP_4D_UL',   weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to create the raw tissue that will eventually express power',
+        why: 'Power is force expressed at speed -- but you need force first, and force comes from muscle. This block builds the contractile tissue that the later strength and power blocks will train to fire explosively. Without this foundation, power training has nothing to work with.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                   templateId: 'HYP_4D_UL',   weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from the hypertrophy block',
+        why: 'Four weeks of high-volume work accumulates fatigue that masks your true fitness. This deload lets your body consolidate the muscle gains before shifting to heavier strength work.',
+        trainingFocus: 'Same exercises, same structure -- aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',           templateId: 'STR_4D_UL',   weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum force production',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. You need high force production before you can train power -- you cannot express force quickly if you cannot produce it at all.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                   templateId: 'STR_4D_UL',   weeks: 1, isDeload: true,
+        goal: 'Recover before the power expression block',
+        why: 'Heavy strength work creates significant neural fatigue. Entering the power block fresh is critical -- power training demands a maximally responsive nervous system. If you are fatigued, you cannot move fast, and slow reps defeat the purpose.',
+        trainingFocus: 'Same structure, 50% volume. Keep loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Power Expression Phase',   templateId: 'PWR_4D',      weeks: 4, isDeload: false,
+        goal: 'Express your strength as explosive speed and power',
+        why: 'This is the payoff. Your body has built the muscle (Block 1), learned to recruit it under heavy loads (Block 3), and is now fresh from a deload. The power block trains your nervous system to fire that muscle as fast as possible -- jumps, throws, sprints, and Olympic lift variations at maximum intent.',
+        trainingFocus: 'Explosive movements with full rest between sets. Every rep at maximum speed -- if you notice yourself slowing down, the set is over. Quality over quantity.',
+        repRange: '1-5', rirTarget: 'N/A -- stop at speed drop' }
+    ]
+  },
+
+  {
+    id: 'PROG_PWR_5D',
+    name: 'Power Development',
+    goal: 'Power',
+    daysPerWeek: 5,
+    durationWeeks: 14,
+    description: 'Maximum-volume power development. The hypertrophy block uses a PPL split, the strength block shifts to upper/lower/strength, and the power block uses a dedicated 5-day structure with quality days, support days, and a speed day.',
+    whoIsThisFor: 'Experienced athletes training 5 days per week who want the highest possible volume through a full hypertrophy to strength to power periodized cycle.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Hypertrophy Phase',       templateId: 'HYP_5D_PPLUL', weeks: 4, isDeload: false,
+        goal: 'Build muscle mass to create the raw tissue that will eventually express power',
+        why: 'Power is force expressed at speed -- but you need force first, and force comes from muscle. This block builds the contractile tissue that the later strength and power blocks will train to fire explosively. The PPL split here maximises per-muscle volume at high frequency.',
+        trainingFocus: 'Higher reps (8-12), moderate loads, shorter rest periods. Focus on feeling the muscle work through full range of motion.',
+        repRange: '8-12', rirTarget: '2-3' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                   templateId: 'HYP_5D_PPLUL', weeks: 1, isDeload: true,
+        goal: 'Recover and absorb adaptation from the hypertrophy block',
+        why: 'Five days per week of high-volume hypertrophy work creates significant accumulated fatigue. This deload lets your body consolidate the muscle gains before shifting to heavier strength work.',
+        trainingFocus: 'Same exercises, same structure -- aim for 50% of your normal volume. Drop sets, not intensity.',
+        repRange: '8-12', rirTarget: '4-5' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Strength Phase',           templateId: 'STR_5D_ULS',   weeks: 4, isDeload: false,
+        goal: 'Convert your new muscle into maximum force production',
+        why: 'Now that you have built the tissue, this block teaches your nervous system to recruit it efficiently under heavy loads. The program shifts from PPL to an upper/lower/strength split better suited to the compound-heavy work ahead. You need high force production before you can train power.',
+        trainingFocus: 'Lower reps (3-6), heavy loads, longer rest periods (3-5 min). Every set should feel like it matters.',
+        repRange: '3-6', rirTarget: '1-2' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                   templateId: 'STR_5D_ULS',   weeks: 1, isDeload: true,
+        goal: 'Recover before the power expression block',
+        why: 'Heavy strength work creates significant neural fatigue. Entering the power block fresh is critical -- power training demands a maximally responsive nervous system. If you are fatigued, you cannot move fast, and slow reps defeat the purpose.',
+        trainingFocus: 'Same structure, 50% volume. Keep loads relatively heavy but stop well short of failure.',
+        repRange: '3-6', rirTarget: '4-5' },
+      { blockNumber: 5, phase: 'Realization',     label: 'Power Expression Phase',   templateId: 'PWR_5D',       weeks: 4, isDeload: false,
+        goal: 'Express your strength as explosive speed and power',
+        why: 'This is the payoff. Your body has built the muscle, learned to recruit it under heavy loads, and is now fresh from a deload. The 5-day power structure includes dedicated quality days (jumps, Olympic variations), support days (sprints, hinge work), and a speed day -- maximum exposure to explosive stimuli.',
+        trainingFocus: 'Explosive movements with full rest between sets. Every rep at maximum speed -- if you notice yourself slowing down, the set is over. Quality over quantity.',
+        repRange: '1-5', rirTarget: 'N/A -- stop at speed drop' }
+    ]
+  },
+
+  // ─── Conditioning Base ─────────────────────────────────────────────────────
+  {
+    id: 'PROG_COND_3D',
+    name: 'Conditioning Base',
+    goal: 'Conditioning',
+    daysPerWeek: 3,
+    durationWeeks: 12,
+    description: 'Build your cardiovascular engine from the ground up. Start with easy aerobic work, progress to threshold training, then peak with high-intensity intervals -- all while maintaining muscle with microdose strength work.',
+    whoIsThisFor: 'Anyone training 3 days per week whose primary goal is cardiovascular fitness, improving endurance, or establishing an aerobic base for sport.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Aerobic Base Phase',           templateId: 'COND_3D', weeks: 4, isDeload: false,
+        goal: 'Build your aerobic engine with easy, sustained cardio',
+        why: 'Every conditioning quality -- threshold, VO2max, repeated sprint ability -- is built on top of the aerobic system. Without a strong aerobic base, high-intensity work breaks you down faster than it builds you up. These four weeks establish the foundation that makes everything else possible.',
+        trainingFocus: 'All sessions at Zone 2 (conversational pace) regardless of what the template day says. If the template has a VO2max or Threshold day, perform it as easy aerobic work instead. Duration over intensity -- aim for the upper end of the prescribed time ranges.',
+        repRange: 'N/A', rirTarget: 'N/A -- conversational pace' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_3D', weeks: 1, isDeload: true,
+        goal: 'Recover and let your aerobic adaptations consolidate',
+        why: 'Even easy aerobic work accumulates fatigue over four weeks -- particularly on connective tissue and joints from repetitive movement. This deload lets your cardiovascular adaptations consolidate before you start adding intensity.',
+        trainingFocus: 'Reduce total duration by 40-50%. Keep everything at Zone 1-2. Short, easy sessions only.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Threshold Development Phase',  templateId: 'COND_3D', weeks: 4, isDeload: false,
+        goal: 'Raise your sustainable output ceiling with tempo and threshold work',
+        why: 'With your aerobic base established, your body can now handle and recover from harder efforts. Threshold training -- working at a comfortably hard pace where speaking becomes difficult -- raises the intensity you can sustain for extended periods. This is the single most impactful conditioning quality for most people.',
+        trainingFocus: 'Perform the template as written. Aerobic Base days stay at Zone 2. Threshold days at true tempo effort (RPE 7-8). VO2max days still moderated -- perform them at threshold intensity, not full effort yet.',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 7-8 on hard days' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_3D', weeks: 1, isDeload: true,
+        goal: 'Recover before the high-intensity peak block',
+        why: 'Four weeks of threshold work creates systemic fatigue that taxes the metabolic buffering systems and central nervous system. Arriving at the VO2max block fresh means you can actually hit the intensities required to drive adaptation.',
+        trainingFocus: 'All sessions at Zone 1-2. Reduce duration by 40-50%. No threshold or interval work.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 5, phase: 'Realization',     label: 'VO2max Peak Phase',            templateId: 'COND_3D', weeks: 2, isDeload: false,
+        goal: 'Push your upper cardiovascular limits with hard interval work',
+        why: 'The final two weeks unlock the full intensity of the template. Your aerobic base supports recovery between intervals, your threshold capacity lets you sustain higher outputs for longer, and now VO2max intervals push the absolute ceiling of what your cardiovascular system can deliver.',
+        trainingFocus: 'Perform the full template at prescribed intensities. VO2max days at full effort (RPE 8-9). Threshold days at true tempo. Aerobic days stay easy -- they are now active recovery between hard sessions.',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 8-9 on hard days' }
+    ]
+  },
+
+  {
+    id: 'PROG_COND_4D',
+    name: 'Conditioning Base',
+    goal: 'Conditioning',
+    daysPerWeek: 4,
+    durationWeeks: 12,
+    description: 'Four conditioning sessions per week with a progressive intensity ramp: aerobic base to threshold development to VO2max peak. Includes microdose strength work to maintain muscle.',
+    whoIsThisFor: 'Anyone training 4 days per week whose primary goal is cardiovascular fitness. The extra day allows more total aerobic volume and a dedicated threshold session.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Aerobic Base Phase',           templateId: 'COND_4D', weeks: 4, isDeload: false,
+        goal: 'Build your aerobic engine with easy, sustained cardio',
+        why: 'Every conditioning quality -- threshold, VO2max, repeated sprint ability -- is built on top of the aerobic system. Without a strong aerobic base, high-intensity work breaks you down faster than it builds you up. These four weeks establish the foundation that makes everything else possible.',
+        trainingFocus: 'All sessions at Zone 2 (conversational pace) regardless of what the template day says. If the template has a VO2max or Threshold day, perform it as easy aerobic work instead. Duration over intensity.',
+        repRange: 'N/A', rirTarget: 'N/A -- conversational pace' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_4D', weeks: 1, isDeload: true,
+        goal: 'Recover and let your aerobic adaptations consolidate',
+        why: 'Even easy aerobic work accumulates fatigue over four weeks -- particularly on connective tissue and joints from repetitive movement. This deload lets your cardiovascular adaptations consolidate before you start adding intensity.',
+        trainingFocus: 'Reduce total duration by 40-50%. Keep everything at Zone 1-2. Short, easy sessions only.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Threshold Development Phase',  templateId: 'COND_4D', weeks: 4, isDeload: false,
+        goal: 'Raise your sustainable output ceiling with tempo and threshold work',
+        why: 'With your aerobic base established, your body can now handle and recover from harder efforts. Threshold training raises the intensity you can sustain for extended periods. With four days per week, you get two easy aerobic sessions supporting recovery around the harder threshold and interval work.',
+        trainingFocus: 'Perform the template as written. Aerobic Base days stay at Zone 2. Threshold days at true tempo effort (RPE 7-8). VO2max days still moderated -- perform them at threshold intensity, not full effort yet.',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 7-8 on hard days' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_4D', weeks: 1, isDeload: true,
+        goal: 'Recover before the high-intensity peak block',
+        why: 'Four weeks of threshold work taxes the metabolic buffering systems and central nervous system. Arriving at the VO2max block fresh means you can actually hit the intensities required to drive adaptation.',
+        trainingFocus: 'All sessions at Zone 1-2. Reduce duration by 40-50%. No threshold or interval work.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 5, phase: 'Realization',     label: 'VO2max Peak Phase',            templateId: 'COND_4D', weeks: 2, isDeload: false,
+        goal: 'Push your upper cardiovascular limits with hard interval work',
+        why: 'The final two weeks unlock the full intensity of the template. Your aerobic base supports recovery between intervals, your threshold capacity lets you sustain higher outputs, and VO2max intervals push the absolute ceiling of your cardiovascular system.',
+        trainingFocus: 'Perform the full template at prescribed intensities. VO2max days at full effort (RPE 8-9). Threshold days at true tempo. Aerobic days stay easy for active recovery.',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 8-9 on hard days' }
+    ]
+  },
+
+  {
+    id: 'PROG_COND_5D',
+    name: 'Conditioning Base',
+    goal: 'Conditioning',
+    daysPerWeek: 5,
+    durationWeeks: 12,
+    description: 'Maximum conditioning volume across five sessions per week. The 5-day template includes aerobic base days, threshold work, VO2max intervals, and anaerobic efforts -- the program progressively unlocks intensity across blocks.',
+    whoIsThisFor: 'Dedicated endurance athletes or anyone training 5 days per week whose primary goal is building the most robust cardiovascular base possible in 12 weeks.',
+    blocks: [
+      { blockNumber: 1, phase: 'Accumulation',   label: 'Aerobic Base Phase',           templateId: 'COND_5D', weeks: 4, isDeload: false,
+        goal: 'Build your aerobic engine with easy, sustained cardio',
+        why: 'Every conditioning quality -- threshold, VO2max, anaerobic capacity -- is built on top of the aerobic system. With five sessions per week, you are building a massive aerobic foundation. Keep intensity easy and let the volume do the work.',
+        trainingFocus: 'All sessions at Zone 2 (conversational pace) regardless of what the template day says. Convert all Threshold, VO2max, and Anaerobic days to easy aerobic work. Duration over intensity -- aim for the upper end of prescribed time ranges.',
+        repRange: 'N/A', rirTarget: 'N/A -- conversational pace' },
+      { blockNumber: 2, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_5D', weeks: 1, isDeload: true,
+        goal: 'Recover and let your aerobic adaptations consolidate',
+        why: 'Five sessions per week of even easy cardio creates meaningful accumulated fatigue -- particularly on joints, tendons, and connective tissue. This deload lets everything consolidate before you start adding intensity.',
+        trainingFocus: 'Reduce total duration by 40-50%. Keep everything at Zone 1-2. Drop to 3 sessions if needed.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 3, phase: 'Intensification', label: 'Threshold Development Phase',  templateId: 'COND_5D', weeks: 4, isDeload: false,
+        goal: 'Raise your sustainable output ceiling with tempo and threshold work',
+        why: 'With your aerobic base established, your body can now handle harder efforts. Five days per week gives you three easy aerobic sessions to support recovery around the threshold and interval work. This is where your sustained output ceiling rises significantly.',
+        trainingFocus: 'Perform Aerobic Base days at Zone 2. Threshold days at true tempo effort (RPE 7-8). VO2max days at moderate intensity (not full effort yet). Anaerobic day at moderate intensity (not all-out yet).',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 7-8 on hard days' },
+      { blockNumber: 4, phase: 'Deload',          label: 'Deload',                       templateId: 'COND_5D', weeks: 1, isDeload: true,
+        goal: 'Recover before the high-intensity peak block',
+        why: 'Four weeks of mixed-intensity conditioning at five sessions per week is a significant training load. This deload ensures you arrive at the final block capable of hitting the high intensities needed to push your VO2max ceiling.',
+        trainingFocus: 'All sessions at Zone 1-2. Reduce duration by 40-50%. No threshold, VO2max, or anaerobic work.',
+        repRange: 'N/A', rirTarget: 'N/A -- very easy' },
+      { blockNumber: 5, phase: 'Realization',     label: 'VO2max Peak Phase',            templateId: 'COND_5D', weeks: 2, isDeload: false,
+        goal: 'Push all energy systems to their peak output',
+        why: 'The final two weeks unlock the full intensity of the template. Your aerobic base supports recovery, your threshold capacity sustains higher outputs, and now every session type runs at its prescribed intensity -- including the Anaerobic day at true all-out effort. This is the peak of your conditioning capacity.',
+        trainingFocus: 'Perform the full template at all prescribed intensities. VO2max at RPE 8-9. Threshold at true tempo. Anaerobic at all-out effort. Aerobic days stay easy for active recovery.',
+        repRange: 'N/A', rirTarget: 'N/A -- RPE 8-10 on hard days' }
+    ]
+  },
 ];
+
 // Each program is a sequence of blocks. Each block references a templateId,
 // has a fixed week count, a training goal, and a plain-language explanation
 // of why it follows the previous block. Deload blocks use templateId: null
@@ -13101,7 +14083,7 @@ function saveState() {
 }
 
 // Saves immediately with no debounce — used for critical actions like
-// template selection and day navigation where we can't risk losing the change
+// template selection and day navigation where we can not risk losing the change
 async function saveStateNow() {
   if (!currentUser) { console.log('[SAVE] Skipped — no currentUser'); return; }
   clearTimeout(saveTimeout);
@@ -13212,7 +14194,7 @@ async function handleAuth() {
     if (existing) {
       // Verify the auth user still exists by attempting signup —
       // if Supabase says "already registered" the auth user is alive → truly taken.
-      // We can't query auth.users directly from the client, so we proceed and
+      // We can not query auth.users directly from the client, so we proceed and
       // let the signup attempt tell us.
     }
 
@@ -13357,7 +14339,7 @@ sb.auth.onAuthStateChange(async (event, session) => {
   document.getElementById('appLoadingScreen').style.display = 'none';
 
   if (session && session.user) {
-    // Show sign-out button immediately — don't wait for async initApp
+    // Show sign-out button immediately — do not wait for async initApp
     document.getElementById('signOutBtn').style.display = 'block';
     document.getElementById('loginScreen').style.display = 'none';
 
@@ -13419,6 +14401,9 @@ function showView(viewName) {
 
   // Scroll to top on every view change
   window.scrollTo(0, 0);
+
+  // Hide floating selection bar — it only belongs on the templates tab
+  if (viewName !== 'templates') hideSelectionBar();
 
   // 4) Render content specific to this view
   if (viewName === 'workout') {
@@ -13485,6 +14470,8 @@ function filterTemplatesByDays(days) {
 
 // Tracks which program is selected in the programs browser (not yet started)
 let selectedProgramId = null;
+let programDayFilter = 0; // 0 = All, 2/3/4/5 = specific day count
+let programGoalFilter = 'All';
 
 // Switches the Templates tab between "templates" and "programs" modes
 function switchTemplatesMode(mode) {
@@ -13505,6 +14492,8 @@ function switchTemplatesMode(mode) {
     tabPrograms.classList.add('active');
     renderPrograms();
   }
+  // Hide floating bar whenever mode switches — selection state is reset visually
+  hideSelectionBar();
 }
 
 // Returns the CSS class for a block chip based on its label/type
@@ -13519,69 +14508,19 @@ function getBlockChipClass(block) {
 }
 
 // Renders the program cards into #programList
-function renderPrograms() {
-  const list = document.getElementById('programList');
-
-  list.innerHTML = PROGRAMS.map(program => {
-    const isSelected = selectedProgramId === program.id;
-
-    // Build block timeline chips
-    const timeline = program.blocks.map(block => {
-      const chipClass = getBlockChipClass(block);
-      const label = block.phase;
-      const weeks = `${block.weeks}w`;
-      return `<div class="program-block-chip ${chipClass}" style="flex:${block.weeks};">
-        <div>${label}</div>
-        <div style="font-size:9px;opacity:0.7;margin-top:2px;">${weeks}</div>
-      </div>`;
-    }).join('');
-
-    return `
-      <div class="program-card ${isSelected ? 'selected' : ''}" onclick="selectProgram('${program.id}')">
-        <div class="program-card-header">
-          <div style="flex:1;">
-            <div class="program-card-title">${program.name}</div>
-            <div class="program-card-meta">${program.goal} · ${program.durationWeeks} weeks</div>
-          </div>
-          ${isSelected ? '<span style="color:var(--color-primary);font-size:22px;flex-shrink:0;">✓</span>' : ''}
-        </div>
-
-        <p class="program-card-desc">${program.description}</p>
-
-        <div class="program-card-who">👤 ${program.whoIsThisFor}</div>
-
-        <!-- Block timeline -->
-        <div class="program-blocks-timeline">${timeline}</div>
-        <div class="program-duration-label">${program.durationWeeks}-week program · ${program.blocks.length} blocks including deload weeks</div>
-      </div>
-    `;
-  }).join('');
-}
-
-// Handles selecting a program card
-function selectProgram(programId) {
-  if (selectedProgramId === programId) {
-    selectedProgramId = null;
-  } else {
-    selectedProgramId = programId;
-  }
-
-  const bar = document.getElementById('programStartBar');
-  if (selectedProgramId) {
-    const p = PROGRAMS.find(p => p.id === selectedProgramId);
-    bar.querySelector('button').textContent = `Start ${p.name} →`;
-    bar.classList.add('visible');
-  } else {
-    bar.classList.remove('visible');
-  }
-
+function setProgramDayFilter(days) {
+  programDayFilter = days;
   renderPrograms();
 }
+
+
+// renderPrograms and selectProgram defined below
 
 // Opens the full-screen program confirmation screen
 function showProgramConfirmScreen(programId) {
   const program = PROGRAMS.find(p => p.id === programId);
   if (!program) return;
+  hideSelectionBar();
 
   // Set title
   document.getElementById('confirmScreenTitle').textContent = program.name;
@@ -13731,6 +14670,8 @@ function switchTemplatesMode(mode) {
     tabPrograms.classList.add('active');
     renderPrograms();
   }
+  // Hide floating bar whenever mode switches — selection state is reset visually
+  hideSelectionBar();
 }
 
 // Returns the CSS class for a block chip based on its label/type
@@ -13742,21 +14683,40 @@ function getBlockChipClass(block) {
   return 'strength';
 }
 
-// Renders the program cards into #programList
+// Renders the program goal filter chips, day filter chips, and program cards
 function renderPrograms() {
+  // ── Goal filter chips ──────────────────────────────────────────────────────
+  const goalFilterEl = document.getElementById('programGoalFilters');
+  if (goalFilterEl) {
+    const goals = ['All', 'Strength', 'Hypertrophy', 'Power', 'Conditioning'];
+    goalFilterEl.innerHTML = goals.map(g =>
+      `<div class="filter-chip ${g === programGoalFilter ? 'active' : ''}" onclick="setProgramGoalFilter('${g}')">${g}</div>`
+    ).join('');
+  }
+
+  // ── Day filter chips ───────────────────────────────────────────────────────
+  const dayFilterEl = document.getElementById('programDayFilterRow');
+  if (dayFilterEl) {
+    const days = [0, 2, 3, 4, 5];
+    dayFilterEl.innerHTML = days.map(d =>
+      `<div class="days-chip ${d === programDayFilter ? 'active' : ''}" onclick="setProgramDayFilter(${d})">${d === 0 ? 'Any days' : d + ' days/wk'}</div>`
+    ).join('');
+  }
+
+  // ── Apply both filters ─────────────────────────────────────────────────────
+  let filtered = PROGRAMS;
+  if (programGoalFilter !== 'All') filtered = filtered.filter(p => p.goal === programGoalFilter);
+  if (programDayFilter !== 0)      filtered = filtered.filter(p => p.daysPerWeek === programDayFilter);
+
+  // ── Render cards ───────────────────────────────────────────────────────────
   const list = document.getElementById('programList');
-
-  list.innerHTML = PROGRAMS.map(program => {
+  list.innerHTML = filtered.map(program => {
     const isSelected = selectedProgramId === program.id;
-
-    // Build block timeline chips
     const timeline = program.blocks.map(block => {
       const chipClass = getBlockChipClass(block);
-      const label = block.phase;
-      const weeks = `${block.weeks}w`;
       return `<div class="program-block-chip ${chipClass}" style="flex:${block.weeks};">
-        <div>${label}</div>
-        <div style="font-size:9px;opacity:0.7;margin-top:2px;">${weeks}</div>
+        <div>${block.phase}</div>
+        <div style="font-size:9px;opacity:0.7;margin-top:2px;">${block.weeks}w</div>
       </div>`;
     }).join('');
 
@@ -13765,40 +14725,51 @@ function renderPrograms() {
         <div class="program-card-header">
           <div style="flex:1;">
             <div class="program-card-title">${program.name}</div>
-            <div class="program-card-meta">${program.goal} · ${program.durationWeeks} weeks</div>
+            <div class="program-card-meta">${program.goal} · ${program.daysPerWeek} days/week · ${program.durationWeeks} weeks</div>
           </div>
           ${isSelected ? '<span style="color:var(--color-primary);font-size:22px;flex-shrink:0;">✓</span>' : ''}
         </div>
-
         <p class="program-card-desc">${program.description}</p>
-
         <div class="program-card-who">👤 ${program.whoIsThisFor}</div>
-
-        <!-- Block timeline -->
         <div class="program-blocks-timeline">${timeline}</div>
         <div class="program-duration-label">${program.durationWeeks}-week program · ${program.blocks.length} blocks including deload weeks</div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
 
 // Handles selecting a program card
 function selectProgram(programId) {
-  if (selectedProgramId === programId) {
-    selectedProgramId = null;
-  } else {
-    selectedProgramId = programId;
+  selectedProgramId = selectedProgramId === programId ? null : programId;
+
+  // Inline header button (visible when already scrolled to top)
+  const confirmBtn = document.getElementById('confirmProgramBtn');
+  if (confirmBtn) {
+    if (selectedProgramId) {
+      const p = PROGRAMS.find(p => p.id === selectedProgramId);
+      confirmBtn.textContent = `Start ${p.name} →`;
+      confirmBtn.style.display = 'block';
+      // Floating bar (visible wherever the user is on the page)
+      showSelectionBar(p.name, 'Program selected', 'program');
+    } else {
+      confirmBtn.style.display = 'none';
+      hideSelectionBar();
+    }
   }
 
-  const bar = document.getElementById('programStartBar');
+  renderPrograms();
+}
+
+function setProgramGoalFilter(goal) {
+  programGoalFilter = goal;
+  // Deselect any current program if it no longer matches the filter
   if (selectedProgramId) {
     const p = PROGRAMS.find(p => p.id === selectedProgramId);
-    bar.querySelector('button').textContent = `Start ${p.name} →`;
-    bar.classList.add('visible');
-  } else {
-    bar.classList.remove('visible');
+    if (p && goal !== 'All' && p.goal !== goal) {
+      selectedProgramId = null;
+      const confirmBtn = document.getElementById('confirmProgramBtn');
+      if (confirmBtn) confirmBtn.style.display = 'none';
+    }
   }
-
   renderPrograms();
 }
 
@@ -13806,6 +14777,7 @@ function selectProgram(programId) {
 function showProgramConfirmScreen(programId) {
   const program = PROGRAMS.find(p => p.id === programId);
   if (!program) return;
+  hideSelectionBar();
 
   // Set title
   document.getElementById('confirmScreenTitle').textContent = program.name;
@@ -13984,6 +14956,7 @@ function confirmAbandonProgram() {
 function showProgramConfirmScreen(programId) {
   const program = PROGRAMS.find(p => p.id === programId);
   if (!program) return;
+  hideSelectionBar();
 
   // Set title
   document.getElementById('confirmScreenTitle').textContent = program.name;
@@ -14257,26 +15230,55 @@ function renderTemplateList(focus) {
 }
 
 // Handles clicking on a template card in the browser
+
+// ===== FLOATING SELECTION CONFIRM BAR =====
+// Shared by both the template panel and the programs panel.
+// When the user selects a card (anywhere on the scrollable list), this bar
+// slides up above the bottom nav so they never have to scroll back to the top.
+
+let _selectionConfirmMode = null; // 'template' | 'program' | null
+
+function showSelectionBar(name, eyebrow, mode) {
+  _selectionConfirmMode = mode;
+  document.getElementById('selectionConfirmName').textContent    = name;
+  document.getElementById('selectionConfirmEyebrow').textContent = eyebrow;
+  document.getElementById('selectionConfirmBar').classList.add('visible');
+}
+
+function hideSelectionBar() {
+  _selectionConfirmMode = null;
+  document.getElementById('selectionConfirmBar').classList.remove('visible');
+}
+
+function handleSelectionConfirm() {
+  if (_selectionConfirmMode === 'template') {
+    confirmTemplateSelection();
+  } else if (_selectionConfirmMode === 'program') {
+    showProgramConfirmScreen(selectedProgramId);
+  }
+}
+
 function selectTemplateForReview(templateId) {
   if (selectedTemplateId === templateId) {
-    // Clicking the same card again deselects it
     selectedTemplateId = null;
   } else {
-    // Select a new template
     selectedTemplateId = templateId;
   }
 
-  // Show/hide the "Start Program" button and set its text
+  // Inline header button (visible when already scrolled to top)
   const confirmBtn = document.getElementById('confirmTemplateBtn');
   if (selectedTemplateId) {
     const template = TEMPLATES.find(t => t.id === selectedTemplateId);
-    confirmBtn.textContent = `Start ${template.name} →`;
+    const label = `Start ${template.name} →`;
+    confirmBtn.textContent = label;
     confirmBtn.style.display = 'block';
+    // Floating bar (visible wherever the user is on the page)
+    showSelectionBar(template.name, 'Template selected', 'template');
   } else {
     confirmBtn.style.display = 'none';
+    hideSelectionBar();
   }
 
-  // Re-render template list so the selected card highlights correctly
   const activeFocus =
     document.querySelector('#focusFilters .filter-chip.active').textContent;
   renderTemplateList(activeFocus);
@@ -14361,6 +15363,7 @@ function confirmTemplateSelection() {
   currentWeekLogs    = [];
   activeSelections   = {};
 
+  hideSelectionBar();
   saveStateNow();
   showView('workout');
 }
@@ -14696,6 +15699,7 @@ function renderActiveWorkout() {
     document.getElementById('currentTemplate').textContent = '';
     document.getElementById('programProgressBar').style.display = 'none';
     document.getElementById('deloadBanner').style.display = 'none';
+    const mp = document.getElementById('muscleAuditPanel'); if (mp) mp.style.display = 'none';
     const ab = document.getElementById('abandonProgramBtn');
     if (ab) ab.style.display = 'none';
     const sf = document.getElementById('switchToFreeBtn');
@@ -14740,6 +15744,7 @@ function renderActiveWorkout() {
   // Render program progress bar and deload banner if in a program
   renderProgramProgress();
   renderDeloadBanner();
+  renderMuscleAudit();
 
   // Always show the "Change workout" reset link when a template is active
   const sf = document.getElementById('switchToFreeBtn');
@@ -14765,7 +15770,7 @@ function renderActiveWorkout() {
       const isWarmup = slot.slotType === 'Warmup';
 
       const warmupGuidance = `
-        <p class="wc-guidance">Take 5–10 minutes to raise your heart rate and prepare your joints before the working sets. Don't skip this — it directly affects your performance and injury risk.</p>
+        <p class="wc-guidance">Take 5–10 minutes to raise your heart rate and prepare your joints before the working sets. Do not skip this — it directly affects your performance and injury risk.</p>
         <ul class="wc-bullets">
           <li>2–3 minutes of light cardio (bike, row, jog, or jump rope)</li>
           <li>Hip circles, leg swings, and shoulder rolls</li>
@@ -15027,9 +16032,283 @@ function getMatchingExercises(slotObj) {
 // This visually dims completed exercises.
 // Called on every keystroke in workout input fields.
 // Captures current values into currentWeekLogs and queues a Supabase save.
+
+// ===== MUSCLE AUDIT =====
+
+// Track whether the audit panel is expanded
+let _auditOpen = false;
+let _auditMinorOpen = false; // whether the minor muscles section is expanded
+
+// Maps movementPattern → muscles for compound exercises
+const PATTERN_TO_MUSCLES = {
+  Squat:          { primary: ['Quads'],     secondary: ['Glutes','Hamstrings'] },
+  Hinge:          { primary: ['Glutes'],    secondary: ['Hamstrings','LowerBack'] },
+  HorizontalPush: { primary: ['Chest'],     secondary: ['Shoulders','Triceps'] },
+  HorizontalPull: { primary: ['Back'],      secondary: ['Biceps'] },
+  VerticalPush:   { primary: ['Shoulders'], secondary: ['Triceps'] },
+  VerticalPull:   { primary: ['Back'],      secondary: ['Biceps'] },
+  Carry:          { primary: ['Core'],      secondary: ['Forearms'] },
+};
+
+// All muscles we track in the audit
+const AUDIT_MUSCLES = [
+  'Quads','Hamstrings','Glutes','Calves',
+  'Chest','Back','Shoulders',
+  'Biceps','Triceps',
+  'Core','LowerBack',
+  'Adductors','Forearms'
+];
+// Minor muscles — shown in a collapsed section. They're almost always secondary
+// stimulus muscles and would create visual noise / false red cells if shown
+// alongside primary muscles.
+const AUDIT_MINOR_MUSCLES = ['Adductors','Forearms'];
+
+// Push vs Pull groupings for balance check
+const PUSH_MUSCLES = ['Chest','Shoulders','Triceps'];
+const PULL_MUSCLES = ['Back','Biceps'];
+
+function computeWeeklyMuscleVolume() {
+  // Returns: { [muscle]: { primary: N, secondary: N } }
+  const vol = {};
+  AUDIT_MUSCLES.forEach(m => vol[m] = { primary: 0, secondary: 0 });
+
+  for (const dayLog of currentWeekLogs) {
+    for (const s of dayLog.slots) {
+      const sets = s.sets || 0;
+      if (sets <= 0) continue;
+      if (['Warmup','Cooldown','Activation','Conditioning'].includes(s.slot)) continue;
+
+      const ex = exerciseLibrary.find(e => e.id === s.exId);
+      if (!ex) continue;
+
+      if (ex.exerciseType === 'Compound') {
+        // Use movementPattern mapping first, fall back to library fields
+        const pat = PATTERN_TO_MUSCLES[ex.movementPattern];
+        const primaries   = pat ? pat.primary   : (ex.primaryMuscle ? [ex.primaryMuscle] : []);
+        const secondaries = pat ? pat.secondary  : (ex.secondaryMuscles || []);
+        primaries.forEach(m   => { if (vol[m]) vol[m].primary   += sets; });
+        secondaries.forEach(m => { if (vol[m]) vol[m].secondary += sets; });
+      } else if (ex.exerciseType === 'Isolation') {
+        const m = ex.primaryMuscle;
+        if (m && vol[m]) vol[m].primary += sets;
+        (ex.secondaryMuscles || []).forEach(sm => { if (vol[sm]) vol[sm].secondary += sets; });
+      } else if (ex.exerciseType === 'Stability') {
+        if (vol['Core']) vol['Core'].primary += sets;
+      } else if (ex.exerciseType === 'Power') {
+        // Power slots hit glutes/quads/posterior chain
+        if (vol['Glutes']) vol['Glutes'].secondary += sets;
+        if (vol['Quads'])  vol['Quads'].secondary  += sets;
+      }
+    }
+  }
+  return vol;
+}
+
+function getMuscleClass(primary) {
+  if (primary === 0)  return 'hit-none';
+  if (primary <= 4)   return 'hit-low';
+  if (primary <= 12)  return 'hit-good';
+  return 'hit-high';
+}
+
+const MUSCLE_SUGGESTIONS = {
+    'Quads': 'try Leg Press, Leg Extension, or Box Squat',
+    'Hamstrings': 'try Leg Curl, Romanian Deadlift, or Nordic Curl',
+    'Glutes': 'try Hip Thrust, Glute Bridge, or Bulgarian Split Squat',
+    'Calves': 'try Calf Raise or Seated Calf Raise',
+    'Chest': 'try Bench Press, DB Fly, or Cable Fly',
+    'Back': 'try Barbell Row, Pulldown, or Seated Cable Row',
+    'Shoulders': 'try Lateral Raise, Overhead Press, or Cable Lateral Raise',
+    'Biceps': 'try Barbell Curl, DB Curl, or Cable Curl',
+    'Triceps': 'try Tricep Pushdown, Skull Crusher, or Overhead Extension',
+    'Core': 'try Plank, Dead Bug, or Ab Wheel Rollout',
+    'LowerBack': 'try Back Extension, Good Morning, or Bird Dog',
+};
+
+function renderMuscleAudit() {
+  const el = document.getElementById('muscleAuditPanel');
+  if (!el) return;
+  // Deliberate: free/custom sessions have no structured week concept, so the
+  // audit panel is hidden. A custom session is a single day with no weekly
+  // volume target to compare against.
+  if (!activeTemplate || freeWorkoutActive) { el.style.display = 'none'; return; }
+  // Note: _auditOpen is intentionally not persisted to saveState. The panel
+  // always resets to collapsed on page reload, which is the correct default.
+
+  el.style.display = 'block';
+  const vol = computeWeeklyMuscleVolume();
+  const hasAnyData = currentWeekLogs.some(d => d.slots.some(s => s.sets > 0));
+
+  // ── Alerts ───────────────────────────────────────────────────────────
+  const alerts = [];
+
+  const pushSets = PUSH_MUSCLES.reduce((s,m) => s + vol[m].primary, 0);
+  const pullSets = PULL_MUSCLES.reduce((s,m) => s + vol[m].primary, 0);
+  if (pushSets > 0 || pullSets > 0) {
+    const ratio = pullSets === 0 ? 99 : pushSets / pullSets;
+    if (ratio > 1.6)
+      alerts.push({ type: 'warn', msg: `More push than pull — ${pushSets} push sets vs ${pullSets} pull sets so far. Shoulder health depends on keeping these roughly even. Try adding a row or pulldown.` });
+    else if (ratio < 0.6 && pullSets > 3)
+      alerts.push({ type: 'warn', msg: `Pull-heavy week (${pullSets} pull vs ${pushSets} push sets). Intentional? If not, balance it with a press.` });
+  }
+
+  const quadSets = vol['Quads'].primary;
+  const hamSets  = vol['Hamstrings'].primary;
+  if (quadSets + hamSets > 3) {
+    const qhRatio = hamSets === 0 ? 99 : quadSets / hamSets;
+    if (qhRatio > 2.5)
+      alerts.push({ type: 'warn', msg: `Quad-dominant week — ${quadSets} quad sets vs ${hamSets} hamstring sets. Knee health and posterior strength both depend on the balance. Add a leg curl or RDL.` });
+    else if (qhRatio < 0.4 && hamSets > 3)
+      alerts.push({ type: 'warn', msg: `Hamstring-dominant week (${hamSets} vs ${quadSets} quad sets). Consider a leg extension or extra squat variation.` });
+  }
+
+  if (currentWeekLogs.length >= 2 && hasAnyData) {
+    const major = ['Quads','Glutes','Chest','Back','Shoulders'];
+    const missed = major.filter(m => vol[m].primary === 0);
+    if (missed.length > 0) {
+      const missedDetails = missed.map(m => {
+        const sug = MUSCLE_SUGGESTIONS[m] ? ` (${MUSCLE_SUGGESTIONS[m]})` : '';
+        return m + sug;
+      });
+      alerts.push({ type: 'warn', msg: `No direct sets yet for: ${missedDetails.join('; ')}. You still have days left — worth fitting them in.` });
+    }
+  }
+
+  if (alerts.length === 0 && hasAnyData) {
+    alerts.push({ type: 'ok', msg: '✓ Volume looks balanced across muscle groups this week. Keep going.' });
+  }
+
+  const hasWarning = alerts.some(a => a.type === 'warn');
+
+  // ── Collapsed summary line ────────────────────────────────────────────
+  let summaryText = '';
+  if (!hasAnyData) {
+    summaryText = 'Start logging to see your muscle balance';
+  } else if (hasWarning) {
+    summaryText = `${alerts.filter(a => a.type === 'warn').length} gap${alerts.filter(a => a.type === 'warn').length > 1 ? 's' : ''} flagged — tap to review`;
+  } else {
+    summaryText = 'Looking balanced — tap to see the breakdown';
+  }
+
+  // ── Muscle grid grouped by region ────────────────────────────────────
+  const REGIONS = [
+    { label: 'Lower Body',  muscles: ['Quads','Hamstrings','Glutes','Calves'] },
+    { label: 'Upper Push',  muscles: ['Chest','Shoulders','Triceps'] },
+    { label: 'Upper Pull',  muscles: ['Back','Biceps'] },
+    { label: 'Core & Back', muscles: ['Core','LowerBack'] },
+  ];
+
+  const MUSCLE_LABELS = {
+    Quads: 'Quads', Hamstrings: 'Hams', Glutes: 'Glutes', Calves: 'Calves',
+    Adductors: 'Adductors', Chest: 'Chest', Shoulders: 'Shoulders',
+    Triceps: 'Triceps', Back: 'Back', Biceps: 'Biceps', Forearms: 'Forearms',
+    Core: 'Core', LowerBack: 'Low Back'
+  };
+
+  function buildCell(m) {
+    const p   = vol[m] ? vol[m].primary   : 0;
+    const sec = vol[m] ? vol[m].secondary : 0;
+    const cls = getMuscleClass(p);
+    const secNote = sec > 0 ? `<div class="audit-secondary-note">+${sec} via compounds</div>` : '';
+    return `<div class="muscle-audit-cell ${cls}">
+      <div class="audit-muscle-name">${MUSCLE_LABELS[m] || m}</div>
+      <div class="audit-set-count ${cls}">${p}</div>
+      <div class="audit-set-label">direct sets</div>
+      ${secNote}
+    </div>`;
+  }
+
+  const regionBlocks = REGIONS.map(r => `
+    <div class="audit-region">
+      <div class="audit-region-label">${r.label}</div>
+      <div class="muscle-audit-grid">${r.muscles.map(buildCell).join('')}</div>
+    </div>`).join('');
+
+  const minorCells = AUDIT_MINOR_MUSCLES.map(buildCell).join('');
+  const minorSection = `
+    <div class="audit-minor-toggle" onclick="toggleAuditMinor()" style="cursor:pointer;margin-top:6px;">
+      <span style="font-size:10px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600;">
+        Secondary muscles
+      </span>
+      <span id="auditMinorChevron" style="font-size:9px;color:var(--color-text-muted);margin-left:6px;">${_auditMinorOpen ? '▲' : '▼'}</span>
+      <span style="font-size:10px;color:var(--color-text-muted);margin-left:4px;">(Adductors, Forearms — usually trained as secondary stimulus)</span>
+    </div>
+    ${_auditMinorOpen ? `<div class="muscle-audit-grid" style="margin-top:6px;">${minorCells}</div>` : ''}`;
+
+  // ── Push / pull balance bar ───────────────────────────────────────────
+  const pushTotal = pushSets + pullSets;
+  const pushPct   = pushTotal > 0 ? Math.round((pushSets / pushTotal) * 100) : 50;
+  const ppColor   = Math.abs(pushPct - 50) > 15 ? '#f59e0b' : '#4ade80';
+  const balanceBar = pushTotal > 0 ? `
+    <div class="audit-balance-section">
+      <div class="audit-balance-label">Push vs Pull balance</div>
+      <div class="audit-balance-row">
+        <span class="audit-balance-side">Push ${pushSets}s</span>
+        <div class="audit-balance-bar">
+          <div class="audit-balance-fill" style="left:0;width:${pushPct}%;background:${ppColor};"></div>
+        </div>
+        <span class="audit-balance-side" style="text-align:right">Pull ${pullSets}s</span>
+      </div>
+      <div style="font-size:10px;color:var(--color-text-muted);margin-top:3px;">
+        Aim for roughly equal push and pull sets across the week to protect shoulder health.
+      </div>
+    </div>` : '';
+
+  // ── Legend ───────────────────────────────────────────────────────────
+  const legend = `
+    <div class="audit-legend">
+      <span class="audit-legend-item"><span class="audit-legend-dot" style="background:#ef4444"></span>0 sets</span>
+      <span class="audit-legend-item"><span class="audit-legend-dot" style="background:#f59e0b"></span>1–4 sets</span>
+      <span class="audit-legend-item"><span class="audit-legend-dot" style="background:#4ade80"></span>5–12 sets ✓</span>
+      <span class="audit-legend-item"><span class="audit-legend-dot" style="background:#fbbf24"></span>12+ sets</span>
+    </div>`;
+
+  const alertsHtml = alerts.map(a =>
+    `<div class="audit-alert ${a.type}">${a.msg}</div>`
+  ).join('');
+
+  // ── Render ────────────────────────────────────────────────────────────
+  el.innerHTML = `
+    <div class="muscle-audit-panel">
+      <div class="muscle-audit-header" onclick="toggleAuditPanel()">
+        <div>
+          <div class="muscle-audit-title">
+            ${hasWarning ? '<span class="audit-alert-dot"></span>' : ''}
+            Weekly Muscle Audit
+          </div>
+          <div class="audit-summary-line">${summaryText}</div>
+        </div>
+        <span class="muscle-audit-chevron ${_auditOpen ? 'open' : ''}">▼</span>
+      </div>
+      ${_auditOpen ? `
+      <div class="muscle-audit-body">
+        <div class="audit-why-box">
+          <strong>Why this exists:</strong> Templates organise your training by movement pattern — Squat, Hinge, Push, Pull. That's scientifically sound, but it means some muscles do not "own" a pattern and can slip through the gaps week after week. This audit counts direct sets per muscle so you can spot and fix imbalances before the week ends.
+        </div>
+        ${hasAnyData ? balanceBar : ''}
+        ${hasAnyData ? `${legend}${regionBlocks}${minorSection}` : `
+          <div style="font-size:12px;color:var(--color-text-muted);padding:8px 0 4px;">
+            Log your first exercise to start tracking muscle coverage.
+          </div>`}
+        <div class="muscle-audit-alerts" style="margin-top:${hasAnyData?'10px':'0'}">${alertsHtml}</div>
+      </div>` : ''}
+    </div>`;
+}
+
+function toggleAuditPanel() {
+  _auditOpen = !_auditOpen;
+  renderMuscleAudit();
+}
+
+function toggleAuditMinor() {
+  _auditMinorOpen = !_auditMinorOpen;
+  renderMuscleAudit();
+}
+
 function onWorkoutInput() {
   saveCurrentDayData();
-  saveStateNow(); // immediate — can't risk losing data if tab closes
+  renderMuscleAudit();
+  saveStateNow(); // immediate — can not risk losing data if tab closes
 }
 
 function toggleExerciseComplete(index) {
@@ -15051,6 +16330,7 @@ function nextDay() {
   currentDayIndex++;
   saveStateNow();
   renderActiveWorkout();
+  renderMuscleAudit();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -15059,6 +16339,7 @@ function previousDay() {
   currentDayIndex--;
   saveStateNow();
   renderActiveWorkout();
+  renderMuscleAudit();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -15162,7 +16443,7 @@ function showBlockTransitionScreen(completedBlock, nextBlock) {
   };
 
   // Completed section
-  document.getElementById('btCompletedLabel').textContent = 'Block ' + completedBlock.blockNum + ' Complete';
+  document.getElementById('btCompletedLabel').textContent = 'Block ' + completedBlock.blockNumber + ' Complete';
   document.getElementById('btCompletedLabel').style.color = completedColours[completedClass] || '#7eb3ff';
   document.getElementById('btCompletedTitle').textContent = completedBlock.label;
   document.getElementById('btCompletedGoal').textContent  = completedBlock.goal;
@@ -15176,7 +16457,7 @@ function showBlockTransitionScreen(completedBlock, nextBlock) {
   const nextColours = { hypertrophy: '#c084fc', strength: '#7eb3ff', deload: '#6ee7b7', peak: '#fbbf24' };
 
   const nextLabelEl = document.getElementById('btNextLabel');
-  nextLabelEl.textContent  = nextBlock.isDeload ? 'Up Next: Deload Week' : 'Up Next: Block ' + nextBlock.blockNum;
+  nextLabelEl.textContent  = nextBlock.isDeload ? 'Up Next: Deload Week' : 'Up Next: Block ' + nextBlock.blockNumber;
   nextLabelEl.style.color  = nextColours[nextClass] || '#7eb3ff';
 
   document.getElementById('btNextTitle').textContent    = nextBlock.label;
@@ -15645,7 +16926,7 @@ function renderFreeWorkout() {
     </div>
   `;
 
-  // Don't auto-show results on render — only show when user types or filters
+  // Do not auto-show results on render — only show when user types or filters
 }
 
 // setFreeWorkoutMgFilter replaced by setFreeFilter (shared 3-dim filter)
@@ -15921,10 +17202,8 @@ function renderExerciseListFiltered() {
 
 // Updates the four stat cards in the Admin view.
 function renderAdminStats() {
-  const totalPlans = TEMPLATES.length + PROGRAMS.length;
   document.getElementById('statWorkouts').textContent      = workoutHistory.length;
   document.getElementById('statExercises').textContent     = exerciseLibrary.length;
-  document.getElementById('statTemplates').textContent     = totalPlans;
   document.getElementById('statTemplateCount').textContent = TEMPLATES.length;
   document.getElementById('statPrograms').textContent      = PROGRAMS.length;
   document.getElementById('statStreak').textContent        = calculateStreak();
