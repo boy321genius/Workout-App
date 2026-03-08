@@ -2145,6 +2145,93 @@
     }
     .ex-chip.active-muscle::before { content: "✓ "; font-size: 10px; opacity: 0.9; }
 
+
+
+    /* ===== Warmup / Cooldown simplified card ===== */
+    .wc-card {
+      background: rgba(17,27,46,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .wc-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .wc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .wc-guidance {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .wc-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .wc-bullets li {
+      font-size: 12px;
+      color: #475569;
+      padding-left: 14px;
+      position: relative;
+    }
+    .wc-bullets li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #334155;
+    }
+
+    /* ===== Slot hint panel (top-right of exercise card) ===== */
+    .slot-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+      max-width: 160px;
+      padding-left: 10px;
+    }
+    .slot-hint-line {
+      font-size: 10px;
+      color: #334155;
+      text-align: right;
+      line-height: 1.4;
+    }
+    .slot-hint-line strong {
+      color: #475569;
+      font-weight: 600;
+    }
+    .slot-hint-type {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .hint-compound  { background: rgba(79,142,247,0.12);  border: 1px solid rgba(79,142,247,0.25);  color: #7eb3ff; }
+    .hint-isolation { background: rgba(168,85,247,0.12);  border: 1px solid rgba(168,85,247,0.25);  color: #c084fc; }
+    .hint-stability { background: rgba(74,222,128,0.1);   border: 1px solid rgba(74,222,128,0.2);   color: #6ee7b7; }
+    .hint-power     { background: rgba(251,191,36,0.12);  border: 1px solid rgba(251,191,36,0.25);  color: #fbbf24; }
+    .hint-cond      { background: rgba(239,68,68,0.1);    border: 1px solid rgba(239,68,68,0.2);    color: #f87171; }
+    .hint-warmup    { background: rgba(100,116,139,0.1);  border: 1px solid rgba(100,116,139,0.2);  color: #64748b; }
+
     /* ===== Stimulus badge chips ===== */
     .stimulus-badge {
       display: inline-flex;
@@ -5222,7 +5309,343 @@ const EXERCISE_LIBRARY = [
     laterality: "Both",
     jointBias: ["Grip", "Wrist"]
   }
-
+,
+  {
+    id: "SQ006",
+    name: "Box Squat",
+    movementPattern: "Squat",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Quads",
+    secondaryMuscles: ["Glutes", "Hamstrings", "Core"],
+    loadTypes: ["Barbell", "Dumbbell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "Knee"]
+  },
+  {
+    id: "SQ007",
+    name: "Step-Up",
+    movementPattern: "Squat",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Quads",
+    secondaryMuscles: ["Glutes", "Hamstrings"],
+    loadTypes: ["Barbell", "Dumbbell", "Bodyweight"],
+    laterality: "Unilateral",
+    jointBias: ["Hip", "Knee"]
+  },
+  {
+    id: "SQ008",
+    name: "Hack Squat",
+    movementPattern: "Squat",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Quads",
+    secondaryMuscles: ["Glutes", "Hamstrings"],
+    loadTypes: ["Machine", "Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "Knee"]
+  },
+  {
+    id: "SQ009",
+    name: "Pause Squat",
+    movementPattern: "Squat",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Quads",
+    secondaryMuscles: ["Glutes", "Hamstrings", "Core"],
+    loadTypes: ["Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "Knee"]
+  },
+  {
+    id: "HN006",
+    name: "Sumo Deadlift",
+    movementPattern: "Hinge",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Hamstrings", "Back", "Quads", "Core"],
+    loadTypes: ["Barbell", "Kettlebell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "Knee", "LowerBack"]
+  },
+  {
+    id: "HN007",
+    name: "Trap Bar Deadlift",
+    movementPattern: "Hinge",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Quads", "Hamstrings", "Back", "Core"],
+    loadTypes: ["Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "Knee", "LowerBack"]
+  },
+  {
+    id: "HN008",
+    name: "Rack Pull",
+    movementPattern: "Hinge",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Glutes", "Hamstrings", "Core"],
+    loadTypes: ["Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Hip", "LowerBack"]
+  },
+  {
+    id: "HN009",
+    name: "Glute Bridge",
+    movementPattern: "Hinge",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Hamstrings", "Core"],
+    loadTypes: ["Barbell", "Dumbbell", "Band", "Bodyweight"],
+    laterality: "Bilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "HP006",
+    name: "DB Bench Press",
+    movementPattern: "HorizontalPush",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Chest",
+    secondaryMuscles: ["Triceps", "Shoulders"],
+    loadTypes: ["Dumbbell"],
+    laterality: "Both",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "HP007",
+    name: "Close-Grip Bench Press",
+    movementPattern: "HorizontalPush",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Chest",
+    secondaryMuscles: ["Triceps", "Shoulders"],
+    loadTypes: ["Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "HP008",
+    name: "Decline Press",
+    movementPattern: "HorizontalPush",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Chest",
+    secondaryMuscles: ["Triceps", "Shoulders"],
+    loadTypes: ["Barbell", "Dumbbell"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "HPL006",
+    name: "T-Bar Row",
+    movementPattern: "HorizontalPull",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Biceps", "Shoulders"],
+    loadTypes: ["Barbell", "Machine"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "HPL007",
+    name: "Pendlay Row",
+    movementPattern: "HorizontalPull",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Biceps", "Core", "Hamstrings"],
+    loadTypes: ["Barbell"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow", "Hip"]
+  },
+  {
+    id: "HPL008",
+    name: "Seated Cable Row",
+    movementPattern: "HorizontalPull",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Biceps", "Shoulders"],
+    loadTypes: ["Cable"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "VP006",
+    name: "Push Press",
+    movementPattern: "VerticalPush",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: ["Triceps", "Quads", "Core"],
+    loadTypes: ["Barbell", "Dumbbell", "Kettlebell"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow", "Knee"]
+  },
+  {
+    id: "VP007",
+    name: "Seated DB Press",
+    movementPattern: "VerticalPush",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: ["Triceps"],
+    loadTypes: ["Dumbbell"],
+    laterality: "Both",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "VPL005",
+    name: "Neutral-Grip Pull-Up",
+    movementPattern: "VerticalPull",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Biceps", "Core"],
+    loadTypes: ["Bodyweight", "Band"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "VPL006",
+    name: "Close-Grip Pulldown",
+    movementPattern: "VerticalPull",
+    exerciseType: "Compound",
+    subtype: null,
+    primaryMuscle: "Back",
+    secondaryMuscles: ["Biceps"],
+    loadTypes: ["Cable", "Machine"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "IHM001",
+    name: "Lying Leg Curl",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Hamstrings",
+    secondaryMuscles: ["Calves"],
+    loadTypes: ["Machine", "Band", "Cable"],
+    laterality: "Both",
+    jointBias: ["Knee"]
+  },
+  {
+    id: "IHM002",
+    name: "Seated Leg Curl",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Hamstrings",
+    secondaryMuscles: ["Calves"],
+    loadTypes: ["Machine"],
+    laterality: "Both",
+    jointBias: ["Knee"]
+  },
+  {
+    id: "IQD001",
+    name: "Leg Extension",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Quads",
+    secondaryMuscles: [],
+    loadTypes: ["Machine", "Band"],
+    laterality: "Both",
+    jointBias: ["Knee"]
+  },
+  {
+    id: "IGL001",
+    name: "Hip Abduction",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Glutes",
+    secondaryMuscles: [],
+    loadTypes: ["Machine", "Band", "Cable"],
+    laterality: "Both",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "IGL002",
+    name: "Glute Kickback",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Glutes",
+    secondaryMuscles: ["Hamstrings"],
+    loadTypes: ["Cable", "Band", "Bodyweight"],
+    laterality: "Unilateral",
+    jointBias: ["Hip"]
+  },
+  {
+    id: "ICH001",
+    name: "Cable Fly",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Chest",
+    secondaryMuscles: ["Shoulders"],
+    loadTypes: ["Cable"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "ICH002",
+    name: "DB Fly",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Chest",
+    secondaryMuscles: ["Shoulders"],
+    loadTypes: ["Dumbbell"],
+    laterality: "Bilateral",
+    jointBias: ["Shoulder", "Elbow"]
+  },
+  {
+    id: "IB004",
+    name: "Cable Curl",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Biceps",
+    secondaryMuscles: ["Forearms"],
+    loadTypes: ["Cable"],
+    laterality: "Both",
+    jointBias: ["Elbow"]
+  },
+  {
+    id: "IT004",
+    name: "Overhead Tricep Extension",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Triceps",
+    secondaryMuscles: [],
+    loadTypes: ["Dumbbell", "Cable", "Barbell"],
+    laterality: "Both",
+    jointBias: ["Elbow"]
+  },
+  {
+    id: "IS004",
+    name: "Cable Lateral Raise",
+    movementPattern: null,
+    exerciseType: "Isolation",
+    subtype: null,
+    primaryMuscle: "Shoulders",
+    secondaryMuscles: [],
+    loadTypes: ["Cable"],
+    laterality: "Both",
+    jointBias: ["Shoulder"]
+  }
 ];
 
 // TEMPLATES defines complete training programs.
@@ -6074,6 +6497,14 @@ let TEMPLATES = [
             "effort": "RIR 1-3"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-3",
+            "reps": "8-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -6224,6 +6655,14 @@ let TEMPLATES = [
             "effort": "RIR 1-3"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "2-3",
+            "reps": "8-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiLateralFlexion",
@@ -6299,6 +6738,14 @@ let TEMPLATES = [
             "effort": "RIR 2-4"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-3",
+            "reps": "8-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Pattern",
             "movementPattern": "Carry",
@@ -6368,6 +6815,14 @@ let TEMPLATES = [
             "sets": "1-3",
             "reps": "8-15",
             "effort": "RIR 2-4 (keep fatigue low)"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-2",
+            "reps": "8-15",
+            "effort": "RIR 3-5"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -6508,6 +6963,14 @@ let TEMPLATES = [
             "effort": "RIR 2-4 (keep fatigue low)"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "1-2",
+            "reps": "8-15",
+            "effort": "RIR 3-5"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiLateralFlexion",
@@ -6575,6 +7038,14 @@ let TEMPLATES = [
             "sets": "1-3",
             "reps": "8-15",
             "effort": "RIR 2-4 (keep fatigue low)"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-2",
+            "reps": "8-15",
+            "effort": "RIR 3-5"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -6658,6 +7129,14 @@ let TEMPLATES = [
             "sets": "2-4",
             "reps": "8-15",
             "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-3",
+            "reps": "8-15",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -6800,6 +7279,14 @@ let TEMPLATES = [
             "sets": "2-4",
             "reps": "8-15",
             "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "2-3",
+            "reps": "8-15",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -6999,6 +7486,14 @@ let TEMPLATES = [
             "effort": "RIR 2-3 (RPE 7-8)"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-2",
+            "reps": "8-15",
+            "effort": "RIR 3-5"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -7119,6 +7614,14 @@ let TEMPLATES = [
             "sets": "2-4",
             "reps": "5-8",
             "effort": "RIR 2-3 (RPE 7-8)"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "1-2",
+            "reps": "8-15",
+            "effort": "RIR 3-5"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -7334,6 +7837,14 @@ let TEMPLATES = [
             "primaryMuscle": "Calves"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -7415,6 +7926,14 @@ let TEMPLATES = [
             "reps": "10-15",
             "effort": "RIR 0-2",
             "primaryMuscle": "Biceps"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -7504,6 +8023,14 @@ let TEMPLATES = [
             "primaryMuscle": "Calves"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -7587,6 +8114,14 @@ let TEMPLATES = [
             "reps": "10-15",
             "effort": "RIR 0-2",
             "primaryMuscle": "Biceps"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -7688,6 +8223,14 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "optional": true,
             "slotType": "Stability",
@@ -7770,6 +8313,22 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "10–15",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -7944,6 +8503,14 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -8027,6 +8594,22 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "10–15",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -8205,6 +8788,14 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "optional": true,
             "slotType": "Stability",
@@ -8297,6 +8888,22 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Chest",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "optional": true,
             "slotType": "Stability",
@@ -8371,6 +8978,14 @@ let TEMPLATES = [
             "sets": "2–5",
             "reps": "10–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -8473,6 +9088,14 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "optional": true,
             "slotType": "Stability",
@@ -8551,6 +9174,14 @@ let TEMPLATES = [
             "sets": "2–5",
             "reps": "10–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -8646,6 +9277,22 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Chest",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiRotation",
@@ -8714,6 +9361,14 @@ let TEMPLATES = [
             "sets": "2–5",
             "reps": "10–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -8807,6 +9462,14 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "10–15",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -8906,6 +9569,22 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "10–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Chest",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -9075,6 +9754,22 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "2-4",
+            "reps": "10-15",
+            "effort": "RIR 1-3"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -9164,6 +9859,14 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "12–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "2-4",
+            "reps": "12-20",
+            "effort": "RIR 1-3"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -9337,6 +10040,22 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Chest",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -9501,6 +10220,22 @@ let TEMPLATES = [
             "effort": "RIR 0–2"
           },
           {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Hamstrings",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Quads",
+            "sets": "1-3",
+            "reps": "10-15",
+            "effort": "RIR 2-4"
+          },
+          {
             "slotName": "Core / Trunk / Carries",
             "slotType": "Stability",
             "exerciseSubtype": "AntiExtension",
@@ -9592,6 +10327,14 @@ let TEMPLATES = [
             "sets": "2–4",
             "reps": "12–20",
             "effort": "RIR 0–2"
+          },
+          {
+            "slotName": "Accessories",
+            "slotType": "Isolation",
+            "primaryMuscle": "Shoulders",
+            "sets": "1-3",
+            "reps": "12-20",
+            "effort": "RIR 2-4"
           },
           {
             "slotName": "Core / Trunk / Carries",
@@ -14016,6 +14759,53 @@ function renderActiveWorkout() {
   // Build one card per slot defined in the template’s day.slots array.
   exerciseList.innerHTML = day.slots.map((slot, index) => {
     const ex = slot; // alias for card template below
+
+    // ── Warmup / Cooldown: simplified card, no exercise selection ──
+    if (slot.slotType === 'Warmup' || slot.slotType === 'Cooldown') {
+      const isWarmup = slot.slotType === 'Warmup';
+
+      const warmupGuidance = `
+        <p class="wc-guidance">Take 5–10 minutes to raise your heart rate and prepare your joints before the working sets. Don't skip this — it directly affects your performance and injury risk.</p>
+        <ul class="wc-bullets">
+          <li>2–3 minutes of light cardio (bike, row, jog, or jump rope)</li>
+          <li>Hip circles, leg swings, and shoulder rolls</li>
+          <li>2–3 reps of the day's main movement at bodyweight or empty bar</li>
+        </ul>`;
+
+      const cooldownGuidance = `
+        <p class="wc-guidance">Take 5–10 minutes to bring your heart rate down and release tension in the muscles you just trained. This aids recovery and reduces next-day soreness.</p>
+        <ul class="wc-bullets">
+          <li>2–3 minutes of easy walking or slow cycling</li>
+          <li>30-second static holds on the muscles you worked today</li>
+          <li>Slow diaphragmatic breathing — in through the nose, out through the mouth</li>
+        </ul>`;
+
+      return `
+        <div class="wc-card" id="exercise-${index}">
+          <div class="wc-card-header">
+            <div>
+              <div style="display:flex; gap:6px; align-items:center; margin-bottom:6px;">
+                <div class="pill" style="font-size:10px; padding:4px 8px;">${slot.slotName}</div>
+                <div class="pill" style="font-size:9px; padding:3px 8px; border-color:#475569; color:#475569;">Optional</div>
+              </div>
+              <h3 class="exercise-name">${isWarmup ? 'Warm-Up' : 'Cool-Down'}</h3>
+              <div class="exercise-meta">5–10 min</div>
+            </div>
+          </div>
+          ${isWarmup ? warmupGuidance : cooldownGuidance}
+          <div class="notes-input-row" style="margin-top:10px;">
+            <div class="input-group">
+              <label class="input-label">Notes</label>
+              <input type="text" class="input-field" placeholder="${isWarmup ? 'e.g. 10 min bike, hip circles, empty bar squats…' : 'e.g. 5 min walk, quad and hamstring stretch…'}" id="notes-${index}" oninput="onWorkoutInput()">
+            </div>
+          </div>
+          <label style="display:flex; align-items:center; gap:10px; margin-top:14px; cursor:pointer; font-size:13px; color:#475569;">
+            <input type="checkbox" id="done-${index}" onchange="onWorkoutInput()" style="width:18px; height:18px; accent-color:var(--color-primary); cursor:pointer;">
+            Mark as complete
+          </label>
+        </div>`;
+    }
+
     // Determine the rule for this slot (Required / Optional / Forbidden).
     const slotRule = getSlotRule(activeTemplate.goal, day.stimulus, slot.slotName);
 
@@ -14085,7 +14875,7 @@ const dropdownHtml =
     // Full exercise card HTML for this slot.
     return `
       <div class="exercise-item" id="exercise-${index}">
-        <div class="exercise-header">
+        <div class="exercise-header" style="align-items:flex-start;">
           <div style="flex: 1;">
             <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 4px;">
               <!-- Slot name pill (e.g. Main Lift, Accessories) -->
@@ -14111,6 +14901,8 @@ const dropdownHtml =
             </div>
             ${ruleNote}
           </div>
+          <!-- Slot hint: plain-language description of what this slot is looking for -->
+          ${buildSlotHint(slot)}
         </div>
 
         <!-- GIF demo toggle — button and panel hidden until file confirmed to exist via onload -->
@@ -15536,6 +16328,98 @@ function renderTemplateDayBlock(day, idx) {
     <button type="button" class="add-slot-btn" onclick="addSlotToDay(this)">+ Add Slot</button>
   `;
   editor.appendChild(div);
+}
+
+
+// Returns a plain-English hint for the top-right of an exercise card,
+// describing what this specific slot is looking for.
+function buildSlotHint(slot) {
+  const t = slot.slotType;
+
+  const descriptions = {
+    Pattern: {
+      Squat:          { label: 'Squat pattern', body: 'Pick a knee-dominant squat variation — any exercise where you bend at the knee and sit into the movement.' },
+      Hinge:          { label: 'Hinge pattern', body: 'Pick a hip-dominant hinge — any exercise where you push your hips back and load the hamstrings and glutes.' },
+      HorizontalPush: { label: 'Horizontal push', body: 'Pick a pressing movement where you push away from your body parallel to the floor — chest, front delts, and triceps.' },
+      VerticalPush:   { label: 'Overhead push', body: 'Pick a pressing movement where you push directly overhead — primarily shoulders and upper traps.' },
+      HorizontalPull: { label: 'Horizontal row', body: 'Pick a rowing movement where you pull toward your body parallel to the floor — rear delts, mid-back, and biceps.' },
+      VerticalPull:   { label: 'Vertical pull', body: 'Pick a pulling movement where you pull downward from overhead — primarily lats and biceps.' },
+      Carry:          { label: 'Loaded carry', body: 'Pick a carry variation where you walk under load — trains grip, posture, and full-body stability.' },
+    },
+    Isolation: {
+      Glutes:     'Pick an exercise that isolates the glutes — single-joint, focused contraction with minimal involvement from the quads or hamstrings.',
+      Quads:      'Pick an exercise that isolates the quadriceps — single-joint knee extension focus.',
+      Hamstrings: 'Pick an exercise that isolates the hamstrings — knee flexion or hip extension in isolation.',
+      Biceps:     'Pick an exercise that isolates the biceps — single-joint elbow flexion.',
+      Triceps:    'Pick an exercise that isolates the triceps — single-joint elbow extension.',
+      Calves:     'Pick an exercise that isolates the calves — single-joint plantarflexion focus.',
+      Shoulders:  'Pick an exercise that isolates the shoulders — lateral raises, rear delt work, or single-joint overhead movement.',
+      Chest:      'Pick an exercise that isolates the chest — single-joint fly or squeeze movement.',
+      Back:       'Pick an exercise that isolates the back — single-joint row or pull with minimal bicep involvement.',
+      Core:       'Pick an exercise that isolates the core — anti-extension, anti-rotation, or direct ab work.',
+      Forearms:   'Pick an exercise that isolates the forearms — wrist flexion, extension, or grip work.',
+    }
+  };
+
+  if (t === 'Pattern') {
+    const mp = slot.movementPattern || '';
+    const d = descriptions.Pattern[mp];
+    if (d) {
+      return `<div class="slot-hint"><span class="slot-hint-type hint-compound">${d.label}</span><span class="slot-hint-line">${d.body}</span></div>`;
+    }
+  }
+
+  if (t === 'Isolation') {
+    const muscle = slot.primaryMuscle || '';
+    const body = descriptions.Isolation[muscle] || `Pick an exercise that directly targets the ${muscle || 'target muscle'} with single-joint, focused work.`;
+    return `<div class="slot-hint"><span class="slot-hint-type hint-isolation">${muscle ? muscle + ' isolation' : 'Isolation'}</span><span class="slot-hint-line">${body}</span></div>`;
+  }
+
+  if (t === 'Stability') {
+    const sub = slot.exerciseSubtype || '';
+    const body = sub
+      ? `Pick a ${sub.toLowerCase()} stability exercise — resist unwanted movement rather than creating it.`
+      : 'Pick a stability exercise that trains your body to resist unwanted spinal or joint movement — planks, dead bugs, Pallof press variations.';
+    return `<div class="slot-hint"><span class="slot-hint-type hint-stability">Stability</span><span class="slot-hint-line">${body}</span></div>`;
+  }
+
+  if (t === 'Power') {
+    const sub = slot.exerciseSubtype || '';
+    const body = sub
+      ? `Pick an explosive ${sub.toLowerCase()} movement. Every rep should be performed with maximum intent — if speed drops, the set is over.`
+      : 'Pick an explosive movement. Use light to moderate load and treat every rep as a maximum effort — speed is the goal, not weight.';
+    return `<div class="slot-hint"><span class="slot-hint-type hint-power">Power</span><span class="slot-hint-line">${body}</span></div>`;
+  }
+
+  if (t === 'Conditioning') {
+    const condDescriptions = {
+      Aerobic:   'Pick a steady-state cardio exercise you can sustain for 20–60 minutes at a conversational pace. Zone 2 — building your aerobic engine.',
+      Interval:  'Pick an exercise suited to hard intervals — work hard for 2–5 minutes, then rest. Should feel very difficult by the end of each interval.',
+      Threshold: 'Pick a cardio exercise you can sustain at a comfortably hard pace — speaking is difficult but possible. Builds your sustained output ceiling.',
+      Anaerobic: 'Pick an explosive effort exercise for short all-out bursts of 10–60 seconds. Full rest between efforts.',
+    };
+    const sub = slot.exerciseSubtype || '';
+    const body = condDescriptions[sub] || 'Pick a conditioning exercise suited to the energy system work for this session.';
+    return `<div class="slot-hint"><span class="slot-hint-type hint-cond">Conditioning</span><span class="slot-hint-line">${body}</span></div>`;
+  }
+
+  if (t === 'Activation') {
+    const bias = slot.jointBias || '';
+    const body = bias
+      ? `Pick a low-load activation exercise targeting the ${bias.toLowerCase()} — light enough to wake up the movement pattern without creating fatigue before the main work.`
+      : 'Pick a low-load activation exercise to prime the movement pattern — light work that switches on the right muscles before the session begins.';
+    return `<div class="slot-hint"><span class="slot-hint-type hint-stability">Activation</span><span class="slot-hint-line">${body}</span></div>`;
+  }
+
+  if (t === 'Warmup') {
+    return `<div class="slot-hint"><span class="slot-hint-type hint-warmup">Warm-Up</span><span class="slot-hint-line">Dynamic movement to raise your heart rate, increase blood flow, and prepare the joints for the work ahead.</span></div>`;
+  }
+
+  if (t === 'Cooldown') {
+    return `<div class="slot-hint"><span class="slot-hint-type hint-warmup">Cool-Down</span><span class="slot-hint-line">Light movement and stretching to bring your heart rate down and aid recovery.</span></div>`;
+  }
+
+  return '';
 }
 
 // Returns the HTML for a single slot row in the day editor
