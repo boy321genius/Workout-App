@@ -477,6 +477,129 @@
       margin-top: 8px;
     }
 
+    /* ===== History quick-edit panel ===== */
+    .history-edit-panel {
+      margin-top: 12px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 12px;
+    }
+    .history-edit-slot {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .history-edit-slot-name {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #475569;
+      margin-bottom: 2px;
+    }
+    .history-edit-slot-ex {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+    .history-edit-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 6px;
+    }
+    .history-edit-inputs label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #475569;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .history-edit-inputs input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border);
+      border-radius: 7px;
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--color-text-primary);
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .history-edit-done-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+    .history-edit-done-row input[type=checkbox] {
+      width: 16px; height: 16px; accent-color: var(--color-primary); cursor: pointer;
+    }
+    .history-edit-btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .history-add-slot-btn {
+      width: 100%;
+      background: none;
+      border: 1px dashed rgba(79,142,247,0.3);
+      border-radius: 10px;
+      color: var(--color-primary);
+      font-size: 12px;
+      padding: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+    .history-add-slot-btn:hover { background: rgba(79,142,247,0.05); }
+    .history-edit-toggle {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 3px 7px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .history-edit-toggle:hover { background: rgba(255,255,255,0.06); color: var(--color-text-primary); }
+    /* Log Past Workout modal */
+    #logPastModal .modal-content { max-height: 85vh; overflow-y: auto; }
+    .log-past-slot-row {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .log-past-slot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .log-past-slot-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .log-past-remove {
+      background: none; border: none; color: #475569; font-size: 16px;
+      cursor: pointer; line-height: 1; padding: 2px 5px;
+    }
+    .log-past-remove:hover { color: var(--color-error); }
+
     /* ===== General form elements (inputs, selects, textareas) ===== */
     .form-group {
       margin-bottom: 16px;
@@ -2385,15 +2508,20 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
-      flex-shrink: 0;
-      max-width: 160px;
-      padding-left: 10px;
+      flex-shrink: 1;
+      max-width: 130px;
+      min-width: 80px;
+      padding-left: 8px;
     }
     .slot-hint-line {
-      font-size: 10px;
+      font-size: 9px;
       color: #334155;
       text-align: right;
       line-height: 1.4;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
     }
     .slot-hint-line strong {
       color: #475569;
@@ -3444,7 +3572,10 @@
          Shows past workouts / archived sessions as a list.
     -->
     <div id="historyView" class="view">
-      <h2 class="admin-title">Workout History</h2>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <h2 class="admin-title" style="margin-bottom:0;">Workout History</h2>
+        <button onclick="openLogPastModal()" style="background:rgba(79,142,247,0.12);border:1px solid rgba(79,142,247,0.25);color:#7eb3ff;font-size:12px;font-weight:600;border-radius:8px;padding:6px 12px;cursor:pointer;font-family:inherit;">+ Log Past</button>
+      </div>
       <!-- Volume by classification chart -->
       <div id="volumeChartWrap"></div>
       <!-- JS populates this with history items -->
@@ -4161,6 +4292,34 @@
 
         <button type="submit" class="btn btn-block">Save Exercise</button>
       </form>
+    </div>
+  </div>
+
+  <!-- ===== Log Past Workout Modal ===== -->
+  <div id="logPastModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Log Past Workout</h3>
+        <button class="modal-close" onclick="closeModal('logPastModal')">×</button>
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-input" id="logPastDate" />
+      </div>
+
+      <!-- Title -->
+      <div class="form-group">
+        <label class="form-label">Workout Name</label>
+        <input type="text" class="form-input" id="logPastTitle" placeholder="e.g. Push Day, Leg Day…" />
+      </div>
+
+      <!-- Slots list -->
+      <div id="logPastSlots"></div>
+      <button class="history-add-slot-btn" onclick="addLogPastSlot()">+ Add Exercise</button>
+
+      <button class="btn btn-block" onclick="saveLogPastWorkout()">Save Workout</button>
     </div>
   </div>
 
@@ -5150,7 +5309,7 @@ const EXERCISE_LIBRARY = [
   },
   {
     id: "PJ002",
-    name: "Tuck Jump",
+    name: "Vertical Jump",
     movementPattern: null,
     exerciseType: "Power",
     subtype: "Jump",
@@ -15880,8 +16039,8 @@ const dropdownHtml =
     // Full exercise card HTML for this slot.
     return `
       <div class="exercise-item" id="exercise-${index}">
-        <div class="exercise-header" style="align-items:flex-start;">
-          <div style="flex: 1;">
+        <div class="exercise-header" style="align-items:flex-start; overflow:hidden;">
+          <div style="flex: 1; min-width: 0;">
             <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 4px;">
               <!-- Slot name pill (e.g. Main Lift, Accessories) -->
               <div class="pill" style="font-size: 10px; padding: 4px 8px;">
@@ -17079,57 +17238,239 @@ function renderHistory() {
     return;
   }
 
-  list.innerHTML = workoutHistory.slice().reverse().map(entry => {
+  list.innerHTML = workoutHistory.slice().reverse().map((entry, ri) => {
+    const realIdx = workoutHistory.length - 1 - ri;
     const dateStr = new Date(entry.completedAt).toLocaleDateString(
       'en-US', { month: 'short', day: 'numeric', year: 'numeric' }
     );
+    const editPanel = buildHistoryEditPanel(entry, realIdx);
 
-    // Custom (free) workout entry
+    // ── Custom (free-form / manual) entry ─────────────────────────
     if (entry.isCustom) {
-      const exCount  = (entry.freeSlots || []).length;
-      const exNames  = (entry.freeSlots || []).slice(0, 3).map(s => s.name).join(', ');
-      const more     = exCount > 3 ? ` +${exCount - 3} more` : '';
-      // Pull volume from logs if available (new saves) — fall back to slot count only
+      const exCount = (entry.freeSlots || []).length;
+      const exNames = (entry.freeSlots || []).slice(0, 3).map(s => s.name).join(', ');
+      const more    = exCount > 3 ? ` +${exCount - 3} more` : '';
       let volSummary = '';
       if (entry.logs && entry.logs.length > 0) {
         const totalVol = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.volume || 0), 0), 0);
-        if (totalVol > 0) {
-          volSummary = `<div class="card-meta" style="margin-top:4px;">&#x1F522; ${totalVol.toLocaleString()} total reps</div>`;
-        }
+        if (totalVol > 0) volSummary = `<div class="card-meta" style="margin-top:4px;">&#x1F522; ${totalVol.toLocaleString()} total reps</div>`;
       }
       return `
-        <div class="history-item">
+        <div class="history-item" id="hcard-${realIdx}">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
             <div class="history-date">${dateStr}</div>
-            <div style="font-size:11px;background:rgba(79,142,247,0.1);color:#7eb3ff;border-radius:6px;padding:2px 8px;">Custom</div>
+            <div style="display:flex;gap:5px;align-items:center;">
+              <span style="font-size:11px;background:rgba(79,142,247,0.1);color:#7eb3ff;border-radius:6px;padding:2px 8px;">Custom</span>
+              <button class="history-edit-toggle" onclick="toggleHistoryEdit(${realIdx})">✏️ Edit</button>
+              <button class="history-edit-toggle" onclick="deleteHistoryEntry(${realIdx})" title="Delete">🗑</button>
+            </div>
           </div>
           <div class="history-title">${entry.title || 'Custom Workout'}</div>
           <div class="card-meta">${exCount} exercise${exCount !== 1 ? 's' : ''}</div>
           ${exCount > 0 ? `<div class="card-meta" style="margin-top:3px;font-style:italic;">${exNames}${more}</div>` : ''}
           ${volSummary}
+          <div id="hedit-panel-${realIdx}" style="display:none;">${editPanel}</div>
         </div>`;
     }
 
-    // Template/program workout entry
+    // ── Template / program entry ───────────────────────────────────
     let logSummary = '';
     if (entry.logs && entry.logs.length > 0) {
       const completed  = entry.logs.reduce((n, d) => n + d.slots.filter(s => s.completed).length, 0);
       const totalSlots = entry.logs.reduce((n, d) => n + d.slots.length, 0);
       const totalVol   = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.volume || 0), 0), 0);
-      const totalMi    = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.dist || 0), 0), 0);
-      const milesStr   = totalMi > 0 ? ` &nbsp;&bull;&nbsp; &#x1F6B6; ${totalMi.toFixed(1)} mi` : '';
-      logSummary = `<div class="card-meta" style="margin-top:4px;">
-        &#x2705; ${completed}/${totalSlots} exercises completed &nbsp;&bull;&nbsp; &#x1F522; ${totalVol.toLocaleString()} total reps${milesStr}
-      </div>`;
+      const totalMi    = entry.logs.reduce((n, d) => n + d.slots.reduce((m, s) => m + (s.dist  || 0), 0), 0);
+      const miStr = totalMi > 0 ? ` &nbsp;&bull;&nbsp; &#x1F6B6; ${totalMi.toFixed(1)} mi` : '';
+      logSummary = `<div class="card-meta" style="margin-top:4px;">&#x2705; ${completed}/${totalSlots} completed &nbsp;&bull;&nbsp; &#x1F522; ${totalVol.toLocaleString()} reps${miStr}</div>`;
     }
     return `
-      <div class="history-item">
-        <div class="history-date">${dateStr}</div>
+      <div class="history-item" id="hcard-${realIdx}">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <div class="history-date">${dateStr}</div>
+          <div style="display:flex;gap:5px;align-items:center;">
+            <button class="history-edit-toggle" onclick="toggleHistoryEdit(${realIdx})">✏️ Edit</button>
+            <button class="history-edit-toggle" onclick="deleteHistoryEntry(${realIdx})" title="Delete">🗑</button>
+          </div>
+        </div>
         <div class="history-title">${entry.template.name}</div>
-        <div class="card-meta">${entry.template.goal || entry.template.focus || ""} \u2022 ${entry.days} days</div>
+        <div class="card-meta">${entry.template.goal || entry.template.focus || ''} \u2022 ${entry.days} days</div>
         ${logSummary}
+        <div id="hedit-panel-${realIdx}" style="display:none;">${editPanel}</div>
       </div>`;
   }).join('');
+}
+
+// Build the collapsible edit panel HTML for a single history entry.
+function buildHistoryEditPanel(entry, idx) {
+  const allSlots = [];
+  if (entry.logs) {
+    entry.logs.forEach((day, di) => {
+      (day.slots || []).forEach((slot, si) => allSlots.push({ slot, di, si }));
+    });
+  }
+
+  const rows = allSlots.length
+    ? allSlots.map(({ slot, di, si }) => `
+        <div class="history-edit-slot">
+          <div class="history-edit-slot-name">${slot.slot || 'Exercise'}</div>
+          <div class="history-edit-slot-ex">${slot.name || slot.exId || '—'}</div>
+          <div class="history-edit-inputs">
+            <div><label>Sets</label>
+              <input type="number" min="0" inputmode="numeric" id="he-${idx}-${di}-${si}-sets" value="${slot.sets || ''}"></div>
+            <div><label>Reps</label>
+              <input type="number" min="0" inputmode="numeric" id="he-${idx}-${di}-${si}-reps" value="${slot.reps || ''}"></div>
+            <div><label>Load</label>
+              <input type="text"   inputmode="decimal"         id="he-${idx}-${di}-${si}-load" value="${slot.load || ''}"></div>
+            <div><label>Dist mi</label>
+              <input type="number" min="0" step="0.01" inputmode="decimal" id="he-${idx}-${di}-${si}-dist" value="${slot.dist || ''}"></div>
+          </div>
+          <div class="history-edit-done-row">
+            <input type="checkbox" id="he-${idx}-${di}-${si}-done" ${slot.completed ? 'checked' : ''}>
+            <label for="he-${idx}-${di}-${si}-done">Completed</label>
+          </div>
+        </div>`)
+      .join('')
+    : `<p style="font-size:12px;color:#475569;text-align:center;padding:8px 0;">No exercise data for this session.</p>`;
+
+  return `
+    <div class="history-edit-panel">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Edit Logged Data</div>
+      ${rows}
+      <div class="history-edit-btn-row">
+        <button class="btn btn-secondary" style="flex:1;font-size:13px;" onclick="toggleHistoryEdit(${idx})">Cancel</button>
+        <button class="btn" style="flex:2;font-size:13px;" onclick="saveHistoryEdit(${idx})">Save Changes</button>
+      </div>
+    </div>`;
+}
+
+// Toggle the inline edit panel open/closed.
+function toggleHistoryEdit(idx) {
+  const panel = document.getElementById('hedit-panel-' + idx);
+  if (!panel) return;
+  const open = panel.style.display !== 'none';
+  panel.style.display = open ? 'none' : 'block';
+  if (!open) setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+}
+
+// Persist edits from the inline panel back to workoutHistory.
+function saveHistoryEdit(idx) {
+  const entry = workoutHistory[idx];
+  if (!entry || !entry.logs) { toggleHistoryEdit(idx); return; }
+
+  entry.logs.forEach((day, di) => {
+    (day.slots || []).forEach((slot, si) => {
+      const v = (f) => document.getElementById(`he-${idx}-${di}-${si}-${f}`);
+      if (!v('sets')) return;
+      const sets = parseFloat(v('sets').value)  || 0;
+      const reps = parseFloat(v('reps').value)  || 0;
+      slot.sets      = sets;
+      slot.reps      = reps;
+      slot.load      = v('load').value.trim();
+      slot.dist      = parseFloat(v('dist').value) || 0;
+      slot.completed = v('done').checked;
+      slot.volume    = sets * reps;
+    });
+  });
+
+  // Sync freeSlots array for custom entries so summary counts update
+  if (entry.isCustom && entry.logs[0]) {
+    entry.freeSlots = entry.logs[0].slots;
+  }
+
+  saveStateNow();
+  renderHistory();
+}
+
+// Delete a history entry after confirmation.
+function deleteHistoryEntry(idx) {
+  const entry = workoutHistory[idx];
+  if (!entry) return;
+  const label = entry.isCustom ? (entry.title || 'Custom Workout') : (entry.template?.name || 'this workout');
+  if (!confirm('Delete "' + label + '"? This cannot be undone.')) return;
+  workoutHistory.splice(idx, 1);
+  saveStateNow();
+  renderHistory();
+}
+
+// ── Log Past Workout modal ────────────────────────────────────────────────────
+
+let _lpSlotCount = 0;
+
+function openLogPastModal() {
+  _lpSlotCount = 0;
+  document.getElementById('logPastDate').value  = new Date().toISOString().split('T')[0];
+  document.getElementById('logPastTitle').value = '';
+  document.getElementById('logPastSlots').innerHTML = '';
+  addLogPastSlot();
+  document.getElementById('logPastModal').classList.add('active');
+}
+
+function addLogPastSlot() {
+  const i = _lpSlotCount++;
+  const div = document.createElement('div');
+  div.className = 'log-past-slot-row';
+  div.id = 'lps-' + i;
+  div.innerHTML = `
+    <div class="log-past-slot-header">
+      <span class="log-past-slot-num">Exercise ${i + 1}</span>
+      <button class="log-past-remove" onclick="this.closest('.log-past-slot-row').remove()">&times;</button>
+    </div>
+    <input type="text" class="form-input" id="lps-${i}-name"
+      placeholder="Exercise name (e.g. Bench Press)"
+      style="margin-bottom:8px;font-size:13px;" />
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#475569;margin-bottom:3px;">Sets</div>
+        <input type="number" min="0" inputmode="numeric" class="form-input" id="lps-${i}-sets" placeholder="—" style="font-size:13px;padding:7px 8px;" />
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#475569;margin-bottom:3px;">Reps</div>
+        <input type="number" min="0" inputmode="numeric" class="form-input" id="lps-${i}-reps" placeholder="—" style="font-size:13px;padding:7px 8px;" />
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#475569;margin-bottom:3px;">Load</div>
+        <input type="text" inputmode="decimal" class="form-input" id="lps-${i}-load" placeholder="—" style="font-size:13px;padding:7px 8px;" />
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#475569;margin-bottom:3px;">Dist (mi)</div>
+        <input type="number" min="0" step="0.01" inputmode="decimal" class="form-input" id="lps-${i}-dist" placeholder="—" style="font-size:13px;padding:7px 8px;" />
+      </div>
+    </div>`;
+  document.getElementById('logPastSlots').appendChild(div);
+}
+
+function saveLogPastWorkout() {
+  const dateVal  = document.getElementById('logPastDate').value;
+  const titleVal = document.getElementById('logPastTitle').value.trim() || 'Manual Entry';
+
+  const slotEls = document.querySelectorAll('#logPastSlots .log-past-slot-row');
+  const logSlots = [];
+  slotEls.forEach(el => {
+    const i    = el.id.replace('lps-', '');
+    const name = document.getElementById('lps-' + i + '-name')?.value.trim() || '';
+    if (!name) return;
+    const sets = parseFloat(document.getElementById('lps-' + i + '-sets')?.value)  || 0;
+    const reps = parseFloat(document.getElementById('lps-' + i + '-reps')?.value)  || 0;
+    const load = document.getElementById('lps-' + i + '-load')?.value.trim()       || '';
+    const dist = parseFloat(document.getElementById('lps-' + i + '-dist')?.value)  || 0;
+    logSlots.push({ slot: name, exId: '', name, primary: '', type: 'Compound',
+                    sets, reps, load, dist, notes: '', volume: sets * reps, completed: true });
+  });
+
+  if (!logSlots.length) { alert('Add at least one exercise before saving.'); return; }
+
+  const completedAt = dateVal ? new Date(dateVal + 'T12:00:00') : new Date();
+  workoutHistory.push({
+    isCustom:    true,
+    title:       titleVal,
+    completedAt: completedAt.toISOString(),
+    freeSlots:   logSlots,
+    logs:        [{ dayIndex: 0, dayName: 'Manual Entry', date: completedAt.toISOString(), slots: logSlots }]
+  });
+
+  saveStateNow();
+  closeModal('logPastModal');
+  renderHistory();
 }
 
 
