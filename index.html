@@ -617,6 +617,7 @@
     .form-select,
     .form-textarea {
       width: 100%;
+      box-sizing: border-box;
       background: rgba(10, 19, 38, 0.8);
       border: 1px solid var(--color-border);
       border-radius: 10px;
@@ -636,6 +637,12 @@
     .form-textarea {
       resize: vertical;
       min-height: 100px;
+    }
+    /* iOS date inputs override width:100% without -webkit-appearance reset */
+    input[type="date"].form-input {
+      -webkit-appearance: none;
+      appearance: none;
+      max-width: 100%;
     }
 
     /* ===== Search box (for templates/exercises) ===== */
@@ -4303,17 +4310,19 @@
         <button class="modal-close" onclick="closeModal('logPastModal')">×</button>
       </div>
 
-      <!-- Date -->
-      <div class="form-group">
-        <label class="form-label">Date</label>
-        <input type="date" class="form-input" id="logPastDate" />
+      <!-- Date + Title in a two-col row so widths match -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+        <div>
+          <label class="form-label">Date</label>
+          <input type="date" class="form-input" id="logPastDate" style="width:100%;box-sizing:border-box;" />
+        </div>
+        <div>
+          <label class="form-label">Workout Name</label>
+          <input type="text" class="form-input" id="logPastTitle" placeholder="e.g. Push Day…" style="width:100%;box-sizing:border-box;" />
+        </div>
       </div>
-
-      <!-- Title -->
-      <div class="form-group">
-        <label class="form-label">Workout Name</label>
-        <input type="text" class="form-input" id="logPastTitle" placeholder="e.g. Push Day, Leg Day…" />
-      </div>
+      <!-- Datalist populated from EXERCISE_LIBRARY on modal open -->
+      <datalist id="lps-exlist"></datalist>
 
       <!-- Slots list -->
       <div id="logPastSlots"></div>
@@ -17415,9 +17424,20 @@ function addLogPastSlot() {
       <span class="log-past-slot-num">Exercise ${i + 1}</span>
       <button class="log-past-remove" onclick="this.closest('.log-past-slot-row').remove()">&times;</button>
     </div>
-    <input type="text" class="form-input" id="lps-${i}-name"
-      placeholder="Exercise name (e.g. Bench Press)"
-      style="margin-bottom:8px;font-size:13px;" />
+    <div style="position:relative;margin-bottom:8px;">
+      <input type="text" class="form-input" id="lps-${i}-name"
+        list="lps-exlist"
+        autocomplete="off"
+        placeholder="Search exercise library…"
+        style="font-size:13px;padding:10px 12px;width:100%;box-sizing:border-box;"
+        oninput="lpsFilterDropdown(${i}, this.value)"
+        onfocus="lpsShowDropdown(${i})"
+        onblur="setTimeout(()=>lpsHideDropdown(${i}),150)" />
+      <div id="lps-${i}-drop" style="
+        display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);
+        background:#0f1a2e;border:1px solid #1e3358;border-radius:10px;
+        max-height:180px;overflow-y:auto;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,0.5);"></div>
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;">
       <div>
         <div style="font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#475569;margin-bottom:3px;">Sets</div>
@@ -17439,6 +17459,52 @@ function addLogPastSlot() {
   document.getElementById('logPastSlots').appendChild(div);
 }
 
+// ── Exercise search dropdown for Log Past modal ───────────────────────────────
+
+function lpsShowDropdown(i) {
+  lpsFilterDropdown(i, document.getElementById('lps-' + i + '-name').value);
+}
+
+function lpsHideDropdown(i) {
+  const drop = document.getElementById('lps-' + i + '-drop');
+  if (drop) drop.style.display = 'none';
+}
+
+function lpsFilterDropdown(i, query) {
+  const drop = document.getElementById('lps-' + i + '-drop');
+  if (!drop) return;
+  const q = query.trim().toLowerCase();
+  const matches = exerciseLibrary.filter(ex =>
+    !q ||
+    ex.name.toLowerCase().includes(q) ||
+    (ex.primaryMuscle  || '').toLowerCase().includes(q) ||
+    (ex.movementPattern|| '').toLowerCase().includes(q) ||
+    (ex.exerciseType   || '').toLowerCase().includes(q)
+  ).slice(0, 30);
+
+  if (!matches.length) { drop.style.display = 'none'; return; }
+
+  drop.innerHTML = matches.map(ex => `
+    <div onclick="lpsSelectExercise(${i}, '${ex.id}', '${ex.name.replace(/'/g, "\'")}')"
+      style="padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.04);"
+      onmouseenter="this.style.background='rgba(79,142,247,0.12)'"
+      onmouseleave="this.style.background=''">
+      <span style="color:var(--color-text-primary);font-weight:500;">${ex.name}</span>
+      <span style="color:#475569;font-size:11px;margin-left:6px;">${ex.id} · ${ex.exerciseType}</span>
+    </div>`).join('');
+  drop.style.display = 'block';
+}
+
+function lpsSelectExercise(i, exId, exName) {
+  const input = document.getElementById('lps-' + i + '-name');
+  if (input) {
+    input.value = exName;
+    // Store the resolved id as a data attribute for save
+    input.dataset.exId = exId;
+  }
+  lpsHideDropdown(i);
+}
+
 function saveLogPastWorkout() {
   const dateVal  = document.getElementById('logPastDate').value;
   const titleVal = document.getElementById('logPastTitle').value.trim() || 'Manual Entry';
@@ -17446,15 +17512,25 @@ function saveLogPastWorkout() {
   const slotEls = document.querySelectorAll('#logPastSlots .log-past-slot-row');
   const logSlots = [];
   slotEls.forEach(el => {
-    const i    = el.id.replace('lps-', '');
-    const name = document.getElementById('lps-' + i + '-name')?.value.trim() || '';
+    const i      = el.id.replace('lps-', '');
+    const nameEl = document.getElementById('lps-' + i + '-name');
+    const name   = nameEl?.value.trim() || '';
     if (!name) return;
-    const sets = parseFloat(document.getElementById('lps-' + i + '-sets')?.value)  || 0;
-    const reps = parseFloat(document.getElementById('lps-' + i + '-reps')?.value)  || 0;
-    const load = document.getElementById('lps-' + i + '-load')?.value.trim()       || '';
-    const dist = parseFloat(document.getElementById('lps-' + i + '-dist')?.value)  || 0;
-    logSlots.push({ slot: name, exId: '', name, primary: '', type: 'Compound',
-                    sets, reps, load, dist, notes: '', volume: sets * reps, completed: true });
+    const exId   = nameEl?.dataset.exId || '';
+    const libEx  = exId ? exerciseLibrary.find(e => e.id === exId) : null;
+    const sets   = parseFloat(document.getElementById('lps-' + i + '-sets')?.value)  || 0;
+    const reps   = parseFloat(document.getElementById('lps-' + i + '-reps')?.value)  || 0;
+    const load   = document.getElementById('lps-' + i + '-load')?.value.trim()       || '';
+    const dist   = parseFloat(document.getElementById('lps-' + i + '-dist')?.value)  || 0;
+    logSlots.push({
+      slot:      name,
+      exId:      exId,
+      name:      libEx ? libEx.name : name,
+      primary:   libEx ? (libEx.movementPattern || libEx.primaryMuscle || '') : '',
+      type:      libEx ? libEx.exerciseType : 'Compound',
+      sets, reps, load, dist, notes: '',
+      volume: sets * reps, completed: true
+    });
   });
 
   if (!logSlots.length) { alert('Add at least one exercise before saving.'); return; }
