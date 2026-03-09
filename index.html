@@ -6220,7 +6220,19 @@ const EXERCISE_LIBRARY = [
     laterality: "Both",
     jointBias: ["Elbow"]
   },
-  {
+  { 
+    id: 'IT005', 
+    name: 'Seated Tricep Press', 
+    movementPattern: null, 
+    exerciseType: 'Isolation', 
+    subtype: null, 
+    primaryMuscle: 'Triceps', 
+    secondaryMuscles: '', 
+    loadTypes: ['Dumbbell', 'Cable', 'Machine'], 
+    laterality: 'Both', 
+    jointBias: ['Elbow'] 
+   },
+   {
     id: "IS004",
     name: "Cable Lateral Raise",
     movementPattern: null,
@@ -16796,14 +16808,21 @@ function computeVolumeByType(exType) {
     if (!entry.logs) return;
     entry.logs.forEach(day => {
       day.slots.forEach(slot => {
-        if (slot.type !== exType) return;
-        if (!slot.primary || slot.volume <= 0) return;
+
+        // ---- ADD THIS ----
+        const RESISTANCE_TYPES = ['Compound', 'Isolation', 'Stability', 'Activation'];
+        const normalizedType = RESISTANCE_TYPES.includes(slot.type) ? 'Resistance' : slot.type;
+        // ---- END ADD ----
+
+        if (normalizedType !== exType) return;   // ← change slot.type to normalizedType
+        if (!slot.primary || slot.volume === 0) return;
         totals[slot.primary] = (totals[slot.primary] || 0) + slot.volume;
       });
     });
   });
   return Object.entries(totals).sort((a, b) => b[1] - a[1]);
 }
+
 
 // Sums total miles across all logged slots in the filtered window.
 function computeTotalMiles() {
@@ -17215,7 +17234,11 @@ function saveFreeWorkout() {
     return {
       exId:      slot.exId,
       name:      slot.name,
-      type:      ex.exerciseType || 'Resistance',
+      type: ex
+  ? (['Compound', 'Isolation', 'Stability', 'Activation'].includes(ex.exerciseType)
+      ? 'Resistance'
+      : ex.exerciseType)
+  : 'Resistance',
       primary:   ex.movementPattern || ex.primaryMuscle || slot.muscleGroup,
       sets,
       reps,
@@ -17347,14 +17370,14 @@ function buildHistoryEditPanel(entry, idx) {
     max-height:180px;overflow-y:auto;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,0.5)"></div>
 </div>
           <div class="history-edit-inputs">
-            <div><label>Sets</label>
+            <div><label>Sets / Rounds</label>
               <input type="number" min="0" inputmode="numeric" id="he-${idx}-${di}-${si}-sets" value="${slot.sets || ''}"></div>
-            <div><label>Reps</label>
+            <div><label>Reps / Duration</label>
               <input type="number" min="0" inputmode="numeric" id="he-${idx}-${di}-${si}-reps" value="${slot.reps || ''}"></div>
-            <div><label>Load</label>
-              <input type="text"   inputmode="decimal"         id="he-${idx}-${di}-${si}-load" value="${slot.load || ''}"></div>
-            <div><label>Dist mi</label>
+            <div><label>Dist (mi)</label>
               <input type="number" min="0" step="0.01" inputmode="decimal" id="he-${idx}-${di}-${si}-dist" value="${slot.dist || ''}"></div>
+	    <div><label>Load / Speed</label>
+              <input type="text"   inputmode="decimal"         id="he-${idx}-${di}-${si}-load" value="${slot.load || ''}"></div>
           </div>
           <div class="history-edit-done-row">
             <input type="checkbox" id="he-${idx}-${di}-${si}-done" ${slot.completed ? 'checked' : ''}>
@@ -17599,8 +17622,12 @@ function saveLogPastWorkout() {
       slot:      name,
       exId:      exId,
       name:      libEx ? libEx.name : name,
-      primary:   libEx ? (libEx.movementPattern || libEx.primaryMuscle || '') : '',
-      type:      libEx ? libEx.exerciseType : 'Compound',
+      primary: libEx ? (libEx.movementPattern || libEx.primaryMuscle) : name,
+type: libEx
+  ? (['Compound', 'Isolation', 'Stability', 'Activation'].includes(libEx.exerciseType)
+      ? 'Resistance'
+      : libEx.exerciseType)
+  : 'Resistance',
       sets, reps, load, dist, notes: '',
       volume: sets * reps, completed: true
     });
