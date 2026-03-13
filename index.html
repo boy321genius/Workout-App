@@ -7,7 +7,7 @@
   <title>Workout Tracker</title>
 
   <!-- PWA: theme and app appearance -->
-  <meta name="theme-color" content="#0b1220">
+  <meta name="theme-color" content="#080d18">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Lift">
@@ -15,38 +15,39 @@
   <meta name="description" content="Your personal home gym workout tracker">
 
   <!-- PWA: app icon for iOS home screen (generated inline as SVG data URI) -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230b1220'/%3E%3Ctext x='90' y='125' font-size='100' text-anchor='middle'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1220'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23080d18'/%3E%3Ctext x='90' y='125' font-size='100' text-anchor='middle'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d18'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
 
   <!-- PWA manifest (inline as data URI — no separate file needed) -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Workout%20Tracker%22%2C%22short_name%22%3A%22Lift%22%2C%22description%22%3A%22Your%20personal%20home%20gym%20workout%20tracker%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b1220%22%2C%22theme_color%22%3A%22%230b1220%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%2520viewBox%3D'0%25200%2520512%2520512'%253E%253Crect%2520width%3D'512'%2520height%3D'512'%2520rx%3D'100'%2520fill%3D'%25230b1220'%2F%253E%253Ctext%2520x%3D'256'%2520y%3D'380'%2520font-size%3D'380'%2520text-anchor%3D'middle'%253E%25F0%259F%2592%25AA%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Workout%20Tracker%22%2C%22short_name%22%3A%22Lift%22%2C%22description%22%3A%22Your%20personal%20home%20gym%20workout%20tracker%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23080d18%22%2C%22theme_color%22%3A%22%23080d18%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%2520viewBox%3D'0%25200%2520512%2520512'%253E%253Crect%2520width%3D'512'%2520height%3D'512'%2520rx%3D'100'%2520fill%3D'%2523080d18'%2F%253E%253Ctext%2520x%3D'256'%2520y%3D'380'%2520font-size%3D'380'%2520text-anchor%3D'middle'%253E%25F0%259F%2592%25AA%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
   <style>
     /* ===== Global theme variables (colors, shadows, etc.) ===== */
     :root {
-      --color-bg-primary: #0b1220;          /* Main background */
-      --color-bg-secondary: #111b2e;       /* Header / nav background */
-      --color-bg-elevated: #0f1a2e;        /* Cards / raised surfaces */
-      --color-surface: #1a2742;            /* Extra surface color */
+      --color-bg-primary: #080d18;          /* Main background — deeper */
+      --color-bg-secondary: #0d1424;       /* Header / nav background */
+      --color-bg-elevated: #111c30;        /* Cards / raised surfaces */
+      --color-surface: #162240;            /* Extra surface color */
 
-      --color-border: rgba(255, 255, 255, 0.08);
+      --color-border: rgba(255, 255, 255, 0.07);
 
-      --color-text-primary: #eaf1ff;       /* Main text */
-      --color-text-secondary: #9fb0d0;     /* Subtitles, helper text */
-      --color-text-muted: #6b7b9a;         /* Labels, less important text */
+      --color-text-primary: #edf2fc;       /* Main text */
+      --color-text-secondary: #94a8c8;     /* Subtitles, helper text */
+      --color-text-muted: #5a6e8a;         /* Labels, less important text */
 
-      --color-primary: #6aa6ff;            /* Main accent (buttons, active items) */
-      --color-primary-hover: #5a96ef;
-      --color-primary-active: #4c86df;
-      --color-accent: #7cf0c6;             /* Extra highlight color */
+      --color-primary: #5b9cff;            /* Main accent (buttons, active items) */
+      --color-primary-hover: #4a8bf0;
+      --color-primary-active: #3d7de0;
+      --color-accent: #6ce8be;             /* Extra highlight color */
 
-      --color-success: #4ade80;
-      --color-warning: #fbbf24;
+      --color-success: #34d399;
+      --color-warning: #f59e0b;
       --color-error: #f87171;
 
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
     /* ===== Global reset & body styling ===== */
@@ -57,8 +58,8 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(180deg, #070c16 0%, #0b1220 60%, #0b1220 100%);
+      font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(165deg, #060a14 0%, #080d18 40%, #0a1020 100%);
       color: var(--color-text-primary);
       min-height: 100dvh;
       padding-bottom: calc(70px + env(safe-area-inset-bottom));
@@ -66,13 +67,15 @@
 
     /* ===== Header (top bar) ===== */
     .app-header {
-      background: var(--color-bg-secondary);
-      border-bottom: 1px solid var(--color-border);
-      padding: calc(env(safe-area-inset-top) + 12px) 16px 12px;
+      background: rgba(13, 20, 36, 0.85);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: calc(env(safe-area-inset-top) + 14px) 20px 14px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), var(--shadow-md);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -84,8 +87,12 @@
     .app-title {
       font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: -0.01em;
       margin: 0;
+      background: linear-gradient(135deg, #edf2fc 0%, #94a8c8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .app-subtitle {
@@ -100,12 +107,14 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: var(--color-bg-secondary);
-      border-top: 1px solid var(--color-border);
+      background: rgba(13, 20, 36, 0.92);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       justify-content: space-around;
-      padding: 6px 0 max(10px, env(safe-area-inset-bottom));
-      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.5);
+      padding: 8px 0 max(12px, env(safe-area-inset-bottom));
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.03), 0 -8px 32px rgba(0, 0, 0, 0.4);
       z-index: 100;
     }
 
@@ -114,7 +123,7 @@
       background: none;
       border: none;
       border-top: none;
-      color: #475569;
+      color: #4a5568;
       padding: 6px 4px 2px;
       cursor: pointer;
       display: flex;
@@ -123,8 +132,8 @@
       gap: 4px;
       font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
+      letter-spacing: 0.03em;
+      transition: color 0.25s ease;
       position: relative;
     }
 
@@ -146,17 +155,19 @@
     }
 
     .nav-btn.active {
-      color: #4f8ef7;
+      color: #5b9cff;
     }
 
     .nav-btn.active .nav-icon {
-      background: rgba(79, 142, 247, 0.15);
-      transform: translateY(-1px);
+      background: rgba(91, 156, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(91, 156, 255, 0.2);
     }
 
     .nav-btn.active svg {
-      stroke: #4f8ef7;
+      stroke: #5b9cff;
       stroke-width: 2.25;
+      filter: drop-shadow(0 0 4px rgba(91, 156, 255, 0.3));
     }
 
     /* ===== Main content container & view switching ===== */
@@ -178,14 +189,17 @@
     .card {
       background: linear-gradient(
         180deg,
-        rgba(15, 26, 46, 0.92),
-        rgba(11, 18, 32, 0.92)
+        rgba(17, 28, 48, 0.8),
+        rgba(13, 20, 36, 0.8)
       );
-      border: 1px solid var(--color-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
-      padding: 16px;
+      padding: 18px;
       margin-bottom: 16px;
       box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card-header {
@@ -209,28 +223,34 @@
 
     /* ===== Buttons (primary, secondary, sizes) ===== */
     .btn {
-      background: linear-gradient(180deg, #6aa6ff, #4c86ff);
-      color: #081226;
+      background: linear-gradient(135deg, #5b9cff 0%, #3d7de0 100%);
+      color: #ffffff;
       border: none;
       border-radius: 12px;
-      padding: 12px 20px;
+      padding: 12px 22px;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(76, 134, 255, 0.3);
-      transition: transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(91, 156, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
 
     .btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 12px rgba(76, 134, 255, 0.25);
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 2px 8px rgba(91, 156, 255, 0.2);
+      filter: brightness(0.92);
     }
 
     .btn-secondary {
-      background: rgba(106, 166, 255, 0.12);
+      background: rgba(91, 156, 255, 0.08);
       color: var(--color-primary);
       box-shadow: none;
-      border: 1px solid var(--color-border);
+      border: 1px solid rgba(91, 156, 255, 0.15);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-secondary:active {
+      background: rgba(91, 156, 255, 0.15);
     }
 
     .btn-small {
@@ -248,14 +268,16 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
-      border: 1px solid var(--color-border);
-      background: rgba(106, 166, 255, 0.12);
+      border: 1px solid rgba(91, 156, 255, 0.2);
+      background: rgba(91, 156, 255, 0.08);
       color: var(--color-text-primary);
       font-size: 11px;
+      font-weight: 500;
       margin-right: 6px;
       margin-bottom: 6px;
+      letter-spacing: 0.01em;
     }
 
     .pill-success {
@@ -274,39 +296,43 @@
     }
 
     .filter-chip {
-      background: rgba(17, 27, 46, 0.8);
-      border: 1px solid var(--color-border);
+      background: rgba(17, 28, 48, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 20px;
       padding: 8px 16px;
       font-size: 13px;
+      font-weight: 500;
       color: var(--color-text-secondary);
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
     .filter-chip.active {
-      background: var(--color-primary);
-      color: #081226;
-      border-color: var(--color-primary);
+      background: linear-gradient(135deg, #5b9cff, #3d7de0);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 2px 10px rgba(91, 156, 255, 0.25);
     }
 
     .template-card {
       background: linear-gradient(
         180deg,
-        rgba(15, 26, 46, 0.92),
-        rgba(11, 18, 32, 0.92)
+        rgba(17, 28, 48, 0.75),
+        rgba(13, 20, 36, 0.75)
       );
-      border: 1px solid var(--color-border);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
-      padding: 16px;
+      padding: 18px;
       margin-bottom: 12px;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
     }
 
     .template-card.selected {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 2px rgba(106, 166, 255, 0.3);
+      border-color: rgba(91, 156, 255, 0.5);
+      box-shadow: 0 0 0 1px rgba(91, 156, 255, 0.2), 0 4px 20px rgba(91, 156, 255, 0.12);
+      background: linear-gradient(180deg, rgba(22, 34, 64, 0.85), rgba(15, 23, 42, 0.85));
     }
 
     .template-preview {
@@ -323,14 +349,25 @@
     /* ===== Active workout view (current week) ===== */
     .workout-header {
       background: linear-gradient(
-        180deg,
-        rgba(106, 166, 255, 0.14),
-        rgba(17, 27, 46, 0.6)
+        135deg,
+        rgba(91, 156, 255, 0.12),
+        rgba(17, 28, 48, 0.6)
       );
-      border: 1px solid var(--color-border);
-      border-radius: 14px;
-      padding: 16px;
+      border: 1px solid rgba(91, 156, 255, 0.12);
+      border-radius: 16px;
+      padding: 18px;
       margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .workout-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(91, 156, 255, 0.3), transparent);
     }
 
     .workout-day {
@@ -346,11 +383,13 @@
     }
 
     .exercise-item {
-      background: var(--color-bg-elevated);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 14px;
+      background: rgba(17, 28, 48, 0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 16px;
       margin-bottom: 12px;
+      transition: border-color 0.2s ease;
     }
 
     .exercise-header {
@@ -393,18 +432,20 @@
     }
 
     .input-field {
-      background: rgba(10, 19, 38, 0.8);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 10px;
+      background: rgba(8, 15, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 12px;
       color: var(--color-text-primary);
-      font-size: 16px; /* Must be 16px+ to prevent iOS auto-zoom on focus */
+      font-size: 16px;
       width: 100%;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .input-field:focus {
       outline: none;
-      border-color: var(--color-primary);
+      border-color: rgba(91, 156, 255, 0.4);
+      box-shadow: 0 0 0 3px rgba(91, 156, 255, 0.08);
     }
 
     .checkbox-label {
@@ -452,11 +493,12 @@
 
     /* ===== History list items (past workouts) ===== */
     .history-item {
-      background: var(--color-bg-elevated);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 14px;
+      background: rgba(17, 28, 48, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 16px;
       margin-bottom: 10px;
+      transition: border-color 0.2s ease;
     }
 
     .history-date {
@@ -618,20 +660,22 @@
     .form-textarea {
       width: 100%;
       box-sizing: border-box;
-      background: rgba(10, 19, 38, 0.8);
-      border: 1px solid var(--color-border);
+      background: rgba(8, 15, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 12px;
       color: var(--color-text-primary);
-      font-size: 16px; /* 16px+ prevents iOS auto-zoom */
+      font-size: 16px;
       font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
       outline: none;
-      border-color: var(--color-primary);
+      border-color: rgba(91, 156, 255, 0.4);
+      box-shadow: 0 0 0 3px rgba(91, 156, 255, 0.08);
     }
 
     .form-textarea {
@@ -653,12 +697,18 @@
 
     .search-input {
       width: 100%;
-      background: rgba(10, 19, 38, 0.8);
-      border: 1px solid var(--color-border);
+      background: rgba(8, 15, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 12px;
-      padding: 12px 16px 12px 44px; /* Left padding for icon space */
+      padding: 12px 16px 12px 44px;
       color: var(--color-text-primary);
-      font-size: 16px; /* 16px+ prevents iOS auto-zoom */
+      font-size: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: rgba(91, 156, 255, 0.3);
+      box-shadow: 0 0 0 3px rgba(91, 156, 255, 0.06);
     }
 
     .search-icon {
@@ -702,8 +752,8 @@
     /* ===== Templates / Programs mode toggle ===== */
     .mode-toggle {
       display: flex;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 14px;
       padding: 4px;
       margin-bottom: 20px;
@@ -727,9 +777,9 @@
     }
 
     .mode-toggle-btn.active {
-      background: linear-gradient(135deg, #2563eb, #4f8ef7);
+      background: linear-gradient(135deg, #3d7de0, #5b9cff);
       color: #fff;
-      box-shadow: 0 2px 10px rgba(79,142,247,0.35);
+      box-shadow: 0 2px 12px rgba(91, 156, 255, 0.3);
     }
 
     .mode-toggle-btn small {
@@ -761,8 +811,8 @@
     }
 
     .program-card.selected {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 2px rgba(106,166,255,0.3);
+      border-color: rgba(91, 156, 255, 0.5);
+      box-shadow: 0 0 0 1px rgba(91, 156, 255, 0.2), 0 4px 20px rgba(91, 156, 255, 0.12);
     }
 
     .program-card-header {
@@ -866,10 +916,10 @@
 
     /* ===== Program progress bar (Workout tab) ===== */
     .program-progress-bar {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px;
-      padding: 12px 14px;
+      background: rgba(17, 28, 48, 0.4);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 14px 16px;
       margin-bottom: 12px;
     }
 
@@ -941,10 +991,10 @@
 
     /* ===== Deload banner ===== */
     .deload-banner {
-      background: rgba(74,222,128,0.07);
-      border: 1px solid rgba(74,222,128,0.2);
-      border-radius: 12px;
-      padding: 12px 14px;
+      background: rgba(52, 211, 153, 0.06);
+      border: 1px solid rgba(52, 211, 153, 0.15);
+      border-radius: 14px;
+      padding: 14px 16px;
       margin-bottom: 12px;
       display: flex;
       gap: 10px;
@@ -977,9 +1027,10 @@
 
     /* ===== Muscle Audit Panel ===== */
     .muscle-audit-panel {
-      background: rgba(15,26,46,0.9);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px;
+      background: rgba(17, 28, 48, 0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
       margin-bottom: 12px;
       overflow: hidden;
     }
@@ -1240,20 +1291,22 @@
     .admin-title {
       font-size: 18px;
       font-weight: 700;
+      letter-spacing: -0.01em;
       margin-bottom: 12px;
       padding-bottom: 8px;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .exercise-list-item {
-      background: var(--color-bg-elevated);
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      padding: 12px;
+      background: rgba(17, 28, 48, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 14px;
       margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: border-color 0.2s ease;
     }
 
     .exercise-list-name {
@@ -1298,7 +1351,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.8);      /* Dark overlay */
+      background: rgba(0, 0, 0, 0.7);      /* Dark overlay */
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       z-index: 1000;
       padding: 20px;
       overflow-y: auto;
@@ -1311,14 +1366,17 @@
     }
 
     .modal-content {
-      background: var(--color-bg-secondary);
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
+      background: rgba(13, 20, 36, 0.95);
+      backdrop-filter: blur(24px) saturate(1.3);
+      -webkit-backdrop-filter: blur(24px) saturate(1.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
       padding: 24px;
       max-width: 500px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
     }
 
     .modal-header {
@@ -1363,10 +1421,10 @@
     }
 
     .stat-card {
-      background: rgba(10, 19, 38, 0.7);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 10px 12px;
+      background: rgba(17, 28, 48, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 14px 12px;
       flex: 1;
       text-align: center;
     }
@@ -2739,25 +2797,344 @@
     .selection-confirm-btn {
       flex-shrink: 0;
     }
-    </style>
+
+    /* ===== Scrollbar styling ===== */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    /* ===== Selection color ===== */
+    ::selection {
+      background: rgba(91, 156, 255, 0.25);
+      color: #edf2fc;
+    }
+
+    /* ===== Smooth transitions for view switching ===== */
+    .view.active {
+      display: block;
+      animation: viewFadeIn 0.25s ease;
+    }
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Exercise item hover glow on non-touch ===== */
+    @media (hover: hover) {
+      .exercise-item:hover {
+        border-color: rgba(91, 156, 255, 0.12);
+      }
+      .history-item:hover {
+        border-color: rgba(91, 156, 255, 0.1);
+      }
+      .template-card:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+      }
+      .program-card:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+      }
+      .btn:hover {
+        box-shadow: 0 6px 20px rgba(91, 156, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+      }
+      .filter-chip:not(.active):hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    /* ===== Improved checkbox accent ===== */
+    input[type="checkbox"] {
+      accent-color: #5b9cff;
+    }
+
+    /* ===== Better focus ring for interactive elements ===== */
+    .btn:focus-visible,
+    .nav-btn:focus-visible,
+    .filter-chip:focus-visible {
+      outline: 2px solid rgba(91, 156, 255, 0.5);
+      outline-offset: 2px;
+    }
+    
+/* ── Toast Notification System ─────────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  top: env(safe-area-inset-top, 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  width: 90%;
+  max-width: 400px;
+}
+.toast {
+  pointer-events: auto;
+  background: rgba(15, 26, 46, 0.97);
+  border: 1px solid rgba(79, 142, 247, 0.25);
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-family: var(--font-body, inherit);
+  line-height: 1.5;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: toastIn 0.3s ease-out;
+  max-width: 100%;
+  text-align: center;
+}
+.toast.toast-error {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(30, 10, 10, 0.97);
+}
+.toast.toast-success {
+  border-color: rgba(52, 211, 153, 0.35);
+}
+.toast.toast-exit {
+  animation: toastOut 0.25s ease-in forwards;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-12px); }
+}
+
+
+/* ── Rest Timer ──────────────────────────────────────────────────────── */
+.rest-timer-fab {
+  position: fixed;
+  bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: none;
+}
+.rest-timer-fab.visible {
+  display: flex;
+}
+.rest-timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(10, 20, 40, 0.96);
+  border: 1px solid rgba(79, 142, 247, 0.3);
+  border-radius: 50px;
+  padding: 8px 10px 8px 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(79, 142, 247, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: timerSlideUp 0.3s ease-out;
+  min-width: 260px;
+  max-width: 340px;
+}
+@keyframes timerSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rest-timer-ring {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.rest-timer-ring svg {
+  width: 44px;
+  height: 44px;
+  transform: rotate(-90deg);
+}
+.rest-timer-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 3;
+}
+.rest-timer-ring-fg {
+  fill: none;
+  stroke: var(--color-primary, #4f8ef7);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+.rest-timer-ring-fg.done {
+  stroke: #4ade80;
+}
+.rest-timer-time {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e2e8f0;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-body, inherit);
+}
+.rest-timer-info {
+  flex: 1;
+  min-width: 0;
+}
+.rest-timer-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rest-timer-sublabel {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 1px;
+}
+.rest-timer-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.rest-timer-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+  font-family: inherit;
+}
+.rest-timer-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+}
+.rest-timer-btn.pause-btn {
+  width: 36px;
+  height: 36px;
+  border-color: rgba(79, 142, 247, 0.3);
+  background: rgba(79, 142, 247, 0.1);
+  color: #7eb3ff;
+  font-size: 15px;
+}
+
+/* Timer trigger button inside exercise cards */
+.rest-timer-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(79, 142, 247, 0.08);
+  border: 1px solid rgba(79, 142, 247, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: #7eb3ff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: var(--font-body, inherit);
+  margin-top: 10px;
+}
+.rest-timer-trigger:hover {
+  background: rgba(79, 142, 247, 0.15);
+  border-color: rgba(79, 142, 247, 0.35);
+}
+.rest-timer-trigger svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Quick-adjust time buttons in the timer pill */
+.rest-timer-adjust {
+  display: flex;
+  gap: 3px;
+  margin-top: 2px;
+}
+.rest-timer-adj-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  color: #64748b;
+  font-size: 10px;
+  padding: 1px 5px;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.4;
+}
+.rest-timer-adj-btn:hover {
+  color: #94a3b8;
+  background: rgba(255,255,255,0.1);
+}
+
+</style>
   <!-- Supabase JS client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="rest-timer-fab" id="restTimerFab">
+  <div class="rest-timer-pill">
+    <div class="rest-timer-ring">
+      <svg viewBox="0 0 44 44">
+        <circle class="rest-timer-ring-bg" cx="22" cy="22" r="19"></circle>
+        <circle class="rest-timer-ring-fg" id="rtRingFg" cx="22" cy="22" r="19"
+                stroke-dasharray="119.38" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="rest-timer-time" id="rtTimeDisplay">0:00</div>
+    </div>
+    <div class="rest-timer-info">
+      <div class="rest-timer-label" id="rtLabel">Rest Timer</div>
+      <div class="rest-timer-adjust">
+        <button class="rest-timer-adj-btn" onclick="adjustRestTimer(-15)">−15s</button>
+        <button class="rest-timer-adj-btn" onclick="adjustRestTimer(15)">+15s</button>
+        <button class="rest-timer-adj-btn" onclick="adjustRestTimer(30)">+30s</button>
+      </div>
+    </div>
+    <div class="rest-timer-actions">
+      <button class="rest-timer-btn pause-btn" id="rtPauseBtn" onclick="toggleRestTimerPause()" title="Pause / Resume">⏸</button>
+      <button class="rest-timer-btn" onclick="dismissRestTimer()" title="Dismiss">✕</button>
+    </div>
+  </div>
+</div>
+
 
   <!-- Initial loading spinner — shown while Supabase checks auth state -->
   <div id="appLoadingScreen" style="
     position: fixed; inset: 0; z-index: 10000;
-    background: #0b1220;
+    background: #080d18;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 16px;
   ">
     <div style="font-size: 40px;">💪</div>
     <div style="
       width: 28px; height: 28px; border-radius: 50%;
-      border: 3px solid rgba(79,142,247,0.2);
-      border-top-color: #4f8ef7;
+      border: 3px solid rgba(91,156,255,0.15);
+      border-top-color: #5b9cff;
       animation: spin 0.8s linear infinite;
     "></div>
   </div>
@@ -2769,7 +3146,7 @@
   <div id="loginScreen" style="
     display: none;
     position: fixed; inset: 0; z-index: 9999;
-    background: linear-gradient(160deg, #060d1a 0%, #0b1525 50%, #0a1220 100%);
+    background: linear-gradient(160deg, #050912 0%, #080d18 50%, #0a1020 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -2782,9 +3159,9 @@
         <div style="
           display: inline-flex; align-items: center; justify-content: center;
           width: 72px; height: 72px; border-radius: 20px;
-          background: linear-gradient(135deg, #2563eb, #4f8ef7);
+          background: linear-gradient(135deg, #3d7de0, #5b9cff);
           font-size: 36px; margin-bottom: 16px;
-          box-shadow: 0 8px 24px rgba(79,142,247,0.35);
+          box-shadow: 0 8px 32px rgba(91,156,255,0.3);
         ">💪</div>
         <h1 style="font-size: 24px; font-weight: 800; color: #e2e8f0; margin: 0 0 6px;">Workout Tracker</h1>
         <p style="font-size: 13px; color: #475569; margin: 0;" id="loginSubtitle">Sign in to your account</p>
@@ -2795,8 +3172,8 @@
         <button id="tabSignIn" onclick="switchAuthTab('signin')" style="
           flex:1; padding:9px; border:none; border-radius:9px;
           font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;
-          background:#4f8ef7; color:#fff;
-          box-shadow: 0 2px 8px rgba(79,142,247,0.3);
+          background: linear-gradient(135deg, #3d7de0, #5b9cff); color:#fff;
+          box-shadow: 0 2px 8px rgba(91,156,255,0.3);
           transition:all 0.15s;
         ">Sign In</button>
         <button id="tabSignUp" onclick="switchAuthTab('signup')" style="
@@ -2851,7 +3228,7 @@
         border:none; border-radius:12px; color:#fff;
         font-size:16px; font-weight:700; padding:14px;
         cursor:pointer; font-family:inherit;
-        box-shadow: 0 4px 16px rgba(79,142,247,0.4);
+        box-shadow: 0 4px 20px rgba(91,156,255,0.3);
         transition:opacity 0.15s;
       ">Sign In</button>
 
@@ -2920,7 +3297,7 @@
       <div style="margin-top:32px;">
         <button id="confirmScreenStartBtn" onclick="startProgram()" style="
           width: 100%;
-          background: linear-gradient(135deg, #2563eb, #4f8ef7);
+          background: linear-gradient(135deg, #3d7de0, #5b9cff);
           border: none; border-radius: 14px;
           color: #fff; font-size: 17px; font-weight: 700;
           padding: 16px; cursor: pointer; font-family: inherit;
@@ -3011,7 +3388,7 @@
       <!-- CTA -->
       <button id="btStartBtn" onclick="dismissBlockTransition()" style="
         width: 100%;
-        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        background: linear-gradient(135deg, #3d7de0, #5b9cff);
         border: none; border-radius: 14px;
         color: #fff; font-size: 17px; font-weight: 700;
         padding: 16px; cursor: pointer; font-family: inherit;
@@ -3057,7 +3434,7 @@
 
       <button onclick="dismissProgramComplete()" style="
         width: 100%;
-        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        background: linear-gradient(135deg, #3d7de0, #5b9cff);
         border: none; border-radius: 14px;
         color: #fff; font-size: 17px; font-weight: 700;
         padding: 16px; cursor: pointer; font-family: inherit;
@@ -3173,7 +3550,7 @@
       <div style="margin-top:32px;">
         <button id="confirmScreenStartBtn" onclick="startProgram()" style="
           width: 100%;
-          background: linear-gradient(135deg, #2563eb, #4f8ef7);
+          background: linear-gradient(135deg, #3d7de0, #5b9cff);
           border: none; border-radius: 14px;
           color: #fff; font-size: 17px; font-weight: 700;
           padding: 16px; cursor: pointer; font-family: inherit;
@@ -3264,7 +3641,7 @@
       <!-- CTA -->
       <button id="btStartBtn" onclick="dismissBlockTransition()" style="
         width: 100%;
-        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        background: linear-gradient(135deg, #3d7de0, #5b9cff);
         border: none; border-radius: 14px;
         color: #fff; font-size: 17px; font-weight: 700;
         padding: 16px; cursor: pointer; font-family: inherit;
@@ -3310,7 +3687,7 @@
 
       <button onclick="dismissProgramComplete()" style="
         width: 100%;
-        background: linear-gradient(135deg, #2563eb, #4f8ef7);
+        background: linear-gradient(135deg, #3d7de0, #5b9cff);
         border: none; border-radius: 14px;
         color: #fff; font-size: 17px; font-weight: 700;
         padding: 16px; cursor: pointer; font-family: inherit;
@@ -3391,8 +3768,8 @@
     <!-- Spinner -->
     <div style="
       width: 36px; height: 36px; border-radius: 50%;
-      border: 3px solid rgba(79,142,247,0.2);
-      border-top-color: #4f8ef7;
+      border: 3px solid rgba(91,156,255,0.15);
+      border-top-color: #5b9cff;
       animation: spin 0.8s linear infinite;
       margin-bottom: 28px;
     "></div>
@@ -14133,6 +14510,213 @@ const PROGRAMS = [
 // of why it follows the previous block. Deload blocks use templateId: null
 // and are handled specially in the Complete Week flow.
 
+
+
+// ==================== REST TIMER ====================
+
+// Default rest durations by slot type (seconds)
+// REST_DEFAULTS: keyed by training focus → slot → seconds
+// Science rationale:
+//   Strength    — high %1RM loads, phosphocreatine resynthesis needs 3-5 min
+//   Hypertrophy — moderate loads, metabolic stress is part of stimulus, 60-90s optimal
+//   Power       — CNS-dominant, explosive quality degrades without full recovery
+//   Conditioning — elevated HR is the goal, minimal inter-set rest
+const REST_DEFAULTS = {
+  Strength: {
+    'Warm-Up':               30,   // 0:30
+    'Activation':            45,   // 0:45
+    'Power':                150,   // 2:30 — strength-context power work
+    'Main Lift':            210,   // 3:30 — heavy compound, near-full PCr resynthesis
+    'Secondary Lift':       150,   // 2:30 — still heavy, compound
+    'Accessories':           90,   // 1:30 — accessory volume
+    'Core / Trunk / Carries':60,   // 1:00
+    'Conditioning':          60,   // 1:00 — conditioning tacked onto strength day
+    'Cooldown':              30,   // 0:30
+    'default':               90,
+  },
+  Hypertrophy: {
+    'Warm-Up':               30,   // 0:30
+    'Activation':            45,   // 0:45
+    'Power':                120,   // 2:00 — power in hypertrophy context
+    'Main Lift':             90,   // 1:30 — metabolic stress is the stimulus
+    'Secondary Lift':        90,   // 1:30
+    'Accessories':           60,   // 1:00 — short rest drives metabolic stress
+    'Core / Trunk / Carries':60,   // 1:00
+    'Conditioning':          45,   // 0:45
+    'Cooldown':              30,   // 0:30
+    'default':               75,
+  },
+  Power: {
+    'Warm-Up':               30,   // 0:30
+    'Activation':            45,   // 0:45
+    'Power':                240,   // 4:00 — CNS recovery is paramount for output quality
+    'Main Lift':            180,   // 3:00 — strength work within power program
+    'Secondary Lift':       150,   // 2:30
+    'Accessories':           90,   // 1:30
+    'Core / Trunk / Carries':90,   // 1:30 — carries are taxing in power context
+    'Conditioning':          60,   // 1:00
+    'Cooldown':              30,   // 0:30
+    'default':              120,
+  },
+  Conditioning: {
+    'Warm-Up':               30,   // 0:30
+    'Activation':            30,   // 0:30
+    'Power':                120,   // 2:00
+    'Main Lift':             90,   // 1:30
+    'Secondary Lift':        60,   // 1:00
+    'Accessories':           60,   // 1:00
+    'Core / Trunk / Carries':45,   // 0:45
+    'Conditioning':          30,   // 0:30 — keep HR elevated
+    'Cooldown':              30,   // 0:30
+    'default':               60,
+  },
+};
+
+let _rtInterval   = null;   // setInterval handle
+let _rtRemaining  = 0;      // seconds left
+let _rtTotal      = 0;      // total seconds for this countdown
+let _rtPaused     = false;
+let _rtSlotName   = '';     // which exercise slot started it
+const RT_CIRCUM   = 2 * Math.PI * 19; // SVG circle circumference (~119.38)
+
+function startRestTimer(seconds, slotName) {
+  // If already running, restart with new values
+  clearInterval(_rtInterval);
+
+  _rtTotal     = seconds;
+  _rtRemaining = seconds;
+  _rtPaused    = false;
+  _rtSlotName  = slotName || 'Rest';
+
+  // Update UI
+  const fab = document.getElementById('restTimerFab');
+  fab.classList.add('visible');
+
+  document.getElementById('rtLabel').textContent = _rtSlotName + ' — rest';
+  document.getElementById('rtPauseBtn').textContent = '⏸';
+
+  const ring = document.getElementById('rtRingFg');
+  ring.classList.remove('done');
+  ring.style.stroke = '';
+
+  updateTimerDisplay();
+
+  _rtInterval = setInterval(() => {
+    if (_rtPaused) return;
+    _rtRemaining--;
+    updateTimerDisplay();
+
+    if (_rtRemaining <= 0) {
+      clearInterval(_rtInterval);
+      _rtInterval = null;
+      onTimerComplete();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const mins = Math.floor(Math.abs(_rtRemaining) / 60);
+  const secs = Math.abs(_rtRemaining) % 60;
+  const prefix = _rtRemaining < 0 ? '+' : '';
+  document.getElementById('rtTimeDisplay').textContent =
+    prefix + mins + ':' + String(secs).padStart(2, '0');
+
+  // Update ring progress
+  const progress = _rtTotal > 0 ? Math.max(0, _rtRemaining / _rtTotal) : 0;
+  const offset = RT_CIRCUM * (1 - progress);
+  document.getElementById('rtRingFg').style.strokeDashoffset = offset;
+}
+
+function onTimerComplete() {
+  // Visual feedback
+  const ring = document.getElementById('rtRingFg');
+  ring.classList.add('done');
+
+  document.getElementById('rtLabel').textContent = _rtSlotName + ' — go!';
+  document.getElementById('rtTimeDisplay').textContent = '0:00';
+
+  // Vibrate if supported
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200, 100, 300]);
+  }
+
+  // Audio beep (Web Audio API — no file needed)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.15, 0.3].forEach(delay => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = delay < 0.3 ? 880 : 1320; // last beep higher pitch
+      gain.gain.value = 0.12;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + delay);
+      osc.stop(ctx.currentTime + delay + 0.1);
+    });
+  } catch (e) { /* audio not available */ }
+
+  // Keep timer visible with count-up so user sees how long they've been resting
+  _rtInterval = setInterval(() => {
+    _rtRemaining--;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function toggleRestTimerPause() {
+  if (_rtRemaining <= 0 && !_rtPaused) {
+    // Timer is in count-up mode (overtime), dismiss instead
+    dismissRestTimer();
+    return;
+  }
+  _rtPaused = !_rtPaused;
+  document.getElementById('rtPauseBtn').textContent = _rtPaused ? '▶' : '⏸';
+}
+
+function adjustRestTimer(delta) {
+  _rtRemaining += delta;
+  if (_rtRemaining < 0 && _rtTotal > 0) _rtRemaining = 0;
+  _rtTotal = Math.max(_rtTotal, _rtTotal + delta);
+  if (_rtTotal < 5) _rtTotal = 5;
+  updateTimerDisplay();
+}
+
+function dismissRestTimer() {
+  clearInterval(_rtInterval);
+  _rtInterval  = null;
+  _rtRemaining = 0;
+  _rtPaused    = false;
+  document.getElementById('restTimerFab').classList.remove('visible');
+}
+
+function getRestDuration(slotName, focus) {
+  const focusMap = REST_DEFAULTS[focus] || REST_DEFAULTS['Strength'];
+  return focusMap[slotName] || focusMap['default'];
+}
+
+function formatRestDuration(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  if (m === 0) return s + 's';
+  if (s === 0) return m + ':00';
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+
+// ==================== TOAST NOTIFICATIONS ====================
+function showToast(message, type = 'info', duration = 3000) {
+  const container = document.getElementById('toastContainer');
+  if (!container) { console.log('[TOAST]', message); return; }
+  const toast = document.createElement('div');
+  toast.className = 'toast' + (type === 'error' ? ' toast-error' : type === 'success' ? ' toast-success' : '');
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('toast-exit');
+    toast.addEventListener('animationend', () => toast.remove());
+  }, duration);
+}
+
 let currentUser = null;
 let currentUsername = '';
 let saveTimeout = null;
@@ -14182,15 +14766,6 @@ let activeProgramWeekIndex = 1;
 
 // Total weeks completed across all blocks in the current program run
 let activeProgramWeeksCompleted = 0;
-
-// ===== Program State =====
-// The active program object (from PROGRAMS), or null if user is in standalone mode
-
-// Index of the current block within activeProgram.blocks (0-based)
-
-// Which week the user is on within the current block (1-based, e.g. week 1 of 4)
-
-// Total weeks completed across all blocks in the current program run
 
 // Builds the full state object to persist
 function buildStateObject() {
@@ -14267,10 +14842,18 @@ function saveState() {
   clearTimeout(saveTimeout);
   saveTimeout = setTimeout(async () => {
     const state = buildStateObject();
-    const { error } = await sb
-      .from('user_state')
-      .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
-    if (error) console.error('saveState error:', error);
+    try {
+      const { error } = await sb
+        .from('user_state')
+        .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
+      if (error) {
+        console.error('saveState error:', error);
+        showToast('Failed to save — check your connection', 'error');
+      }
+    } catch (e) {
+      console.error('saveState network error:', e);
+      showToast('Connection lost — changes may not be saved', 'error');
+    }
   }, 800);
 }
 
@@ -14280,17 +14863,18 @@ async function saveStateNow() {
   if (!currentUser) { console.log('[SAVE] Skipped — no currentUser'); return; }
   clearTimeout(saveTimeout);
   const state = buildStateObject();
-  console.log('[SAVE] Saving to Supabase:', {
-    activeTemplate: state.activeTemplate?.name || null,
-    currentDayIndex: state.currentDayIndex,
-    currentWeekLogs: state.currentWeekLogs,
-    activeSelections: state.activeSelections
-  });
-  const { error } = await sb
-    .from('user_state')
-    .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
-  if (error) console.error('[SAVE] Error:', error);
-  else console.log('[SAVE] ✅ Success');
+  try {
+    const { error } = await sb
+      .from('user_state')
+      .upsert({ user_id: currentUser.id, data: state, username: currentUsername }, { onConflict: 'user_id' });
+    if (error) {
+      console.error('[SAVE] Error:', error);
+      showToast('Failed to save — check your connection', 'error');
+    }
+  } catch (e) {
+    console.error('[SAVE] Network error:', e);
+    showToast('Connection lost — changes may not be saved', 'error');
+  }
 }
 
 // Flush any pending debounced save when app goes to background or closes
@@ -14308,14 +14892,12 @@ document.addEventListener('visibilitychange', () => {
         'Content-Type': 'application/json',
         'Prefer': 'resolution=merge-duplicates',
         'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`
+        'Authorization': `Bearer ${sb.auth.session()?.access_token || SUPABASE_KEY}`
       },
       body: payload
     });
   }
 });
-
-// ==================== AUTH ====================
 
 // ==================== AUTH ====================
 
@@ -14521,6 +15103,7 @@ async function initApp(user) {
     clearInterval(timer);
     overlay.style.display = 'none';
     console.warn('[INIT] loadState error:', err.message);
+    showToast('Could not load your data. Working offline.', 'error', 5000);
   });
 }
 
@@ -14665,182 +15248,6 @@ let selectedProgramId = null;
 let programDayFilter = 0; // 0 = All, 2/3/4/5 = specific day count
 let programGoalFilter = 'All';
 
-// Switches the Templates tab between "templates" and "programs" modes
-function switchTemplatesMode(mode) {
-  const templatesView = document.getElementById('templatesModeView');
-  const programsView  = document.getElementById('programsModeView');
-  const tabTemplates  = document.getElementById('modeTabTemplates');
-  const tabPrograms   = document.getElementById('modeTabPrograms');
-
-  if (mode === 'templates') {
-    templatesView.style.display = 'block';
-    programsView.style.display  = 'none';
-    tabTemplates.classList.add('active');
-    tabPrograms.classList.remove('active');
-  } else {
-    templatesView.style.display = 'none';
-    programsView.style.display  = 'block';
-    tabTemplates.classList.remove('active');
-    tabPrograms.classList.add('active');
-    renderPrograms();
-  }
-  // Hide floating bar whenever mode switches — selection state is reset visually
-  hideSelectionBar();
-}
-
-// Returns the CSS class for a block chip based on its label/type
-function getBlockChipClass(block) {
-  switch (block.phase) {
-    case 'Deload':         return 'deload';
-    case 'Realization':    return 'peak';
-    case 'Accumulation':   return 'accumulation';
-    case 'Intensification':return 'intensification';
-    default:               return 'strength';
-  }
-}
-
-// Renders the program cards into #programList
-function setProgramDayFilter(days) {
-  programDayFilter = days;
-  renderPrograms();
-}
-
-
-// renderPrograms and selectProgram defined below
-
-// Opens the full-screen program confirmation screen
-function showProgramConfirmScreen(programId) {
-  const program = PROGRAMS.find(p => p.id === programId);
-  if (!program) return;
-  hideSelectionBar();
-
-  // Set title
-  document.getElementById('confirmScreenTitle').textContent = program.name;
-
-  // Build summary banner
-  document.getElementById('confirmScreenSummary').innerHTML = `
-    <div style="
-      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(79,142,247,0.08));
-      border: 1px solid rgba(79,142,247,0.25);
-      border-radius: 14px; padding: 18px; margin-bottom: 8px;
-    ">
-      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:6px;">${program.name}</div>
-      <div style="font-size:13px;color:#7eb3ff;margin-bottom:14px;">${program.goal} · ${program.durationWeeks} weeks</div>
-      <p style="font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:14px;">${program.description}</p>
-      <div style="
-        font-size:13px;color:#64748b;font-style:italic;
-        padding:10px 12px;background:rgba(255,255,255,0.03);
-        border-radius:8px;border-left:2px solid rgba(79,142,247,0.4);
-      ">👤 ${program.whoIsThisFor}</div>
-    </div>
-
-    <div style="
-      background: rgba(251,191,36,0.06);
-      border: 1px solid rgba(251,191,36,0.2);
-      border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
-    ">
-      <p style="font-size:12px;color:#fbbf24;line-height:1.6;margin:0;">
-        ⚠️ Starting this program will replace any active standalone template.
-        Your workout history is preserved.
-      </p>
-    </div>
-  `;
-
-  // Build block cards
-  document.getElementById('confirmScreenBlocks').innerHTML = program.blocks.map((block, i) => {
-    const chipClass = block.isDeload ? 'deload'
-      : block.phase === 'Realization'     ? 'peak'
-      : block.phase === 'Accumulation'    ? 'accumulation'
-      : block.phase === 'Intensification' ? 'intensification'
-      : 'strength';
-
-    const typeLabel = block.isDeload        ? 'Deload'
-      : block.phase === 'Realization'     ? 'Realization'
-      : block.phase === 'Accumulation'    ? 'Accumulation'
-      : block.phase === 'Intensification' ? 'Intensification'
-      : block.phase;
-
-    return `
-      <div class="confirm-block-card ${chipClass}">
-        <div class="confirm-block-label ${chipClass}">Block ${block.blockNumber} · ${block.weeks} week${block.weeks > 1 ? 's' : ''} · ${typeLabel}</div>
-        <div class="confirm-block-title">${block.label}</div>
-        <div class="confirm-block-meta">
-          ${block.repRange ? `${block.repRange} reps · ` : ''}${block.rirTarget ? `RIR ${block.rirTarget}` : ''}
-          · Template: ${block.templateId}
-        </div>
-        <div class="confirm-block-goal">"${block.goal}"</div>
-        <div class="confirm-block-why">
-          <strong style="font-size:11px;color:#475569;display:block;margin-bottom:4px;">WHY THIS BLOCK</strong>
-          ${block.why}
-        </div>
-        <div class="confirm-block-training">
-          <strong>In practice:</strong> ${block.trainingFocus}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  // Show the screen
-  const screen = document.getElementById('programConfirmScreen');
-  screen.style.display = 'flex';
-  screen.scrollTop = 0;
-}
-
-// Closes the confirmation screen and returns to program browser
-function closeProgramConfirmScreen() {
-  document.getElementById('programConfirmScreen').style.display = 'none';
-}
-
-// Called when user taps "Start Program" on the confirmation screen
-function startProgram() {
-  if (!selectedProgramId) return;
-
-  const program = PROGRAMS.find(p => p.id === selectedProgramId);
-  if (!program) return;
-
-  // Warn if a standalone template is mid-week
-  if (activeTemplate && !activeProgram) {
-    const ok = confirm(
-      `You have an active standalone template (${activeTemplate.name}).\n\n` +
-      `Starting this program will replace it. Your workout history is preserved.\n\n` +
-      `Continue?`
-    );
-    if (!ok) return;
-  }
-
-  // Set program state
-  activeProgram               = program;
-  activeProgramBlockIndex     = 0;
-  activeProgramWeekIndex      = 1;
-  activeProgramWeeksCompleted = 0;
-
-  // Load the first block's template
-  const firstBlock = program.blocks[0];
-  const template   = TEMPLATES.find(t => t.id === firstBlock.templateId);
-
-  if (!template) {
-    alert('Template not found: ' + firstBlock.templateId);
-    return;
-  }
-
-  // Reset week state cleanly
-  activeTemplate     = template;
-  activeWeekStart    = new Date();
-  currentDayIndex    = 0;
-  currentWeekLogs    = [];
-  activeSelections   = {};
-  selectedProgramId  = null;
-
-  // Close confirmation screen
-  closeProgramConfirmScreen();
-
-  // Save and navigate to workout
-  saveStateNow();
-  document.getElementById('headerSubtitle').textContent =
-    currentUsername ? `Hi, ${currentUsername} 👋` : '';
-  showView('workout');
-}
-
 // Tracks which program is selected in the programs browser (not yet started)
 
 // Switches the Templates tab between "templates" and "programs" modes
@@ -14963,184 +15370,6 @@ function setProgramGoalFilter(goal) {
     }
   }
   renderPrograms();
-}
-
-// Opens the full-screen program confirmation screen
-function showProgramConfirmScreen(programId) {
-  const program = PROGRAMS.find(p => p.id === programId);
-  if (!program) return;
-  hideSelectionBar();
-
-  // Set title
-  document.getElementById('confirmScreenTitle').textContent = program.name;
-
-  // Build summary banner
-  document.getElementById('confirmScreenSummary').innerHTML = `
-    <div style="
-      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(79,142,247,0.08));
-      border: 1px solid rgba(79,142,247,0.25);
-      border-radius: 14px; padding: 18px; margin-bottom: 8px;
-    ">
-      <div style="font-size:22px;font-weight:800;color:#e2e8f0;margin-bottom:6px;">${program.name}</div>
-      <div style="font-size:13px;color:#7eb3ff;margin-bottom:14px;">${program.goal} · ${program.durationWeeks} weeks</div>
-      <p style="font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:14px;">${program.description}</p>
-      <div style="
-        font-size:13px;color:#64748b;font-style:italic;
-        padding:10px 12px;background:rgba(255,255,255,0.03);
-        border-radius:8px;border-left:2px solid rgba(79,142,247,0.4);
-      ">👤 ${program.whoIsThisFor}</div>
-    </div>
-
-    <div style="
-      background: rgba(251,191,36,0.06);
-      border: 1px solid rgba(251,191,36,0.2);
-      border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
-    ">
-      <p style="font-size:12px;color:#fbbf24;line-height:1.6;margin:0;">
-        ⚠️ Starting this program will replace any active standalone template.
-        Your workout history is preserved.
-      </p>
-    </div>
-  `;
-
-  // Build block cards
-  document.getElementById('confirmScreenBlocks').innerHTML = program.blocks.map((block, i) => {
-    const chipClass = block.isDeload ? 'deload'
-      : block.phase === 'Realization'     ? 'peak'
-      : block.phase === 'Accumulation'    ? 'accumulation'
-      : block.phase === 'Intensification' ? 'intensification'
-      : 'strength';
-
-    const typeLabel = block.isDeload        ? 'Deload'
-      : block.phase === 'Realization'     ? 'Realization'
-      : block.phase === 'Accumulation'    ? 'Accumulation'
-      : block.phase === 'Intensification' ? 'Intensification'
-      : block.phase;
-
-    return `
-      <div class="confirm-block-card ${chipClass}">
-        <div class="confirm-block-label ${chipClass}">Block ${block.blockNumber} · ${block.weeks} week${block.weeks > 1 ? 's' : ''} · ${typeLabel}</div>
-        <div class="confirm-block-title">${block.label}</div>
-        <div class="confirm-block-meta">
-          ${block.repRange ? `${block.repRange} reps · ` : ''}${block.rirTarget ? `RIR ${block.rirTarget}` : ''}
-          · Template: ${block.templateId}
-        </div>
-        <div class="confirm-block-goal">"${block.goal}"</div>
-        <div class="confirm-block-why">
-          <strong style="font-size:11px;color:#475569;display:block;margin-bottom:4px;">WHY THIS BLOCK</strong>
-          ${block.why}
-        </div>
-        <div class="confirm-block-training">
-          <strong>In practice:</strong> ${block.trainingFocus}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  // Show the screen
-  const screen = document.getElementById('programConfirmScreen');
-  screen.style.display = 'flex';
-  screen.scrollTop = 0;
-}
-
-// Closes the confirmation screen and returns to program browser
-function closeProgramConfirmScreen() {
-  document.getElementById('programConfirmScreen').style.display = 'none';
-}
-
-// Called when user taps "Start Program" on the confirmation screen
-function startProgram() {
-  if (!selectedProgramId) return;
-
-  const program = PROGRAMS.find(p => p.id === selectedProgramId);
-  if (!program) return;
-
-  // Warn if a standalone template is mid-week
-  if (activeTemplate && !activeProgram) {
-    const ok = confirm(
-      `You have an active standalone template (${activeTemplate.name}).\n\n` +
-      `Starting this program will replace it. Your workout history is preserved.\n\n` +
-      `Continue?`
-    );
-    if (!ok) return;
-  }
-
-  // Set program state
-  activeProgram               = program;
-  activeProgramBlockIndex     = 0;
-  activeProgramWeekIndex      = 1;
-  activeProgramWeeksCompleted = 0;
-
-  // Load the first block's template
-  const firstBlock = program.blocks[0];
-  const template   = TEMPLATES.find(t => t.id === firstBlock.templateId);
-
-  if (!template) {
-    alert('Template not found: ' + firstBlock.templateId);
-    return;
-  }
-
-  // Reset week state cleanly
-  activeTemplate     = template;
-  activeWeekStart    = new Date();
-  currentDayIndex    = 0;
-  currentWeekLogs    = [];
-  activeSelections   = {};
-  selectedProgramId  = null;
-
-  // Close confirmation screen
-  closeProgramConfirmScreen();
-
-  // Save and navigate to workout
-  saveStateNow();
-  document.getElementById('headerSubtitle').textContent =
-    currentUsername ? `Hi, ${currentUsername} 👋` : '';
-  showView('workout');
-}
-
-
-// ===== ABANDON PROGRAM =====
-
-function showAbandonProgramScreen() {
-  if (!activeProgram) return;
-
-  document.getElementById('abandonProgramName').textContent = activeProgram.name;
-
-  const block          = activeProgram.blocks[activeProgramBlockIndex];
-  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
-  const completedWeeks = activeProgramWeeksCompleted;
-  const weeksLeft      = totalWeeks - completedWeeks;
-
-  document.getElementById('abandonProgressSummary').innerHTML =
-    `You are currently on <strong style="color:#94a3b8;">${block.label}</strong> ` +
-    `(Block ${block.blockNumber} of ${activeProgram.blocks.length}, ` +
-    `Week ${activeProgramWeekIndex} of ${block.weeks}). ` +
-    `<br><br>` +
-    `${completedWeeks} week${completedWeeks !== 1 ? 's' : ''} completed · ` +
-    `${weeksLeft} week${weeksLeft !== 1 ? 's' : ''} remaining.`;
-
-  document.getElementById('abandonProgramScreen').style.display = 'flex';
-}
-
-function closeAbandonProgramScreen() {
-  document.getElementById('abandonProgramScreen').style.display = 'none';
-}
-
-function confirmAbandonProgram() {
-  // Clear program state — history already contains completed weeks
-  activeProgram               = null;
-  activeProgramBlockIndex     = 0;
-  activeProgramWeekIndex      = 1;
-  activeProgramWeeksCompleted = 0;
-  activeTemplate              = null;
-  activeWeekStart             = null;
-  currentDayIndex             = 0;
-  currentWeekLogs             = [];
-  activeSelections            = {};
-
-  saveStateNow();
-  closeAbandonProgramScreen();
-  showView('templates');
 }
 
 
@@ -15684,106 +15913,6 @@ function refreshLastLog(index, exId) {
   if (el) el.innerHTML = buildLastLogHtml(exId);
 }
 
-// Builds the "Active Workout" view for the current day of the active template.
-// Renders the program progress bar at the top of the Workout tab.
-// Shows a dot for each week of each block, colour-coded, with current week pulsing.
-function renderProgramProgress() {
-  const el = document.getElementById('programProgressBar');
-  if (!activeProgram) { el.style.display = 'none'; return; }
-
-  const block   = activeProgram.blocks[activeProgramBlockIndex];
-  const colours = { hypertrophy: '#a855f7', strength: '#4f8ef7', deload: '#4ade80', peak: '#fbbf24' };
-
-  function blockColour(b) {
-    if (b.isDeload) return colours.deload;
-    const l = b.label.toLowerCase();
-    if (l.includes('peak'))         return colours.peak;
-    if (l.includes('hypertrophy'))  return colours.hypertrophy;
-    return colours.strength;
-  }
-
-  // Count total weeks and completed weeks for the fraction
-  const totalWeeks     = activeProgram.blocks.reduce((s, b) => s + b.weeks, 0);
-  const completedWeeks = activeProgramWeeksCompleted;
-
-  // Build dot groups — one group per block, dots inside = weeks in that block
-  let weekCursor = 0; // tracks global week index across all blocks
-  const dotGroups = activeProgram.blocks.map((b, bi) => {
-    const colour = blockColour(b);
-    const dots = Array.from({ length: b.weeks }, (_, wi) => {
-      const globalWeek = weekCursor + wi;
-      const isCurrent  = bi === activeProgramBlockIndex && (wi + 1) === activeProgramWeekIndex;
-      const isDone     = globalWeek < completedWeeks;
-
-      let dotStyle = `background:${colour};opacity:${isDone ? '1' : '0.2'};border-color:transparent;`;
-      if (isCurrent) dotStyle = `background:${colour};opacity:1;border-color:transparent;box-shadow:0 0 7px ${colour}99;width:10px;height:10px;`;
-
-      return `<div class="block-dot${isCurrent ? ' current' : isDone ? ' completed' : ''}" style="${dotStyle}"></div>`;
-    }).join('');
-
-    weekCursor += b.weeks;
-    return `<div class="block-dot-group">${dots}</div>`;
-  });
-
-  // Interleave separators between groups
-  const timeline = dotGroups.join('<div class="block-dot-separator"></div>');
-
-  // Current block label
-  const blockColourHex = blockColour(block);
-  const blockTypeLabel = block.isDeload ? 'Deload'
-    : block.phase === 'Realization' ? 'Realization'
-    : block.phase === 'Accumulation' ? 'Accumulation'
-    : 'Strength';
-
-  el.style.display = 'block';
-  el.innerHTML = `
-    <div class="program-progress-bar">
-      <div class="program-progress-header">
-        <div class="program-progress-name">
-          <span style="color:${blockColourHex};margin-right:4px;">●</span>
-          ${activeProgram.name}
-        </div>
-        <div class="program-progress-fraction">${completedWeeks} / ${totalWeeks} weeks</div>
-      </div>
-      <div class="program-block-dots">${timeline}</div>
-      <div class="program-progress-label">
-        Block ${block.blockNumber} of ${activeProgram.blocks.length}
-        · <span style="color:${blockColourHex};">${blockTypeLabel}</span>
-        · Week ${activeProgramWeekIndex} of ${block.weeks}
-        · ${block.label}
-      </div>
-    </div>
-  `;
-
-  // Show abandon button when mid-program
-  const abandonBtn = document.getElementById('abandonProgramBtn');
-  if (abandonBtn) abandonBtn.style.display = activeProgram ? 'block' : 'none';
-}
-
-// Renders a deload banner if the current program block is a deload week.
-function renderDeloadBanner() {
-  const el = document.getElementById('deloadBanner');
-  if (!activeProgram) { el.style.display = 'none'; return; }
-
-  const block = activeProgram.blocks[activeProgramBlockIndex];
-  if (!block.isDeload) { el.style.display = 'none'; return; }
-
-  el.style.display = 'block';
-  el.innerHTML = `
-    <div class="deload-banner">
-      <div class="deload-banner-icon">🌿</div>
-      <div class="deload-banner-text">
-        <div class="deload-banner-title">Deload Week — Recovery is the work</div>
-        <div class="deload-banner-body">
-          Aim for <strong>50% of your normal volume</strong> — half the sets, same exercises, same structure.
-          Keep loads relatively similar but stop well short of failure.
-          This is where your body consolidates the gains from the previous block.
-        </div>
-      </div>
-    </div>
-  `;
-}
-
 // Renders the program progress bar at the top of the Workout tab.
 // Shows a dot for each week of each block, colour-coded, with current week pulsing.
 function renderProgramProgress() {
@@ -16150,6 +16279,14 @@ const dropdownHtml =
             <input type="text" class="input-field" placeholder="e.g. tempo, pause, single-leg…" id="notes-${index}" oninput="onWorkoutInput()">
           </div>
         </div>
+
+        <!-- Rest timer trigger -->
+        <button class="rest-timer-trigger" onclick="startRestTimer(getRestDuration('${slot.slotName}', '${activeTemplate.goal}'), '${slot.slotName}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Rest ${formatRestDuration(getRestDuration(slot.slotName, activeTemplate.goal))}
+        </button>
 
         <!-- Checkbox to mark this exercise as completed -->
         <label class="checkbox-label">
@@ -16518,6 +16655,9 @@ function toggleExerciseComplete(index) {
 // Go to the next day in the active template.
 // Optionally saves current day data first.
 function nextDay() {
+  if (!activeTemplate) return;
+  const maxDay = activeTemplate.days.length - 1;
+  if (currentDayIndex >= maxDay) return;
   saveCurrentDayData();
   currentDayIndex++;
   saveStateNow();
@@ -16528,6 +16668,8 @@ function nextDay() {
 
 // Go to the previous day in the active template.
 function previousDay() {
+  if (!activeTemplate || currentDayIndex <= 0) return;
+  saveCurrentDayData();
   currentDayIndex--;
   saveStateNow();
   renderActiveWorkout();
@@ -16537,7 +16679,11 @@ function previousDay() {
 
 // Called when the user clicks "Complete Week".
 // Standalone mode: archives and resets. Program mode: advances blocks.
+let _completingWeek = false;
 function completeWeek() {
+  if (_completingWeek) return;
+  _completingWeek = true;
+  try {
   saveCurrentDayData();
 
   // Archive this week into history
@@ -16558,8 +16704,9 @@ function completeWeek() {
     currentDayIndex = 0;
     currentWeekLogs = [];
     saveStateNow();
-    alert('Week completed! Great work! 💪');
+    showToast('Week completed! Great work! 💪', 'success');
     showView('templates');
+    _completingWeek = false;
     return;
   }
 
@@ -16575,8 +16722,9 @@ function completeWeek() {
     currentWeekLogs  = [];
     activeSelections = {};
     saveStateNow();
-    alert('Week ' + (activeProgramWeekIndex - 1) + ' of ' + currentBlock.weeks + ' complete! Keep going 💪\n\nBlock: ' + currentBlock.label);
+    showToast('Week ' + (activeProgramWeekIndex - 1) + ' of ' + currentBlock.weeks + ' complete! Keep going 💪', 'success');
     showView('workout');
+    _completingWeek = false;
     return;
   }
 
@@ -16590,7 +16738,7 @@ function completeWeek() {
     const nextTemplate = TEMPLATES.find(t => t.id === nextBlock.templateId);
 
     if (!nextTemplate) {
-      alert('Error: template not found: ' + nextBlock.templateId);
+      showToast('Error: template not found: ' + nextBlock.templateId, 'error');
       return;
     }
 
@@ -16602,6 +16750,7 @@ function completeWeek() {
 
     saveStateNow();
     showBlockTransitionScreen(currentBlock, nextBlock);
+    _completingWeek = false;
     return;
   }
 
@@ -16618,6 +16767,7 @@ function completeWeek() {
 
   saveStateNow();
   showProgramCompleteScreen(completedProgramName);
+  } finally { _completingWeek = false; }
 }
 
 // Temporary stub — replaced by full screen in Stage 5
@@ -17160,12 +17310,13 @@ function renderFreeSearchResults() {
     return;
   }
   resultsEl.style.display = 'block';
-  resultsEl.innerHTML = pool.slice(0, 20).map(e => `
-    <div class="search-result-item" onclick="addFreeSlot('${e.id}')">
+  resultsEl.innerHTML = pool.slice(0, 20).map(e => {
+    const safeId = e.id.replace(/'/g, "\\'");
+    return `<div class="search-result-item" onclick="addFreeSlot('${safeId}')">
       <span>${e.name}</span>
       <span class="search-result-mg">${e.primaryMuscle || e.movementPattern || ''}</span>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function addFreeSlot(exId) {
@@ -17196,6 +17347,11 @@ function moveFreeSlot(index, dir) {
 
 function updateFreeSlot(index, field, value) {
   if (freeWorkoutSlots[index]) {
+    // Prevent negative numbers for numeric fields
+    if (['sets', 'reps', 'load'].includes(field)) {
+      const num = parseFloat(value);
+      if (!isNaN(num) && num < 0) value = '0';
+    }
     freeWorkoutSlots[index][field] = value;
   }
 }
@@ -17217,8 +17373,11 @@ function loadPastWorkout(historyIndex) {
   renderFreeWorkout();
 }
 
+let _savingFreeWorkout = false;
 function saveFreeWorkout() {
   if (freeWorkoutSlots.length === 0) return;
+  if (_savingFreeWorkout) return;
+  _savingFreeWorkout = true;
 
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   const title   = `Custom Workout — ${dateStr}`;
@@ -17264,7 +17423,8 @@ function saveFreeWorkout() {
   freeWorkoutSlots  = [];
   saveStateNow();
   showView('workout');
-  setTimeout(() => alert('Workout saved! 💪'), 100);
+  _savingFreeWorkout = false;
+  setTimeout(() => showToast('Workout saved! 💪', 'success'), 100);
 }
 
 function renderHistory() {
@@ -17633,7 +17793,7 @@ type: libEx
     });
   });
 
-  if (!logSlots.length) { alert('Add at least one exercise before saving.'); return; }
+  if (!logSlots.length) { showToast('Add at least one exercise before saving.', 'error'); return; }
 
   const completedAt = dateVal ? new Date(dateVal + 'T12:00:00') : new Date();
   workoutHistory.push({
@@ -17730,7 +17890,7 @@ function renderAdminStats() {
 
 function showDetailedLogModal() {
   if (workoutHistory.length === 0) {
-    alert('No completed weeks yet. Complete a week to view detailed logs.');
+    showToast('No completed weeks yet. Complete a week to view detailed logs.', 'error');
     return;
   }
 
@@ -17741,8 +17901,9 @@ function showDetailedLogModal() {
     );
 
     if (!entry.logs || entry.logs.length === 0) {
+      const entryName = entry.isCustom ? (entry.title || 'Custom Workout') : (entry.template?.name || 'Unknown');
       return `<div class="log-week">
-        <div class="log-week-header">${dateStr} — ${entry.template.name}</div>
+        <div class="log-week-header">${dateStr} — ${entryName}</div>
         <div style="font-size:12px;color:var(--color-text-muted);padding:8px 0;">No slot data recorded for this week.</div>
       </div>`;
     }
@@ -17780,9 +17941,11 @@ function showDetailedLogModal() {
       </div>`;
     }).join('');
 
+    const tmplName = entry.isCustom ? (entry.title || 'Custom Workout') : (entry.template?.name || 'Unknown');
+    const tmplGoal = entry.isCustom ? '' : (entry.template?.goal || entry.template?.focus || '');
     return `<div class="log-week">
-      <div class="log-week-header">${dateStr} — ${entry.template.name}
-        <span style="font-weight:400;color:var(--color-text-muted);font-size:11px;"> · ${entry.template.goal || entry.template.focus || ""}</span>
+      <div class="log-week-header">${dateStr} — ${tmplName}
+        ${tmplGoal ? `<span style="font-weight:400;color:var(--color-text-muted);font-size:11px;"> · ${tmplGoal}</span>` : ''}
       </div>
       ${daysHtml}
     </div>`;
@@ -17835,7 +17998,7 @@ async function downloadMyData() {
     .maybeSingle();
 
   if (error || !data) {
-    alert('Could not fetch your data from the server. Please try again.');
+    showToast('Could not fetch your data from the server. Please try again.', 'error');
     return;
   }
 
@@ -17869,7 +18032,7 @@ function closeResetModal() {
 async function confirmResetAccount() {
   const val = document.getElementById('resetConfirmInput').value.trim();
   if (val !== 'RESET') {
-    alert('Please type RESET exactly to confirm.');
+    showToast('Please type RESET exactly to confirm.', 'error');
     return;
   }
 
@@ -17882,7 +18045,7 @@ async function confirmResetAccount() {
     .eq('user_id', currentUser.id);
 
   if (error) {
-    alert('Something went wrong. Please try again.');
+    showToast('Something went wrong. Please try again.', 'error');
     return;
   }
 
@@ -17891,12 +18054,19 @@ async function confirmResetAccount() {
   workoutHistory  = []; activeSelections = {}; currentWeekLogs = [];
   exerciseLibrary = [...EXERCISE_LIBRARY];
   TEMPLATES       = TEMPLATES.filter(t => !t._custom);
+  // Reset program and free workout state
+  activeProgram               = null;
+  activeProgramBlockIndex     = 0;
+  activeProgramWeekIndex      = 1;
+  activeProgramWeeksCompleted = 0;
+  freeWorkoutActive = false;
+  freeWorkoutSlots  = [];
 
   closeResetModal();
   showView('templates');
   renderTemplates();
   // headerSubtitle retains username
-  alert('Your account has been reset.');
+  showToast('Your account has been reset.', 'success');
 }
 
 // Opens the "Add Exercise" modal.
@@ -17948,9 +18118,14 @@ function saveExercise(event) {
   event.preventDefault();
 
   const editId = document.getElementById('exerciseEditId').value;
+  const rawId   = document.getElementById('exerciseId').value.trim();
+  const rawName = document.getElementById('exerciseName').value.trim();
+  if (!rawId)   { showToast('Exercise ID is required.', 'error'); return; }
+  if (!rawName) { showToast('Exercise name is required.', 'error'); return; }
+
   const exercise = {
-    id:            document.getElementById('exerciseId').value.trim(),
-    name:          document.getElementById('exerciseName').value.trim(),
+    id:            rawId,
+    name:          rawName,
     exerciseType:  document.getElementById('exercisetype').value,
     movementPattern: document.getElementById('exercisePrimary').value || null,
     primaryMuscle: document.getElementById('exercisePrimary').value || null,
@@ -17969,7 +18144,7 @@ function saveExercise(event) {
   } else {
     // Add mode: check for duplicate ID
     if (exerciseLibrary.find(e => e.id === exercise.id)) {
-      alert(`Exercise ID "${exercise.id}" already exists. Choose a different ID.`);
+      showToast(`Exercise ID "${exercise.id}" already exists.`, 'error');
       return;
     }
     exerciseLibrary.push(exercise);
@@ -18256,6 +18431,10 @@ function saveTemplate(event) {
   const daysPerWeek = parseInt(document.getElementById('templateDaysPerWeek').value);
   const description = document.getElementById('templateDescription').value.trim();
 
+  if (!id)   { showToast('Template ID is required.', 'error'); return; }
+  if (!name) { showToast('Template name is required.', 'error'); return; }
+  if (!daysPerWeek || daysPerWeek < 1) { showToast('Days per week must be at least 1.', 'error'); return; }
+
   // Gather days from editor
   const days = [];
   document.querySelectorAll('#templateDayEditor .day-editor-item').forEach((dayEl, di) => {
@@ -18295,7 +18474,7 @@ function saveTemplate(event) {
     else { TEMPLATES.push(template); }
   } else {
     if (TEMPLATES.find(t => t.id === id)) {
-      alert(`Template ID "${id}" already exists.`);
+      showToast(`Template ID "${id}" already exists.`, 'error');
       return;
     }
     TEMPLATES.push(template);
@@ -18388,10 +18567,10 @@ function updateSlotRule(focus, dayType, slot, value, selectEl) {
 function addSlotRulesDayType() {
   const input = document.getElementById('newDayTypeInput');
   const name = input.value.trim();
-  if (!name) { alert('Enter a day type name.'); return; }
+  if (!name) { showToast('Enter a day type name.', 'error'); return; }
   const focus = _slotRulesActiveFocus;
   if (!SLOT_RULES[focus]) SLOT_RULES[focus] = {};
-  if (SLOT_RULES[focus][name]) { alert(`Day type "${name}" already exists.`); return; }
+  if (SLOT_RULES[focus][name]) { showToast(`Day type "${name}" already exists.`, 'error'); return; }
   // Default all slots to Optional
   SLOT_RULES[focus][name] = {};
   ALL_SLOTS.forEach(s => SLOT_RULES[focus][name][s] = 'Optional');
@@ -18419,6 +18598,33 @@ function manageSlotRules() { showSlotRulesModal(); }
 document
   .getElementById('exerciseSearch')
   .addEventListener('input', renderExerciseListFiltered);
+
+
+// Warn user before closing tab if workout is in progress
+window.addEventListener('beforeunload', (e) => {
+  if (activeTemplate && currentView === 'workout') {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+// ==================== KEYBOARD SHORTCUTS ====================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    // Close any open modal
+    document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+    // Close lightbox
+    const lb = document.getElementById('gifLightbox');
+    if (lb && lb.classList.contains('active')) closeGifLightbox();
+    // Close full-screen overlays
+    const overlays = ['programConfirmScreen', 'blockTransitionScreen', 'programCompleteScreen', 'abandonProgramScreen'];
+    overlays.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.style.display !== 'none') el.style.display = 'none';
+    });
+  }
+});
+
 </script>
 </body>
 </html>
