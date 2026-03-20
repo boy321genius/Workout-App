@@ -720,7 +720,36 @@
       font-size: 18px;
     }
 
-    /* ===== Collapsible sections (expand/collapse panels) ===== */
+    /* ===== Slot exercise override toggle ===== */
+    .override-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      background: none;
+      border: none;
+      padding: 3px 0;
+      color: var(--color-text-muted);
+      font-size: 11px;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .override-toggle:hover { color: var(--color-text-secondary); }
+    .override-toggle.active {
+      color: #f59e0b;
+    }
+    .override-toggle.active:hover { color: #fbbf24; }
+    .pill-override {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+
     .collapsible-header {
       display: flex;
       justify-content: space-between;
@@ -14752,6 +14781,7 @@ let exerciseLibrary = [...EXERCISE_LIBRARY];
 
 // Stores per-day/per-slot selections
 let activeSelections = {};
+let slotOverrides = {};   // key → true when user has overridden the slot's filtered exercise list
 
 // Per-day performance logs accumulated during the active week.
 let currentWeekLogs = [];
@@ -14787,6 +14817,7 @@ function buildStateObject() {
     workoutHistory,
     exerciseLibrary,
     activeSelections,
+    slotOverrides,
     currentWeekLogs,
     customTemplates: TEMPLATES.filter(t => t._custom),
     slotRules: SLOT_RULES,
@@ -14812,6 +14843,7 @@ function applyStateObject(state) {
   );
   exerciseLibrary = [...EXERCISE_LIBRARY, ...savedCustomExercises];
   activeSelections  = state.activeSelections || {};
+  slotOverrides     = state.slotOverrides    || {};
   currentWeekLogs   = state.currentWeekLogs  || [];
   if (state.customTemplates && state.customTemplates.length > 0) {
     TEMPLATES = TEMPLATES.filter(t => !t._custom);
@@ -15027,7 +15059,7 @@ async function signOut() {
   currentUsername = '';
   activeTemplate  = null; activeWeekStart = null; currentDayIndex = 0;
   workoutHistory  = []; exerciseLibrary = [...EXERCISE_LIBRARY];
-  activeSelections = {}; currentWeekLogs = [];
+  activeSelections = {}; slotOverrides = {}; currentWeekLogs = [];
   // Clear program state
   activeProgram               = null;
   activeProgramBlockIndex     = 0;
@@ -15861,6 +15893,115 @@ function onExerciseSelectChange(templateId, dayIndex, exIndex, selectEl) {
   }
 }
 
+// Toggles the full-library override for a single slot.
+// Instead of re-rendering the whole workout card (which would wipe logged
+// sets/reps/notes), we surgically swap just the select group inner content.
+function toggleSlotOverride(templateId, dayIndex, exIndex) {
+  const key = getExerciseKey(templateId, dayIndex, exIndex);
+  const wasOverride = !!slotOverrides[key];
+  const nowOverride = !wasOverride;
+
+  if (nowOverride) {
+    slotOverrides[key] = true;
+  } else {
+    delete slotOverrides[key];
+  }
+  saveStateNow();
+
+  // Determine the slot + day from active template
+  const day  = activeTemplate.days[dayIndex];
+  const slot = day.slots[exIndex];
+  const slotRule = getSlotRule(activeTemplate.goal, day.stimulus, slot.slotName);
+
+  // Build the new pool
+  const matchingExercises = getMatchingExercisesForSlot({
+    slot,
+    templateGoal: activeTemplate.goal,
+    stimulus: day.stimulus
+  });
+  const exercisePool = nowOverride
+    ? [...exerciseLibrary].sort((a, b) => a.name.localeCompare(b.name))
+    : matchingExercises;
+
+  // Determine current selectedId — keep user's pick if it's still in the new pool
+  const currentSelectedId = activeSelections[key] || (matchingExercises[0]?.id || '');
+  const poolHasCurrentSelection = exercisePool.some(e => e.id === currentSelectedId);
+  const newSelectedId = poolHasCurrentSelection
+    ? currentSelectedId
+    : (exercisePool[0]?.id || '');
+
+  // If selection changed (override cleared and old pick isn't in filtered list), update it
+  if (newSelectedId !== currentSelectedId) {
+    activeSelections[key] = newSelectedId;
+    saveStateNow();
+    refreshLastLog(exIndex, newSelectedId);
+  }
+
+  // Build the replacement select (or forbidden message)
+  const isForbiddenAndNoOverride = slotRule === 'Forbidden' && !nowOverride;
+  const newSelectHtml = isForbiddenAndNoOverride
+    ? '<div class="exercise-meta" style="color: var(--color-warning); margin-top: 4px;">No exercise options available (Forbidden slot).</div>'
+    : `<select class="input-field" onchange="onExerciseSelectChange('${templateId}', ${dayIndex}, ${exIndex}, this)">
+        ${exercisePool.length === 0
+          ? '<option value="">NO_MATCH (EX000)</option>'
+          : exercisePool.map(opt => `
+              <option value="${opt.id}" ${opt.id === newSelectedId ? 'selected' : ''}>
+                ${opt.name} (${opt.id})
+              </option>`).join('')
+        }
+      </select>`;
+
+  const newToggleHtml = `
+    <button
+      class="override-toggle${nowOverride ? ' active' : ''}"
+      id="override-btn-${exIndex}"
+      onclick="toggleSlotOverride('${templateId}', ${dayIndex}, ${exIndex})"
+      title="${nowOverride ? 'Restore recommended exercises for this slot' : 'Pick any exercise from the full library'}"
+    >
+      ${nowOverride
+        ? `<svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Clear override`
+        : `<svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Override exercise`
+      }
+    </button>`;
+
+  // Patch the select group in-place — label stays, only the select + toggle swap
+  const group = document.getElementById(`select-group-${exIndex}`);
+  if (group) {
+    const label = group.querySelector('label');
+    group.innerHTML = '';
+    if (label) group.appendChild(label);
+    group.insertAdjacentHTML('beforeend', newSelectHtml + newToggleHtml);
+  }
+
+  // Update the overridden pill in the slot header
+  const card = document.getElementById(`exercise-${exIndex}`);
+  if (card) {
+    const pillRow = card.querySelector('.exercise-header .pill:last-of-type');
+    // Re-render just the override pill — find or create it
+    const existingOverridePill = card.querySelector('.pill-override');
+    if (nowOverride && !existingOverridePill) {
+      const pillsContainer = card.querySelector('.exercise-header > div > div:first-child');
+      if (pillsContainer) {
+        pillsContainer.insertAdjacentHTML('beforeend', '<div class="pill pill-override">overridden</div>');
+      }
+    } else if (!nowOverride && existingOverridePill) {
+      existingOverridePill.remove();
+    }
+  }
+
+  // Update the GIF panel for the new selection
+  const gifPanel = document.getElementById(`gif-panel-${exIndex}`);
+  if (gifPanel && newSelectedId) {
+    const img = gifPanel.querySelector('img');
+    const btn = document.getElementById(`gif-btn-${exIndex}`);
+    if (img) {
+      gifPanel.style.display = 'none';
+      if (btn) { btn.style.display = 'none'; btn.textContent = '▼ Show Demo'; }
+      img.src = `${GIF_BASE}/${newSelectedId}.gif?v=${GIF_V}`;
+    }
+  }
+}
+
 // Searches workoutHistory newest-first for the most recent logged slot
 // matching the given exercise ID. Returns a display string or null.
 function getLastLog(exId) {
@@ -16187,20 +16328,33 @@ function renderActiveWorkout() {
           ? '<div class="exercise-meta" style="color: var(--color-error); margin-top: 4px;">This slot is required. Please select an exercise.</div>'
           : '';
 
+// Determine the exercise pool for this slot's dropdown.
+// In override mode we offer the full library so the user can pick anything.
+const isOverride = !!slotOverrides[key];
+const exercisePool = isOverride
+  ? [...exerciseLibrary].sort((a, b) => a.name.localeCompare(b.name))
+  : matchingExercises;
+
+// When entering override mode the previously-stored selectedId may not be
+// in matchingExercises, but it could still be a valid library exercise.
+const selectedExerciseOverride = isOverride
+  ? (exerciseLibrary.find(e => e.id === selectedId) || selectedExercise)
+  : selectedExercise;
+
 // Dropdown content:
-// - If Forbidden: show a message instead of a selector.
-// - Otherwise: build a <select> with all matching exercises.
+// - If Forbidden AND not overriding: show a message instead of a selector.
+// - Otherwise: build a <select> with either the filtered or full exercise list.
 const dropdownHtml =
-  slotRule === 'Forbidden'
+  slotRule === 'Forbidden' && !isOverride
     ? '<div class="exercise-meta" style="color: var(--color-warning); margin-top: 4px;">No exercise options available (Forbidden slot).</div>'
     : `
         <select
           class="input-field"
           onchange="onExerciseSelectChange('${activeTemplate.id}', ${currentDayIndex}, ${index}, this)"
         >
-          ${matchingExercises.length === 0 
-            ? '<option value="">NO_MATCH (EX000)</option>' 
-            : matchingExercises.map(opt => `
+          ${exercisePool.length === 0
+            ? '<option value="">NO_MATCH (EX000)</option>'
+            : exercisePool.map(opt => `
                 <option value="${opt.id}" ${opt.id === selectedId ? 'selected' : ''}>
                   ${opt.name} (${opt.id})
                 </option>
@@ -16208,6 +16362,21 @@ const dropdownHtml =
           }
         </select>
       `;
+
+// Override toggle — only shown for non-warmup/cooldown slots
+const overrideToggleHtml = `
+  <button
+    class="override-toggle${isOverride ? ' active' : ''}"
+    id="override-btn-${index}"
+    onclick="toggleSlotOverride('${activeTemplate.id}', ${currentDayIndex}, ${index})"
+    title="${isOverride ? 'Restore recommended exercises for this slot' : 'Pick any exercise from the full library'}"
+  >
+    ${isOverride
+      ? `<svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Clear override`
+      : `<svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Override exercise`
+    }
+  </button>
+`;
 
     // Full exercise card HTML for this slot.
     return `
@@ -16223,6 +16392,8 @@ const dropdownHtml =
               <div class="pill" style="font-size: 9px; padding: 3px 8px; border-color: ${ruleBadgeColor}; color: ${ruleBadgeColor};">
                 ${ruleBadgeText}
               </div>
+              <!-- Override active indicator -->
+              ${slotOverrides[key] ? '<div class="pill pill-override">overridden</div>' : ''}
             </div>
             <!-- Slot descriptor: Day Name • Primary Classification -->
             <h3 class="exercise-name">
@@ -16244,13 +16415,13 @@ const dropdownHtml =
 
         <!-- GIF demo toggle — button and panel hidden until file confirmed to exist via onload -->
         ${(() => {
-          const gifUrl = `${GIF_BASE}/${selectedExercise.id}.gif?v=${GIF_V}`;
+          const gifUrl = `${GIF_BASE}/${selectedExerciseOverride.id}.gif?v=${GIF_V}`;
           return `
             <button class="exercise-gif-toggle" id="gif-btn-${index}" onclick="toggleExerciseGif(${index})" style="display:none;">
               ▼ Show Demo
             </button>
             <div class="exercise-gif-panel" id="gif-panel-${index}" style="display:none; max-height:none;">
-              <img src="${gifUrl}" alt="${selectedExercise.name} demo"
+              <img src="${gifUrl}" alt="${selectedExerciseOverride.name} demo"
                    onload="document.getElementById('gif-btn-${index}').style.display='flex';"
                    onerror="this.closest('.exercise-gif-panel').style.display='none';" />
             </div>
@@ -16258,9 +16429,10 @@ const dropdownHtml =
         })()}
 
         <!-- Exercise selection dropdown -->
-        <div class="input-group" style="margin-top: 10px;">
+        <div class="input-group" id="select-group-${index}" style="margin-top: 10px;">
           <label class="input-label">Select Exercise</label>
           ${dropdownHtml}
+          ${overrideToggleHtml}
         </div>
 
         <!-- Logging inputs for this slot (what the user actually did) -->
@@ -16732,6 +16904,7 @@ function completeWeek() {
     currentDayIndex  = 0;
     currentWeekLogs  = [];
     activeSelections = {};
+    slotOverrides    = {};
     saveStateNow();
     showToast('Week ' + (activeProgramWeekIndex - 1) + ' of ' + currentBlock.weeks + ' complete! Keep going 💪', 'success');
     showView('workout');
@@ -16758,6 +16931,7 @@ function completeWeek() {
     currentDayIndex  = 0;
     currentWeekLogs  = [];
     activeSelections = {};
+    slotOverrides    = {};
 
     saveStateNow();
     showBlockTransitionScreen(currentBlock, nextBlock);
@@ -17164,6 +17338,7 @@ function promptSwitchToFree() {
   currentDayIndex  = 0;
   currentWeekLogs  = [];
   activeSelections = {};
+  slotOverrides    = {};
   freeWorkoutActive = false;
   freeWorkoutSlots  = [];
   saveStateNow();
@@ -18062,7 +18237,7 @@ async function confirmResetAccount() {
 
   // Reset in-memory state
   activeTemplate  = null; activeWeekStart = null; currentDayIndex = 0;
-  workoutHistory  = []; activeSelections = {}; currentWeekLogs = [];
+  workoutHistory  = []; activeSelections = {}; slotOverrides = {}; currentWeekLogs = [];
   exerciseLibrary = [...EXERCISE_LIBRARY];
   TEMPLATES       = TEMPLATES.filter(t => !t._custom);
   // Reset program and free workout state
